@@ -37,14 +37,14 @@ create table image_gallery
 (
     id    bigint auto_increment
         primary key,
-    image tinyblob null
+    image longblob null
 );
 
 create table products
 (
     id             bigint auto_increment
         primary key,
-    description    varchar(255) null,
+    description    longtext     null,
     enabled        bit          not null,
     price          double       not null,
     product_color  varchar(255) null,
