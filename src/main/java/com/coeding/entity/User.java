@@ -6,7 +6,9 @@ import lombok.experimental.NonFinal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
-
+/**
+ * author Nhanle
+ * */
 @Entity
 @Table(name = "users")
 @AllArgsConstructor

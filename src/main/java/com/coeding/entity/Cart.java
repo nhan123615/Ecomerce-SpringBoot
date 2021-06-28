@@ -7,7 +7,9 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.List;
-
+/**
+ * author Nhanle
+ * */
 @Component
 public class Cart {
     private List<CartItem> cartItems;

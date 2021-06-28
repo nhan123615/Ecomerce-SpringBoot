@@ -10,6 +10,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Set;
+/**
+ * author Nhanle
+ * */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

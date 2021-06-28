@@ -14,6 +14,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
+
+/**
+ * author Nhanle
+ * */
 @Profile("addAdminAccount")
 @ConfigurationProperties(prefix = "user.admin")
 @Configuration

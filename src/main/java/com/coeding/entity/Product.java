@@ -8,7 +8,9 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
-
+/**
+ * author Nhanle
+ * */
 @Entity
 @Table(name = "products")
 @AllArgsConstructor

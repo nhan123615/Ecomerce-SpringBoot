@@ -6,7 +6,9 @@ import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
-
+/**
+ * author Nhanle
+ * */
 @Entity
 @Table(name = "email_subscriber")
 @AllArgsConstructor

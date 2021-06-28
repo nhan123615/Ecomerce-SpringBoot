@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
-
+/**
+ * author Nhanle
+ * */
 @Controller
 @RequestMapping("/")
 public class PageHomeController {

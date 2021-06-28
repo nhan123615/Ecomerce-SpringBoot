@@ -5,7 +5,9 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
-
+/**
+ * author Nhanle
+ * */
 @Entity
 @Table(name = "paypal_details")
 @AllArgsConstructor
