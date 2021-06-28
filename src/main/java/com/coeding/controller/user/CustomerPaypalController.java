@@ -27,10 +27,6 @@ public class CustomerPaypalController {
 
 	@GetMapping("/paypal")
 	public String home(Authentication authentication, Model model,HttpServletRequest request) {
-		System.err.println(request.getContextPath());
-		System.err.println("sevlet: "+request.getServletPath());
-		System.err.println("URL:"+request.getRequestURL());
-		System.err.println(request.getHeader("Host"));
 		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
 
 		model.addAttribute("user",	userDetails.getUser());
@@ -42,8 +38,8 @@ public class CustomerPaypalController {
 	public String payment(HttpServletRequest request) {
 		try {
 			Payment payment = service.createPayment(30.00, "USD", "paypal",
-					"sale", "testing paypal", "http://"+request.getHeader("Host")+"/customer/payment/" + CANCEL_URL,
-					"http://"+request.getHeader("Host")+"/customer/payment/" + SUCCESS_URL);
+					"sale", "testing paypal", "http://"+request.getHeader("Host")+request.getContextPath()+"/customer/payment/" + CANCEL_URL,
+					"http://"+request.getHeader("Host")+request.getContextPath()+"/customer/payment/" + SUCCESS_URL);
 
 
 			for(Links link:payment.getLinks()) {
