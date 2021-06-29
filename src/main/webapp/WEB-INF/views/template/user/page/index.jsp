@@ -4,7 +4,8 @@
 <body>
 <jsp:include page="../components/header.jsp"></jsp:include>
 <jsp:include page="../components/sidebar.jsp"></jsp:include>
-
+<br><br><br>
+<br><br><br>
 <div id="homepage-1">
     
     <div class="ps-home-banner ps-home-banner--1">
