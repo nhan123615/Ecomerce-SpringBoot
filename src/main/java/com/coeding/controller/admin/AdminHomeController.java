@@ -1,9 +1,8 @@
 package com.coeding.controller.admin;
 
-import com.coeding.entity.User;
 import com.coeding.entity.UserDetail;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
