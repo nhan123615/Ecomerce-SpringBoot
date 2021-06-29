@@ -14,3 +14,4 @@ import java.util.List;
 public interface TypeRepository extends JpaRepository<Type,Long>  {
     List<Type> findByCategoryId(Long id);
 }
+//commit

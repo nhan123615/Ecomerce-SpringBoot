@@ -63,6 +63,7 @@
                         </c:choose>
 
                     </figure>
+                    <%--                                            #//commit--%>
 
                     <figure>
                         <h4 class="widget-title">By Price</h4>
