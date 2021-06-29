@@ -28,6 +28,31 @@
 <!-- Bootstrap 4 -->
 <script
 	src="${pageContext.servletContext.contextPath}/plugins-admin/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables -->
+<script
+	src="${pageContext.servletContext.contextPath}/plugins-admin/datatables/jquery.dataTables.min.js"></script>
+<script
+	src="${pageContext.servletContext.contextPath}/plugins-admin/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script
+	src="${pageContext.servletContext.contextPath}/plugins-admin/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script
+	src="${pageContext.servletContext.contextPath}/plugins-admin/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script
+	src="${pageContext.servletContext.contextPath}/plugins-admin/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script
+	src="${pageContext.servletContext.contextPath}/plugins-admin/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script
+	src="${pageContext.servletContext.contextPath}/plugins-admin/jszip/jszip.min.js"></script>
+<script
+	src="${pageContext.servletContext.contextPath}/plugins-admin/pdfmake/pdfmake.min.js"></script>
+<script
+	src="${pageContext.servletContext.contextPath}/plugins-admin/pdfmake/vfs_fonts.js"></script>
+<script
+	src="${pageContext.servletContext.contextPath}/plugins-admin/datatables-buttons/js/buttons.html5.min.js"></script>
+<script
+	src="${pageContext.servletContext.contextPath}/plugins-admin/datatables-buttons/js/buttons.print.min.js"></script>
+<script
+	src="${pageContext.servletContext.contextPath}/plugins-admin/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- ChartJS -->
 <script
 	src="${pageContext.servletContext.contextPath}/plugins-admin/chart.js/Chart.min.js"></script>
@@ -69,6 +94,15 @@
 <script
 	src="${pageContext.servletContext.contextPath}/ckfinder/ckfinder.js"></script>
 <script>
+	$(function() {
+		$("#example1").DataTable({
+			"responsive" : true,
+			"lengthChange" : true,
+			"autoWidth" : false,
+			"buttons" : [ "copy", "csv", "excel", "pdf", "print", "colvis" ]
+		}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+	});
+
 	CKEDITOR
 			.replace(
 					'description',
@@ -112,57 +146,6 @@
 		document.getElementById("imgpreview").src = fileUrl;
 	}
 	/*Avatar end*/
-</script>
-<script>
-    var username = document.querySelector('#username');
-    var checkboxUsernameDiv = document.querySelector('#checkboxUsername');
-
-    var tblUser = document.querySelector('#tblUser tbody');
-
-    const data = null;
-    const xhr = new XMLHttpRequest();
-    xhr.addEventListener("readystatechange", function () {
-        if (this.readyState === this.DONE) {
-            var json = JSON.parse(this.responseText);
-            username.innerHTML = getSelectUser(json)
-            tblUser.innerHTML = getUserTable(json)
-            checkboxUsernameDiv.innerHTML= getChekboxUser(json)
-        }
-    });
-
-    xhr.open("GET", "${pageContext.request.contextPath}/rest");
-    xhr.setRequestHeader('Content-type', 'application/json');
-    xhr.send(data);
-
-
-    //select box
-    username.addEventListener('change', function() {
-        const data = null;
-        const xhr = new XMLHttpRequest();
-        xhr.addEventListener("readystatechange", function () {
-            if (this.readyState === this.DONE) {
-                var json = JSON.parse(this.responseText);
-                tblUser.innerHTML = getUserTable(json)
-            }
-        });
-
-        if (this.value =='all'){
-            xhr.open("GET","${pageContext.servletContext.contextPath}/rest");
-        }else{
-            xhr.open("GET", "${pageContext.servletContext.contextPath}/rest?username="+this.value);
-        }
-        xhr.setRequestHeader('Content-type', 'application/json');
-        xhr.send(data);
-    });
-
-
-    function  getSelectUser(json) {
-        var selectUser ="<option value='all' selected>All</option>"
-        for (let i = 0; i <json.length; i++) {
-            selectUser +=   " <option value="+json[i].username+">"+json[i].username+"</option>"
-        }
-        return selectUser;
-    }
 </script>
 </body>
 </html>

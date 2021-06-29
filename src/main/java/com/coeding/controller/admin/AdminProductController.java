@@ -60,7 +60,7 @@ public class AdminProductController {
 			throws IOException {
 		logger.info("post : savefile");
 		logger.info("length : " + uploadfile.length);
-		String color = sp.getProductColor().substring(0, sp.getProductColor().length() - 1);
+		String color = sp.getProductColor().substring(0, sp.getProductColor().length());
 		sp.setProductColor(color);
 		if (uploadfile.length == 4) {
 			List<ImageGallery> list = new ArrayList<ImageGallery>();
@@ -102,7 +102,7 @@ public class AdminProductController {
 		List<Product> list = productService.findAll();
 		logger.info("list: " + list.size());
 		model.addAttribute("list", list);
-		return "template/admin/list-product";
+		return "template/admin/list-product1";
 	}
 
 	@GetMapping(value = "/product/edit")

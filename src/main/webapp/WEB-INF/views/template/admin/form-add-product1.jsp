@@ -58,7 +58,7 @@
 										min="0" required="required">
 								</div>
 								<div class="form-group">
-									<label>Select Color</label> <select multiple="multiple"
+									<label>Color</label> <select multiple="multiple"
 										name="productColor" class="form-control">
 										<option value="black">black</option>
 										<option value="white">white</option>
@@ -67,25 +67,27 @@
 									</select>
 								</div>
 								<div class="form-group">
-									<label>Select Brand</label> <select class="form-control"
+									<label>Brand</label> <select class="form-control"
 										name="brand">
+										<option selected="selected" disabled="disabled">Select brand</option>
 										<c:forEach var="brand" items="${brands }">
 											<option value="${brand.id }">${brand.name }</option>
 										</c:forEach>
 									</select>
 								</div>
 								<div class="form-group">
-									<label>Select Category</label> <select class="form-control"
-										name="category">
-										<option selected="selected" disabled="disabled">select category</option>
+									<label>Category</label> <select class="form-control" id="category"
+										name="category" required="required">
+										<option selected="selected" disabled="disabled">Select category</option>
 										<c:forEach var="category" items="${categories }">
 											<option value="${category.id }">${category.name }</option>
 										</c:forEach>
 									</select>
 								</div>
 								<div class="form-group">
-									<label>Select Type</label> <select class="form-control"
-										name="type">
+									<label>Type</label>
+									<select class="form-control" id="type" name="type">
+										<option selected="selected" disabled="disabled">Select type</option>
 									</select>
 								</div>
 								<div class="form-group">
