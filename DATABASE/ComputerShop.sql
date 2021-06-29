@@ -40,6 +40,16 @@ create table image_gallery
     image longblob null
 );
 
+create table types
+(
+    id          bigint auto_increment
+        primary key,
+    name        varchar(255) null,
+    category_id bigint       null,
+    constraint FK19pulryxwu6gvxoy9dpv3mltk
+        foreign key (category_id) references categories (id)
+);
+
 create table products
 (
     id             bigint auto_increment
@@ -53,8 +63,11 @@ create table products
     updated        datetime     null,
     brand_id       bigint       null,
     category_id    bigint       null,
+    type_id        bigint       null,
     constraint FKa3a4mpsfdf4d2y6r8ra3sc8mv
         foreign key (brand_id) references brands (id),
+    constraint FKoeqkpxafyckvhf0g4cxc62yn8
+        foreign key (type_id) references types (id),
     constraint FKog2rp4qthbtt2lfyhfo32lsw9
         foreign key (category_id) references categories (id)
 );
