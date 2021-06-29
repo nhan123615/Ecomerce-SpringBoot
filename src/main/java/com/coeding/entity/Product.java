@@ -42,6 +42,8 @@ public class Product {
     @ManyToOne(targetEntity = Brand.class)
     private Brand brand;
 
+    @ManyToOne(targetEntity = Type.class)
+    private Type type;
     private boolean enabled;
 
     @PrePersist
