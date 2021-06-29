@@ -147,5 +147,30 @@
 	}
 	/*Avatar end*/
 </script>
+<script>
+    var category = document.querySelector('#category');
+    var type = document.querySelector('#type');
+    //select box
+    category.addEventListener('change', function() {
+        const data = null;
+        const xhr = new XMLHttpRequest();
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === this.DONE) {
+                var json = JSON.parse(this.responseText);
+                type.innerHTML = getSelectUser(json)
+            }
+        });
+		xhr.open("GET", "${pageContext.servletContext.contextPath}/select?id_category="+this.value);
+        xhr.setRequestHeader('Content-type', 'application/json');
+        xhr.send(data);
+    });
+    function  getSelectUser(json) {
+        var selectUser =""
+        for (let i = 0; i <json.length; i++) {
+            selectUser +=   " <option value="+json[i].id+">"+json[i].name+"</option>"
+        }
+        return selectUser;
+    }
+</script>
 </body>
 </html>
