@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * author Nhanle
- * */
+ */
 @RestController
 @RequestMapping(path = "/rest", produces = "application/json")
 @CrossOrigin(origins = "*")
@@ -24,28 +25,27 @@ public class PageAjaxController {
     private UserRepository repo;
 
     @GetMapping
-    public List<User> userHomePage(@RequestParam(name = "username",required = false) String username){
+    public List<User> userHomePage(@RequestParam(name = "username", required = false) String username) {
         System.err.println(username);
         List<User> u = new ArrayList<>();
-        if (username !=null){
+        if (username != null) {
             u.add(repo.findByUsername(username));
             return u;
         }
-            return  repo.findAll();
+        return repo.findAll();
     }
 
 
-
     @GetMapping("/checkbox")
-    public List<User> userCheckboxHomePage(@RequestParam(name = "username",required = false) List<String>  listUsername){
+    public List<User> userCheckboxHomePage(@RequestParam(name = "username", required = false) List<String> listUsername) {
         System.err.println(listUsername);
         List<User> u = new ArrayList<>();
 
-        if (listUsername !=null){
-            listUsername.forEach(listUser-> u.add(repo.findByUsername(listUser)));
+        if (listUsername != null) {
+            listUsername.forEach(listUser -> u.add(repo.findByUsername(listUser)));
             return u;
         }
-        return  repo.findAll();
+        return repo.findAll();
     }
 
 }
