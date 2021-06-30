@@ -53,6 +53,12 @@ public class ProductService implements DAO<Product> {
         return repo.findByCategoryIdAndTypeId(categoryId, typeId);
     }
 
+    public List<Product> findByBrandId(Long brandId){
+        return repo.findByBrandId(brandId);
+    }
+
+    public  List<Product> findByTypeName(String typeName){
+        return repo.findByTypeName(typeName);
+    }
 
 }
-//commit
