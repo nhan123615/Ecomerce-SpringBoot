@@ -1,6 +1,7 @@
 # AngryNerds
 # Project using springboot
-
+# URL site map
+- doccuments/ComputerShop.xlsx
 # Configuration file
 - src/main/resources/application.properties
 # Datatabase 
