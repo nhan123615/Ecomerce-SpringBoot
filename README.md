@@ -1,5 +1,6 @@
 # AngryNerds
-# Project using springboot
+# Project using springboot, lombok
+
 # URL site map
 - doccuments/ComputerShop.xlsx
 # Configuration file
