@@ -51,18 +51,17 @@ public class AdminProductController {
 	TypeService typeService;
 	
 	@GetMapping(value = "/product/new")
-	public String fileform(Locale locale, Model model) {
-		logger.info("get : fileform");
+	public String newProduct(Locale locale, Model model) {
+		logger.info("get : newProduct");
 		model.addAttribute("brands", brandService.findAll());
 		model.addAttribute("categories", categoryService.findAll());
 		return "template/admin/product/form-add-product";
 	}
 
 	@PostMapping(value = "/product/new")
-	public String savefile(@RequestParam("img") MultipartFile[] uploadfile, Product sp, Locale locale, Model model)
+	public String saveProduct(@RequestParam("img") MultipartFile[] uploadfile, Product sp, Locale locale, Model model)
 			throws IOException {
-		logger.info("post : savefile");
-		logger.info("length : " + uploadfile.length);
+		logger.info("post : saveProduct");
 		String color = sp.getProductColor().substring(0, sp.getProductColor().length());
 		sp.setProductColor(color);
 		if (uploadfile.length == 4) {
