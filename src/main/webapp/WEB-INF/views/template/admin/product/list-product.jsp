@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<jsp:include page="components/head.jsp"></jsp:include>
-<jsp:include page="components/nav-bar.jsp"></jsp:include>
-<jsp:include page="components/side-bar.jsp"></jsp:include>
+<jsp:include page="../components/head.jsp"></jsp:include>
+<jsp:include page="../components/nav-bar.jsp"></jsp:include>
+<jsp:include page="../components/side-bar.jsp"></jsp:include>
 <!-- @author: Lam Cong Hau -->
 <div class="content-wrapper" style="min-height: 1299.69px;">
 	<!-- Content Header (Page header) -->
@@ -112,4 +112,4 @@
 	</section>
 	<!-- /.content -->
 </div>
-<jsp:include page="components/footer.jsp"></jsp:include>
+<jsp:include page="../components/footer.jsp"></jsp:include>

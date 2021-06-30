@@ -55,7 +55,7 @@ public class AdminProductController {
 		logger.info("get : fileform");
 		model.addAttribute("brands", brandService.findAll());
 		model.addAttribute("categories", categoryService.findAll());
-		return "template/admin/form-add-product";
+		return "template/admin/product/form-add-product";
 	}
 
 	@PostMapping(value = "/product/new")
@@ -106,7 +106,7 @@ public class AdminProductController {
 		logger.info("list: " + list.size());
 		model.addAttribute("categories", categoryService.findAll());
 		model.addAttribute("list", list);
-		return "template/admin/list-product";
+		return "template/admin/product/list-product";
 	}
 
 	@GetMapping(value = "/product/edit")
@@ -121,7 +121,7 @@ public class AdminProductController {
 		model.addAttribute("brands", brandService.findAll());
 		model.addAttribute("categories", categoryService.findAll());
 		model.addAttribute("types", typeService.findAll());
-		return "template/admin/form-edit-product";
+		return "template/admin/product/form-edit-product";
 	}
 
 	@PostMapping(value = "/product/update")
@@ -168,6 +168,6 @@ public class AdminProductController {
 		for(String color : listColor) {
 			model.addAttribute(color, color);
 		}
-		return "template/admin/detail-product";
+		return "template/admin/product/detail-product";
 	}
 }
