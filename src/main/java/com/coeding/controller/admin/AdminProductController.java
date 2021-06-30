@@ -2,6 +2,7 @@ package com.coeding.controller.admin;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -101,6 +102,7 @@ public class AdminProductController {
 	public String show(Model model) {
 		List<Product> list = productService.findAll();
 		logger.info("list: " + list.size());
+		model.addAttribute("categories", categoryService.findAll());
 		model.addAttribute("list", list);
 		return "template/admin/list-product1";
 	}
@@ -110,7 +112,14 @@ public class AdminProductController {
 		logger.info("product edit {}.", locale);
 		Product product = productService.findById(id);
 		model.addAttribute("product", product);
-		return "template/admin/form-edit-product";
+		List<String> listColor = Arrays.asList(product.getProductColor().split(","));
+		for(String color : listColor) {
+			model.addAttribute(color, color);
+		}
+		model.addAttribute("brands", brandService.findAll());
+		model.addAttribute("categories", categoryService.findAll());
+		model.addAttribute("types", typeService.findAll());
+		return "template/admin/form-edit-product1";
 	}
 
 	@PostMapping(value = "/product/update")
@@ -120,7 +129,14 @@ public class AdminProductController {
 		List<ImageGallery> list = new ArrayList<ImageGallery>();
 		Product product = productService.findById(p.getId());
 		product.setProductName(p.getProductName());
+		product.setBrand(p.getBrand());
+		product.setCategory(p.getCategory());
+		product.setEnabled(p.isEnabled());
+		product.setType(p.getType());
+		product.setPrice(p.getPrice());
+		product.setStockQuantity(p.getStockQuantity());
 		product.setDescription(p.getDescription());
+		product.setProductColor(p.getProductColor());
 		list = product.getImages();
 		int count = 0;
 		for (MultipartFile m : uploadfile) {
@@ -137,14 +153,14 @@ public class AdminProductController {
 		}
 		product.setImages(list);
 		productService.save(product);
-		return "redirect:/admin/product";
+		return "redirect:/admin1/product";
 	}
 
 	@GetMapping(value = "/product/detail")
 	public String view(@RequestParam(value = "id") Long id, Locale locale, Model model) {
 		logger.info("product detail {}.", locale);
 		Product sp = productService.findById(id);
-		model.addAttribute("sanpham", sp);
+		model.addAttribute("product", sp);
 		return "template/admin/detail-product";
 	}
 }

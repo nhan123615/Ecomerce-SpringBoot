@@ -97,7 +97,7 @@
 	$(function() {
 		$("#example1").DataTable({
 			"responsive" : true,
-			"lengthChange" : true,
+			"lengthChange" : false,
 			"autoWidth" : false,
 			"buttons" : [ "copy", "csv", "excel", "pdf", "print", "colvis" ]
 		}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
@@ -151,7 +151,7 @@
     var category = document.querySelector('#category');
     var type = document.querySelector('#type');
     //select box
-    category.addEventListener('change', function() {
+    category.addEventListener('click', function() {
         const data = null;
         const xhr = new XMLHttpRequest();
         xhr.addEventListener("readystatechange", function () {
@@ -165,9 +165,9 @@
         xhr.send(data);
     });
     function  getSelectUser(json) {
-        var selectUser =""
+        var selectUser ="";
         for (let i = 0; i <json.length; i++) {
-            selectUser +=   " <option value="+json[i].id+">"+json[i].name+"</option>"
+            selectUser += "<option value="+json[i].id+">"+json[i].name+"</option>";
         }
         return selectUser;
     }
