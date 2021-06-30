@@ -22,8 +22,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.coeding.entity.Brand;
-import com.coeding.entity.Category;
 import com.coeding.entity.ImageGallery;
 import com.coeding.entity.Product;
 import com.coeding.service.BrandService;
@@ -31,7 +29,11 @@ import com.coeding.service.CategoryService;
 import com.coeding.service.ImageService;
 import com.coeding.service.ProductService;
 import com.coeding.service.TypeService;
-
+/**
+ * 
+ * @author Lam Cong Hau
+ *
+ */
 @Controller
 @RequestMapping("/admin")
 public class AdminProductController {

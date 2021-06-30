@@ -2,6 +2,7 @@
 <jsp:include page="components/head.jsp"></jsp:include>
 <jsp:include page="components/nav-bar.jsp"></jsp:include>
 <jsp:include page="components/side-bar.jsp"></jsp:include>
+<!-- @author: Lam Cong Hau -->
 <div class="content-wrapper" style="min-height: 1602px;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -33,7 +34,7 @@
                 <img src="${pageContext.request.contextPath}/admin/product/display/0&${product.id}" class="product-image" alt="Product Image">
               </div>
               <div class="col-12 product-image-thumbs">
-                <div class="product-image-thumb active"><img src="${pageContext.request.contextPath}/admin/product/display/0&${product.id}" alt="Product Image"></div>
+                <div class="product-image-thumb"><img src="${pageContext.request.contextPath}/admin/product/display/0&${product.id}" alt="Product Image"></div>
                 <div class="product-image-thumb"><img src="${pageContext.request.contextPath}/admin/product/display/1&${product.id}" alt="Product Image"></div>
                 <div class="product-image-thumb"><img src="${pageContext.request.contextPath}/admin/product/display/2&${product.id}" alt="Product Image"></div>
                 <div class="product-image-thumb"><img src="${pageContext.request.contextPath}/admin/product/display/3&${product.id}" alt="Product Image"></div>

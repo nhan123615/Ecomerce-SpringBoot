@@ -2,6 +2,7 @@
 <jsp:include page="components/head.jsp"></jsp:include>
 <jsp:include page="components/nav-bar.jsp"></jsp:include>
 <jsp:include page="components/side-bar.jsp"></jsp:include>
+<!-- @author: Lam Cong Hau -->
 <div class="content-wrapper" style="min-height: 1299.69px;">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
