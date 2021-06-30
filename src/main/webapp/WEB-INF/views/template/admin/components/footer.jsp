@@ -148,29 +148,42 @@
 	/*Avatar end*/
 </script>
 <script>
-    var category = document.querySelector('#category');
-    var type = document.querySelector('#type');
-    //select box
-    category.addEventListener('click', function() {
-        const data = null;
-        const xhr = new XMLHttpRequest();
-        xhr.addEventListener("readystatechange", function () {
-            if (this.readyState === this.DONE) {
-                var json = JSON.parse(this.responseText);
-                type.innerHTML = getSelectUser(json)
-            }
-        });
-		xhr.open("GET", "${pageContext.servletContext.contextPath}/select?id_category="+this.value);
-        xhr.setRequestHeader('Content-type', 'application/json');
-        xhr.send(data);
-    });
-    function  getSelectUser(json) {
-        var selectUser ="";
-        for (let i = 0; i <json.length; i++) {
-            selectUser += "<option value="+json[i].id+">"+json[i].name+"</option>";
-        }
-        return selectUser;
-    }
+	var category = document.querySelector('#category');
+	var type = document.querySelector('#type');
+	//select box
+	category.addEventListener('click', function() {
+		const data = null;
+		const xhr = new XMLHttpRequest();
+		xhr.addEventListener("readystatechange", function() {
+			if (this.readyState === this.DONE) {
+				var json = JSON.parse(this.responseText);
+				type.innerHTML = getSelectUser(json)
+			}
+		});
+		xhr.open("GET",
+				"${pageContext.servletContext.contextPath}/select?id_category="
+						+ this.value);
+		xhr.setRequestHeader('Content-type', 'application/json');
+		xhr.send(data);
+	});
+	function getSelectUser(json) {
+		var selectUser = "";
+		for (let i = 0; i < json.length; i++) {
+			selectUser += "<option value="+json[i].id+">" + json[i].name
+					+ "</option>";
+		}
+		return selectUser;
+	}
+</script>
+<script>
+	$(document).ready(function() {
+		$('.product-image-thumb').on('click', function() {
+			var $image_element = $(this).find('img')
+			$('.product-image').prop('src', $image_element.attr('src'))
+			$('.product-image-thumb.active').removeClass('active')
+			$(this).addClass('active')
+		})
+	})
 </script>
 </body>
 </html>

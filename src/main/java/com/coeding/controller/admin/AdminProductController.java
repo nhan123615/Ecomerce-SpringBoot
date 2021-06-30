@@ -33,7 +33,7 @@ import com.coeding.service.ProductService;
 import com.coeding.service.TypeService;
 
 @Controller
-@RequestMapping("/admin1")
+@RequestMapping("/admin")
 public class AdminProductController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminProductController.class);
 
@@ -53,7 +53,7 @@ public class AdminProductController {
 		logger.info("get : fileform");
 		model.addAttribute("brands", brandService.findAll());
 		model.addAttribute("categories", categoryService.findAll());
-		return "template/admin/form-add-product1";
+		return "template/admin/form-add-product";
 	}
 
 	@PostMapping(value = "/product/new")
@@ -89,7 +89,7 @@ public class AdminProductController {
 	@ResponseBody
 	public void showImage(@PathVariable("n") Integer n, @PathVariable("id") Long id, HttpServletResponse response)
 			throws ServletException, IOException {
-		logger.info("Id :: " + id);
+		logger.info("Id: " + id);
 		Product product = productService.findById(id);
 		response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
 		if (product.getImages().size() > n) {
@@ -104,7 +104,7 @@ public class AdminProductController {
 		logger.info("list: " + list.size());
 		model.addAttribute("categories", categoryService.findAll());
 		model.addAttribute("list", list);
-		return "template/admin/list-product1";
+		return "template/admin/list-product";
 	}
 
 	@GetMapping(value = "/product/edit")
@@ -119,7 +119,7 @@ public class AdminProductController {
 		model.addAttribute("brands", brandService.findAll());
 		model.addAttribute("categories", categoryService.findAll());
 		model.addAttribute("types", typeService.findAll());
-		return "template/admin/form-edit-product1";
+		return "template/admin/form-edit-product";
 	}
 
 	@PostMapping(value = "/product/update")
@@ -153,14 +153,19 @@ public class AdminProductController {
 		}
 		product.setImages(list);
 		productService.save(product);
-		return "redirect:/admin1/product";
+		return "redirect:/admin/product";
 	}
 
 	@GetMapping(value = "/product/detail")
 	public String view(@RequestParam(value = "id") Long id, Locale locale, Model model) {
 		logger.info("product detail {}.", locale);
-		Product sp = productService.findById(id);
-		model.addAttribute("product", sp);
+		Product p = productService.findById(id);
+		model.addAttribute("product", p);
+		List<String> listColor = Arrays.asList(p.getProductColor().split(","));
+		System.out.println(listColor.size());
+		for(String color : listColor) {
+			model.addAttribute(color, color);
+		}
 		return "template/admin/detail-product";
 	}
 }
