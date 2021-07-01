@@ -269,7 +269,7 @@ $('#btnType').on('click', function() {
 						.val()) {
 					hasSubmit.push(1);
 					$('#stockQuantity').addClass('form-control is-invalid');
-					$('#stockQuantity-error').html('Stock quantity not int!');
+					$('#stockQuantity-error').html('Stock quantity not double!');
 				} else if (parseInt(stockQuantity.val()) < 0) {
 					hasSubmit.push(1);
 					$('#stockQuantity').addClass('form-control is-invalid');
@@ -394,7 +394,7 @@ $('#btnType').on('click', function() {
 						.val()) {
 					hasSubmit.push(1);
 					$('#stockQuantity').addClass('form-control is-invalid');
-					$('#stockQuantity-error').html('Stock quantity not int!');
+					$('#stockQuantity-error').html('Stock quantity not double!');
 				} else if (parseInt(stockQuantity.val()) < 0) {
 					hasSubmit.push(1);
 					$('#stockQuantity').addClass('form-control is-invalid');
