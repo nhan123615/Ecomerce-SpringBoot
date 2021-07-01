@@ -487,5 +487,47 @@
 		$('#typelist').addClass('nav-link active');
 	}
 </script>
+<script>
+	function getImagePreview(event) {
+		let image = URL.createObjectURL(event.target.files[0]);
+		let imagediv = document.getElementById('preview');
+		let newimg = document.createElement('img');
+		imagediv.innerHTML = '';
+		newimg.src = image;
+		newimg.width = "200";
+		newimg.height = "200";
+		imagediv.appendChild(newimg);
+	}
+	function getImagePreview1(event) {
+		let image = URL.createObjectURL(event.target.files[0]);
+		let imagediv = document.getElementById('preview1');
+		let newimg = document.createElement('img');
+		imagediv.innerHTML = '';
+		newimg.src = image;
+		newimg.width = "200";
+		newimg.height = "200";
+		imagediv.appendChild(newimg);
+	}
+	function getImagePreview2(event) {
+		let image = URL.createObjectURL(event.target.files[0]);
+		let imagediv = document.getElementById('preview2');
+		let newimg = document.createElement('img');
+		imagediv.innerHTML = '';
+		newimg.src = image;
+		newimg.width = "200";
+		newimg.height = "200";
+		imagediv.appendChild(newimg);
+	}
+	function getImagePreview3(event) {
+		let image = URL.createObjectURL(event.target.files[0]);
+		let imagediv = document.getElementById('preview3');
+		let newimg = document.createElement('img');
+		imagediv.innerHTML = '';
+		newimg.src = image;
+		newimg.width = "200";
+		newimg.height = "200";
+		imagediv.appendChild(newimg);
+	}
+</script>
 </body>
 </html>

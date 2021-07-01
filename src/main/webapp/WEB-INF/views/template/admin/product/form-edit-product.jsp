@@ -14,7 +14,8 @@
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
-						<li class="breadcrumb-item"><a href="${pageContext.servletContext.contextPath}/admin">Home</a></li>
+						<li class="breadcrumb-item"><a
+							href="${pageContext.servletContext.contextPath}/admin">Home</a></li>
 						<li class="breadcrumb-item active">Edit Product Form</li>
 					</ol>
 				</div>
@@ -118,8 +119,7 @@
 												<option selected="selected" value="${type.id }">${type.name }</option>
 											</c:if>
 										</c:forEach>
-									</select>
-									<span id="type-error" class="error invalid-feedback"></span>
+									</select> <span id="type-error" class="error invalid-feedback"></span>
 								</div>
 								<div class="form-group">
 									<div class="custom-control custom-checkbox">
@@ -132,32 +132,43 @@
 								</div>
 								<div class="form-group">
 									<label for="images">Image</label> <br /> <input type="file"
-										name="img"> <img
-										src="${pageContext.request.contextPath}/admin/product/display/0&${product.id}"
-										width="200" height="200" />
+										name="img" onchange="getImagePreview(event)">
+									<div id="preview">
+										<img
+											src="${pageContext.request.contextPath}/admin/product/display/0&${product.id}"
+											width="200" height="200" />
+									</div>
 								</div>
 								<div class="form-group">
 									<label for="images">Image</label> <br /> <input type="file"
-										name="img"> <img
-										src="${pageContext.request.contextPath}/admin/product/display/1&${product.id}"
-										width="200" height="200" />
+										name="img" onchange="getImagePreview1(event)">
+									<div id="preview1">
+										<img
+											src="${pageContext.request.contextPath}/admin/product/display/1&${product.id}"
+											width="200" height="200" />
+									</div>
 								</div>
 								<div class="form-group">
 									<label for="images">Image</label> <br /> <input type="file"
-										name="img"> <img
-										src="${pageContext.request.contextPath}/admin/product/display/2&${product.id}"
-										width="200" height="200" />
+										name="img" onchange="getImagePreview2(event)">
+									<div id="preview2">
+										<img
+											src="${pageContext.request.contextPath}/admin/product/display/2&${product.id}"
+											width="200" height="200" />
+									</div>
 								</div>
 								<div class="form-group">
 									<label for="images">Image</label> <br /> <input type="file"
-										name="img"> <img
-										src="${pageContext.request.contextPath}/admin/product/display/3&${product.id}"
-										width="200" height="200" />
+										name="img" onchange="getImagePreview3(event)">
+									<div id="preview3">
+										<img
+											src="${pageContext.request.contextPath}/admin/product/display/3&${product.id}"
+											width="200" height="200" />
+									</div>
 								</div>
 								<div class="form-group">
 									<textarea id="description" name="description">${product.description }</textarea>
 								</div>
-
 							</div>
 							<!-- /.card-body -->
 						</form>
