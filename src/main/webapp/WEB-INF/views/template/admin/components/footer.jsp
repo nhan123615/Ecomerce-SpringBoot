@@ -90,6 +90,8 @@
 <script
 	src="${pageContext.servletContext.contextPath}/dist/js/pages/dashboard.js"></script>
 <script
+	src="${pageContext.servletContext.contextPath}/dist/js/pages/dashboard3.js"></script>
+<script
 	src="${pageContext.servletContext.contextPath}/ckeditor/ckeditor.js"></script>
 <script
 	src="${pageContext.servletContext.contextPath}/ckfinder/ckfinder.js"></script>
@@ -186,32 +188,32 @@
 	})
 </script>
 <script>
-$('#btnType').on('click', function() {
-	let name = $('#nameType');
-	let category = $('#categoryType');
-	let hasSubmit = [];
-	if (name.val().length === 0) {
-		hasSubmit.push(1);
-		$('#nameType').addClass('form-control is-invalid');
-		$('#nameType-error').html('Please enter name!');
-	} else {
-		$('#nameType').removeClass('form-control is-invalid');
-		$('#nameType').addClass('form-control is-valid');
-		$('#nameType-error').html('');
-	}
-	if (category.val() === '-1') {
-		hasSubmit.push(1);
-		$('#categoryType').addClass('form-control is-invalid');
-		$('#categoryType-error').html('Please choose category!');
-	} else {
-		$('#categoryType').removeClass('form-control is-invalid');
-		$('#categoryType').addClass('form-control is-valid');
-		$('#categoryType-error').html('');
-	}
-	if (hasSubmit.length === 0) {
-		$('#frmType').submit();
-	}
-});
+	$('#btnType').on('click', function() {
+		let name = $('#nameType');
+		let category = $('#categoryType');
+		let hasSubmit = [];
+		if (name.val().length === 0) {
+			hasSubmit.push(1);
+			$('#nameType').addClass('form-control is-invalid');
+			$('#nameType-error').html('Please enter name!');
+		} else {
+			$('#nameType').removeClass('form-control is-invalid');
+			$('#nameType').addClass('form-control is-valid');
+			$('#nameType-error').html('');
+		}
+		if (category.val() === '-1') {
+			hasSubmit.push(1);
+			$('#categoryType').addClass('form-control is-invalid');
+			$('#categoryType-error').html('Please choose category!');
+		} else {
+			$('#categoryType').removeClass('form-control is-invalid');
+			$('#categoryType').addClass('form-control is-valid');
+			$('#categoryType-error').html('');
+		}
+		if (hasSubmit.length === 0) {
+			$('#frmType').submit();
+		}
+	});
 </script>
 <script>
 	$('#btnAddProduct').on(
@@ -269,7 +271,8 @@ $('#btnType').on('click', function() {
 						.val()) {
 					hasSubmit.push(1);
 					$('#stockQuantity').addClass('form-control is-invalid');
-					$('#stockQuantity-error').html('Stock quantity not double!');
+					$('#stockQuantity-error')
+							.html('Stock quantity not double!');
 				} else if (parseInt(stockQuantity.val()) < 0) {
 					hasSubmit.push(1);
 					$('#stockQuantity').addClass('form-control is-invalid');
@@ -394,7 +397,8 @@ $('#btnType').on('click', function() {
 						.val()) {
 					hasSubmit.push(1);
 					$('#stockQuantity').addClass('form-control is-invalid');
-					$('#stockQuantity-error').html('Stock quantity not double!');
+					$('#stockQuantity-error')
+							.html('Stock quantity not double!');
 				} else if (parseInt(stockQuantity.val()) < 0) {
 					hasSubmit.push(1);
 					$('#stockQuantity').addClass('form-control is-invalid');
@@ -455,6 +459,33 @@ $('#btnType').on('click', function() {
 					$('#frmEditProduct').submit();
 				}
 			});
+</script>
+<script>
+	if ($(location).attr('pathname') === '/admin') {
+		$('#dashboard').addClass('nav-item menu-open');
+		$('#linkdashboard').addClass('nav-link active');
+		$('#home').addClass('nav-link active');
+	}
+	if ($(location).attr('pathname') === '/admin/product/new') {
+		$('#forms').addClass('nav-item menu-is-opening menu-open');
+		$('#linkforms').addClass('nav-link active');
+		$('#newproduct').addClass('nav-link active');
+	}
+	if ($(location).attr('pathname') === '/admin/type/new') {
+		$('#forms').addClass('nav-item menu-is-opening menu-open');
+		$('#linkforms').addClass('nav-link active');
+		$('#newtype').addClass('nav-link active');
+	}
+	if ($(location).attr('pathname') === '/admin/product') {
+		$('#tables').addClass('nav-item menu-is-opening menu-open');
+		$('#linktables').addClass('nav-link active');
+		$('#productlist').addClass('nav-link active');
+	}
+	if ($(location).attr('pathname') === '/admin/type') {
+		$('#tables').addClass('nav-item menu-is-opening menu-open');
+		$('#linktables').addClass('nav-link active');
+		$('#typelist').addClass('nav-link active');
+	}
 </script>
 </body>
 </html>
