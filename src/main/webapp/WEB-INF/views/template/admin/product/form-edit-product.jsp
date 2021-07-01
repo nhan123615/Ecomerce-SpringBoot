@@ -36,7 +36,7 @@
 						</div>
 						<!-- /.card-header -->
 						<!-- form start -->
-						<form
+						<form id="frmEditProduct"
 							action="${pageContext.servletContext.contextPath}/admin/product/update"
 							method="post" enctype="multipart/form-data">
 							<div class="card-body">
@@ -45,25 +45,26 @@
 									<label for="productName">Name</label> <input type="hidden"
 										id="id" name="id" value="${product.id }"> <input
 										type="text" class="form-control" id="productName"
-										name="productName" placeholder="Enter name" maxlength="20"
-										required="required" value="${product.productName }">
+										name="productName" placeholder="Enter name" maxlength="50"
+										value="${product.productName }"> <span
+										id="productName-error" class="error invalid-feedback"></span>
 								</div>
 								<div class="form-group">
 									<label for="price">Price</label> <input type="number"
 										class="form-control" id="price" name="price"
-										placeholder="Enter price" min="0" step="any"
-										pattern="[-+]?[0-9]*[.,]?[0-9]+" required="required"
-										value="${product.price }">
+										placeholder="Enter price" value="${product.price }"> <span
+										id="price-error" class="error invalid-feedback"></span>
 								</div>
 								<div class="form-group">
 									<label for="stockQuantity">Stock quantity</label> <input
 										type="number" class="form-control" id="stockQuantity"
 										name="stockQuantity" placeholder="Enter stock quantity"
-										min="0" required="required" value="${product.stockQuantity }">
+										value="${product.stockQuantity }"> <span
+										id="stockQuantity-error" class="error invalid-feedback"></span>
 								</div>
 								<div class="form-group">
 									<label>Color</label> <select multiple="multiple"
-										name="productColor" class="form-control">
+										id="productColor" name="productColor" class="form-control">
 										<option value="black"
 											<c:if test="${black != null}">selected</c:if>>black</option>
 										<option value="white"
@@ -72,12 +73,12 @@
 											<c:if test="${red != null}">selected</c:if>>red</option>
 										<option value="yellow"
 											<c:if test="${yellow != null}">selected</c:if>>yellow</option>
-									</select>
+									</select> <span id="productColor-error" class="error invalid-feedback"></span>
 								</div>
 								<div class="form-group">
-									<label>Brand</label> <select class="form-control" name="brand">
-										<option selected="selected" disabled="disabled">Select
-											brand</option>
+									<label>Brand</label> <select id="brand" class="form-control"
+										name="brand">
+										<option value="-1" selected="selected">Select brand</option>
 										<c:forEach var="brand" items="${brands }">
 											<c:choose>
 												<c:when test="${brand.id == product.brand.id}">
@@ -88,12 +89,12 @@
 												</c:otherwise>
 											</c:choose>
 										</c:forEach>
-									</select>
+									</select> <span id="brand-error" class="error invalid-feedback"></span>
 								</div>
 								<div class="form-group">
 									<label>Category</label> <select class="form-control"
 										id="category" name="category" required="required">
-										<option selected="selected" disabled="disabled">Select
+										<option value="-1" selected="selected">Select
 											category</option>
 										<c:forEach var="category" items="${categories }">
 											<c:choose>
@@ -105,7 +106,7 @@
 												</c:otherwise>
 											</c:choose>
 										</c:forEach>
-									</select>
+									</select> <span id="category-error" class="error invalid-feedback"></span>
 								</div>
 								<div class="form-group">
 									<label>Type</label> <select class="form-control" id="type"
@@ -118,6 +119,7 @@
 											</c:if>
 										</c:forEach>
 									</select>
+									<span id="type-error" class="error invalid-feedback"></span>
 								</div>
 								<div class="form-group">
 									<div class="custom-control custom-checkbox">
@@ -129,26 +131,26 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="images">Image</label> <br /> <input type="file" id="img"
-										name="img" > <img
+									<label for="images">Image</label> <br /> <input type="file"
+										name="img"> <img
 										src="${pageContext.request.contextPath}/admin/product/display/0&${product.id}"
 										width="200" height="200" />
 								</div>
 								<div class="form-group">
-									<label for="images">Image</label> <br /> <input type="file" id="img1"
-										name="img" > <img
+									<label for="images">Image</label> <br /> <input type="file"
+										name="img"> <img
 										src="${pageContext.request.contextPath}/admin/product/display/1&${product.id}"
 										width="200" height="200" />
 								</div>
 								<div class="form-group">
-									<label for="images">Image</label> <br /> <input type="file" id="img2"
-										name="img" > <img
+									<label for="images">Image</label> <br /> <input type="file"
+										name="img"> <img
 										src="${pageContext.request.contextPath}/admin/product/display/2&${product.id}"
 										width="200" height="200" />
 								</div>
 								<div class="form-group">
-									<label for="images">Image</label> <br /> <input type="file" id="img3"
-										name="img" > <img
+									<label for="images">Image</label> <br /> <input type="file"
+										name="img"> <img
 										src="${pageContext.request.contextPath}/admin/product/display/3&${product.id}"
 										width="200" height="200" />
 								</div>
@@ -158,11 +160,10 @@
 
 							</div>
 							<!-- /.card-body -->
-
-							<div class="card-footer">
-								<button type="submit" class="btn btn-primary">Submit</button>
-							</div>
 						</form>
+						<div class="card-footer">
+							<button id="btnEditProduct" type="submit" class="btn btn-primary">Submit</button>
+						</div>
 					</div>
 					<!-- /.card -->
 

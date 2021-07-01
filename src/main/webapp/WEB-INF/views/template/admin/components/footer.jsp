@@ -185,5 +185,276 @@
 		})
 	})
 </script>
+<script>
+$('#btnType').on('click', function() {
+	let name = $('#nameType');
+	let category = $('#categoryType');
+	let hasSubmit = [];
+	if (name.val().length === 0) {
+		hasSubmit.push(1);
+		$('#nameType').addClass('form-control is-invalid');
+		$('#nameType-error').html('Please enter name!');
+	} else {
+		$('#nameType').removeClass('form-control is-invalid');
+		$('#nameType').addClass('form-control is-valid');
+		$('#nameType-error').html('');
+	}
+	if (category.val() === '-1') {
+		hasSubmit.push(1);
+		$('#categoryType').addClass('form-control is-invalid');
+		$('#categoryType-error').html('Please choose category!');
+	} else {
+		$('#categoryType').removeClass('form-control is-invalid');
+		$('#categoryType').addClass('form-control is-valid');
+		$('#categoryType-error').html('');
+	}
+	if (hasSubmit.length === 0) {
+		$('#frmType').submit();
+	}
+});
+</script>
+<script>
+	$('#btnAddProduct').on(
+			'click',
+			function() {
+				let name = $('#productName');
+				let price = $('#price');
+				let stockQuantity = $('#stockQuantity');
+				let productColor = $('#productColor');
+				let brand = $('#brand');
+				let category = $('#category');
+				let type = $('#type');
+				let img = $('#img');
+				let listFile = img.get(0).files;
+				var numberOfFile = img.get(0).files.length;
+				let totalSize = 0;
+				for (let i = 0; i < numberOfFile; i++) {
+					totalSize += listFile[i].size;
+				}
+				let hasSubmit = [];
+				if (name.val().length === 0) {
+					hasSubmit.push(1);
+					$('#productName').addClass('form-control is-invalid');
+					$('#productName-error').html('Please enter name!');
+				} else {
+					$('#productName').removeClass('form-control is-invalid');
+					$('#productName').addClass('form-control is-valid');
+					$('#productName-error').html('');
+				}
+
+				if (price.val().length === 0) {
+					hasSubmit.push(1);
+					$('#price').addClass('form-control is-invalid');
+					$('#price-error').html('Please enter price!');
+				} else if (parseFloat(price.val()) < 0) {
+					hasSubmit.push(1);
+					$('#price').addClass('form-control is-invalid');
+					$('#price-error').html('Price not less than 0');
+				} else if (parseFloat(price.val()) > 100000) {
+					hasSubmit.push(1);
+					$('#price').addClass('form-control is-invalid');
+					$('#price-error').html('Price not greater than 100000');
+				} else {
+					$('#price').removeClass('form-control is-invalid');
+					$('#price').addClass('form-control is-valid');
+					$('#price-error').html('');
+				}
+
+				if (stockQuantity.val().length === 0) {
+					hasSubmit.push(1);
+					$('#stockQuantity').addClass('form-control is-invalid');
+					$('#stockQuantity-error').html(
+							'Please enter stock quantity!');
+				} else if (Math.floor(stockQuantity.val()) != stockQuantity
+						.val()) {
+					hasSubmit.push(1);
+					$('#stockQuantity').addClass('form-control is-invalid');
+					$('#stockQuantity-error').html('Stock quantity not int!');
+				} else if (parseInt(stockQuantity.val()) < 0) {
+					hasSubmit.push(1);
+					$('#stockQuantity').addClass('form-control is-invalid');
+					$('#stockQuantity-error').html(
+							'Stock quantity not less than 0');
+				} else if (parseInt(stockQuantity.val()) > 1000) {
+					hasSubmit.push(1);
+					$('#stockQuantity').addClass('form-control is-invalid');
+					$('#stockQuantity-error').html(
+							'Stock quantity not greater than 1000');
+				} else {
+					$('#stockQuantity').removeClass('form-control is-invalid');
+					$('#stockQuantity').addClass('form-control is-valid');
+					$('#stockQuantity-error').html('');
+				}
+
+				if (productColor.val().length === 0) {
+					hasSubmit.push(1);
+					$('#productColor').addClass('form-control is-invalid');
+					$('#productColor-error').html('Please choose color!');
+				} else {
+					$('#productColor').removeClass('form-control is-invalid');
+					$('#productColor').addClass('form-control is-valid');
+					$('#productColor-error').html('');
+				}
+
+				if (brand.val() === '-1') {
+					hasSubmit.push(1);
+					$('#brand').addClass('form-control is-invalid');
+					$('#brand-error').html('Please choose brand!');
+				} else {
+					$('#brand').removeClass('form-control is-invalid');
+					$('#brand').addClass('form-control is-valid');
+					$('#brand-error').html('');
+				}
+
+				if (category.val() === '-1') {
+					hasSubmit.push(1);
+					$('#category').addClass('form-control is-invalid');
+					$('#category-error').html('Please choose category!');
+				} else {
+					$('#category').removeClass('form-control is-invalid');
+					$('#category').addClass('form-control is-valid');
+					$('#category-error').html('');
+				}
+
+				if (type.val() === null) {
+					hasSubmit.push(1);
+					$('#type').addClass('form-control is-invalid');
+					$('#type-error').html('Please choose category!');
+				} else {
+					$('#type').removeClass('form-control is-invalid');
+					$('#type').addClass('form-control is-valid');
+					$('#type-error').html('');
+				}
+
+				if (numberOfFile > 4 || numberOfFile < 4) {
+					hasSubmit.push(1);
+					$('#img-error').html('Please choose 4 image!');
+				} else if (totalSize > 40960000) {
+					hasSubmit.push(1);
+					$('#img-error')
+							.html('Image size is not greater than 40MB!');
+				} else {
+					$('#img-successful').html('Valid!');
+					$('#img-error').html('');
+				}
+
+				if (hasSubmit.length === 0) {
+					$('#frmAddProduct').submit();
+				}
+			});
+	$('#btnEditProduct').on(
+			'click',
+			function() {
+				let name = $('#productName');
+				let price = $('#price');
+				let stockQuantity = $('#stockQuantity');
+				let productColor = $('#productColor');
+				let brand = $('#brand');
+				let category = $('#category');
+				let type = $('#type');
+				let hasSubmit = [];
+				if (name.val().length === 0) {
+					hasSubmit.push(1);
+					$('#productName').addClass('form-control is-invalid');
+					$('#productName-error').html('Please enter name!');
+				} else if (name.val().length > 50) {
+					hasSubmit.push(1);
+					$('#price').addClass('form-control is-invalid');
+					$('#price-error').html('Name not greater than 50 char');
+				} else {
+					$('#productName').removeClass('form-control is-invalid');
+					$('#productName').addClass('form-control is-valid');
+					$('#productName-error').html('');
+				}
+
+				if (price.val().length === 0) {
+					hasSubmit.push(1);
+					$('#price').addClass('form-control is-invalid');
+					$('#price-error').html('Please enter price!');
+				} else if (parseFloat(price.val()) < 0) {
+					hasSubmit.push(1);
+					$('#price').addClass('form-control is-invalid');
+					$('#price-error').html('Price not less than 0');
+				} else if (parseFloat(price.val()) > 100000) {
+					hasSubmit.push(1);
+					$('#price').addClass('form-control is-invalid');
+					$('#price-error').html('Price not greater than 100000');
+				} else {
+					$('#price').removeClass('form-control is-invalid');
+					$('#price').addClass('form-control is-valid');
+					$('#price-error').html('');
+				}
+
+				if (stockQuantity.val().length === 0) {
+					hasSubmit.push(1);
+					$('#stockQuantity').addClass('form-control is-invalid');
+					$('#stockQuantity-error').html(
+							'Please enter stock quantity!');
+				} else if (Math.floor(stockQuantity.val()) != stockQuantity
+						.val()) {
+					hasSubmit.push(1);
+					$('#stockQuantity').addClass('form-control is-invalid');
+					$('#stockQuantity-error').html('Stock quantity not int!');
+				} else if (parseInt(stockQuantity.val()) < 0) {
+					hasSubmit.push(1);
+					$('#stockQuantity').addClass('form-control is-invalid');
+					$('#stockQuantity-error').html(
+							'Stock quantity not less than 0');
+				} else if (parseInt(stockQuantity.val()) > 1000) {
+					hasSubmit.push(1);
+					$('#stockQuantity').addClass('form-control is-invalid');
+					$('#stockQuantity-error').html(
+							'Stock quantity not greater than 1000');
+				} else {
+					$('#stockQuantity').removeClass('form-control is-invalid');
+					$('#stockQuantity').addClass('form-control is-valid');
+					$('#stockQuantity-error').html('');
+				}
+
+				if (productColor.val().length === 0) {
+					hasSubmit.push(1);
+					$('#productColor').addClass('form-control is-invalid');
+					$('#productColor-error').html('Please choose color!');
+				} else {
+					$('#productColor').removeClass('form-control is-invalid');
+					$('#productColor').addClass('form-control is-valid');
+					$('#productColor-error').html('');
+				}
+
+				if (brand.val() === '-1') {
+					hasSubmit.push(1);
+					$('#brand').addClass('form-control is-invalid');
+					$('#brand-error').html('Please choose brand!');
+				} else {
+					$('#brand').removeClass('form-control is-invalid');
+					$('#brand').addClass('form-control is-valid');
+					$('#brand-error').html('');
+				}
+
+				if (category.val() === '-1') {
+					hasSubmit.push(1);
+					$('#category').addClass('form-control is-invalid');
+					$('#category-error').html('Please choose category!');
+				} else {
+					$('#category').removeClass('form-control is-invalid');
+					$('#category').addClass('form-control is-valid');
+					$('#category-error').html('');
+				}
+
+				if (type.val() === null) {
+					hasSubmit.push(1);
+					$('#type').addClass('form-control is-invalid');
+					$('#type-error').html('Please choose category!');
+				} else {
+					$('#type').removeClass('form-control is-invalid');
+					$('#type').addClass('form-control is-valid');
+					$('#type-error').html('');
+				}
+
+				if (hasSubmit.length === 0) {
+					$('#frmEditProduct').submit();
+				}
+			});
+</script>
 </body>
 </html>

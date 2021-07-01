@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="../components/head.jsp"></jsp:include>
 <jsp:include page="../components/nav-bar.jsp"></jsp:include>
 <jsp:include page="../components/side-bar.jsp"></jsp:include>
@@ -36,59 +36,60 @@
 						</div>
 						<!-- /.card-header -->
 						<!-- form start -->
-						<form
+						<form id="frmAddProduct"
 							action="${pageContext.servletContext.contextPath}/admin/product/new"
 							method="post" enctype="multipart/form-data">
 							<div class="card-body">
 								<div class="form-group">
 									<label for="productName">Name</label> <input type="text"
 										class="form-control" id="productName" name="productName"
-										placeholder="Enter name" maxlength="20" required="required">
+										placeholder="Enter name" maxlength="50"> <span
+										id="productName-error" class="error invalid-feedback"></span>
 								</div>
 								<div class="form-group">
 									<label for="price">Price</label> <input type="number"
 										class="form-control" id="price" name="price"
-										placeholder="Enter price" min="0" step="any"
-										pattern="[-+]?[0-9]*[.,]?[0-9]+" required="required">
+										placeholder="Enter price"> <span
+										id="price-error" class="error invalid-feedback"></span>
 								</div>
 								<div class="form-group">
 									<label for="stockQuantity">Stock quantity</label> <input
 										type="number" class="form-control" id="stockQuantity"
-										name="stockQuantity" placeholder="Enter stock quantity"
-										min="0" required="required">
+										name="stockQuantity" placeholder="Enter stock quantity"> <span
+										id="stockQuantity-error" class="error invalid-feedback"></span>
 								</div>
 								<div class="form-group">
 									<label>Color</label> <select multiple="multiple"
-										name="productColor" class="form-control">
+										id="productColor" name="productColor" class="form-control">
 										<option value="black">black</option>
 										<option value="white">white</option>
 										<option value="red">red</option>
 										<option value="yellow">yellow</option>
-									</select>
+									</select> <span id="productColor-error" class="error invalid-feedback"></span>
 								</div>
 								<div class="form-group">
-									<label>Brand</label> <select class="form-control"
+									<label>Brand</label> <select id="brand" class="form-control"
 										name="brand">
-										<option selected="selected" disabled="disabled">Select brand</option>
+										<option value="-1" selected="selected">Select brand</option>
 										<c:forEach var="brand" items="${brands }">
 											<option value="${brand.id }">${brand.name }</option>
 										</c:forEach>
-									</select>
+									</select> <span id="brand-error" class="error invalid-feedback"></span>
 								</div>
 								<div class="form-group">
-									<label>Category</label> <select class="form-control" id="category"
-										name="category" required="required">
-										<option selected="selected" disabled="disabled">Select category</option>
+									<label>Category</label> <select class="form-control"
+										id="category" name="category" required="required">
+										<option value="-1" selected="selected">Select
+											category</option>
 										<c:forEach var="category" items="${categories }">
 											<option value="${category.id }">${category.name }</option>
 										</c:forEach>
-									</select>
+									</select> <span id="category-error" class="error invalid-feedback"></span>
 								</div>
 								<div class="form-group">
-									<label>Type</label>
-									<select class="form-control" id="type" name="type">
-										<option selected="selected" disabled="disabled">Select type</option>
-									</select>
+									<label>Type</label> <select class="form-control" id="type"
+										name="type">
+									</select> <span id="type-error" class="error invalid-feedback"></span>
 								</div>
 								<div class="form-group">
 									<div class="custom-control custom-checkbox">
@@ -99,7 +100,9 @@
 								</div>
 								<div class="form-group">
 									<label for="images">Image</label> <br /> <input type="file"
-										name="img" required="required" multiple="multiple">
+										id="img" name="img" multiple="multiple">
+									<div id="img-successful" style="color: green;"></div>
+									<div id="img-error" style="color: red;"></div>
 								</div>
 								<div class="form-group">
 									<textarea id="description" name="description"></textarea>
@@ -107,11 +110,10 @@
 
 							</div>
 							<!-- /.card-body -->
-
-							<div class="card-footer">
-								<button type="submit" class="btn btn-primary">Submit</button>
-							</div>
 						</form>
+						<div class="card-footer">
+							<button id="btnAddProduct" type="submit" class="btn btn-primary">Submit</button>
+						</div>
 					</div>
 					<!-- /.card -->
 
@@ -139,4 +141,4 @@
 	<!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
- <jsp:include page="../components/footer.jsp"></jsp:include>
+<jsp:include page="../components/footer.jsp"></jsp:include>

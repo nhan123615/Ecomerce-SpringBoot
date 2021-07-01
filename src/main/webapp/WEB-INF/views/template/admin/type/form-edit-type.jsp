@@ -36,21 +36,21 @@
 						</div>
 						<!-- /.card-header -->
 						<!-- form start -->
-						<form
-							action="${pageContext.servletContext.contextPath}/admin/type/new"
+						<form id="frmType"
+							action="${pageContext.servletContext.contextPath}/admin/type/update"
 							method="post">
 							<div class="card-body">
 								<div class="form-group">
 									<label for="name">Name</label><input type="hidden" id="id"
 										name="id" value="${type.id }"><input type="text"
-										class="form-control" id="name" name="name"
-										placeholder="Enter name" maxlength="20" required="required"
-										value="${type.name }">
+										class="form-control" id="nameType" name="name"
+										placeholder="Enter name" maxlength="20" value="${type.name }"><span
+										id="nameType-error" class="error invalid-feedback"></span>
 								</div>
 								<div class="form-group">
 									<label>Category</label> <select class="form-control"
-										id="category1" name="category" required="required">
-										<option selected="selected" disabled="disabled">Select
+										id="categoryType" name="category" required="required">
+										<option value="-1" selected="selected">Select
 											category</option>
 										<c:forEach var="category" items="${categories }">
 											<c:choose>
@@ -62,15 +62,14 @@
 												</c:otherwise>
 											</c:choose>
 										</c:forEach>
-									</select>
+									</select><span id="categoryType-error" class="error invalid-feedback"></span>
 								</div>
 							</div>
 							<!-- /.card-body -->
-
-							<div class="card-footer">
-								<button type="submit" class="btn btn-primary">Submit</button>
-							</div>
 						</form>
+						<div class="card-footer">
+							<button id="btnType" type="submit" class="btn btn-primary">Submit</button>
+						</div>
 					</div>
 					<!-- /.card -->
 

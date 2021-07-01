@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="../components/head.jsp"></jsp:include>
 <jsp:include page="../components/nav-bar.jsp"></jsp:include>
 <jsp:include page="../components/side-bar.jsp"></jsp:include>
@@ -36,31 +36,32 @@
 						</div>
 						<!-- /.card-header -->
 						<!-- form start -->
-						<form
+						<form id="frmType"
 							action="${pageContext.servletContext.contextPath}/admin/type/new"
 							method="post">
 							<div class="card-body">
 								<div class="form-group">
 									<label for="name">Name</label> <input type="text"
-										class="form-control" id="name" name="name"
-										placeholder="Enter name" maxlength="20" required="required">
+										class="form-control" id="nameType" name="name"
+										placeholder="Enter name" maxlength="20"> <span
+										id="nameType-error" class="error invalid-feedback"></span>
 								</div>
 								<div class="form-group">
-									<label>Category</label> <select class="form-control" id="category1"
-										name="category" required="required">
-										<option selected="selected" disabled="disabled">Select category</option>
+									<label>Category</label> <select class="form-control"
+										id="categoryType" name="category">
+										<option value="-1" selected="selected">Select category</option>
 										<c:forEach var="category" items="${categories }">
 											<option value="${category.id }">${category.name }</option>
 										</c:forEach>
-									</select>
+									</select> <span id="categoryType-error" class="error invalid-feedback"></span>
 								</div>
 							</div>
 							<!-- /.card-body -->
-
-							<div class="card-footer">
-								<button type="submit" class="btn btn-primary">Submit</button>
-							</div>
 						</form>
+						<div class="card-footer">
+							<button id="btnType" type="submit" class="btn btn-primary">Submit</button>
+						</div>
+
 					</div>
 					<!-- /.card -->
 
@@ -88,4 +89,4 @@
 	<!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
- <jsp:include page="../components/footer.jsp"></jsp:include>
+<jsp:include page="../components/footer.jsp"></jsp:include>

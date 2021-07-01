@@ -26,8 +26,7 @@ public class AdminAjaxController {
 
 	@GetMapping
 	public List<Type> userHomePage(@RequestParam(name = "id_category", required = false) Long id) {
-		List<Type> list = typeService.findAll();
-		System.out.println(list.size());
+		List<Type> list = typeService.findAll();;
 		List<Type> result = new ArrayList<Type>();
 		if (id != null) {
 			if (list != null) {

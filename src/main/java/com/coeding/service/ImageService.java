@@ -39,5 +39,5 @@ public class ImageService implements DAO<ImageGallery> {
 		// TODO Auto-generated method stub
 		imgRep.deleteById(id);
 	}
-
+	
 }
