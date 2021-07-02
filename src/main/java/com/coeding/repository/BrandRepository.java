@@ -1,9 +1,14 @@
 package com.coeding.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import com.coeding.entity.Brand;
+import com.coeding.entity.Category;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface BrandRepository extends JpaRepository<Brand, Long>{
-
+/**
+ * author Nhanle
+ * */
+@Repository
+public interface BrandRepository extends JpaRepository<Brand,Long>  {
 }
+//commit

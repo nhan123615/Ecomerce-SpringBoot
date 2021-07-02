@@ -1,43 +1,43 @@
 package com.coeding.service;
 
-import java.util.List;
-
-import javax.transaction.Transactional;
-
+import com.coeding.entity.Brand;
+import com.coeding.entity.Category;
+import com.coeding.repository.BrandRepository;
+import com.coeding.repository.CategoryRepository;
+import com.coeding.repository.DAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.coeding.entity.Brand;
-import com.coeding.repository.BrandRepository;
-import com.coeding.repository.DAO;
+import java.util.List;
+
+/**
+ * author Nhanle
+ * */
 @Service
 @Transactional
 public class BrandService implements DAO<Brand> {
-	@Autowired
-	BrandRepository brandRep;
+    @Autowired
+    private BrandRepository repo;
 
-	@Override
-	public List<Brand> findAll() {
-		// TODO Auto-generated method stub
-		return brandRep.findAll();
-	}
+    @Override
+    public List<Brand> findAll() {
+        return repo.findAll();
+    }
 
-	@Override
-	public Brand findById(Long id) {
-		// TODO Auto-generated method stub
-		return brandRep.getOne(id);
-	}
+    @Override
+    public Brand findById(Long id) {
+        return repo.findById(id).get();
+    }
 
-	@Override
-	public void save(Brand vo) {
-		// TODO Auto-generated method stub
-		brandRep.save(vo);
-	}
+    @Override
+    public void save(Brand vo) {
+        repo.save(vo);
+    }
 
-	@Override
-	public void delete(Long id) {
-		// TODO Auto-generated method stub
-		brandRep.deleteById(id);
-	}
-
+    @Override
+    public void delete(Long id) {
+        repo.deleteById(id);
+    }
 }
+//commit

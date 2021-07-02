@@ -10427,6 +10427,11 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   max-width: 960px;
 }
 
+
+.product-quickview-open .modal-dialog {
+  max-width: 960px;
+}
+
 #product-quickview .modal-dialog .modal-close {
   position: absolute;
   top: 10px;
@@ -10434,7 +10439,19 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   z-index: 10;
 }
 
+.product-quickview-open .modal-dialog .modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+}
+
 #product-quickview .modal-dialog .modal-content {
+  position: relative;
+  padding: 40px 0 0 20px;
+}
+
+.product-quickview-open .modal-dialog .modal-content {
   position: relative;
   padding: 40px 0 0 20px;
 }
