@@ -104,7 +104,6 @@
 			"buttons" : [ "copy", "csv", "excel", "pdf", "print", "colvis" ]
 		}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 	});
-
 	CKEDITOR
 			.replace(
 					'description',
@@ -116,7 +115,21 @@
 						filebrowserImageUploadUrl : '${pageContext.servletContext.contextPath}/ckfinder/core/connector/java/connector.java?command=QuickUpload&amp;type=Images',
 						filebrowserFlashUploadUrl : '${pageContext.servletContext.contextPath}/ckfinder/core/connector/java/connector.java?command=QuickUpload&amp;type=Flash'
 					});
+
+	CKEDITOR
+			.replace(
+					'shortDescription',
+					{
+						height : $("#col1").height() - 250,
+						filebrowserBrowseUrl : '${pageContext.servletContext.contextPath}/ckfinder/ckfinder.html',
+						filebrowserImageBrowseUrl : '${pageContext.servletContext.contextPath}/ckfinder/ckfinder.html?type=Images',
+						filebrowserFlashBrowseUrl : '${pageContext.servletContext.contextPath}/ckfinder/ckfinder.html?type=Flash',
+						filebrowserUploadUrl : '${pageContext.servletContext.contextPath}/ckfinder/core/connector/java/connector.java?command=QuickUpload&amp;type=Files',
+						filebrowserImageUploadUrl : '${pageContext.servletContext.contextPath}/ckfinder/core/connector/java/connector.java?command=QuickUpload&amp;type=Images',
+						filebrowserFlashUploadUrl : '${pageContext.servletContext.contextPath}/ckfinder/core/connector/java/connector.java?command=QuickUpload&amp;type=Flash'
+					});
 	/*Avatar start*/
+
 	function BrowseServer(startupPath, functionData) {
 		// You can use the "CKFinder" class to render CKFinder in a page:
 		var finder = new CKFinder();
@@ -352,6 +365,17 @@
 					$('#description-successful').html('Valid!');
 				}
 
+				let shortDesc = CKEDITOR.instances['shortDescription']
+						.getData();
+				if (shortDesc == "") {
+					hasSubmit.push(1);
+					$('#shordescription-error').html(
+							'Please enter short description!');
+					$('#shordescription-successful').html('');
+				} else {
+					$('#shordescription-error').html('');
+					$('#shordescription-successful').html('Valid!');
+				}
 
 				if (hasSubmit.length === 0) {
 					$('#frmAddProduct').submit();
@@ -533,7 +557,7 @@
 					$('#img3-successful').html('Valid!');
 					$('#img3-error').html('');
 				}
-				
+
 				let desc = CKEDITOR.instances['description'].getData();
 				if (desc == "") {
 					hasSubmit.push(1);
@@ -544,6 +568,18 @@
 					$('#description-successful').html('Valid!');
 				}
 
+				let shortDesc = CKEDITOR.instances['shortDescription']
+						.getData();
+				if (shortDesc == "") {
+					hasSubmit.push(1);
+					$('#shordescription-error').html(
+							'Please enter short description!');
+					$('#shordescription-successful').html('');
+				} else {
+					$('#shordescription-error').html('');
+					$('#shordescription-successful').html('Valid!');
+				}
+				
 				if (hasSubmit.length === 0) {
 					$('#frmEditProduct').submit();
 				}

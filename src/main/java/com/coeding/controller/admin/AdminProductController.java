@@ -142,6 +142,7 @@ public class AdminProductController {
 		product.setPrice(p.getPrice());
 		product.setStockQuantity(p.getStockQuantity());
 		product.setDescription(p.getDescription());
+		product.setShortDescription(p.getShortDescription());
 		product.setProductColor(p.getProductColor());
 		list = product.getImages();
 		int count = 0;

@@ -25,6 +25,7 @@ public class Product {
 
     private String productName;
     private String productColor;
+    private String shortDescription;
     private String description;
     private int stockQuantity;
 
