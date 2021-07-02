@@ -39,5 +39,10 @@ public class BrandService implements DAO<Brand> {
     public void delete(Long id) {
         repo.deleteById(id);
     }
+
+    public List<Brand> findByNameContains(String brandName){
+        return repo.findByNameContains(brandName);
+    }
+
 }
 //commit

@@ -11,24 +11,23 @@
     <div class="container">
         <div class="ps-layout--shop">
             <div class="ps-layout__left">
-                <aside class="widget widget_shop" id="filter">
-
-
+                <aside class="widget widget_shop"  >
                     <h4 class="widget-title">BY BRANDS</h4>
-                    <form class="ps-form--widget-search" action="do_action" method="get">
-                        <input class="form-control" type="text" placeholder="">
+                    <div class="ps-form--widget-search">
+                        <input class="form-control" type="text" placeholder="Search Brand" id="searchBrand">
                         <button><i class="icon-magnifier"></i></button>
-                    </form>
-                    <figure class="ps-custom-scrollbar" data-height="250" id="filterBrand">
-<%--                        ${not empty param.success}--%>
-<%--                        ${param.brand}--%>
+                    </div>
+                    <div id="filter">
+                        <figure class="ps-custom-scrollbar" data-height="250" id="filterBrand">
+                            <%--                        ${not empty param.success}--%>
+                            <%--                        ${param.brand}--%>
                             <c:choose>
                                 <c:when test="${not empty brandByProduct }">
                                     <c:forEach var="b" items="${brandByProduct}">
-                                    <div class="ps-checkbox">
-                                        <input class="form-control" type="checkbox" id="brand-${b.id}"  name="brand" value="${b.id}" >
-                                        <label for="brand-${b.id}">${b.name}</label>
-                                    </div>
+                                        <div class="ps-checkbox">
+                                            <input class="form-control" type="checkbox" id="brand-${b.id}"  name="brand" value="${b.id}" >
+                                            <label for="brand-${b.id}">${b.name}</label>
+                                        </div>
                                     </c:forEach>
                                 </c:when>
                                 <c:otherwise>
@@ -42,39 +41,43 @@
                                     </c:forEach>
                                 </c:otherwise>
                             </c:choose>
-                    </figure>
+                        </figure>
+                        <figure id="filterPart" >
+                            <h4 class="widget-title">By Parts</h4>
+                            <c:choose>
+                                <c:when test="${not empty typeByProduct }">
+                                    <c:forEach var="t" items="${typeByProduct}">
+                                        <div class="ps-checkbox">
+                                            <input class="form-control" type="checkbox" id="type-${t}"  name="type" value="${t}">
+                                            <label for="type-${t}">${t}</label>
+                                        </div>
+                                    </c:forEach>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:forEach var="t" items="${typeByCategory[categoryByProduct.name]}">
+                                        <div class="ps-checkbox">
+                                            <input class="form-control" type="checkbox" id="type-${t.name}"  name="type" value="${t.name}"
+                                                ${param.type == t.id ?"checked":""}
+                                            >
+                                            <label for="type-${t.name}" >${t.name}</label>
+                                        </div>
+                                    </c:forEach>
+                                </c:otherwise>
+                            </c:choose>
 
-
-                    <figure id="filterPart" >
-                        <h4 class="widget-title">By Parts</h4>
-                        <c:choose>
-                            <c:when test="${not empty typeByProduct }">
-                                <c:forEach var="t" items="${typeByProduct}">
-                                    <div class="ps-checkbox">
-                                        <input class="form-control" type="checkbox" id="type-${t}"  name="type" value="${t}">
-                                        <label for="type-${t}">${t}</label>
-                                    </div>
-                                </c:forEach>
-                            </c:when>
-                            <c:otherwise>
-                                <c:forEach var="t" items="${typeByCategory[categoryByProduct.name]}">
-                                    <div class="ps-checkbox">
-                                        <input class="form-control" type="checkbox" id="type-${t.name}"  name="type" value="${t.name}"
-                                            ${param.type == t.id ?"checked":""}
-                                        >
-                                        <label for="type-${t.name}" >${t.name}</label>
-                                    </div>
-                                </c:forEach>
-                            </c:otherwise>
-                        </c:choose>
-
-                    </figure>
-                    <%--                                            #//commit--%>
-
-                    <figure>
+                        </figure>
+                    </div>
+                    <hr>
+                    <figure id="filterPrice">
                         <h4 class="widget-title">By Price</h4>
-                        <div id="nonlinear"></div>
-                        <p class="ps-slider__meta">Price:<span class="ps-slider__value">$<span class="ps-slider__min"></span></span>-<span class="ps-slider__value">$<span class="ps-slider__max"></span></span></p>
+<%--                        <form action="" method="get" class="text-center">--%>
+                            <div class="d-flex ml-4" style="align-items: center">
+                                <input class="form-control" type="number" name="priceFrom" id="from" placeholder="From" style = "width: 100px" required>
+                                <div style="height: 1px; width: 10px;    background: #bdbdbd;     margin: 0 .625rem;"></div>
+                                <input  class="form-control" type="number" name="priceTo" id="to" placeholder="To" style = "width: 100px" required>
+                            </div>
+                            <button class="ps-btn mt-3" style="padding: 10px 55px" id="btnPrice">Apply</button>
+<%--                        </form>--%>
                     </figure>
                     <figure>
                         <h4 class="widget-title">By Rating</h4>
@@ -139,50 +142,52 @@
             <div class="ps-layout__right">
                 <div class="ps-shopping ps-tab-root">
                     <div class="ps-shopping__header">
-                        <p><strong> ${countProduct}</strong> Products found</p>
+                        <div id="productTotal">
+                            <p><strong> ${countProduct}</strong> Products found</p>
+                        </div>
 
                         <div class="ps-shopping__actions">
-                            <select class="ps-select" data-placeholder="Sort Items">
-                                <option>Sort by latest</option>
-                                <option>Sort by popularity</option>
-                                <option>Sort by average rating</option>
-                                <option>Sort by price: low to high</option>
-                                <option>Sort by price: high to low</option>
+                            <select  class="form-control" id="cbxFilter">
+                                <option value="select" selected disabled>Select</option>
+                                <option value="lowToHigh">Sort by price: low to high</option>
+                                <option value="highToLow">Sort by price: high to low</option>
                             </select>
-                            <div class="ps-shopping__view">
-                                <p>View</p>
-                                <ul class="ps-tab-list">
-                                    <li class="active"><a href="#tab-1"><i class="icon-grid"></i></a></li>
-                                    <li><a href="#tab-2"><i class="icon-list4"></i></a></li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
                     <div class="ps-tabs">
                         <div class="ps-tab active" id="tab-1">
                             <div class="ps-shopping-product">
                                 <div class="row" id="filteredProduct">
-                                    <c:forEach var="p" items="${products}">
-                                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
-                                            <div class="ps-product">
-                                                <div class="ps-product__thumbnail"><a href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"><img src="${pageContext.request.contextPath}/product/display/0&${p.id}" alt="" style="width: 156px;height: 156px"></a>
-                                                    <ul class="ps-product__actions">
-                                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                                        <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview-${p.id}"><i class="icon-eye"></i></a></li>
-                                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="ps-product__container">
-                                                    <div class="ps-product__content"><a class="ps-product__title" href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
-                                                        <p class="ps-product__price">$${p.price}</p>
+                                    <c:choose>
+                                        <c:when test="${not empty products}">
+                                            <c:forEach var="p" items="${products}">
+                                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
+                                                    <div class="ps-product">
+                                                        <div class="ps-product__thumbnail"><a href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"><img src="${pageContext.request.contextPath}/product/display/0&${p.id}" alt="" style="width: 156px;height: 156px"></a>
+                                                            <ul class="ps-product__actions">
+                                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview-${p.id}"><i class="icon-eye"></i></a></li>
+                                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="ps-product__container">
+                                                            <div class="ps-product__content"><a class="ps-product__title" href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
+                                                                <p class="ps-product__price">$${p.price}</p>
+                                                            </div>
+                                                            <div class="ps-product__content hover"><a class="ps-product__title" href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
+                                                                <p class="ps-product__price">$${p.price}</p>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="ps-product__content hover"><a class="ps-product__title" href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
-                                                        <p class="ps-product__price">$${p.price}</p>
-                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </c:forEach>
+                                            </c:forEach>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <div class='ps-section__content' style='width: 100%'><h1 style='text-align:center'>No product found !!!</h1></div>
+                                        </c:otherwise>
+                                    </c:choose>
+
+
 
                                 </div>
                             </div>
@@ -262,78 +267,187 @@
 <jsp:include page="../../components/footer.jsp"></jsp:include>
 
 <script>
-    var filter = document.querySelector('#filter');
-    var brand = document.querySelector('#filterBrand');
-    var part = document.querySelector('#filterPart');
-    var tblProduct = document.querySelector('#filteredProduct');
+    $(document).ready(function(){
+        var queryOnchange="";
+        var queryFilter="";
+        var filter = document.querySelector('#filter');
+        var brand = document.querySelector('#filterBrand');
+        var part = document.querySelector('#filterPart');
+        var tblProduct = document.querySelector('#filteredProduct');
+        var totalProduct = document.querySelector('#productTotal');
+        var cbxFilter =document.querySelector('#cbxFilter');
+        var searchBrand =document.querySelector('#searchBrand');
+        var queryParams = new URLSearchParams(window.location.search);
+        var btnPrice =document.querySelector('#btnPrice');
+
+//btn Price
+        btnPrice.addEventListener('click', function() {
+            var minPrice = document.querySelector('#from')
+            var maxPrice = document.querySelector('#to')
+            var queryPrice = "priceFrom="+minPrice.value+"&priceTo="+maxPrice.value+"&"
+            history.replaceState(null, null, "?"+queryPrice.substring(0,queryPrice.length-1));
+            // window.location.replace(window.location.search);
+            queryParams.set("priceFrom",minPrice.value)
+            queryParams.set("priceTo",maxPrice.value)
+            getRequestGET("${pageContext.servletContext.contextPath}/filter/product?"+queryPrice)
+        })
+
+
+//seach brand textbox
+        searchBrand.addEventListener('keyup', function() {
+
+            const data = null;
+            const xhr = new XMLHttpRequest();
+
+            console.log("${pageContext.servletContext.contextPath}/filter/brand?brandName="+this.value)
+            xhr.open("GET", "${pageContext.servletContext.contextPath}/filter/brand?brandName="+this.value);
+            xhr.setRequestHeader('Content-type', 'application/json');
+            xhr.addEventListener("readystatechange", function () {
+                if (this.readyState === this.DONE) {
+                    var json = JSON.parse(this.responseText);
+                    if (json.length >0){
+                        brand.innerHTML = getBrand(json)
+                    }else{
+                        brand.innerHTML = getNoBrandFound()
+                    }
+                }
+            });
+            xhr.send(data);
+        })
 
 //check box brand
-    filter.addEventListener('change', function() {
-        let checkboxBrand = document.querySelectorAll('#filterBrand input[name="brand"]');
-        let checkboxType = document.querySelectorAll('#filterPart input[name="type"]');
-        let query="";
-        for (const cbxBrand of checkboxBrand) {
-            if (cbxBrand.checked) {
-                query +="brand="+cbxBrand.value+"&"
+        filter.addEventListener('change', function() {
+            queryOnchange=""
+            let checkboxBrand = document.querySelectorAll('#filterBrand input[name="brand"]');
+            let checkboxType = document.querySelectorAll('#filterPart input[name="type"]');
+
+            //replace query string
+            if (queryParams.has("category")){
+                var categoryId = queryParams.get("category");
+                queryOnchange +="category="+categoryId+"&"
             }
-        }
-
-        for (const cbxType of checkboxType) {
-            if (cbxType.checked) {
-                query +="type="+cbxType.value+"&"
+            if (queryParams.has("priceFrom") && queryParams.has("priceTo")){
+                queryOnchange +="priceFrom="+queryParams.get("priceFrom")+"&"+"priceTo="+queryParams.get("priceTo")+"&"
             }
-        }
 
 
-        query = query.substring(0, query.length - 1)
-        const data = null;
-        const xhr = new XMLHttpRequest();
-        xhr.addEventListener("readystatechange", function () {
-            if (this.readyState === this.DONE) {
-                var json = JSON.parse(this.responseText);
-                tblProduct.innerHTML = getProductTable(json)
+            for (const cbxBrand of checkboxBrand) {
+                if (cbxBrand.checked) {
+                    queryOnchange +="brand="+cbxBrand.value+"&"
+                }
+            }
+
+            for (const cbxType of checkboxType) {
+                if (cbxType.checked) {
+                    queryOnchange +="type="+cbxType.value+"&"
+                }
 
             }
+
+            history.replaceState(null, null, "?"+queryOnchange.substring(0,queryOnchange.length -1));
+            getRequestGET("${pageContext.servletContext.contextPath}/filter/product?"+queryOnchange)
+
         });
 
-        xhr.open("GET", "${pageContext.servletContext.contextPath}/filter/product?"+query);
-        xhr.setRequestHeader('Content-type', 'application/json');
-        xhr.send(data);
 
-    });
+// combobox
+        cbxFilter.addEventListener('change', function() {
+            // console.log(this.value)
+            queryFilter = ""
+            const params = new URLSearchParams(window.location.search)
+            if (params.toString() != "") {
+                for (const param of params) {
+                    var str = param[0] + "=" + param[1] + "&"
+                    queryFilter += str
+                }
+                queryFilter += "sort=" + this.value + "&"
+            } else {
+                if (queryOnchange != "" || queryOnchange != "select") {
+                    queryFilter = queryOnchange + "sort=" + this.value + "&"
+                } else {
+                    queryFilter = "sort=" + this.value + "&"
+                }
+            }
+            console.log(queryFilter)
+            getRequestGET("${pageContext.servletContext.contextPath}/filter/product?"+queryFilter)
 
 
+        })
 
+ //textbox Brand
 
+        function getRequestGET(url){
+            const data = null;
+            const xhr = new XMLHttpRequest();
+            xhr.addEventListener("readystatechange", function () {
+                if (this.readyState === this.DONE) {
+                    var json = JSON.parse(this.responseText);
+                    if (json.length >0){
+                        tblProduct.innerHTML = getProductTable(json)
+                    }else{
+                        tblProduct.innerHTML = getNoProductFound()
+                    }
+                    totalProduct.innerHTML =getTotalProduct(json)
+                }
+            });
+            url = url.substring(0, url.length - 1)
 
+            console.log(url)
+            xhr.open("GET", url);
+            xhr.setRequestHeader('Content-type', 'application/json');
 
-
-
-
-    function  getProductTable(json) {
-        var productTable =""
-        for (let i = 0; i <json.length; i++) {
-
-        productTable +=  "<div class='col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 '>";
-        productTable +="<div class='ps-product'>";
-        productTable += "<div class='ps-product__thumbnail'>";
-        productTable +=  "<a href='${pageContext.servletContext.contextPath}/product/detail?id="+json[i].id+"'>";
-        productTable +=  "<img src='${pageContext.request.contextPath}/product/display/0&"+json[i].id+"'  style='width: 156px;height: 156px'></a>";
-        productTable +=  "<ul class='ps-product__actions'>";
-        productTable +=  " <li><a data-toggle='tooltip' data-placement='top' title='Add To Cart'><i class='icon-bag2'></i></a></li>";
-        productTable += "<li><a data-placement='top' title='Quick View' data-toggle='modal' data-target='#product-quickview-"+json[i].id+"'><i class='icon-eye'></i></a></li>";
-        productTable += "<li><a data-toggle='tooltip' data-placement='top' title='Add to Whishlist'><i class='icon-heart'></i></a></li> </ul> </div>";
-        productTable += "<div class='ps-product__container'> <div class='ps-product__content'>";
-        productTable += "<a class='ps-product__title' href='${pageContext.servletContext.contextPath}/product/detail?id="+json[i].id+"'>"+json[i].productName+"</a>";
-        productTable +=  "<p class='ps-product__price'>$"+json[i].price+"</p> </div>";
-        productTable +=  "<div class='ps-product__content hover'>";
-        productTable += "<a class='ps-product__title' href='${pageContext.servletContext.contextPath}/product/detail?id="+json[i].id+"'>"+json[i].productName+"</a>";
-        productTable +=  "<p class='ps-product__price'>$"+json[i].price+"</p></div></div></div></div>";
+            xhr.send(data);
         }
-        return productTable;
-    }
 
 
+        function  getProductTable(json) {
+            var productTable =""
+            for (let i = 0; i <json.length; i++) {
+
+                productTable +=  "<div class='col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 '>";
+                productTable +="<div class='ps-product'>";
+                productTable += "<div class='ps-product__thumbnail'>";
+                productTable +=  "<a href='${pageContext.servletContext.contextPath}/product/detail?id="+json[i].id+"'>";
+                productTable +=  "<img src='${pageContext.request.contextPath}/product/display/0&"+json[i].id+"'  style='width: 156px;height: 156px'></a>";
+                productTable +=  "<ul class='ps-product__actions'>";
+                productTable +=  " <li><a data-toggle='tooltip' data-placement='top' title='Add To Cart'><i class='icon-bag2'></i></a></li>";
+                productTable += "<li><a data-placement='top' title='Quick View' data-toggle='modal' data-target='#product-quickview-"+json[i].id+"'><i class='icon-eye'></i></a></li>";
+                productTable += "<li><a data-toggle='tooltip' data-placement='top' title='Add to Whishlist'><i class='icon-heart'></i></a></li> </ul> </div>";
+                productTable += "<div class='ps-product__container'> <div class='ps-product__content'>";
+                productTable += "<a class='ps-product__title' href='${pageContext.servletContext.contextPath}/product/detail?id="+json[i].id+"'>"+json[i].productName+"</a>";
+                productTable +=  "<p class='ps-product__price'>$"+json[i].price+"</p> </div>";
+                productTable +=  "<div class='ps-product__content hover'>";
+                productTable += "<a class='ps-product__title' href='${pageContext.servletContext.contextPath}/product/detail?id="+json[i].id+"'>"+json[i].productName+"</a>";
+                productTable +=  "<p class='ps-product__price'>$"+json[i].price+"</p></div></div></div></div>";
+            }
+            return productTable;
+        }
+
+        function  getBrand(json) {
+            var brandDiv =""
+            for (let i = 0; i <json.length; i++) {
+                brandDiv+="<div class='ps-checkbox'>"
+                brandDiv+=" <input class='form-control' type='checkbox' id='brand-"+json[i].id+"'  name='brand' value='"+json[i].id+"'>"
+                brandDiv+="   <label for='brand-"+json[i].id+"' >"+json[i].name+"</label> </div>"
+            }
+            return brandDiv;
+        }
+
+        function  getTotalProduct(json) {
+
+            return " <p><strong> "+json.length+"</strong> Products found</p>"
+        }
+
+        function  getNoProductFound(){
+            return "<div class='ps-section__content' style='width: 100%'><h1 style='text-align:center'>No product found !!!</h1></div>"
+        }
+
+        function getNoBrandFound() {
+            return "<h4>No brand found !!!</h4>"
+        }
+
+
+    })
 
 
 </script>
