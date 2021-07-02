@@ -107,7 +107,10 @@
 								<div class="form-group">
 									<textarea id="description" name="description"></textarea>
 								</div>
-
+								<div class="form-group">
+									<div id="description-successful" style="color: green;"></div>
+									<div id="description-error" style="color: red;"></div>
+								</div>
 							</div>
 							<!-- /.card-body -->
 						</form>

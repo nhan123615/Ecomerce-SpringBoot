@@ -130,44 +130,58 @@
 											class="custom-control-label">Enable</label>
 									</div>
 								</div>
-								<div class="form-group">
-									<label for="images">Image</label> <br /> <input type="file"
-										name="img" onchange="getImagePreview(event)">
-									<div id="preview">
-										<img
-											src="${pageContext.request.contextPath}/admin/product/display/0&${product.id}"
-											width="200" height="200" />
+								<div class="d-flex justify-content-between">
+									<div class="form-group">
+										<label for="images">Image</label> <br /> <input type="file"
+											id="img" name="img" onchange="getImagePreview(event)">
+										<div id="img-successful" style="color: green;"></div>
+										<div id="img-error" style="color: red;"></div>
+										<div id="preview">
+											<img
+												src="${pageContext.request.contextPath}/admin/product/display/0&${product.id}"
+												width="200" height="200" />
+										</div>
 									</div>
-								</div>
-								<div class="form-group">
-									<label for="images">Image</label> <br /> <input type="file"
-										name="img" onchange="getImagePreview1(event)">
-									<div id="preview1">
-										<img
-											src="${pageContext.request.contextPath}/admin/product/display/1&${product.id}"
-											width="200" height="200" />
+									<div class="form-group">
+										<label for="images">Image</label> <br /> <input type="file"
+											id="img1" name="img" onchange="getImagePreview1(event)">
+										<div id="img1-successful" style="color: green;"></div>
+										<div id="img1-error" style="color: red;"></div>
+										<div id="preview1">
+											<img
+												src="${pageContext.request.contextPath}/admin/product/display/1&${product.id}"
+												width="200" height="200" />
+										</div>
 									</div>
-								</div>
-								<div class="form-group">
-									<label for="images">Image</label> <br /> <input type="file"
-										name="img" onchange="getImagePreview2(event)">
-									<div id="preview2">
-										<img
-											src="${pageContext.request.contextPath}/admin/product/display/2&${product.id}"
-											width="200" height="200" />
+									<div class="form-group">
+										<label for="images">Image</label> <br /> <input type="file"
+											id="img2" name="img" onchange="getImagePreview2(event)">
+										<div id="img2-successful" style="color: green;"></div>
+										<div id="img2-error" style="color: red;"></div>
+										<div id="preview2">
+											<img
+												src="${pageContext.request.contextPath}/admin/product/display/2&${product.id}"
+												width="200" height="200" />
+										</div>
 									</div>
-								</div>
-								<div class="form-group">
-									<label for="images">Image</label> <br /> <input type="file"
-										name="img" onchange="getImagePreview3(event)">
-									<div id="preview3">
-										<img
-											src="${pageContext.request.contextPath}/admin/product/display/3&${product.id}"
-											width="200" height="200" />
+									<div class="form-group">
+										<label for="images">Image</label> <br /> <input type="file"
+											id="img3" name="img" onchange="getImagePreview3(event)">
+										<div id="img3-successful" style="color: green;"></div>
+										<div id="img3-error" style="color: red;"></div>
+										<div id="preview3">
+											<img
+												src="${pageContext.request.contextPath}/admin/product/display/3&${product.id}"
+												width="200" height="200" />
+										</div>
 									</div>
 								</div>
 								<div class="form-group">
 									<textarea id="description" name="description">${product.description }</textarea>
+								</div>
+								<div class="form-group">
+									<div id="description-successful" style="color: green;"></div>
+									<div id="description-error" style="color: red;"></div>
 								</div>
 							</div>
 							<!-- /.card-body -->

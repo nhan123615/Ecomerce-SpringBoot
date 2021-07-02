@@ -226,6 +226,7 @@
 				let brand = $('#brand');
 				let category = $('#category');
 				let type = $('#type');
+				let description = $('#description');
 				let img = $('#img');
 				let listFile = img.get(0).files;
 				var numberOfFile = img.get(0).files.length;
@@ -341,6 +342,17 @@
 					$('#img-error').html('');
 				}
 
+				let desc = CKEDITOR.instances['description'].getData();
+				if (desc == "") {
+					hasSubmit.push(1);
+					$('#description-error').html('Please enter description!');
+					$('#description-successful').html('');
+				} else {
+					$('#description-error').html('');
+					$('#description-successful').html('Valid!');
+				}
+
+
 				if (hasSubmit.length === 0) {
 					$('#frmAddProduct').submit();
 				}
@@ -355,15 +367,45 @@
 				let brand = $('#brand');
 				let category = $('#category');
 				let type = $('#type');
+				let description = $('#description');
+				let img = $('#img');
+				let img1 = $('#img1');
+				let img2 = $('#img2');
+				let img3 = $('#img3');
+
+				let listFile = img.get(0).files;
+				var numberOfFile = img.get(0).files.length;
+				let totalSize = 0;
+				for (let i = 0; i < numberOfFile; i++) {
+					totalSize += listFile[i].size;
+				}
+
+				let listFile1 = img1.get(0).files;
+				var numberOfFile1 = img1.get(0).files.length;
+				let totalSize1 = 0;
+				for (let i = 0; i < numberOfFile1; i++) {
+					totalSize1 += listFile1[i].size;
+				}
+
+				let listFile2 = img2.get(0).files;
+				var numberOfFile2 = img2.get(0).files.length;
+				let totalSize2 = 0;
+				for (let i = 0; i < numberOfFile2; i++) {
+					totalSize2 += listFile2[i].size;
+				}
+
+				let listFile3 = img3.get(0).files;
+				var numberOfFile3 = img3.get(0).files.length;
+				let totalSize3 = 0;
+				for (let i = 0; i < numberOfFile3; i++) {
+					totalSize3 += listFile3[i].size;
+				}
+
 				let hasSubmit = [];
 				if (name.val().length === 0) {
 					hasSubmit.push(1);
 					$('#productName').addClass('form-control is-invalid');
 					$('#productName-error').html('Please enter name!');
-				} else if (name.val().length > 50) {
-					hasSubmit.push(1);
-					$('#price').addClass('form-control is-invalid');
-					$('#price-error').html('Name not greater than 50 char');
 				} else {
 					$('#productName').removeClass('form-control is-invalid');
 					$('#productName').addClass('form-control is-valid');
@@ -453,6 +495,53 @@
 					$('#type').removeClass('form-control is-invalid');
 					$('#type').addClass('form-control is-valid');
 					$('#type-error').html('');
+				}
+
+				if (totalSize > 10240000) {
+					hasSubmit.push(1);
+					$('#img-error')
+							.html('Image size is not greater than 10MB!');
+					$('#img-successful').html('');
+				} else {
+					$('#img-successful').html('Valid!');
+					$('#img-error').html('');
+				}
+				if (totalSize1 > 10240000) {
+					hasSubmit.push(1);
+					$('#img1-error').html(
+							'Image size is not greater than 10MB!');
+					$('#img1-successful').html('');
+				} else {
+					$('#img1-successful').html('Valid!');
+					$('#img1-error').html('');
+				}
+				if (totalSize2 > 10240000) {
+					hasSubmit.push(1);
+					$('#img2-error').html(
+							'Image size is not greater than 10MB!');
+					$('#img2-successful').html('');
+				} else {
+					$('#img2-successful').html('Valid!');
+					$('#img2-error').html('');
+				}
+				if (totalSize3 > 10240000) {
+					hasSubmit.push(1);
+					$('#img3-error').html(
+							'Image size is not greater than 10MB!');
+					$('#img3-successful').html('');
+				} else {
+					$('#img3-successful').html('Valid!');
+					$('#img3-error').html('');
+				}
+				
+				let desc = CKEDITOR.instances['description'].getData();
+				if (desc == "") {
+					hasSubmit.push(1);
+					$('#description-error').html('Please enter description!');
+					$('#description-successful').html('');
+				} else {
+					$('#description-error').html('');
+					$('#description-successful').html('Valid!');
 				}
 
 				if (hasSubmit.length === 0) {
