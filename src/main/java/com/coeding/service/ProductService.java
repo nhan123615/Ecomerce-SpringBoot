@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * author Nhanle
- * */
+ */
 @Service
 @Transactional
 public class ProductService implements DAO<Product> {
@@ -41,24 +41,29 @@ public class ProductService implements DAO<Product> {
         repo.deleteById(id);
     }
 
-    public List<Product> findByCategoryId(Long categoryId){
+    public List<Product> findByCategoryId(Long categoryId) {
         return repo.findByCategoryId(categoryId);
     }
 
-    public List<Product> findByCategoryIdAndBrandId(Long categoryId,Long brandId){
+    public List<Product> findByCategoryIdAndBrandId(Long categoryId, Long brandId) {
         return repo.findByCategoryIdAndBrandId(categoryId, brandId);
     }
 
-    public List<Product> findByCategoryIdAndTypeId(Long categoryId,Long typeId){
+    public List<Product> findByCategoryIdAndTypeId(Long categoryId, Long typeId) {
         return repo.findByCategoryIdAndTypeId(categoryId, typeId);
     }
 
-    public List<Product> findByBrandId(Long brandId){
+    public List<Product> findByBrandId(Long brandId) {
         return repo.findByBrandId(brandId);
     }
 
-    public  List<Product> findByTypeName(String typeName){
+    public List<Product> findByTypeName(String typeName) {
         return repo.findByTypeName(typeName);
     }
+
+    public List<Product> findByPriceBetween(Double min,Double max){
+        return repo.findByPriceBetween(min, max);
+    }
+
 
 }
