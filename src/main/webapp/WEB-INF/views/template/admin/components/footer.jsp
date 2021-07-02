@@ -579,7 +579,7 @@
 					$('#shordescription-error').html('');
 					$('#shordescription-successful').html('Valid!');
 				}
-				
+
 				if (hasSubmit.length === 0) {
 					$('#frmEditProduct').submit();
 				}
@@ -592,23 +592,23 @@
 		$('#home').addClass('nav-link active');
 	}
 	if ($(location).attr('pathname') === '/admin/product/new') {
-		$('#forms').addClass('nav-item menu-is-opening menu-open');
-		$('#linkforms').addClass('nav-link active');
+		$('#managerproduct').addClass('nav-item menu-is-opening menu-open');
+		$('#linkproduct').addClass('nav-link active');
 		$('#newproduct').addClass('nav-link active');
 	}
 	if ($(location).attr('pathname') === '/admin/type/new') {
-		$('#forms').addClass('nav-item menu-is-opening menu-open');
-		$('#linkforms').addClass('nav-link active');
+		$('#managertype').addClass('nav-item menu-is-opening menu-open');
+		$('#linktype').addClass('nav-link active');
 		$('#newtype').addClass('nav-link active');
 	}
 	if ($(location).attr('pathname') === '/admin/product') {
-		$('#tables').addClass('nav-item menu-is-opening menu-open');
-		$('#linktables').addClass('nav-link active');
+		$('#managerproduct').addClass('nav-item menu-is-opening menu-open');
+		$('#linkproduct').addClass('nav-link active');
 		$('#productlist').addClass('nav-link active');
 	}
 	if ($(location).attr('pathname') === '/admin/type') {
-		$('#tables').addClass('nav-item menu-is-opening menu-open');
-		$('#linktables').addClass('nav-link active');
+		$('#managertype').addClass('nav-item menu-is-opening menu-open');
+		$('#linktype').addClass('nav-link active');
 		$('#typelist').addClass('nav-link active');
 	}
 </script>
