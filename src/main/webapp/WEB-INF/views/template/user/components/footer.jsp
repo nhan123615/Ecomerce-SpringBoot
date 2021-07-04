@@ -68,7 +68,7 @@
             </p>
         </div>
         <div class="ps-footer__copyright">
-            <p>© 2018 Martfury. All Rights Reserved</p>
+            <p>Â© 2018 Martfury. All Rights Reserved</p>
             <p><span>We Using Safe Payment For:</span><a href="#"><img src="${pageContext.servletContext.contextPath}/img/payment-method/1.jpg" alt=""></a><a href="#"><img src="${pageContext.servletContext.contextPath}/img/payment-method/2.jpg" alt=""></a><a href="#"><img src="${pageContext.servletContext.contextPath}/img/payment-method/3.jpg" alt=""></a><a href="#"><img src="${pageContext.servletContext.contextPath}/img/payment-method/4.jpg" alt=""></a><a href="#"><img src="${pageContext.servletContext.contextPath}/img/payment-method/5.jpg" alt=""></a></p>
         </div>
     </div>
@@ -142,7 +142,76 @@
 <script src="${pageContext.servletContext.contextPath}/plugins/lightGallery-master/dist/js/lightgallery-all.min.js"></script>
 <script src="${pageContext.servletContext.contextPath}/plugins/sticky-sidebar/dist/sticky-sidebar.min.js"></script>
 <script src="${pageContext.servletContext.contextPath}/plugins/select2/dist/js/select2.full.min.js"></script>
-<script src="${pageContext.servletContext.contextPath}/plugins/gmap3.min.js"></script>
+<script src="${pageContext.servletContext.contextPath}/plugins/gmap3.min.js"></script>	
 <!-- custom scripts-->
 <script src="${pageContext.servletContext.contextPath}/js/main.js"></script>
+	<script>
+/* $(document).on("click", ".whishlist", function(event) {
+	  event.preventDefault();
+	  var uid = $(this).data('uid');
+	 
+}); */
+/* var cart = [];
+var countWhish = document.querySelector('#countWhish');
+function cookies(json){
+	// 1. set cookie
+	cart.push(json);
+	document.cookie = '_whishlist_='+cart;
+	var cookie = document.cookie;
+	// 3. search my cookie is String
+	var key = '_whishlist_';
+	// regular expression to search
+	var matchs = cookie.match(key+"=([^;]*)" );	
+	console.log(matchs[1]);// value of _role_
+	console.log(cookie);
+	console.log(json.id);
+} */
+
+function addToCart(id)
+{
+	const data = null;
+	const xhr = new XMLHttpRequest();
+	xhr.addEventListener("readystatechange", function() {
+		if (this.readyState === this.DONE) {
+			if(this.responseText === "false"){
+				/* alert("Add!"); */
+			}else{
+				/* alert("Remove!"); */
+				var element = document.getElementById("item"+id);
+				element.parentNode.removeChild(element);
+			}
+			
+			/* cookies(json); */
+			/* cart = saveToCart(json);*/			
+			/* countWhish.innerHTML = '<a id="countWhish" class="header__extra" href=""><i class="icon-heart"></i><span><i>'+cart.length+'</i></span></a>'; */
+			/* console.log(cart.length);  */
+		}
+	});
+	xhr.open("GET", "${pageContext.servletContext.contextPath}/api/whish-list/addproduct?id_product="+id);
+	xhr.setRequestHeader('Content-type', 'application/json');
+	xhr.send(data);
+}
+/* function saveToCart(json){
+		for(var i in cart){
+			if(cart[i].id === json.id){
+				cart.splice(i, 1);
+				return cart;
+			}
+		}
+	
+	cart.push(json);
+	return cart;
+}
+
+function checkProductInCart(id){
+	for(let i in cart){
+		if(cart[i].id === id){
+			return;
+		}else{
+			
+		}
+	}
+} */
+
+</script>
 </html>
