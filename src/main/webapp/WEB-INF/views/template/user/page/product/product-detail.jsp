@@ -916,15 +916,6 @@
 						data-owl-item="6" data-owl-item-xs="2" data-owl-item-sm="2"
 						data-owl-item-md="3" data-owl-item-lg="4" data-owl-item-xl="5"
 						data-owl-duration="1000" data-owl-mousedrag="on">
-
-
-
-
-
-
-
-
-
 						<div class="owl-stage-outer">
 							<div class="owl-stage"
 								style="transform: translate3d(-3025px, 0px, 0px); transition: all 1s ease 0s; width: 5775px;">
