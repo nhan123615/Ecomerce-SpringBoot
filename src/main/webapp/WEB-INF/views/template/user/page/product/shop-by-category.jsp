@@ -216,9 +216,9 @@
 																		title="Quick View" data-toggle="modal"
 																		data-target="#product-quickview-${p.id}"><i
 																			class="icon-eye"></i></a></li>
-																	<li><a onClick="addToCart(${p.id})"
+																	<li><a onClick="addToWishList(${p.id})"
 																		data-toggle="tooltip"
-																		data-placement="top" title="Add to Whishlist"><i
+																		data-placement="top" title="Add to Wishlist"><i
 																			class="icon-heart"></i></a></li>
 																</ul>
 															</div>
@@ -503,7 +503,7 @@
                 productTable +=  "<ul class='ps-product__actions'>";
                 productTable +=  " <li><a data-toggle='tooltip' data-placement='top' title='Add To Cart'><i class='icon-bag2'></i></a></li>";
                 productTable += "<li><a data-placement='top' title='Quick View' data-toggle='modal' data-target='#product-quickview-"+json[i].id+"'><i class='icon-eye'></i></a></li>";
-                productTable += "<li><a onClick='addToCart("+json[i].id+")' data-uid='"+json[i].id+"' data-toggle='tooltip' data-placement='top' title='Add to Whishlist'><i class='icon-heart'></i></a></li> </ul> </div>";
+                productTable += "<li><a onClick='addToWishList("+json[i].id+")' data-toggle='tooltip' data-placement='top' title='Add to Wishlist'><i class='icon-heart'></i></a></li> </ul> </div>";
                 productTable += "<div class='ps-product__container'> <div class='ps-product__content'>";
                 productTable += "<a class='ps-product__title' href='${pageContext.servletContext.contextPath}/product/detail?id="+json[i].id+"'>"+json[i].productName+"</a>";
                 productTable +=  "<p class='ps-product__price'>$"+json[i].price+"</p> </div>";

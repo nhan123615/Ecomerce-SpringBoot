@@ -7,7 +7,7 @@
         <div class="ps-cart--mobile">
             <div class="ps-cart__content">
                 <div class="ps-product--cart-mobile">
-                    <div class="ps-product__thumbnail"><a href="#"><img src="img/products/clothing/7.jpg" alt=""></a></div>
+                    <div class="ps-product__thumbnail"><a href="#"><img src="${pageContext.servletContext.contextPath}/img/products/clothing/7.jpg" alt=""></a></div>
                     <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">MVMTH Classical Leather Watch In Black</a>
                         <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
                     </div>

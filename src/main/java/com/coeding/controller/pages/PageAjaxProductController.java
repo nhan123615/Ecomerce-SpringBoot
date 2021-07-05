@@ -1,5 +1,9 @@
 package com.coeding.controller.pages;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.coeding.entity.Product;
 import com.coeding.service.ProductService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * 
@@ -20,33 +26,35 @@ import com.coeding.service.ProductService;
  *
  */
 @RestController
-@RequestMapping(path = "/api/whish-list", produces = "application/json")
+@RequestMapping(path = "/api/wish-list", produces = "application/json")
 @CrossOrigin(origins = "*")
 public class PageAjaxProductController {
 	@Autowired
 	ProductService productService;
 
-	@GetMapping("/addproduct")
-	public boolean addToWhishList(@RequestParam(name = "id_product") String id, HttpServletRequest request,
+	@GetMapping("/getproduct")
+	public Product addToWhishList(@RequestParam(name = "id_product") String id, HttpServletRequest request,
 			HttpServletResponse response) {
+		ObjectMapper objectMapper = new ObjectMapper();
 		Product product = productService.findById(Long.parseLong(id));
 		Cookie[] clientCookies = request.getCookies();
-		boolean found = false;
-		for (int i = 0; i < clientCookies.length; i++) {
-			if (clientCookies[i].getName().equals(id)) {
-				clientCookies[i].setMaxAge(0);
-				clientCookies[i].setPath("/");
-				response.addCookie(clientCookies[i]);
-				found = true;
-				break;
-			}
-		}
-		if (!found) {
-			Cookie c = new Cookie(id, "1");
+		Long wishListCookiesCount = Arrays.stream(clientCookies).filter(c -> c.getName().equals("wishItems")).count();
+		List<Product> list = new ArrayList<Product>();
+		list.add(product);
+		if (wishListCookiesCount == 0) {
+			Cookie c = new Cookie("wishItems", id);
 			c.setPath("/");
 			c.setMaxAge(60 * 60 * 24);
 			response.addCookie(c);
+		}else {
+			System.out.println("else");
+			for(int i = 0;i < clientCookies.length; i++) {
+				if(clientCookies[i].getName().equals("wishItems")) {
+					clientCookies[i].setValue(clientCookies[i].getValue()+id);
+					response.addCookie(clientCookies[i]);
+				}
+			}
 		}
-		return found;
+		return product;
 	}
 }

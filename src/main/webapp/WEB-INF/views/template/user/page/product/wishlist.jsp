@@ -12,7 +12,7 @@
 	<div class="ps-section--shopping ps-whishlist">
 		<div class="container">
 			<div class="ps-section__header">
-				<h1>Whishlist</h1>
+				<h1>Wish list</h1>
 			</div>
 			<div class="ps-section__content">
 				<div class="table-responsive">
@@ -27,7 +27,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="product" items="${whishlist }">
+							<c:forEach var="product" items="${wishlist }">
 								<tr>
 									<td data-label="Remove"><a id="item${product.id }" href="" onClick="addToCart(${product.id})"><i
 											class="icon-cross"></i></a></td>

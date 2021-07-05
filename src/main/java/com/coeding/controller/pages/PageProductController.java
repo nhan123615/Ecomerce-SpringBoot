@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -120,5 +122,21 @@ public class PageProductController {
         model.addAttribute("countProduct", countProduct);
         model.addAttribute("categoryByProduct",categoryByProduct);
     }
+    @GetMapping(value = "/detail")
+	public String view(@RequestParam(value = "id") Long id,  Authentication authentication, Locale locale, Model model) {
+		LOGGER.info("product detail {}.", locale);
+		Product p = productService.findById(id);
+		model.addAttribute("product", p);
+		List<String> listColor = Arrays.asList(p.getProductColor().split(","));
+		for (String color : listColor) {
+			model.addAttribute(color, color);
+		}
+		if (authentication != null) {
+            LOGGER.info("check User with (authentication != null)");
+            UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+            model.addAttribute("user", userDetails.getUser());
+        }
+		return "template/user/page/product/product-detail";
+	}
 
 }

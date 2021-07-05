@@ -30,7 +30,7 @@ public class PageWhishListController {
 	@Autowired
 	private ProductService productService;
 
-	@GetMapping("/whishlist")
+	@GetMapping("/wishlist")
 	public String cartPage(HttpServletRequest res, Model model) {
 		Cookie cl[] = res.getCookies();
 		List<Product> whishlist = new ArrayList<Product>();
@@ -39,7 +39,7 @@ public class PageWhishListController {
 			 whishlist.add(productService.findById(Long.parseLong(cl[i].getName())));
 			}
 		}
-		model.addAttribute("whishlist", whishlist);
-		return "template/user/page/product/whishlist";
+		model.addAttribute("wishlist", whishlist);
+		return "template/user/page/product/wishlist";
 	}
 }

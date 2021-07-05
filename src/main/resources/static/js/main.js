@@ -910,6 +910,6 @@
 
     $(window).on('load', function() {
         $('body').addClass('loaded');
-        // subscribePopup();
+       //subscribePopup();
     });
 })(jQuery);

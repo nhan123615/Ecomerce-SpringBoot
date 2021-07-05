@@ -852,7 +852,7 @@
                         </div>
                     </div>
                     <div class="ps-product">
-                        <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/clothing/7.jpg" alt=""></a>
+                        <div class="ps-product__thumbnail"><a href="product-default.html"><img src="${pageContext.servletContext.contextPath}/img/products/clothing/7.jpg" alt=""></a>
                             <div class="ps-product__badge">-46%</div>
                             <ul class="ps-product__actions">
                                 <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
