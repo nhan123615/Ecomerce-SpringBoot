@@ -177,13 +177,13 @@
         var countWhsh = document.querySelector('#countWish');
         function cookies(json) {
             var cookie = document.cookie;
-            var matchs = cookie.match("wishItems=([^;]*)");
+            var matchs = cookie.match("id=([^;]*)");
+            var arr_product = matchs[1].split('a');
             if (cookie != null) {
-                wishList.push(matchs[1]);
-                console.log(wishList);
-                countWish.innerHTML = '<a id="countWish" class="header__extra" href=""><i class="icon-heart"></i><span><i>'+wishList.length+'</i></span></a>';
+                console.log(arr_product);
+                console.log(arr_product.length);
+                countWish.innerHTML = '<a id="countWish" class="header__extra" href=""><i class="icon-heart"></i><span><i>'+arr_product.length+'</i></span></a>';
             }
-            console.log(matchs[1]);
         }
 
         function addToWishList(id) {

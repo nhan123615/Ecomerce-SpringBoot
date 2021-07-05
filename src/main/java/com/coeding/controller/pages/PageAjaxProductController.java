@@ -35,26 +35,36 @@ public class PageAjaxProductController {
 	@GetMapping("/getproduct")
 	public Product addToWhishList(@RequestParam(name = "id_product") String id, HttpServletRequest request,
 			HttpServletResponse response) {
-		ObjectMapper objectMapper = new ObjectMapper();
 		Product product = productService.findById(Long.parseLong(id));
-		Cookie[] clientCookies = request.getCookies();
-		Long wishListCookiesCount = Arrays.stream(clientCookies).filter(c -> c.getName().equals("wishItems")).count();
-		List<Product> list = new ArrayList<Product>();
-		list.add(product);
-		if (wishListCookiesCount == 0) {
-			Cookie c = new Cookie("wishItems", id);
-			c.setPath("/");
-			c.setMaxAge(60 * 60 * 24);
-			response.addCookie(c);
-		}else {
-			System.out.println("else");
-			for(int i = 0;i < clientCookies.length; i++) {
-				if(clientCookies[i].getName().equals("wishItems")) {
-					clientCookies[i].setValue(clientCookies[i].getValue()+id);
-					response.addCookie(clientCookies[i]);
-				}
+		Cookie arr[] = request.getCookies();
+		String txt = "";
+		for (Cookie o : arr) {
+			if (o.getName().equals("id")) {
+				txt = txt + o.getValue();
+				o.setMaxAge(0);
+				response.addCookie(o);
 			}
 		}
+		if (txt.isEmpty())
+
+		{
+			txt = id;
+		} else {
+			String[] array = txt.split("a");
+			int count=0;
+			for(int i=0;i<array.length;i++) {
+				if(array[i].equals(id)) {
+					count++;
+				}
+			}
+			if(count == 0) {
+				txt = txt + "a" + id;
+			}
+		}
+		Cookie c = new Cookie("id", txt);
+		c.setMaxAge(60 * 60 * 24);
+		c.setPath("/");
+		response.addCookie(c);
 		return product;
 	}
 }
