@@ -19,11 +19,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.coeding.entity.Product;
 import com.coeding.service.ProductService;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 
  * @author Lam Cong Hau
  *
  */
+@Slf4j
 @Controller
 @RequestMapping("/product")
 public class PageWhishListController {
@@ -32,13 +35,20 @@ public class PageWhishListController {
 
 	@GetMapping("/wishlist")
 	public String cartPage(HttpServletRequest res, Model model) {
-		Cookie cl[] = res.getCookies();
+		Cookie[] cl = res.getCookies();
 		List<Product> whishlist = new ArrayList<Product>();
-		for (int i = 0; i < cl.length; i++) {
-			if (cl[i].getName().matches("[0-9]+")) {
-			 whishlist.add(productService.findById(Long.parseLong(cl[i].getName())));
+		for (Cookie o : cl) {
+			if (o.getName().equals("id")) {
+				if (!o.getValue().isEmpty()) {
+					String txt[] = o.getValue().split("a");
+					for (String s : txt) {
+						Long id = Long.parseLong(s);
+						whishlist.add(productService.findById(id));
+					}
+				}
 			}
 		}
+		log.info("wishlist: " + whishlist.size());
 		model.addAttribute("wishlist", whishlist);
 		return "template/user/page/product/wishlist";
 	}

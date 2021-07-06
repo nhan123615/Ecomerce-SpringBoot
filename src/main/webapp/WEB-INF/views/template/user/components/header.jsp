@@ -255,7 +255,7 @@
                 </form>
             </div>
             <div class="header__right">
-                <div class="header__actions"><a class="header__extra" href="#"><i class="icon-chart-bars"></i><span><i>0</i></span></a><a href="${pageContext.servletContext.contextPath}/product/wishlist" id="countWish" class="header__extra" href="#"><i class="icon-heart"></i><span><i>0</i></span></a>
+                <div class="header__actions"><a class="header__extra" href="#"><i class="icon-chart-bars"></i><span><i>0</i></span></a><a href="${pageContext.servletContext.contextPath}/product/wishlist"  class="header__extra" href="#"><i class="icon-heart"></i><span><i id="countWish">0</i></span></a>
                     <div class="ps-cart--mini"><a class="header__extra" href="#"><i class="icon-bag2"></i><span><i>0</i></span></a>
                         <div class="ps-cart__content">
                             <div class="ps-cart__items">
