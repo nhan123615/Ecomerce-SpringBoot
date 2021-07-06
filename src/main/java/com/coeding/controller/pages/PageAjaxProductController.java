@@ -32,13 +32,15 @@ public class PageAjaxProductController {
 	@GetMapping("/addProductToWishList")
 	public void addToWishList(@RequestParam(name = "id_product") String id, HttpServletRequest request,
 			HttpServletResponse response) {
-		Cookie arr[] = request.getCookies();
+		Cookie[] arr = request.getCookies();
 		String txt = "";
-		for (Cookie o : arr) {
-			if (o.getName().equals("id")) {
-				txt = txt + o.getValue();
-				o.setMaxAge(0);
-				response.addCookie(o);
+		if (arr != null) {
+			for (Cookie o : arr) {
+				if (o.getName().equals("id")) {
+					txt = txt + o.getValue();
+					o.setMaxAge(0);
+					response.addCookie(o);
+				}
 			}
 		}
 		if (txt.isEmpty()) {
@@ -65,44 +67,45 @@ public class PageAjaxProductController {
 	public List<Product> removeFormWishList(@RequestParam(name = "id_product") String id, HttpServletRequest request,
 			HttpServletResponse response) {
 		List<Product> list = new ArrayList<Product>();
-		Cookie arr[] = request.getCookies();
+		Cookie[] arr = request.getCookies();
 		String txt = "";
-		for (Cookie o : arr) {
-			if (o.getName().equals("id")) {
-				txt = txt + o.getValue();
-				o.setMaxAge(0);
-				response.addCookie(o);
-			}
-		}
-		String ids[] = txt.split("a");
 		String txtOutPut = "";
-		for (int i = 0; i < ids.length; i++) {
-			if (!ids[i].equals(id)) {
-				if (txtOutPut.isEmpty()) {
-					txtOutPut = ids[i];
-				} else {
-					txtOutPut = txtOutPut + "a" + ids[i];
+		if (arr != null) {
+			for (Cookie o : arr) {
+				if (o.getName().equals("id")) {
+					txt = txt + o.getValue();
+					o.setMaxAge(0);
+					response.addCookie(o);
 				}
 			}
+			String ids[] = txt.split("a");
+			for (int i = 0; i < ids.length; i++) {
+				if (!ids[i].equals(id)) {
+					if (txtOutPut.isEmpty()) {
+						txtOutPut = ids[i];
+					} else {
+						txtOutPut = txtOutPut + "a" + ids[i];
+					}
+				}
 
-		}
-		Cookie c = new Cookie("id", txtOutPut);
-		c.setMaxAge(60 * 60 * 24);
-		c.setPath("/");
-		response.addCookie(c);
-		if (!txtOutPut.isEmpty()) {
-			String ids1[] = txtOutPut.split("a");
-			for (String s : ids1) {
-				if (s.isEmpty()) {
-					Long id_product = Long.parseLong(txtOutPut);
-					list.add(productService.findById(id_product));
-				} else {
-					Long id_product = Long.parseLong(s);
-					list.add(productService.findById(id_product));
+			}
+			Cookie c = new Cookie("id", txtOutPut);
+			c.setMaxAge(60 * 60 * 24);
+			c.setPath("/");
+			response.addCookie(c);
+			if (!txtOutPut.isEmpty()) {
+				String ids1[] = txtOutPut.split("a");
+				for (String s : ids1) {
+					if (s.isEmpty()) {
+						Long id_product = Long.parseLong(txtOutPut);
+						list.add(productService.findById(id_product));
+					} else {
+						Long id_product = Long.parseLong(s);
+						list.add(productService.findById(id_product));
+					}
 				}
 			}
 		}
-		System.out.println(list.size());
 		return list;
 	}
 }

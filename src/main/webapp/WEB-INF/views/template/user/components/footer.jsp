@@ -220,28 +220,36 @@
 <script src="${pageContext.servletContext.contextPath}/js/main.js"></script>
 
 <script>
-	var wishList = [];
+	
 	var countWish = document.querySelector('#countWish');
 	var cookie = document.cookie;
-	var tblProduct = document.querySelector('#filteredProduct');
-	if (cookie != null) {
+	/* if (cookie != null) {
 		var matchs = cookie.match("id=([^;]*)");
-		var arr_product = matchs[1].split('a');
-	}
+		if (matchs != null) {
+			var arr_product = matchs[1].split('a');
+		}
+	} */
 
 	window.onload = initData();
 	function initData() {
+		cookies();
 		if (arr_product != null) {
 			if (arr_product[0] != "") {
 				countWish.innerHTML = arr_product.length;
+			}else{
+				countWish.innerHTML = 0;
 			}
 		}
 	}
 
 	function cookies() {
 		cookie = document.cookie;
-		matchs = cookie.match("id=([^;]*)");
-		arr_product = matchs[1].split('a');
+		if (cookie != null) {
+			matchs = cookie.match("id=([^;]*)");
+			if (matchs != null) {
+				arr_product = matchs[1].split('a');
+			}
+		}
 	}
 
 	function addToWishList(id) {
@@ -250,7 +258,7 @@
 		xhr.addEventListener("readystatechange", function() {
 			if (this.readyState === this.DONE) {
 				cookies();
-				countWish.innerHTML = arr_product.length;
+				initData();
 			}
 		});
 		xhr
@@ -261,20 +269,21 @@
 		xhr.setRequestHeader('Content-type', 'application/json');
 		xhr.send(data);
 	}
-
+	var tblProduct = document.querySelector('#wishProductTable');
 	function removeFromWishList(id) {
 		const data = null;
 		const xhr = new XMLHttpRequest();
 		xhr.addEventListener("readystatechange", function() {
 			if (this.readyState === this.DONE) {
 				var json = JSON.parse(this.responseText);
-				/* if (json.length > 0) {
-					tblWishList.innerHTML = getWishListTable(json);
-				} else {
-					tblWishList.innerHTML = getNoWishProductFound();
-				} */
+				console.log('json length'+json.length);
 				cookies();
-				countWish.innerHTML = arr_product.length;
+				initData();
+				if (json.length > 0) {
+					tblProduct.innerHTML = getWishListTable(json);
+				} else {
+					tblProduct.innerHTML = getNoWishProductFound();
+				}
 			}
 		});
 		xhr
@@ -286,34 +295,30 @@
 		xhr.send(data);
 	}
 	function getWishListTable(json) {
-		var wishListTable = ""
+		var wishListTable = '';
 		for (let i = 0; i < json.length; i++) {
-			wishListTable += "<div class='col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 '>";
-			wishListTable += "<div class='ps-product'>";
-			wishListTable += "<div class='ps-product__thumbnail'>";
-			wishListTable += "<a href='${pageContext.servletContext.contextPath}/product/detail?id="
-					+ json[i].id + "'>";
-			wishListTable += "<img src='${pageContext.request.contextPath}/product/display/0&"+json[i].id+"'  style='width: 156px;height: 156px'></a>";
-			wishListTable += "<ul class='ps-product__actions'>";
-			wishListTable += " <li><a data-toggle='tooltip' data-placement='top' title='Add To Cart'><i class='icon-bag2'></i></a></li>";
-			wishListTable += "<li><a data-placement='top' title='Quick View' data-toggle='modal' data-target='#product-quickview-"+json[i].id+"'><i class='icon-eye'></i></a></li>";
-			wishListTable += "<li><a onClick='addToWishList("
-					+ json[i].id
-					+ ")' data-toggle='tooltip' data-placement='top' title='Add to Wishlist'><i class='icon-heart'></i></a></li> </ul> </div>";
-			wishListTable += "<div class='ps-product__container'> <div class='ps-product__content'>";
-			wishListTable += "<a class='ps-product__title' href='${pageContext.servletContext.contextPath}/product/detail?id="
-					+ json[i].id + "'>" + json[i].productName + "</a>";
-			wishListTable += "<p class='ps-product__price'>$" + json[i].price
-					+ "</p> </div>";
-			wishListTable += "<div class='ps-product__content hover'>";
-			wishListTable += "<a class='ps-product__title' href='${pageContext.servletContext.contextPath}/product/detail?id="
-					+ json[i].id + "'>" + json[i].productName + "</a>";
-			wishListTable += "<p class='ps-product__price'>$" + json[i].price
-					+ "</p></div></div></div></div>";
+			wishListTable += '<tr>';
+			wishListTable += '<td data-label="Remove"><a href="javascript:void(0);" onClick="removeFromWishList('
+					+ json[i].id + ')"><i class="icon-cross"></i></a></td>';
+			wishListTable += '<td data-label="Product">';
+			wishListTable += '<div class="ps-product--cart">';
+			wishListTable += '<div class="ps-product__thumbnail">';
+			wishListTable += '<a href="${pageContext.servletContext.contextPath}/product/detail?id='+json[i].id+'"><img src="${pageContext.request.contextPath}/product/display/0&'+json[i].id+'" alt="" width="100px" height="100px"></a>';
+			wishListTable += '</div>';
+			wishListTable += '<div class="ps-product__content">';
+			wishListTable += '<a href="${pageContext.servletContext.contextPath}/product/detail?id='+json[i].id+'">'+json[i].productName+'</a><p>Sold By:<strong> Angry-Nerds SHOP</strong></p>';
+			wishListTable += '</div>';
+			wishListTable += '</div>';
+			wishListTable += '</td>';
+			wishListTable += '<td class="price text-center" data-label="Price">$'
+					+ json[i].price + '</td>';
+			wishListTable += '<td data-label="Status" class="text-center"><span class="ps-tag ps-tag--in-stock ">'
+					+ json[i].enabled + '</span></td>';
+			wishListTable += '<td data-label="action"><a class="ps-btn" href="#">Add to cart</a></td></tr>';
 		}
 		return wishListTable;
 	}
 	function getNoWishProductFound() {
-		return "<div class='ps-section__content' style='width: 100%'><h1 style='text-align:center'>No product found !!!</h1></div>"
+		return '<tr><td colspan="5" class="text-center"><h1>No wishlist found !!!</h1></td></tr>';
 	}
 </script>

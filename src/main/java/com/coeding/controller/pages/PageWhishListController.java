@@ -35,20 +35,22 @@ public class PageWhishListController {
 
 	@GetMapping("/wishlist")
 	public String cartPage(HttpServletRequest res, Model model) {
+		log.info("wishlist: ");
 		Cookie[] cl = res.getCookies();
 		List<Product> whishlist = new ArrayList<Product>();
-		for (Cookie o : cl) {
-			if (o.getName().equals("id")) {
-				if (!o.getValue().isEmpty()) {
-					String txt[] = o.getValue().split("a");
-					for (String s : txt) {
-						Long id = Long.parseLong(s);
-						whishlist.add(productService.findById(id));
+		if (cl != null) {
+			for (Cookie o : cl) {
+				if (o.getName().equals("id")) {
+					if (!o.getValue().isEmpty()) {
+						String txt[] = o.getValue().split("a");
+						for (String s : txt) {
+							Long id = Long.parseLong(s);
+							whishlist.add(productService.findById(id));
+						}
 					}
 				}
 			}
 		}
-		log.info("wishlist: " + whishlist.size());
 		model.addAttribute("wishlist", whishlist);
 		return "template/user/page/product/wishlist";
 	}

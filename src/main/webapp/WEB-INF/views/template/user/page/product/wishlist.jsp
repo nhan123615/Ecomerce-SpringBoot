@@ -26,23 +26,23 @@
 								<th></th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="wishProductTable">
 							<c:choose>
 								<c:when test="${not empty wishlist}">
 									<c:forEach var="product" items="${wishlist}">
-										<tr id="item${product.id }">
-											<td data-label="Remove"><a href=""
+										<tr>
+											<td data-label="Remove"><a href="javascript:void(0);"
 												onClick="removeFromWishList(${product.id})"><i
 													class="icon-cross"></i></a></td>
 											<td data-label="Product">
 												<div class="ps-product--cart">
 													<div class="ps-product__thumbnail">
-														<a href=""><img
+														<a href="${pageContext.servletContext.contextPath}/product/detail?id=${product.id}"><img
 															src="${pageContext.request.contextPath}/product/display/0&${product.id}"
 															alt="" width="100px" height="100px"></a>
 													</div>
 													<div class="ps-product__content">
-														<a href="">${product.productName }</a>
+														<a href="${pageContext.servletContext.contextPath}/product/detail?id=${product.id}">${product.productName }</a>
 														<p>
 															Sold By:<strong> Angry-Nerds SHOP</strong>
 														</p>
@@ -60,11 +60,10 @@
 								</c:when>
 								<c:otherwise>
 									<tr>
-										<td colspan="5" class="text-center"><h1>No wishlist found !!!</h1></td>
+										<td colspan="5" class="text-center"><h1>No wish list found !!!</h1></td>
 									</tr>
 								</c:otherwise>
 							</c:choose>
-
 						</tbody>
 					</table>
 				</div>
