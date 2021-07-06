@@ -30,7 +30,7 @@ public class PageAjaxProductController {
 	ProductService productService;
 
 	@GetMapping("/addProductToWishList")
-	public void addToWishList(@RequestParam(name = "id_product") String id, HttpServletRequest request,
+	public String addToWishList(@RequestParam(name = "id_product") String id, HttpServletRequest request,
 			HttpServletResponse response) {
 		Cookie[] arr = request.getCookies();
 		String txt = "";
@@ -55,12 +55,15 @@ public class PageAjaxProductController {
 			}
 			if (count == 0) {
 				txt = txt + "a" + id;
+			}else {
+				return "failed";
 			}
 		}
 		Cookie c = new Cookie("id", txt);
 		c.setMaxAge(60 * 60 * 24);
 		c.setPath("/");
 		response.addCookie(c);
+		return "successful";
 	}
 
 	@GetMapping("/removeProductFromWishList")

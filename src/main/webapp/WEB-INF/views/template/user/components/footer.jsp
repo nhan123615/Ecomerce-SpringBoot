@@ -257,6 +257,11 @@
 		const xhr = new XMLHttpRequest();
 		xhr.addEventListener("readystatechange", function() {
 			if (this.readyState === this.DONE) {
+				if(this.responseText === "successful"){
+					alert("You have successfully added!");
+				}else if(this.responseText === "failed"){
+					alert("You can only add 1 time!");
+				}
 				cookies();
 				initData();
 			}

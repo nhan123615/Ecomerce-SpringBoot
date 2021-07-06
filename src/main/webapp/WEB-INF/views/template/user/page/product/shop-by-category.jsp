@@ -219,7 +219,7 @@
 																	<li><a onClick="addToWishList(${p.id})"
 																		data-toggle="tooltip"
 																		data-placement="top" title="Add to Wishlist"><i
-																			class="icon-heart" style="color:red"></i></a></li>
+																			class="icon-heart"></i></a></li>
 																</ul>
 															</div>
 															<div class="ps-product__container">
