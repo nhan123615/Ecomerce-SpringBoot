@@ -47,7 +47,7 @@
 
                     </div>
 <%--                </div><a class="ps-logo" href="index.html"><img src="${pageContext.servletContext.contextPath}/img/logo_light.png" alt=""></a></div>--%>
-        </div><a class="ps-logo" href="index.html"><img src="${pageContext.servletContext.contextPath}/img/Angry-Nerds-2.png"  alt=""></a></div>
+        </div><a class="ps-logo" href="${pageContext.servletContext.contextPath}/"><img src="${pageContext.servletContext.contextPath}/img/Angry-Nerds-2.png"  alt=""></a></div>
 
     <div class="header__center">
                 <form class="ps-form--quick-search" action="index.html" method="get">
@@ -255,7 +255,7 @@
                 </form>
             </div>
             <div class="header__right">
-                <div class="header__actions"><a class="header__extra" href="#"><i class="icon-chart-bars"></i><span><i>0</i></span></a><a class="header__extra" href="#"><i class="icon-heart"></i><span><i>0</i></span></a>
+                <div class="header__actions"><a class="header__extra" href="#"><i class="icon-chart-bars"></i><span><i>0</i></span></a><a class="header__extra" href="${pageContext.servletContext.contextPath}/product/wishlist"><i class="icon-heart"></i><span><i id="countWish">0</i></span></a>
                     <div class="ps-cart--mini"><a class="header__extra" href="#"><i class="icon-bag2"></i><span><i id="cartItemCount-1">0</i></span></a>
                         <div class="ps-cart__content"  id="cart-content-1" style="display: none" >
                             <div class="ps-cart__items">
