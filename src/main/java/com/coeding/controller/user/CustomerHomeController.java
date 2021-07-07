@@ -29,15 +29,13 @@ public class CustomerHomeController {
         UserDetail userDetails = (UserDetail) authentication.getPrincipal();
 
         model.addAttribute("user",userDetails.getUser());
-		/* model.addAttribute("userd",customerService.get); */
-        
         return  "template/user/customer/index";
     }
     
     @PostMapping(value = "/submit")
 	public String save(Customer ctm,Model model,@RequestParam("id") Long id) {
 		Customer cus = customerService.findById(id);
-		cus.setName(ctm.getName());
+//		cus.setName(ctm.getName());
     	customerService.save(ctm);
 		return "redirect:/";
 	}

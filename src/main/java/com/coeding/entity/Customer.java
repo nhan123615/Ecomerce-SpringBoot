@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 /**
- * author TranDung
+ * author Nhanle
  * */
 @Entity
 @Table(name = "customers")
@@ -19,20 +19,18 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long id;
 
-    private String name;
+    private String firstName;
+    private String lastName;
     private String phone;
-    private String email;
-    private String birthday;
-    private String gender;
+    private String address;
     @OneToOne(targetEntity = User.class)
-    private User user_id;
+    private User user;
 
-    public Customer(String name, String phone, String email, String birthday, String gender, User user_id) {
-        this.name = name;
+    public Customer(String firstName, String lastName, String phone, String address, User user) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.phone = phone;
-        this.email = email;
-        this.birthday = birthday;
-        this.gender = gender;
-        this.user_id = user_id;
+        this.address = address;
+        this.user = user;
     }
 }
