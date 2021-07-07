@@ -17418,4 +17418,13 @@ html .bg--parallax {
   list-style: none;
 }
 
+#cart-content-1, #cart-content-2{
+  height: 300px;
+  overflow:hidden;
+  overflow-y:scroll;
+}
+
+/*.show{*/
+/*  display: block;*/
+/*}*/
 /*# sourceMappingURL=style.css.map */

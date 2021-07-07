@@ -12,12 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -39,12 +38,16 @@ public class PageProductController {
 
     @GetMapping
     public String productHomePage(
+            HttpServletResponse response,
+            HttpServletRequest request,
             Authentication authentication,
             Model model,
             @RequestParam(name = "category", required = false) Long categoryId,
             @RequestParam(name = "brand", required = false) Long brandId,
             @RequestParam(name = "type", required = false) Long typeId
     ) {
+        //set cookie
+//        setCookie(response, request);
 
         if (authentication != null) {
             LOGGER.info("check User with (authentication != null)");
@@ -111,14 +114,24 @@ public class PageProductController {
         response.getOutputStream().close();
     }
 
-    public Long getCategoryId() {
-        return this.categoryId;
-    }
 
     public void addModelAttribute(List<Product> productList,Long countProduct,Category categoryByProduct,Model model){
         model.addAttribute("products", productList);
         model.addAttribute("countProduct", countProduct);
         model.addAttribute("categoryByProduct",categoryByProduct);
     }
+
+    public void setCookie(HttpServletResponse response, HttpServletRequest request){
+        Cookie[] cookies = request.getCookies();
+        Long cartItemsCookie = Arrays.stream(cookies).filter(c->c.getName().equals("cartItems")).count();
+
+        if (cartItemsCookie == 0){
+            LOGGER.info("Set Cookie cartItems");
+            Cookie cookie = new Cookie("cartItems", "");
+            cookie.setHttpOnly(true);
+            response.addCookie(cookie);
+        }
+    }
+
 
 }

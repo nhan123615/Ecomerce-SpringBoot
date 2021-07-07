@@ -145,6 +145,8 @@
 			<version>2.5</version>
 		</dependency>
 		<!--CKFinder end -->
+
+
     </dependencies>
 
     <build>
