@@ -4,23 +4,15 @@
 <body>
 <jsp:include page="../components/header.jsp"></jsp:include>
 <jsp:include page="../components/sidebar.jsp"></jsp:include>
-
+<br><br><br><br><br><br>
 <main class="ps-page--my-account">
-    <div class="ps-breadcrumb">
-        <div class="container">
-            <ul class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
-                <li>User Information</li>
-            </ul>
-        </div>
-    </div>
     <section class="ps-section--account">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
-<%--                    side bar--%>
-              <jsp:include page="customer-sidebar.jsp"></jsp:include>
-    <%--                    side bar--%>
+                    <%--                    side bar--%>
+                    <jsp:include page="customer-sidebar.jsp"></jsp:include>
+                    <%--                    side bar--%>
 
                 </div>
                 <div class="col-lg-8">

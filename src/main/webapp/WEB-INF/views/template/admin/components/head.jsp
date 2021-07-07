@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- <!DOCTYPE html>
+<html lang="en"> -->
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,14 +30,11 @@
     <!-- summernote -->
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/plugins-admin/summernote/summernote-bs4.min.css">
     <link rel="shortcut icon" type="image/png" href="${pageContext.servletContext.contextPath}/img/favicon.png">
-
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<%-- <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-
     <!-- Preloader -->
     <div class="preloader flex-column justify-content-center align-items-center">
-<%--        <img class="animation__shake" src="${pageContext.servletContext.contextPath}/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">--%>
         <img class="animation__shake" src="${pageContext.servletContext.contextPath}/dist/img/angry-nerds-logo-2.png" alt="AdminLTELogo" height="260" width="260">
 
-    </div>
+    </div> --%>

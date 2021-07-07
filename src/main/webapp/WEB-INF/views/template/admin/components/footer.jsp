@@ -6,17 +6,15 @@
 		<b>Version</b> 3.1.0
 	</div>
 </footer>
-
 <!-- Control Sidebar -->
-<aside class="control-sidebar control-sidebar-dark">
+<!-- <aside class="control-sidebar control-sidebar-dark"> -->
 	<!-- Control sidebar content goes here -->
-</aside>
+<!-- </aside> -->
 <!-- /.control-sidebar -->
-</div>
+<!-- </div> -->
 <!-- ./wrapper -->
-
 <!-- jQuery -->
-<script
+<%-- <script
 	src="${pageContext.servletContext.contextPath}/plugins-admin/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script
@@ -90,12 +88,12 @@
 <script
 	src="${pageContext.servletContext.contextPath}/dist/js/pages/dashboard.js"></script>
 <script
-	src="${pageContext.servletContext.contextPath}/dist/js/pages/dashboard3.js"></script>
-<script
+	src="${pageContext.servletContext.contextPath}/dist/js/pages/dashboard3.js"></script> --%>
+<%-- <script
 	src="${pageContext.servletContext.contextPath}/ckeditor/ckeditor.js"></script>
 <script
-	src="${pageContext.servletContext.contextPath}/ckfinder/ckfinder.js"></script>
-<script>
+	src="${pageContext.servletContext.contextPath}/ckfinder/ckfinder.js"></script> --%>
+<!-- <script>
 	$(function() {
 		$("#example1").DataTable({
 			"responsive" : true,
@@ -161,8 +159,8 @@
 		document.getElementById("imgpreview").src = fileUrl;
 	}
 	/*Avatar end*/
-</script>
-<script>
+</script> -->
+<!-- <script>
 	var category = document.querySelector('#category');
 	var type = document.querySelector('#type');
 	//select box
@@ -189,8 +187,8 @@
 		}
 		return selectUser;
 	}
-</script>
-<script>
+</script> -->
+<!-- <script>
 	$(document).ready(function() {
 		$('.product-image-thumb').on('click', function() {
 			var $image_element = $(this).find('img')
@@ -199,8 +197,8 @@
 			$(this).addClass('active')
 		})
 	})
-</script>
-<script>
+</script> -->
+<!-- <script>
 	$('#btnType').on('click', function() {
 		let name = $('#nameType');
 		let category = $('#categoryType');
@@ -227,8 +225,8 @@
 			$('#frmType').submit();
 		}
 	});
-</script>
-<script>
+</script> -->
+<!-- <script>
 	$('#btnAddProduct').on(
 			'click',
 			function() {
@@ -579,40 +577,40 @@
 					$('#shordescription-error').html('');
 					$('#shordescription-successful').html('Valid!');
 				}
-				
+
 				if (hasSubmit.length === 0) {
 					$('#frmEditProduct').submit();
 				}
 			});
-</script>
-<script>
+</script> -->
+<!-- <script>
 	if ($(location).attr('pathname') === '/admin') {
 		$('#dashboard').addClass('nav-item menu-open');
 		$('#linkdashboard').addClass('nav-link active');
 		$('#home').addClass('nav-link active');
 	}
 	if ($(location).attr('pathname') === '/admin/product/new') {
-		$('#forms').addClass('nav-item menu-is-opening menu-open');
-		$('#linkforms').addClass('nav-link active');
+		$('#managerproduct').addClass('nav-item menu-is-opening menu-open');
+		$('#linkproduct').addClass('nav-link active');
 		$('#newproduct').addClass('nav-link active');
 	}
 	if ($(location).attr('pathname') === '/admin/type/new') {
-		$('#forms').addClass('nav-item menu-is-opening menu-open');
-		$('#linkforms').addClass('nav-link active');
+		$('#managertype').addClass('nav-item menu-is-opening menu-open');
+		$('#linktype').addClass('nav-link active');
 		$('#newtype').addClass('nav-link active');
 	}
 	if ($(location).attr('pathname') === '/admin/product') {
-		$('#tables').addClass('nav-item menu-is-opening menu-open');
-		$('#linktables').addClass('nav-link active');
+		$('#managerproduct').addClass('nav-item menu-is-opening menu-open');
+		$('#linkproduct').addClass('nav-link active');
 		$('#productlist').addClass('nav-link active');
 	}
 	if ($(location).attr('pathname') === '/admin/type') {
-		$('#tables').addClass('nav-item menu-is-opening menu-open');
-		$('#linktables').addClass('nav-link active');
+		$('#managertype').addClass('nav-item menu-is-opening menu-open');
+		$('#linktype').addClass('nav-link active');
 		$('#typelist').addClass('nav-link active');
 	}
-</script>
-<script>
+</script> -->
+<!-- <script>
 	function getImagePreview(event) {
 		let image = URL.createObjectURL(event.target.files[0]);
 		let imagediv = document.getElementById('preview');
@@ -653,6 +651,6 @@
 		newimg.height = "200";
 		imagediv.appendChild(newimg);
 	}
-</script>
-</body>
-</html>
+</script> -->
+<!-- </body>
+</html> -->

@@ -12,35 +12,39 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
+import java.util.Arrays;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * author Nhanle
- * */
+ */
 @Controller
 @RequestMapping("/")
 public class PageHomeController {
 
+	@GetMapping
+	public String customerHomePage(
+			HttpServletRequest request, HttpServletResponse response,
+			Authentication authentication, Model model) {
+		if (authentication != null) {
+			UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+			model.addAttribute("user", userDetails.getUser());
+		}
+		return "template/user/page/index";
+	}
+	
 
-    @GetMapping
-    public String customerHomePage(Authentication authentication, Model model){
-        if (authentication!=null){
-            UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-            model.addAttribute("user",userDetails.getUser());
-        }
+	
+	@GetMapping("test")
+	public String testHomePage(Authentication authentication, Model model) {
+		if (authentication != null) {
+			UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+			model.addAttribute("user", userDetails.getUser());
+		}
 
-
-
-        return  "template/user/page/index";
-    }
-
-    @GetMapping("test")
-    public String testHomePage(Authentication authentication, Model model){
-        if (authentication!=null){
-            UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-            model.addAttribute("user",userDetails.getUser());
-        }
-
-        return  "ajax";
-    }
-
-//commit
+		return "ajax";
+	}
 }
