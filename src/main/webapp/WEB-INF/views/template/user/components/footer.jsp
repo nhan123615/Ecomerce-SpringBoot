@@ -219,3 +219,133 @@
 <!-- custom scripts-->
 <script src="${pageContext.servletContext.contextPath}/js/main.js"></script>
 
+<script>
+    $(document).ready(function(){
+        // var queryOnchange="";
+        // var queryFilter="";
+        // var filter = document.querySelector('#filter');
+        // var brand = document.querySelector('#filterBrand');
+        // var part = document.querySelector('#filterPart');
+        // var tblProduct = document.querySelector('#filteredProduct');
+        // var totalProduct = document.querySelector('#productTotal');
+        // var cbxFilter =document.querySelector('#cbxFilter');
+        // var searchBrand =document.querySelector('#searchBrand');
+        // var queryParams = new URLSearchParams(window.location.search);
+        // var btnPrice =document.querySelector('#btnPrice');
+
+//cookie and cartItem
+        var cartItems = [];
+        window.onload =  initCartItem();
+//remove item to cart
+        $(document).on("click",".removeCartProduct", function(){
+            if (cartItems.length >0){
+                var deleteProductId = $(this).attr('value')
+                var deleteProductIndex = -1;
+                // alert($(this).attr('value'));
+                for (let i = 0; i < cartItems.length; i++) {
+                    if (cartItems[i].product.id == deleteProductId){
+                        deleteProductIndex = i;
+                        break;
+                    }
+                }
+                if (deleteProductIndex != -1){
+                    cartItems.splice(deleteProductIndex, 1);
+                    countCartItems()
+                    showCartItems()
+                    updateCartItemsCookie(cartItems)
+                }
+            }
+        });
+
+        function getCartItemContent(items) {
+            var cartItemContent ="";
+            if (cartItems.length >0){
+                var totalPrice = 0;
+                for (let i = 0; i < cartItems.length; i++) {
+                    totalPrice += cartItems[i].totalPrice
+                    cartItemContent += "<div class='ps-cart__items'>";
+                    cartItemContent +="<div class='ps-product--cart-mobile'>"
+                    cartItemContent +="<div class='ps-product__thumbnail'><a href='#'><img src='${pageContext.request.contextPath}/product/display/0&"+cartItems[i].product.id+"' alt=''></a></div>"
+                    cartItemContent +="<div class='ps-product__content '><a class='ps-product__remove removeCartProduct ' value='"+cartItems[i].product.id+"' ><i class='icon-cross ' ></i></a><a href='product-default.html'>"+cartItems[i].product.productName+"</a>"
+                    cartItemContent +="<p><strong>Sold by:</strong>  ANGRY NERDS</p><small>"+cartItems[i].sellingQuantity+" x $"+cartItems[i].product.price+"</small>"
+                    cartItemContent +=" </div> </div>"
+                    cartItemContent +=" </div>"
+                }
+                cartItemContent+="<hr>"
+                cartItemContent+="<div class='ps-cart__footer'>"
+                cartItemContent += "<h3>Sub Total:<strong>$"+totalPrice+"</strong></h3>"
+                cartItemContent +="<figure><a class='ps-btn' href='${pageContext.servletContext.contextPath}/cart'>View Cart</a><a class='ps-btn' href='${pageContext.servletContext.contextPath}/customer/product/checkout'>Checkout</a></figure>"
+                cartItemContent +=" </div>"
+            }
+            return cartItemContent;
+        }
+
+
+        function countCartItems() {
+            document.getElementById('cartItemCount-1').innerHTML = cartItems.length
+            document.getElementById('cartItemCount-2').innerHTML = cartItems.length
+        }
+
+        function showCartItems() {
+            document.getElementById('cart-content-1').removeAttribute('style')
+            document.getElementById('cart-content-2').removeAttribute('style')
+            document.getElementById('cart-content-1').innerHTML = getCartItemContent(cartItems);
+            document.getElementById('cart-content-2').innerHTML = getCartItemContent(cartItems);
+            if (cartItems.length ==0){
+                document.getElementById('cart-content-1').setAttribute("style", "display: none;");
+                document.getElementById('cart-content-2').setAttribute("style", "display: none;");
+            }
+        }
+
+
+        function initCartItem() {
+            const data = null;
+            const xhr = new XMLHttpRequest();
+            xhr.addEventListener("readystatechange", function () {
+                if (this.readyState === this.DONE) {
+                    var json = JSON.parse(this.responseText);
+                    console.log(json)
+                    cartItems = json
+                    countCartItems()
+                    showCartItems()
+                }
+            });
+
+            xhr.open("GET", "${pageContext.servletContext.contextPath}/cart/getAll");
+            xhr.setRequestHeader('Content-type', 'application/json');
+            xhr.send(data);
+        }
+        function updateCartItemsCookie(cartItemsArr) {
+            var value = "[]";
+            if (cartItemsArr.length >0){
+                value ="["
+                for (let i = 0; i < cartItemsArr.length; i++) {
+                    value += JSON.stringify(cartItemsArr[i]) +","
+                }
+                value = value.substring(0,value.length-1)
+                value +="]"
+            }
+
+
+            const data = value;
+            const xhr = new XMLHttpRequest();
+            xhr.addEventListener("readystatechange", function () {
+                if (this.readyState === this.DONE) {
+                    var json = JSON.parse(this.responseText);
+                    // if (json.length>0){
+                    console.log(json)
+                    cartItems = json
+                    // }
+                }
+            });
+
+            xhr.open("POST", "${pageContext.servletContext.contextPath}/cart/update");
+            xhr.setRequestHeader('Content-type', 'application/json');
+            console.log(data)
+            xhr.send(data);
+        }
+    })
+
+
+</script>
+</html>

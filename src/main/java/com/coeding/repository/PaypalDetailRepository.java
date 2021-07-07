@@ -1,0 +1,14 @@
+package com.coeding.repository;
+
+import com.coeding.entity.CustomerOrder;
+import com.coeding.entity.PaypalDetail;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+/**
+ * author Nhanle
+ * */
+@Repository
+public interface PaypalDetailRepository extends JpaRepository<PaypalDetail,Long>  {
+}
+//commit

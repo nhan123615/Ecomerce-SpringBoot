@@ -28,20 +28,19 @@ import static java.util.Comparator.comparing;
 public class PageProductFilterController {
 
     private ProductService productService;
-    private PageProductController productController;
     private BrandService brandService;
     private static final Logger LOGGER = LoggerFactory.getLogger(PageProductFilterController.class);
 
     @Autowired
-    public PageProductFilterController( ProductService productService, PageProductController productController, BrandService brandService) {
+    public PageProductFilterController( ProductService productService, BrandService brandService) {
         this.productService = productService;
-        this.productController = productController;
         this.brandService = brandService;
     }
 
 
     @GetMapping("/product")
     public  List<Product> userCheckboxHomePage(
+            @RequestParam(name = "category", required = false) Long categoryId,
             @RequestParam(name = "brand", required = false) List<Long> listBrandId,
             @RequestParam(name = "type", required = false) List<String> listType,
             @RequestParam(name = "sort", required = false) String sortCondition,
@@ -51,8 +50,7 @@ public class PageProductFilterController {
     ) {
         List<Product> products = new ArrayList<>();
         LOGGER.info("new products: "+products);
-        Long categoryId = productController.getCategoryId();
-        LOGGER.info("get categoryId from Product controller: " +categoryId);
+        LOGGER.info("get categoryId from request: " +categoryId);
         if (categoryId!=null){
 
             //filter by price
@@ -154,6 +152,10 @@ public class PageProductFilterController {
     @GetMapping("/brand")
     public List<Brand> brandFilter(@RequestParam(name = "brandName", required = false) String brandName){
         return brandService.findByNameContains(brandName);
+    }
+    @GetMapping("/getAllProducts")
+    public List<Product> getAllProduct(){
+        return productService.findAll();
     }
 
     public  List<Product> sortByPrice(List<Product>productList,String condition){
