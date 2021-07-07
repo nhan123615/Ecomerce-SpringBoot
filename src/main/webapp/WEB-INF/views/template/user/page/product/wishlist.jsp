@@ -31,18 +31,20 @@
 								<c:when test="${not empty wishlist}">
 									<c:forEach var="product" items="${wishlist}">
 										<tr>
-											<td data-label="Remove"><a href="javascript:void(0);"
+											<td data-label="Remove"><a
 												onClick="removeFromWishList(${product.id})"><i
 													class="icon-cross"></i></a></td>
 											<td data-label="Product">
 												<div class="ps-product--cart">
 													<div class="ps-product__thumbnail">
-														<a href="${pageContext.servletContext.contextPath}/product/detail?id=${product.id}"><img
+														<a
+															href="${pageContext.servletContext.contextPath}/product/detail?id=${product.id}"><img
 															src="${pageContext.request.contextPath}/product/display/0&${product.id}"
 															alt="" width="100px" height="100px"></a>
 													</div>
 													<div class="ps-product__content">
-														<a href="${pageContext.servletContext.contextPath}/product/detail?id=${product.id}">${product.productName }</a>
+														<a
+															href="${pageContext.servletContext.contextPath}/product/detail?id=${product.id}">${product.productName }</a>
 														<p>
 															Sold By:<strong> Angry-Nerds SHOP</strong>
 														</p>
@@ -60,7 +62,8 @@
 								</c:when>
 								<c:otherwise>
 									<tr>
-										<td colspan="5" class="text-center"><h1>No wish list found !!!</h1></td>
+										<td colspan="5" class="text-center"><h1>No wish list
+												found !!!</h1></td>
 									</tr>
 								</c:otherwise>
 							</c:choose>
@@ -71,4 +74,81 @@
 		</div>
 	</div>
 	<jsp:include page="../../components/footer.jsp"></jsp:include>
+	<script>
+	var countWish = document.querySelector('#countWish');
+	var cookie = document.cookie;
+	var arr_product;
+	window.onload = initData();
+	function initData() {
+		cookies();
+		if (arr_product != null) {
+			if (arr_product[0] != "") {
+				countWish.innerHTML = arr_product.length;
+			}else{
+				countWish.innerHTML = 0;
+			}
+		}
+	}
+
+	function cookies() {
+		cookie = document.cookie;
+		if (cookie != null) {
+			matchs = cookie.match("id=([^;]*)");
+			if (matchs != null) {
+				arr_product = matchs[1].split('a');
+			}
+		}
+	}
+	var tblProduct = document.querySelector('#wishProductTable');
+	function removeFromWishList(id) {
+		const data = null;
+		const xhr = new XMLHttpRequest();
+		xhr.addEventListener("readystatechange", function() {
+			if (this.readyState === this.DONE) {
+				var json = JSON.parse(this.responseText);
+				cookies();
+				initData();
+				if (json.length > 0) {
+					tblProduct.innerHTML = getWishListTable(json);
+				} else {
+					tblProduct.innerHTML = getNoWishProductFound();
+				}
+			}
+		});
+		xhr
+				.open(
+						"GET",
+						"${pageContext.servletContext.contextPath}/api/wish-list/removeProductFromWishList?id_product="
+								+ id);
+		xhr.setRequestHeader('Content-type', 'application/json');
+		xhr.send(data);
+	}
+	function getWishListTable(json) {
+		var wishListTable = '';
+		for (let i = 0; i < json.length; i++) {
+			wishListTable += '<tr>';
+			wishListTable += '<td data-label="Remove"><a onClick="removeFromWishList('
+					+ json[i].id + ')"><i class="icon-cross"></i></a></td>';
+			wishListTable += '<td data-label="Product">';
+			wishListTable += '<div class="ps-product--cart">';
+			wishListTable += '<div class="ps-product__thumbnail">';
+			wishListTable += '<a href="${pageContext.servletContext.contextPath}/product/detail?id='+json[i].id+'"><img src="${pageContext.request.contextPath}/product/display/0&'+json[i].id+'" alt="" width="100px" height="100px"></a>';
+			wishListTable += '</div>';
+			wishListTable += '<div class="ps-product__content">';
+			wishListTable += '<a href="${pageContext.servletContext.contextPath}/product/detail?id='+json[i].id+'">'+json[i].productName+'</a><p>Sold By:<strong> Angry-Nerds SHOP</strong></p>';
+			wishListTable += '</div>';
+			wishListTable += '</div>';
+			wishListTable += '</td>';
+			wishListTable += '<td class="price text-center" data-label="Price">$'
+					+ json[i].price + '</td>';
+			wishListTable += '<td data-label="Status" class="text-center"><span class="ps-tag ps-tag--in-stock ">'
+					+ json[i].enabled + '</span></td>';
+			wishListTable += '<td data-label="action"><a class="ps-btn" href="#">Add to cart</a></td></tr>';
+		}
+		return wishListTable;
+	}
+	function getNoWishProductFound() {
+		return '<tr><td colspan="5" class="text-center"><h1>No wishlist found !!!</h1></td></tr>';
+	}
+	</script>
 </body>

@@ -163,7 +163,7 @@
 
 
 
-<script>
+<!-- <script>
 	var chatbox = document.getElementById('fb-customer-chat');
 	chatbox.setAttribute("page_id", "107789288221368");
 	chatbox.setAttribute("attribution", "biz_inbox");
@@ -183,7 +183,7 @@
 		js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
 		fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));
-</script>
+</script> -->
 <script
 	src="${pageContext.servletContext.contextPath}/plugins/jquery.min.js"></script>
 <script
@@ -219,111 +219,3 @@
 <!-- custom scripts-->
 <script src="${pageContext.servletContext.contextPath}/js/main.js"></script>
 
-<script>
-	
-	var countWish = document.querySelector('#countWish');
-	var cookie = document.cookie;
-	/* if (cookie != null) {
-		var matchs = cookie.match("id=([^;]*)");
-		if (matchs != null) {
-			var arr_product = matchs[1].split('a');
-		}
-	} */
-
-	window.onload = initData();
-	function initData() {
-		cookies();
-		if (arr_product != null) {
-			if (arr_product[0] != "") {
-				countWish.innerHTML = arr_product.length;
-			}else{
-				countWish.innerHTML = 0;
-			}
-		}
-	}
-
-	function cookies() {
-		cookie = document.cookie;
-		if (cookie != null) {
-			matchs = cookie.match("id=([^;]*)");
-			if (matchs != null) {
-				arr_product = matchs[1].split('a');
-			}
-		}
-	}
-
-	function addToWishList(id) {
-		const data = null;
-		const xhr = new XMLHttpRequest();
-		xhr.addEventListener("readystatechange", function() {
-			if (this.readyState === this.DONE) {
-				if(this.responseText === "successful"){
-					alert("You have successfully added!");
-				}else if(this.responseText === "failed"){
-					alert("You can only add 1 time!");
-				}
-				cookies();
-				initData();
-			}
-		});
-		xhr
-				.open(
-						"GET",
-						"${pageContext.servletContext.contextPath}/api/wish-list/addProductToWishList?id_product="
-								+ id);
-		xhr.setRequestHeader('Content-type', 'application/json');
-		xhr.send(data);
-	}
-	var tblProduct = document.querySelector('#wishProductTable');
-	function removeFromWishList(id) {
-		const data = null;
-		const xhr = new XMLHttpRequest();
-		xhr.addEventListener("readystatechange", function() {
-			if (this.readyState === this.DONE) {
-				var json = JSON.parse(this.responseText);
-				console.log('json length'+json.length);
-				cookies();
-				initData();
-				if (json.length > 0) {
-					tblProduct.innerHTML = getWishListTable(json);
-				} else {
-					tblProduct.innerHTML = getNoWishProductFound();
-				}
-			}
-		});
-		xhr
-				.open(
-						"GET",
-						"${pageContext.servletContext.contextPath}/api/wish-list/removeProductFromWishList?id_product="
-								+ id);
-		xhr.setRequestHeader('Content-type', 'application/json');
-		xhr.send(data);
-	}
-	function getWishListTable(json) {
-		var wishListTable = '';
-		for (let i = 0; i < json.length; i++) {
-			wishListTable += '<tr>';
-			wishListTable += '<td data-label="Remove"><a href="javascript:void(0);" onClick="removeFromWishList('
-					+ json[i].id + ')"><i class="icon-cross"></i></a></td>';
-			wishListTable += '<td data-label="Product">';
-			wishListTable += '<div class="ps-product--cart">';
-			wishListTable += '<div class="ps-product__thumbnail">';
-			wishListTable += '<a href="${pageContext.servletContext.contextPath}/product/detail?id='+json[i].id+'"><img src="${pageContext.request.contextPath}/product/display/0&'+json[i].id+'" alt="" width="100px" height="100px"></a>';
-			wishListTable += '</div>';
-			wishListTable += '<div class="ps-product__content">';
-			wishListTable += '<a href="${pageContext.servletContext.contextPath}/product/detail?id='+json[i].id+'">'+json[i].productName+'</a><p>Sold By:<strong> Angry-Nerds SHOP</strong></p>';
-			wishListTable += '</div>';
-			wishListTable += '</div>';
-			wishListTable += '</td>';
-			wishListTable += '<td class="price text-center" data-label="Price">$'
-					+ json[i].price + '</td>';
-			wishListTable += '<td data-label="Status" class="text-center"><span class="ps-tag ps-tag--in-stock ">'
-					+ json[i].enabled + '</span></td>';
-			wishListTable += '<td data-label="action"><a class="ps-btn" href="#">Add to cart</a></td></tr>';
-		}
-		return wishListTable;
-	}
-	function getNoWishProductFound() {
-		return '<tr><td colspan="5" class="text-center"><h1>No wishlist found !!!</h1></td></tr>';
-	}
-</script>

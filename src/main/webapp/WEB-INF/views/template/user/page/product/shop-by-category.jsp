@@ -216,8 +216,8 @@
 																		title="Quick View" data-toggle="modal"
 																		data-target="#product-quickview-${p.id}"><i
 																			class="icon-eye"></i></a></li>
-																	<li><a onClick="addToWishList(${p.id})"
-																		data-toggle="tooltip"
+																	<li><a
+																		onClick="addToWishList(${p.id})" data-toggle="tooltip"
 																		data-placement="top" title="Add to Wishlist"><i
 																			class="icon-heart"></i></a></li>
 																</ul>
@@ -347,15 +347,9 @@
 					</div>
 				</div>
 			</div>
-
 		</c:forEach>
-
 	</div>
-
-
-
 	<jsp:include page="../../components/footer.jsp"></jsp:include>
-
 	<script>
     $(document).ready(function(){
         var queryOnchange="";
@@ -539,8 +533,54 @@
 
 
     })
+</script>
+<script>
+var countWish = document.querySelector('#countWish');
+var cookie = document.cookie;
+var arr_product;
+window.onload = initData();
+function initData() {
+	cookies();
+	if (arr_product != null) {
+		if (arr_product[0] != "") {
+			countWish.innerHTML = arr_product.length;
+		}else{
+			countWish.innerHTML = 0;
+		}
+	}
+}
 
-
+function cookies() {
+	cookie = document.cookie;
+	if (cookie != null) {
+		matchs = cookie.match("id=([^;]*)");
+		if (matchs != null) {
+			arr_product = matchs[1].split('a');
+		}
+	}
+}
+function addToWishList(id) {
+	const data = null;
+	const xhr = new XMLHttpRequest();
+	xhr.addEventListener("readystatechange", function() {
+		if (this.readyState === this.DONE) {
+			if(this.responseText === "successful"){
+				alert("You have successfully added!");
+			}else if(this.responseText === "failed"){
+				alert("You can only add 1 time!");
+			}
+			cookies();
+			initData();
+		}
+	});
+	xhr
+			.open(
+					"GET",
+					"${pageContext.servletContext.contextPath}/api/wish-list/addProductToWishList?id_product="
+							+ id);
+	xhr.setRequestHeader('Content-type', 'application/json');
+	xhr.send(data);
+}
 </script>
 </body>
 
