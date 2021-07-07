@@ -102,9 +102,7 @@
 											<textarea id="shortDescription" name="shortDescription">
 												<p>Example</p>
 												<ul>
-												  
-													
-													<li> Item one </li>
+												<li> Item one </li>
 												  <li> Item two </li>
 												  <li> Item two </li>
 												  <li> Item two </li>
