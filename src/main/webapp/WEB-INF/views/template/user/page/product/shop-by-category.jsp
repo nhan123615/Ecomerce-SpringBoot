@@ -205,7 +205,7 @@
 														<div class="ps-product">
 															<div class="ps-product__thumbnail">
 																<a
-																	href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"><img
+																	href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onClick="addProductToViewList(${p.id})"><img
 																	src="${pageContext.request.contextPath}/product/display/0&${p.id}"
 																	alt="" style="width: 156px; height: 156px"></a>
 																<ul class="ps-product__actions">
@@ -492,7 +492,7 @@
                 productTable +=  "<div class='col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 '>";
                 productTable +="<div class='ps-product'>";
                 productTable += "<div class='ps-product__thumbnail'>";
-                productTable +=  "<a href='${pageContext.servletContext.contextPath}/product/detail?id="+json[i].id+"'>";
+                productTable +=  "<a href='${pageContext.servletContext.contextPath}/product/detail?id="+json[i].id+"' onClick='addProductToViewList("+json[i].id+")'>";
                 productTable +=  "<img src='${pageContext.request.contextPath}/product/display/0&"+json[i].id+"'  style='width: 156px;height: 156px'></a>";
                 productTable +=  "<ul class='ps-product__actions'>";
                 productTable +=  " <li><a data-toggle='tooltip' data-placement='top' title='Add To Cart'><i class='icon-bag2'></i></a></li>";
@@ -535,6 +535,7 @@
     })
 </script>
 <script>
+// @author Lam Cong Hau
 var countWish = document.querySelector('#countWish');
 var cookie = document.cookie;
 var arr_product;
@@ -553,7 +554,7 @@ function initData() {
 function cookies() {
 	cookie = document.cookie;
 	if (cookie != null) {
-		matchs = cookie.match("id=([^;]*)");
+		matchs = cookie.match("wishlist=([^;]*)");
 		if (matchs != null) {
 			arr_product = matchs[1].split('a');
 		}
@@ -577,6 +578,20 @@ function addToWishList(id) {
 			.open(
 					"GET",
 					"${pageContext.servletContext.contextPath}/api/wish-list/addProductToWishList?id_product="
+							+ id);
+	xhr.setRequestHeader('Content-type', 'application/json');
+	xhr.send(data);
+}
+
+function addProductToViewList(id) {
+	const data = null;
+	const xhr = new XMLHttpRequest();
+	xhr.addEventListener("readystatechange", function() {
+	});
+	xhr
+			.open(
+					"GET",
+					"${pageContext.servletContext.contextPath}/api/wish-list/addProductToViewList?id_product="
 							+ id);
 	xhr.setRequestHeader('Content-type', 'application/json');
 	xhr.send(data);

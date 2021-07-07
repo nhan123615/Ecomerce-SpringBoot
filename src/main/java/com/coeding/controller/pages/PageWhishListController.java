@@ -40,7 +40,7 @@ public class PageWhishListController {
 		List<Product> whishlist = new ArrayList<Product>();
 		if (cl != null) {
 			for (Cookie o : cl) {
-				if (o.getName().equals("id")) {
+				if (o.getName().equals("wishlist")) {
 					if (!o.getValue().isEmpty()) {
 						String txt[] = o.getValue().split("a");
 						for (String s : txt) {

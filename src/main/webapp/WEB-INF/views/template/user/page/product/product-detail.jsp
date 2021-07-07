@@ -124,8 +124,9 @@
 									<a class="ps-btn ps-btn--black" href="#">Add to cart</a><a
 										class="ps-btn" href="#">Buy Now</a>
 									<div class="ps-product__actions">
-										<a href="#"><i class="icon-heart"></i></a><a href="#"><i
-											class="icon-chart-bars"></i></a>
+										<a onClick="addToWishList(${product.id})" data-toggle="tooltip"
+											data-placement="top" title="Add to Wishlist"><i
+											class="icon-heart"></i></a>
 									</div>
 								</div>
 							</div>
@@ -137,9 +138,7 @@
 							</ul>
 							<div class="ps-tabs">
 								<div class="ps-tab active" id="tab-1">
-									<div class="ps-document">
-										${product.description }
-									</div>
+									<div class="ps-document">${product.description }</div>
 								</div>
 								<div class="ps-tab" id="tab-4">
 									<div class="row">
@@ -376,710 +375,264 @@
 					</aside>
 				</div>
 			</div>
-			<div class="ps-section--default ps-customer-bought">
+
+			<div class="ps-section--default">
 				<div class="ps-section__header">
-					<h3>Customers who bought this item also bought</h3>
+					<h3>Products that you have viewed</h3>
 				</div>
 				<div class="ps-section__content">
-					<div class="row">
-						<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
-							<div class="ps-product">
-								<div class="ps-product__thumbnail">
-									<a href="product-default.html"><img
-										src="${pageContext.request.contextPath}/img/products/shop/4.jpg"
-										alt=""></a>
-									<div class="ps-product__badge hot">hot</div>
-									<ul class="ps-product__actions">
-										<li><a href="#" data-toggle="tooltip"
-											data-placement="top" title="Add To Cart"><i
-												class="icon-bag2"></i></a></li>
-										<li><a href="#" data-placement="top" title="Quick View"
-											data-toggle="modal" data-target="#product-quickview"><i
-												class="icon-eye"></i></a></li>
-										<li><a href="#" data-toggle="tooltip"
-											data-placement="top" title="Add to Whishlist"><i
-												class="icon-heart"></i></a></li>
-										<li><a href="#" data-toggle="tooltip"
-											data-placement="top" title="Compare"><i
-												class="icon-chart-bars"></i></a></li>
-									</ul>
-								</div>
-								<div class="ps-product__container">
-									<a class="ps-product__vendor" href="#">Global Office</a>
-									<div class="ps-product__content">
-										<a class="ps-product__title" href="product-default.html">Xbox
-											One Wireless Controller Black Color</a>
-										<div class="ps-product__rating">
-											<select class="ps-rating" data-read-only="true">
-												<option value="1">1</option>
-												<option value="1">2</option>
-												<option value="1">3</option>
-												<option value="1">4</option>
-												<option value="2">5</option>
-											</select><span>01</span>
+					<div class="ps-carousel--nav owl-slider" data-owl-auto="true"
+						data-owl-loop="false" data-owl-speed="10000" data-owl-gap="30"
+						data-owl-nav="true" data-owl-dots="true" data-owl-item="6"
+						data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3"
+						data-owl-item-lg="4" data-owl-item-xl="5" data-owl-duration="1000"
+						data-owl-mousedrag="on">
+						<c:if test="${viewlist != null}">
+							<c:forEach var="p" items="${viewlist}">
+								<div class="ps-product">
+									<div class="ps-product__thumbnail">
+										<a
+											href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onClick="addProductToViewList(${p.id})"><img
+											src="${pageContext.request.contextPath}/product/display/0&${p.id}"
+											alt="" width="203px" height="203px"></a>
+										<ul class="ps-product__actions">
+											<li><a href="#" data-toggle="tooltip"
+												data-placement="top" title="Add To Cart"><i
+													class="icon-bag2"></i></a></li>
+											<li><a href="#" data-placement="top" title="Quick View"
+												data-toggle="modal" data-target="#product-quickview-${p.id}"><i
+													class="icon-eye"></i></a></li>
+											<li><a onClick="addToWishList(${p.id})"
+												data-toggle="tooltip" data-placement="top"
+												title="Add to Wishlist"><i class="icon-heart"></i></a></li>
+										</ul>
+									</div>
+									<div class="ps-product__container">
+										<div class="ps-product__content">
+											<a class="ps-product__title"
+												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
+											<div class="ps-product__rating">
+												<select class="ps-rating" data-read-only="true">
+													<option value="1">1</option>
+													<option value="1">2</option>
+													<option value="1">3</option>
+													<option value="1">4</option>
+													<option value="2">5</option>
+												</select><span>(1 review)</span>
+											</div>
+											<p class="ps-product__price">$${p.price}</p>
 										</div>
-										<p class="ps-product__price">$55.99</p>
-									</div>
-									<div class="ps-product__content hover">
-										<a class="ps-product__title" href="product-default.html">Xbox
-											One Wireless Controller Black Color</a>
-										<p class="ps-product__price">$55.99</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
-							<div class="ps-product">
-								<div class="ps-product__thumbnail">
-									<a href="product-default.html"><img
-										src="${pageContext.request.contextPath}/img/products/shop/5.jpg"
-										alt=""></a>
-									<div class="ps-product__badge">-37%</div>
-									<ul class="ps-product__actions">
-										<li><a href="#" data-toggle="tooltip"
-											data-placement="top" title="Add To Cart"><i
-												class="icon-bag2"></i></a></li>
-										<li><a href="#" data-placement="top" title="Quick View"
-											data-toggle="modal" data-target="#product-quickview"><i
-												class="icon-eye"></i></a></li>
-										<li><a href="#" data-toggle="tooltip"
-											data-placement="top" title="Add to Whishlist"><i
-												class="icon-heart"></i></a></li>
-										<li><a href="#" data-toggle="tooltip"
-											data-placement="top" title="Compare"><i
-												class="icon-chart-bars"></i></a></li>
-									</ul>
-								</div>
-								<div class="ps-product__container">
-									<a class="ps-product__vendor" href="#">Robert's Store</a>
-									<div class="ps-product__content">
-										<a class="ps-product__title" href="product-default.html">Grand
-											Slam Indoor Of Show Jumping Novel</a>
-										<div class="ps-product__rating">
-											<select class="ps-rating" data-read-only="true">
-												<option value="1">1</option>
-												<option value="1">2</option>
-												<option value="1">3</option>
-												<option value="1">4</option>
-												<option value="2">5</option>
-											</select><span>01</span>
+										<div class="ps-product__content hover">
+											<a class="ps-product__title"
+												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
+											<p class="ps-product__price">$${p.price}</p>
 										</div>
-										<p class="ps-product__price sale">
-											$32.99
-											<del>$41.00 </del>
-										</p>
-									</div>
-									<div class="ps-product__content hover">
-										<a class="ps-product__title" href="product-default.html">Grand
-											Slam Indoor Of Show Jumping Novel</a>
-										<p class="ps-product__price sale">
-											$32.99
-											<del>$41.00 </del>
-										</p>
 									</div>
 								</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
-							<div class="ps-product">
-								<div class="ps-product__thumbnail">
-									<a href="product-default.html"><img
-										src="${pageContext.request.contextPath}/img/products/shop/6.jpg"
-										alt=""></a>
-									<div class="ps-product__badge">-5%</div>
-									<ul class="ps-product__actions">
-										<li><a href="#" data-toggle="tooltip"
-											data-placement="top" title="Add To Cart"><i
-												class="icon-bag2"></i></a></li>
-										<li><a href="#" data-placement="top" title="Quick View"
-											data-toggle="modal" data-target="#product-quickview"><i
-												class="icon-eye"></i></a></li>
-										<li><a href="#" data-toggle="tooltip"
-											data-placement="top" title="Add to Whishlist"><i
-												class="icon-heart"></i></a></li>
-										<li><a href="#" data-toggle="tooltip"
-											data-placement="top" title="Compare"><i
-												class="icon-chart-bars"></i></a></li>
-									</ul>
-								</div>
-								<div class="ps-product__container">
-									<a class="ps-product__vendor" href="#">Youngshop</a>
-									<div class="ps-product__content">
-										<a class="ps-product__title" href="product-default.html">Sound
-											Intone I65 Earphone White Version</a>
-										<div class="ps-product__rating">
-											<select class="ps-rating" data-read-only="true">
-												<option value="1">1</option>
-												<option value="1">2</option>
-												<option value="1">3</option>
-												<option value="1">4</option>
-												<option value="2">5</option>
-											</select><span>01</span>
-										</div>
-										<p class="ps-product__price sale">
-											$100.99
-											<del>$106.00 </del>
-										</p>
-									</div>
-									<div class="ps-product__content hover">
-										<a class="ps-product__title" href="product-default.html">Sound
-											Intone I65 Earphone White Version</a>
-										<p class="ps-product__price sale">
-											$100.99
-											<del>$106.00 </del>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
-							<div class="ps-product">
-								<div class="ps-product__thumbnail">
-									<a href="product-default.html"><img
-										src="${pageContext.request.contextPath}/img/products/shop/7.jpg"
-										alt=""></a>
-									<div class="ps-product__badge">-16%</div>
-									<ul class="ps-product__actions">
-										<li><a href="#" data-toggle="tooltip"
-											data-placement="top" title="Add To Cart"><i
-												class="icon-bag2"></i></a></li>
-										<li><a href="#" data-placement="top" title="Quick View"
-											data-toggle="modal" data-target="#product-quickview"><i
-												class="icon-eye"></i></a></li>
-										<li><a href="#" data-toggle="tooltip"
-											data-placement="top" title="Add to Whishlist"><i
-												class="icon-heart"></i></a></li>
-										<li><a href="#" data-toggle="tooltip"
-											data-placement="top" title="Compare"><i
-												class="icon-chart-bars"></i></a></li>
-									</ul>
-								</div>
-								<div class="ps-product__container">
-									<a class="ps-product__vendor" href="#">Youngshop</a>
-									<div class="ps-product__content">
-										<a class="ps-product__title" href="product-default.html">Korea
-											Long Sofa Fabric In Blue Navy Color</a>
-										<div class="ps-product__rating">
-											<select class="ps-rating" data-read-only="true">
-												<option value="1">1</option>
-												<option value="1">2</option>
-												<option value="1">3</option>
-												<option value="1">4</option>
-												<option value="2">5</option>
-											</select><span>01</span>
-										</div>
-										<p class="ps-product__price sale">
-											$567.89
-											<del>$670.20 </del>
-										</p>
-									</div>
-									<div class="ps-product__content hover">
-										<a class="ps-product__title" href="product-default.html">Korea
-											Long Sofa Fabric In Blue Navy Color</a>
-										<p class="ps-product__price sale">
-											$567.89
-											<del>$670.20 </del>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
-							<div class="ps-product">
-								<div class="ps-product__thumbnail">
-									<a href="product-default.html"><img
-										src="${pageContext.request.contextPath}/img/products/shop/8.jpg"
-										alt=""></a>
-									<div class="ps-product__badge">-16%</div>
-									<ul class="ps-product__actions">
-										<li><a href="#" data-toggle="tooltip"
-											data-placement="top" title="Add To Cart"><i
-												class="icon-bag2"></i></a></li>
-										<li><a href="#" data-placement="top" title="Quick View"
-											data-toggle="modal" data-target="#product-quickview"><i
-												class="icon-eye"></i></a></li>
-										<li><a href="#" data-toggle="tooltip"
-											data-placement="top" title="Add to Whishlist"><i
-												class="icon-heart"></i></a></li>
-										<li><a href="#" data-toggle="tooltip"
-											data-placement="top" title="Compare"><i
-												class="icon-chart-bars"></i></a></li>
-									</ul>
-								</div>
-								<div class="ps-product__container">
-									<a class="ps-product__vendor" href="#">Young shop</a>
-									<div class="ps-product__content">
-										<a class="ps-product__title" href="product-default.html">Unero
-											Military Classical Backpack</a>
-										<div class="ps-product__rating">
-											<select class="ps-rating" data-read-only="true">
-												<option value="1">1</option>
-												<option value="1">2</option>
-												<option value="1">3</option>
-												<option value="1">4</option>
-												<option value="2">5</option>
-											</select><span>02</span>
-										</div>
-										<p class="ps-product__price sale">
-											$35.89
-											<del>$42.20 </del>
-										</p>
-									</div>
-									<div class="ps-product__content hover">
-										<a class="ps-product__title" href="product-default.html">Unero
-											Military Classical Backpack</a>
-										<p class="ps-product__price sale">
-											$35.89
-											<del>$42.20 </del>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
-							<div class="ps-product">
-								<div class="ps-product__thumbnail">
-									<a href="product-default.html"><img
-										src="${pageContext.request.contextPath}/img/products/shop/9.jpg"
-										alt=""></a>
-									<ul class="ps-product__actions">
-										<li><a href="#" data-toggle="tooltip"
-											data-placement="top" title="Add To Cart"><i
-												class="icon-bag2"></i></a></li>
-										<li><a href="#" data-placement="top" title="Quick View"
-											data-toggle="modal" data-target="#product-quickview"><i
-												class="icon-eye"></i></a></li>
-										<li><a href="#" data-toggle="tooltip"
-											data-placement="top" title="Add to Whishlist"><i
-												class="icon-heart"></i></a></li>
-										<li><a href="#" data-toggle="tooltip"
-											data-placement="top" title="Compare"><i
-												class="icon-chart-bars"></i></a></li>
-									</ul>
-								</div>
-								<div class="ps-product__container">
-									<a class="ps-product__vendor" href="#">Young shop</a>
-									<div class="ps-product__content">
-										<a class="ps-product__title" href="product-default.html">Rayban
-											Rounded Sunglass Brown Color</a>
-										<div class="ps-product__rating">
-											<select class="ps-rating" data-read-only="true">
-												<option value="1">1</option>
-												<option value="1">2</option>
-												<option value="1">3</option>
-												<option value="1">4</option>
-												<option value="2">5</option>
-											</select><span>02</span>
-										</div>
-										<p class="ps-product__price">$35.89</p>
-									</div>
-									<div class="ps-product__content hover">
-										<a class="ps-product__title" href="product-default.html">Rayban
-											Rounded Sunglass Brown Color</a>
-										<p class="ps-product__price">$35.89</p>
-									</div>
-								</div>
-							</div>
-						</div>
+							</c:forEach>
+						</c:if>
 					</div>
 				</div>
 			</div>
+
 			<div class="ps-section--default">
 				<div class="ps-section__header">
 					<h3>Related products</h3>
 				</div>
 				<div class="ps-section__content">
 					<div class="ps-carousel--nav owl-slider" data-owl-auto="true"
-						data-owl-loop="true" data-owl-speed="10000" data-owl-gap="30"
+						data-owl-loop="false" data-owl-speed="10000" data-owl-gap="30"
 						data-owl-nav="true" data-owl-dots="true" data-owl-item="6"
 						data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3"
 						data-owl-item-lg="4" data-owl-item-xl="5" data-owl-duration="1000"
 						data-owl-mousedrag="on">
-						<div class="ps-product">
-							<div class="ps-product__thumbnail">
-								<a href="product-default.html"><img
-									src="${pageContext.request.contextPath}/img/products/shop/11.jpg"
-									alt=""></a>
-								<ul class="ps-product__actions">
-									<li><a href="#" data-toggle="tooltip" data-placement="top"
-										title="Add To Cart"><i class="icon-bag2"></i></a></li>
-									<li><a href="#" data-placement="top" title="Quick View"
-										data-toggle="modal" data-target="#product-quickview"><i
-											class="icon-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip" data-placement="top"
-										title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-									<li><a href="#" data-toggle="tooltip" data-placement="top"
-										title="Compare"><i class="icon-chart-bars"></i></a></li>
-								</ul>
-							</div>
-							<div class="ps-product__container">
-								<a class="ps-product__vendor" href="#">Robert's Store</a>
-								<div class="ps-product__content">
-									<a class="ps-product__title" href="product-default.html">Men’s
-										Sports Runnning Swim Board Shorts</a>
-									<div class="ps-product__rating">
-										<select class="ps-rating" data-read-only="true">
-											<option value="1">1</option>
-											<option value="1">2</option>
-											<option value="1">3</option>
-											<option value="1">4</option>
-											<option value="2">5</option>
-										</select><span>01</span>
+						<c:if test="${listProductByCategory != null}">
+							<c:forEach var="p" items="${listProductByCategory}">
+								<div class="ps-product">
+									<div class="ps-product__thumbnail">
+										<a
+											href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onClick="addProductToViewList(${p.id})"><img
+											src="${pageContext.request.contextPath}/product/display/0&${p.id}"
+											alt="" width="203px" height="203px"></a>
+										<ul class="ps-product__actions">
+											<li><a href="#" data-toggle="tooltip"
+												data-placement="top" title="Add To Cart"><i
+													class="icon-bag2"></i></a></li>
+											<li><a href="#" data-placement="top" title="Quick View"
+												data-toggle="modal" data-target="#product-quickview-${p.id}"><i
+													class="icon-eye"></i></a></li>
+											<li><a onClick="addToWishList(${p.id})"
+												data-toggle="tooltip" data-placement="top"
+												title="Add to Wishlist"><i class="icon-heart"></i></a></li>
+										</ul>
 									</div>
-									<p class="ps-product__price">$13.43</p>
-								</div>
-								<div class="ps-product__content hover">
-									<a class="ps-product__title" href="product-default.html">Men’s
-										Sports Runnning Swim Board Shorts</a>
-									<p class="ps-product__price">$13.43</p>
-								</div>
-							</div>
-						</div>
-						<div class="ps-product">
-							<div class="ps-product__thumbnail">
-								<a href="product-default.html"><img
-									src="${pageContext.request.contextPath}/img/products/shop/12.jpg"
-									alt=""></a>
-								<ul class="ps-product__actions">
-									<li><a href="#" data-toggle="tooltip" data-placement="top"
-										title="Add To Cart"><i class="icon-bag2"></i></a></li>
-									<li><a href="#" data-placement="top" title="Quick View"
-										data-toggle="modal" data-target="#product-quickview"><i
-											class="icon-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip" data-placement="top"
-										title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-									<li><a href="#" data-toggle="tooltip" data-placement="top"
-										title="Compare"><i class="icon-chart-bars"></i></a></li>
-								</ul>
-							</div>
-							<div class="ps-product__container">
-								<a class="ps-product__vendor" href="#">Global Office</a>
-								<div class="ps-product__content">
-									<a class="ps-product__title" href="product-default.html">Paul’s
-										Smith Sneaker InWhite Color</a>
-									<div class="ps-product__rating">
-										<select class="ps-rating" data-read-only="true">
-											<option value="1">1</option>
-											<option value="1">2</option>
-											<option value="1">3</option>
-											<option value="1">4</option>
-											<option value="2">5</option>
-										</select><span>01</span>
+									<div class="ps-product__container">
+										<div class="ps-product__content">
+											<a class="ps-product__title"
+												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
+											<div class="ps-product__rating">
+												<select class="ps-rating" data-read-only="true">
+													<option value="1">1</option>
+													<option value="1">2</option>
+													<option value="1">3</option>
+													<option value="1">4</option>
+													<option value="2">5</option>
+												</select><span>(1 review)</span>
+											</div>
+											<p class="ps-product__price">$${p.price}</p>
+										</div>
+										<div class="ps-product__content hover">
+											<a class="ps-product__title"
+												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
+											<p class="ps-product__price">$${p.price}</p>
+										</div>
 									</div>
-									<p class="ps-product__price">$75.44</p>
 								</div>
-								<div class="ps-product__content hover">
-									<a class="ps-product__title" href="product-default.html">Paul’s
-										Smith Sneaker InWhite Color</a>
-									<p class="ps-product__price">$75.44</p>
-								</div>
-							</div>
-						</div>
-						<div class="ps-product">
-							<div class="ps-product__thumbnail">
-								<a href="product-default.html"><img
-									src="${pageContext.request.contextPath}/img/products/shop/13.jpg"
-									alt=""></a>
-								<div class="ps-product__badge">-7%</div>
-								<ul class="ps-product__actions">
-									<li><a href="#" data-toggle="tooltip" data-placement="top"
-										title="Add To Cart"><i class="icon-bag2"></i></a></li>
-									<li><a href="#" data-placement="top" title="Quick View"
-										data-toggle="modal" data-target="#product-quickview"><i
-											class="icon-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip" data-placement="top"
-										title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-									<li><a href="#" data-toggle="tooltip" data-placement="top"
-										title="Compare"><i class="icon-chart-bars"></i></a></li>
-								</ul>
-							</div>
-							<div class="ps-product__container">
-								<a class="ps-product__vendor" href="#">Young Shop</a>
-								<div class="ps-product__content">
-									<a class="ps-product__title" href="product-default.html">MVMTH
-										Classical Leather Watch In Black</a>
-									<div class="ps-product__rating">
-										<select class="ps-rating" data-read-only="true">
-											<option value="1">1</option>
-											<option value="1">2</option>
-											<option value="1">3</option>
-											<option value="1">4</option>
-											<option value="2">5</option>
-										</select><span>01</span>
-									</div>
-									<p class="ps-product__price sale">
-										$57.99
-										<del>$62.99 </del>
-									</p>
-								</div>
-								<div class="ps-product__content hover">
-									<a class="ps-product__title" href="product-default.html">MVMTH
-										Classical Leather Watch In Black</a>
-									<p class="ps-product__price sale">
-										$57.99
-										<del>$62.99 </del>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="ps-product">
-							<div class="ps-product__thumbnail">
-								<a href="product-default.html"><img
-									src="${pageContext.request.contextPath}/img/products/shop/14.jpg"
-									alt=""></a>
-								<div class="ps-product__badge">-7%</div>
-								<ul class="ps-product__actions">
-									<li><a href="#" data-toggle="tooltip" data-placement="top"
-										title="Add To Cart"><i class="icon-bag2"></i></a></li>
-									<li><a href="#" data-placement="top" title="Quick View"
-										data-toggle="modal" data-target="#product-quickview"><i
-											class="icon-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip" data-placement="top"
-										title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-									<li><a href="#" data-toggle="tooltip" data-placement="top"
-										title="Compare"><i class="icon-chart-bars"></i></a></li>
-								</ul>
-							</div>
-							<div class="ps-product__container">
-								<a class="ps-product__vendor" href="#">Global Office</a>
-								<div class="ps-product__content">
-									<a class="ps-product__title" href="product-default.html">Beat
-										Spill 2.0 Wireless Speaker – White</a>
-									<div class="ps-product__rating">
-										<select class="ps-rating" data-read-only="true">
-											<option value="1">1</option>
-											<option value="1">2</option>
-											<option value="1">3</option>
-											<option value="1">4</option>
-											<option value="2">5</option>
-										</select><span>01</span>
-									</div>
-									<p class="ps-product__price sale">
-										$57.99
-										<del>$62.99 </del>
-									</p>
-								</div>
-								<div class="ps-product__content hover">
-									<a class="ps-product__title" href="product-default.html">Beat
-										Spill 2.0 Wireless Speaker – White</a>
-									<p class="ps-product__price sale">
-										$57.99
-										<del>$62.99 </del>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="ps-product">
-							<div class="ps-product__thumbnail">
-								<a href="product-default.html"><img
-									src="${pageContext.request.contextPath}/img/products/shop/15.jpg"
-									alt=""></a>
-								<ul class="ps-product__actions">
-									<li><a href="#" data-toggle="tooltip" data-placement="top"
-										title="Add To Cart"><i class="icon-bag2"></i></a></li>
-									<li><a href="#" data-placement="top" title="Quick View"
-										data-toggle="modal" data-target="#product-quickview"><i
-											class="icon-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip" data-placement="top"
-										title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-									<li><a href="#" data-toggle="tooltip" data-placement="top"
-										title="Compare"><i class="icon-chart-bars"></i></a></li>
-								</ul>
-							</div>
-							<div class="ps-product__container">
-								<a class="ps-product__vendor" href="#">Young Shop</a>
-								<div class="ps-product__content">
-									<a class="ps-product__title" href="product-default.html">ASUS
-										Chromebook Flip – 10.2 Inch</a>
-									<div class="ps-product__rating">
-										<select class="ps-rating" data-read-only="true">
-											<option value="1">1</option>
-											<option value="1">2</option>
-											<option value="1">3</option>
-											<option value="1">4</option>
-											<option value="2">5</option>
-										</select><span>01</span>
-									</div>
-									<p class="ps-product__price sale">$332.38</p>
-								</div>
-								<div class="ps-product__content hover">
-									<a class="ps-product__title" href="product-default.html">ASUS
-										Chromebook Flip – 10.2 Inch</a>
-									<p class="ps-product__price sale">$332.38</p>
-								</div>
-							</div>
-						</div>
-						<div class="ps-product">
-							<div class="ps-product__thumbnail">
-								<a href="product-default.html"><img
-									src="${pageContext.request.contextPath}/img/products/shop/16.jpg"
-									alt=""></a>
-								<div class="ps-product__badge">-7%</div>
-								<ul class="ps-product__actions">
-									<li><a href="#" data-toggle="tooltip" data-placement="top"
-										title="Add To Cart"><i class="icon-bag2"></i></a></li>
-									<li><a href="#" data-placement="top" title="Quick View"
-										data-toggle="modal" data-target="#product-quickview"><i
-											class="icon-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip" data-placement="top"
-										title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-									<li><a href="#" data-toggle="tooltip" data-placement="top"
-										title="Compare"><i class="icon-chart-bars"></i></a></li>
-								</ul>
-							</div>
-							<div class="ps-product__container">
-								<a class="ps-product__vendor" href="#">Young Shop</a>
-								<div class="ps-product__content">
-									<a class="ps-product__title" href="product-default.html">Apple
-										Macbook Retina Display 12&quot;</a>
-									<div class="ps-product__rating">
-										<select class="ps-rating" data-read-only="true">
-											<option value="1">1</option>
-											<option value="1">2</option>
-											<option value="1">3</option>
-											<option value="1">4</option>
-											<option value="2">5</option>
-										</select><span>01</span>
-									</div>
-									<p class="ps-product__price sale">
-										$1200.00
-										<del>$1362.99 </del>
-									</p>
-								</div>
-								<div class="ps-product__content hover">
-									<a class="ps-product__title" href="product-default.html">Apple
-										Macbook Retina Display 12&quot;</a>
-									<p class="ps-product__price sale">
-										$1200.00
-										<del>$1362.99 </del>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="ps-product">
-							<div class="ps-product__thumbnail">
-								<a href="product-default.html"><img
-									src="${pageContext.request.contextPath}/img/products/shop/17.jpg"
-									alt=""></a>
-								<ul class="ps-product__actions">
-									<li><a href="#" data-toggle="tooltip" data-placement="top"
-										title="Add To Cart"><i class="icon-bag2"></i></a></li>
-									<li><a href="#" data-placement="top" title="Quick View"
-										data-toggle="modal" data-target="#product-quickview"><i
-											class="icon-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip" data-placement="top"
-										title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-									<li><a href="#" data-toggle="tooltip" data-placement="top"
-										title="Compare"><i class="icon-chart-bars"></i></a></li>
-								</ul>
-							</div>
-							<div class="ps-product__container">
-								<a class="ps-product__vendor" href="#">Robert's Store</a>
-								<div class="ps-product__content">
-									<a class="ps-product__title" href="product-default.html">Samsung
-										UHD TV 24inch</a>
-									<div class="ps-product__rating">
-										<select class="ps-rating" data-read-only="true">
-											<option value="1">1</option>
-											<option value="1">2</option>
-											<option value="1">3</option>
-											<option value="1">4</option>
-											<option value="2">5</option>
-										</select><span>01</span>
-									</div>
-									<p class="ps-product__price">$599.00</p>
-								</div>
-								<div class="ps-product__content hover">
-									<a class="ps-product__title" href="product-default.html">Samsung
-										UHD TV 24inch</a>
-									<p class="ps-product__price">$599.00</p>
-								</div>
-							</div>
-						</div>
-						<div class="ps-product">
-							<div class="ps-product__thumbnail">
-								<a href="product-default.html"><img
-									src="${pageContext.request.contextPath}/img/products/shop/18.jpg"
-									alt=""></a>
-								<ul class="ps-product__actions">
-									<li><a href="#" data-toggle="tooltip" data-placement="top"
-										title="Add To Cart"><i class="icon-bag2"></i></a></li>
-									<li><a href="#" data-placement="top" title="Quick View"
-										data-toggle="modal" data-target="#product-quickview"><i
-											class="icon-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip" data-placement="top"
-										title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-									<li><a href="#" data-toggle="tooltip" data-placement="top"
-										title="Compare"><i class="icon-chart-bars"></i></a></li>
-								</ul>
-							</div>
-							<div class="ps-product__container">
-								<a class="ps-product__vendor" href="#">Robert's Store</a>
-								<div class="ps-product__content">
-									<a class="ps-product__title" href="product-default.html">EPSION
-										Plaster Printer</a>
-									<div class="ps-product__rating">
-										<select class="ps-rating" data-read-only="true">
-											<option value="1">1</option>
-											<option value="1">2</option>
-											<option value="1">3</option>
-											<option value="1">4</option>
-											<option value="2">5</option>
-										</select><span>01</span>
-									</div>
-									<p class="ps-product__price">$233.28</p>
-								</div>
-								<div class="ps-product__content hover">
-									<a class="ps-product__title" href="product-default.html">EPSION
-										Plaster Printer</a>
-									<p class="ps-product__price">$233.28</p>
-								</div>
-							</div>
-						</div>
-						<div class="ps-product">
-							<div class="ps-product__thumbnail">
-								<a href="product-default.html"><img
-									src="${pageContext.request.contextPath}/img/products/shop/19.jpg"
-									alt=""></a>
-								<ul class="ps-product__actions">
-									<li><a href="#" data-toggle="tooltip" data-placement="top"
-										title="Add To Cart"><i class="icon-bag2"></i></a></li>
-									<li><a href="#" data-placement="top" title="Quick View"
-										data-toggle="modal" data-target="#product-quickview"><i
-											class="icon-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip" data-placement="top"
-										title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-									<li><a href="#" data-toggle="tooltip" data-placement="top"
-										title="Compare"><i class="icon-chart-bars"></i></a></li>
-								</ul>
-							</div>
-							<div class="ps-product__container">
-								<a class="ps-product__vendor" href="#">Robert's Store</a>
-								<div class="ps-product__content">
-									<a class="ps-product__title" href="product-default.html">EPSION
-										Plaster Printer</a>
-									<div class="ps-product__rating">
-										<select class="ps-rating" data-read-only="true">
-											<option value="1">1</option>
-											<option value="1">2</option>
-											<option value="1">3</option>
-											<option value="1">4</option>
-											<option value="2">5</option>
-										</select><span>01</span>
-									</div>
-									<p class="ps-product__price">$233.28</p>
-								</div>
-								<div class="ps-product__content hover">
-									<a class="ps-product__title" href="product-default.html">EPSION
-										Plaster Printer</a>
-									<p class="ps-product__price">$233.28</p>
-								</div>
-							</div>
-						</div>
+							</c:forEach>
+						</c:if>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<div id="productPopup">
+		<c:forEach var="p" items="${allProducts}">
+			<div class="modal fade product-quickview-open"
+				id="product-quickview-${p.id}" tabindex="-1" role="dialog"
+				aria-labelledby="product-quickview-${p.id}" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<span class="modal-close" data-dismiss="modal"><i
+							class="icon-cross2"></i></span>
+						<article
+							class="ps-product--detail ps-product--fullwidth ps-product--quickview">
+							<div class="ps-product__header">
+								<div class="ps-product__thumbnail" data-vertical="false">
+									<div class="ps-product__images" data-arrow="true">
+										<div class="item">
+											<img
+												src="${pageContext.request.contextPath}/product/display/0&${p.id}"
+												alt="" style="width: 404px; height: 404px">
+										</div>
+										<div class="item">
+											<img
+												src="${pageContext.request.contextPath}/product/display/1&${p.id}"
+												alt="" style="width: 404px; height: 404px">
+										</div>
+										<div class="item">
+											<img
+												src="${pageContext.request.contextPath}/product/display/2&${p.id}"
+												alt="" style="width: 404px; height: 404px">
+										</div>
+										<div class="item">
+											<img
+												src="${pageContext.request.contextPath}/product/display/3&${p.id}"
+												alt="" style="width: 404px; height: 404px">
+										</div>
+									</div>
+								</div>
+								<div class="ps-product__info">
+									<h1>${p.productName}</h1>
+									<div class="ps-product__meta">
+										<p>
+											Brand: <a
+												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.brand.name}</a>
+										</p>
+										<div class="ps-product__rating">
+											<select class="ps-rating" data-read-only="true">
+												<option value="1">1</option>
+												<option value="1">2</option>
+												<option value="1">3</option>
+												<option value="1">4</option>
+												<option value="2">5</option>
+											</select><span>(1 review)</span>
+										</div>
+									</div>
+									<h4 class="ps-product__price">$${p.price}</h4>
+									<div class="ps-product__desc">
+										<p>
+											Sold By:<a
+												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"><strong>
+													Angry Nerds</strong></a>
+										</p>
+										<div class="ps-list--dot">${p.shortDescription }</div>
+									</div>
+									<div class="ps-product__shopping">
+										<a class="ps-btn ps-btn--black" href="#">Add to cart</a><a
+											class="ps-btn" href="#">Buy Now</a>
+									</div>
+								</div>
+							</div>
+						</article>
+					</div>
+				</div>
+			</div>
+		</c:forEach>
+	</div>
 	<jsp:include page="../../components/footer.jsp"></jsp:include>
+	<script>
+			var countWish = document.querySelector('#countWish');
+			var cookie = document.cookie;
+			var arr_product;
+			window.onload = initData();
+			function initData() {
+				cookies();
+				if (arr_product != null) {
+					if (arr_product[0] != "") {
+						countWish.innerHTML = arr_product.length;
+					}else{
+						countWish.innerHTML = 0;
+					}
+				}
+			}
+			
+			function cookies() {
+				cookie = document.cookie;
+				if (cookie != null) {
+					matchs = cookie.match("wishlist=([^;]*)");
+					if (matchs != null) {
+						arr_product = matchs[1].split('a');
+					}
+				}
+			}
+			function addToWishList(id) {
+				const data = null;
+				const xhr = new XMLHttpRequest();
+				xhr.addEventListener("readystatechange", function() {
+					if (this.readyState === this.DONE) {
+						if(this.responseText === "successful"){
+							alert("You have successfully added!");
+						}else if(this.responseText === "failed"){
+							alert("You can only add 1 time!");
+						}
+						cookies();
+						initData();
+					}
+				});
+				xhr
+						.open(
+								"GET",
+								"${pageContext.servletContext.contextPath}/api/wish-list/addProductToWishList?id_product="
+										+ id);
+				xhr.setRequestHeader('Content-type', 'application/json');
+				xhr.send(data);
+			}
+			
+			function addProductToViewList(id) {
+				const data = null;
+				const xhr = new XMLHttpRequest();
+				xhr.addEventListener("readystatechange", function() {
+					if (this.readyState === this.DONE) {
+						
+					}
+				});
+				xhr
+						.open(
+								"GET",
+								"${pageContext.servletContext.contextPath}/api/wish-list/addProductToViewList?id_product="
+										+ id);
+				xhr.setRequestHeader('Content-type', 'application/json');
+				xhr.send(data);
+			}
+		</script>
 </body>

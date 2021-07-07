@@ -36,7 +36,7 @@ public class PageAjaxProductController {
 		String txt = "";
 		if (arr != null) {
 			for (Cookie o : arr) {
-				if (o.getName().equals("id")) {
+				if (o.getName().equals("wishlist")) {
 					txt = txt + o.getValue();
 					o.setMaxAge(0);
 					response.addCookie(o);
@@ -59,7 +59,7 @@ public class PageAjaxProductController {
 				return "failed";
 			}
 		}
-		Cookie c = new Cookie("id", txt);
+		Cookie c = new Cookie("wishlist", txt);
 		c.setMaxAge(60 * 60 * 24);
 		c.setPath("/");
 		response.addCookie(c);
@@ -75,7 +75,7 @@ public class PageAjaxProductController {
 		String txtOutPut = "";
 		if (arr != null) {
 			for (Cookie o : arr) {
-				if (o.getName().equals("id")) {
+				if (o.getName().equals("wishlist")) {
 					txt = txt + o.getValue();
 					o.setMaxAge(0);
 					response.addCookie(o);
@@ -92,7 +92,7 @@ public class PageAjaxProductController {
 				}
 
 			}
-			Cookie c = new Cookie("id", txtOutPut);
+			Cookie c = new Cookie("wishlist", txtOutPut);
 			c.setMaxAge(60 * 60 * 24);
 			c.setPath("/");
 			response.addCookie(c);
@@ -110,5 +110,39 @@ public class PageAjaxProductController {
 			}
 		}
 		return list;
+	}
+	
+	@GetMapping("/addProductToViewList")
+	public void addToViewList(@RequestParam(name = "id_product") String id, HttpServletRequest request,
+			HttpServletResponse response) {
+		Cookie[] arr = request.getCookies();
+		String txt = "";
+		if (arr != null) {
+			for (Cookie o : arr) {
+				if (o.getName().equals("viewlist")) {
+					txt = txt + o.getValue();
+					o.setMaxAge(0);
+					response.addCookie(o);
+				}
+			}
+		}
+		if (txt.isEmpty()) {
+			txt = id;
+		} else {
+			String[] array = txt.split("a");
+			int count = 0;
+			for (int i = 0; i < array.length; i++) {
+				if (array[i].equals(id)) {
+					count++;
+				}
+			}
+			if (count == 0) {
+				txt = txt + "a" + id;
+			}
+		}
+		Cookie c = new Cookie("viewlist", txt);
+		c.setMaxAge(60 * 60 * 24);
+		c.setPath("/");
+		response.addCookie(c);
 	}
 }

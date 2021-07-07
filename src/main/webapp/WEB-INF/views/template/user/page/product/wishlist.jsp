@@ -93,7 +93,7 @@
 	function cookies() {
 		cookie = document.cookie;
 		if (cookie != null) {
-			matchs = cookie.match("id=([^;]*)");
+			matchs = cookie.match("wishlist=([^;]*)");
 			if (matchs != null) {
 				arr_product = matchs[1].split('a');
 			}
