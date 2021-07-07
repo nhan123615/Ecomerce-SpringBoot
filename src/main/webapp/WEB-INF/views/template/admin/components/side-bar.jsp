@@ -53,48 +53,48 @@
                         </li>
                     </ul>
                 </li>
-                <li id="forms" class="nav-item">
-                    <a id="linkforms" href="#" class="nav-link">
-                        <i class="nav-icon fas fa-edit"></i>
+                <li id="managerproduct" class="nav-item">
+                    <a id="linkproduct" href="#" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
                         <p>
-                            Forms
+                            Manager Product
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a id="newproduct" href="${pageContext.servletContext.contextPath}/admin/product/new" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>New Product</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a id="newtype" href="${pageContext.servletContext.contextPath}/admin/type/new" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>New Type</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li id="tables" class="nav-item">
-                    <a id="linktables" href="#" class="nav-link">
-                        <i class="nav-icon fas fa-table"></i>
-                        <p>
-                            Tables
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
+                    	 <li class="nav-item">
                             <a id="productlist" href="${pageContext.servletContext.contextPath}/admin/product" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Product List</p>
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a id="newproduct" href="${pageContext.servletContext.contextPath}/admin/product/new" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>New Product</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="managertype" class="nav-item">
+                    <a id="linktype" href="#" class="nav-link">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Manager Type
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
                             <a id="typelist" href="${pageContext.servletContext.contextPath}/admin/type" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Type List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="newtype" href="${pageContext.servletContext.contextPath}/admin/type/new" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>New Type</p>
                             </a>
                         </li>
                     </ul>

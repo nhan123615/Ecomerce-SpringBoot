@@ -29,7 +29,7 @@ public class Product {
     private String description;
     private int stockQuantity;
 
-    @OneToMany(targetEntity = ImageGallery.class)
+    @OneToMany(targetEntity = ImageGallery.class, cascade = CascadeType.ALL)
     private List<ImageGallery> images;
 
 

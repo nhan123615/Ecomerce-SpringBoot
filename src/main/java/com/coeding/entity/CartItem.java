@@ -22,4 +22,10 @@ public class CartItem {
     private Product product;
     private int sellingQuantity;
     private double totalPrice;
+
+    public CartItem(Product product, int sellingQuantity, double totalPrice) {
+        this.product = product;
+        this.sellingQuantity = sellingQuantity;
+        this.totalPrice = totalPrice;
+    }
 }
