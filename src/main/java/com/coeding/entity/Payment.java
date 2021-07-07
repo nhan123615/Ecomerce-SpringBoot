@@ -27,6 +27,12 @@ public class Payment {
     @OneToOne(targetEntity = CustomerOrder.class)
     private CustomerOrder customerOrder;
 
+    public Payment(double amount, String paymentMethod, boolean status, CustomerOrder customerOrder) {
+        this.amount = amount;
+        this.paymentMethod = paymentMethod;
+        this.status = status;
+        this.customerOrder = customerOrder;
+    }
 
     @PrePersist
     void orderDate() {

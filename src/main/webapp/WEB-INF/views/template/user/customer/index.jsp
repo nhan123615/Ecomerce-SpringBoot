@@ -7,14 +7,6 @@
 <%@ page import="com.coeding.entity.User"%>
 <%@ page import="org.springframework.security.core.Authentication"%>
 <main class="ps-page--my-account">
-    <div class="ps-breadcrumb">
-        <div class="container">
-            <ul class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
-                <li>User Information</li>
-            </ul>
-        </div>
-    </div>
     <section class="ps-section--account">
         <div class="container">
             <div class="row">

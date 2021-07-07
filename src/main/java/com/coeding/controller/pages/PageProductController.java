@@ -12,8 +12,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -36,13 +43,19 @@ public class PageProductController {
 
     @GetMapping
     public String productHomePage(
+            HttpServletResponse response,
+            HttpServletRequest request,
             Authentication authentication,
             Model model,
-            @RequestParam(name = "category",required = false) Long categoryId,
-            @RequestParam(name = "brand",required = false) Long brandId,
-            @RequestParam(name = "type",required = false) Long typeId
-    ){
-        if (authentication!=null){
+            @RequestParam(name = "category", required = false) Long categoryId,
+            @RequestParam(name = "brand", required = false) Long brandId,
+            @RequestParam(name = "type", required = false) Long typeId
+    ) {
+        //set cookie
+//        setCookie(response, request);
+
+        if (authentication != null) {
+            LOGGER.info("check User with (authentication != null)");
             UserDetail userDetails = (UserDetail) authentication.getPrincipal();
             model.addAttribute("user",userDetails.getUser());
         }
@@ -71,15 +84,17 @@ public class PageProductController {
         model.addAttribute("products",productService.findAll());
         model.addAttribute("countProduct",productService.findAll().stream().count());
 
-        Set<Brand> brandByProduct = new HashSet<>();
-        Set<String> typeByProduct = new HashSet<>();
-        productService.findAll().forEach(p-> {
-            brandByProduct.add(p.getBrand());
-            typeByProduct.add(p.getType().getName());
-        });
-        model.addAttribute("brandByProduct",brandByProduct);
-        model.addAttribute("typeByProduct",typeByProduct);
+    public void setCookie(HttpServletResponse response, HttpServletRequest request){
+        Cookie[] cookies = request.getCookies();
+        Long cartItemsCookie = Arrays.stream(cookies).filter(c->c.getName().equals("cartItems")).count();
 
-        return "template/user/page/product/shop-by-category";
+        if (cartItemsCookie == 0){
+            LOGGER.info("Set Cookie cartItems");
+            Cookie cookie = new Cookie("cartItems", "");
+            cookie.setHttpOnly(true);
+            response.addCookie(cookie);
+        }
     }
+
+
 }

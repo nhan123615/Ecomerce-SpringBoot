@@ -31,12 +31,23 @@ public class CustomerOrder {
 
     @ManyToOne (targetEntity = Customer.class)
     private Customer customer;
-    @OneToMany(targetEntity = CartItem.class)
+    @OneToMany(targetEntity = CartItem.class,cascade=CascadeType.ALL)
     private List<CartItem> cartItems;
 
     @PrePersist
     void orderDate() {
         this.orderDate = new Date();
     }
+
+    public CustomerOrder(String deliverCustomerName, String deliverCustomerAddress, String deliverCustomerPhone, double totalPrice, boolean status, Customer customer,List<CartItem> cartItems) {
+        this.deliverCustomerName = deliverCustomerName;
+        this.deliverCustomerAddress = deliverCustomerAddress;
+        this.deliverCustomerPhone = deliverCustomerPhone;
+        this.totalPrice = totalPrice;
+        this.status = status;
+        this.customer = customer;
+        this.cartItems = cartItems;
+    }
+
 
 }

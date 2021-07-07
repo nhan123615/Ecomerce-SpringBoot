@@ -1255,6 +1255,7 @@
             _.focusHandler();
 
         }
+        
 
         if (creation) {
             _.$slider.trigger('init', [_]);
