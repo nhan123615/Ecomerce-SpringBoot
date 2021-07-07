@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="../../components/head.jsp"></jsp:include>
 
@@ -507,12 +507,12 @@
                 productTable +=  "<div class='col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 '>";
                 productTable +="<div class='ps-product'>";
                 productTable += "<div class='ps-product__thumbnail'>";
-                productTable +=  "<a href='${pageContext.servletContext.contextPath}/product/detail?id="+json[i].id+"'>";
+                productTable +=  "<a href='${pageContext.servletContext.contextPath}/product/detail?id="+json[i].id+"' onClick='addProductToViewList("+json[i].id+")'>";
                 productTable +=  "<img src='${pageContext.request.contextPath}/product/display/0&"+json[i].id+"'  style='width: 156px;height: 156px'></a>";
                 productTable +=  "<ul class='ps-product__actions'>";
                 productTable +=  " <li class='toCart' value='"+json[i].id+"'><a data-toggle='tooltip' data-placement='top' title='Add To Cart' ><i class='icon-bag2'></i></a></li>";
                 productTable += "<li><a data-placement='top' title='Quick View' data-toggle='modal' data-target='#product-quickview-"+json[i].id+"'><i class='icon-eye'></i></a></li>";
-                productTable += "<li><a data-toggle='tooltip' data-placement='top' title='Add to Whishlist'><i class='icon-heart'></i></a></li> </ul> </div>";
+                productTable += "<li><a onClick='addToWishList("+json[i].id+")' data-toggle='tooltip' data-placement='top' title='Add to Wishlist'><i class='icon-heart'></i></a></li> </ul> </div>";
                 productTable += "<div class='ps-product__container'> <div class='ps-product__content'>";
                 productTable += "<a class='ps-product__title' href='${pageContext.servletContext.contextPath}/product/detail?id="+json[i].id+"'>"+json[i].productName+"</a>";
                 productTable +=  "<p class='ps-product__price'>$"+json[i].price+"</p> </div>";
@@ -522,7 +522,7 @@
             }
             return productTable;
         }
-
+		
         function  getBrand(json) {
             var brandDiv =""
             for (let i = 0; i <json.length; i++) {
@@ -677,8 +677,69 @@
         }
 
     })
+</script>
+<script>
+// @author Lam Cong Hau
+var countWish = document.querySelector('#countWish');
+var cookie = document.cookie;
+var arr_product;
+window.onload = initData();
+function initData() {
+	cookies();
+	if (arr_product != null) {
+		if (arr_product[0] != "") {
+			countWish.innerHTML = arr_product.length;
+		}else{
+			countWish.innerHTML = 0;
+		}
+	}
+}
 
+function cookies() {
+	cookie = document.cookie;
+	if (cookie != null) {
+		matchs = cookie.match("wishlist=([^;]*)");
+		if (matchs != null) {
+			arr_product = matchs[1].split('a');
+		}
+	}
+}
+function addToWishList(id) {
+	const data = null;
+	const xhr = new XMLHttpRequest();
+	xhr.addEventListener("readystatechange", function() {
+		if (this.readyState === this.DONE) {
+			if(this.responseText === "successful"){
+				alert("You have successfully added!");
+			}else if(this.responseText === "failed"){
+				alert("You can only add 1 time!");
+			}
+			cookies();
+			initData();
+		}
+	});
+	xhr
+			.open(
+					"GET",
+					"${pageContext.servletContext.contextPath}/api/wish-list/addProductToWishList?id_product="
+							+ id);
+	xhr.setRequestHeader('Content-type', 'application/json');
+	xhr.send(data);
+}
 
+function addProductToViewList(id) {
+	const data = null;
+	const xhr = new XMLHttpRequest();
+	xhr.addEventListener("readystatechange", function() {
+	});
+	xhr
+			.open(
+					"GET",
+					"${pageContext.servletContext.contextPath}/api/wish-list/addProductToViewList?id_product="
+							+ id);
+	xhr.setRequestHeader('Content-type', 'application/json');
+	xhr.send(data);
+}
 </script>
 </body>
 

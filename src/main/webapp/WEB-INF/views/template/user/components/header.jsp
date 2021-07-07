@@ -1,6 +1,6 @@
-<%@ page import="java.security.Principal" %>
-<%@ page import="org.springframework.security.core.Authentication" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.security.Principal"%>
+<%@ page import="org.springframework.security.core.Authentication"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 
