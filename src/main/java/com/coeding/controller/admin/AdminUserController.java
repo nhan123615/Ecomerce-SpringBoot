@@ -42,30 +42,36 @@ public class AdminUserController {
 		this.userService = user;
 	}
 	@GetMapping("/user")
-	public String ListUserController(Model model) {
+	public String ListUserController(Authentication authentication, Model model) {
 		model.addAttribute("userList" , userService.findAll());
+		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+		model.addAttribute("user", userDetails.getUser());
 		return  "template/admin/user/list";
 	}
 	@GetMapping("/user/edit")
 	public String EditUserController(
-			@RequestParam(value = "id") Long id,Model model){
+			@RequestParam(value = "id") Long id,Model model, Authentication authentication){
 		model.addAttribute("userDetail" , userService.findById(id));
+		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/user/edit";
 	}
 	@GetMapping("/user/detail")
 	public String DetailUserController(
-			@RequestParam(value = "id") Long id,Model model){
+			@RequestParam(value = "id") Long id,Model model, Authentication authentication){
 		model.addAttribute("userDetail" , userService.findById(id));
+		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/user/detail";
 	}
 	@RequestMapping(value = "/user/saveUpdate", method = RequestMethod.POST)
-	public String SaveUserController(Model model, User user,HttpServletResponse response) {	     
+	public String SaveUserController(Model model, User user,HttpServletResponse response, Authentication authentication) {	     
 		User userIn = userService.findById(user.getId());
 		userIn.setEnabled(user.isEnabled());
 		userIn.setRole(user.getRole());
 		userService.saveUser(userIn);
-		
-
+		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+		model.addAttribute("user", userDetails.getUser());
 		return "redirect:/admin/user";
 	}
 }
