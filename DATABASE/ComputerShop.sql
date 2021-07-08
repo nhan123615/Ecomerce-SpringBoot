@@ -9,9 +9,9 @@ create table categories
 (
     id      bigint auto_increment
         primary key,
-    enabled bit          not null,
-    name    varchar(255) null,
-    updated datetime     null
+    enabled bit                        not null,
+    name    varchar(255)               null,
+    updated datetime default curdate() null
 );
 
 create table contacts
@@ -52,18 +52,19 @@ create table types
 
 create table products
 (
-    id             bigint auto_increment
+    id                bigint auto_increment
         primary key,
-    description    longtext     null,
-    enabled        bit          not null,
-    price          double       not null,
-    product_color  varchar(255) null,
-    product_name   varchar(255) null,
-    stock_quantity int          not null,
-    updated        datetime     null,
-    brand_id       bigint       null,
-    category_id    bigint       null,
-    type_id        bigint       null,
+    description       longtext                   null,
+    enabled           bit                        not null,
+    price             double                     not null,
+    product_color     varchar(255)               null,
+    product_name      varchar(255)               null,
+    stock_quantity    int                        not null,
+    updated           datetime default curdate() null,
+    brand_id          bigint                     null,
+    category_id       bigint                     null,
+    type_id           bigint                     null,
+    short_description varchar(255)               null,
     constraint FKa3a4mpsfdf4d2y6r8ra3sc8mv
         foreign key (brand_id) references brands (id),
     constraint FKoeqkpxafyckvhf0g4cxc62yn8
