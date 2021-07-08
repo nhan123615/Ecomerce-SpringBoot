@@ -25,6 +25,8 @@ public class PaypalDetail {
     private String payerCountry;
     private String payerPostalCode;
     private String payerState;
+
+    
     @OneToOne(targetEntity = Payment.class)
     private Payment payment;
 

@@ -129,7 +129,7 @@
 											<a href="${pageContext.servletContext.contextPath}/admin/order/detail?id=${o.id}" class="rounded-circle btn btn-sm btn-primary" title="Change Password">
 												<i class="far fa-eye"></i>
 											</a> 
-											<a href="${pageContext.request.contextPath}/admin/user/edit?id=${u.id}" id="${u.id}" class="rounded-circle btn btn-sm btn-info" title="Edit">
+											<a href="#" id="${u.id}" class="rounded-circle btn btn-sm btn-info" title="Edit">
 												<i class="fas fa-pencil-alt"></i>
 											</a>
 										</td>

@@ -92,11 +92,7 @@
 							</thead>
 							<tbody>
 								<!-- SHOW DỮ LIỆU  -->
-								<%
-									List<Payment> paymentList = (List<Payment>)request.getAttribute("paymentList");
-									System.out.print(paymentList);
-								%>
-
+								
 								<c:forEach items="${paymentList}" var="p">
 									<tr>
 										<td class="text-center">${p.id}</td>
@@ -120,10 +116,10 @@
 											</c:choose></td>
 										<td class="text-center">${p.customerOrder.id}</td>
 										<td class="text-center">
-											<a href="${pageContext.servletContext.contextPath}/admin/user/detail?id=${p.id}" class="rounded-circle btn btn-sm btn-secondary" title="Change Password">
+											<a href="${pageContext.servletContext.contextPath}/admin/payment/detail?id=${p.id}" class="rounded-circle btn btn-sm btn-secondary" title="Change Password">
 												<i class="fas fa-info"></i>
 											</a> 
-											<a href="${pageContext.request.contextPath}/admin/user/edit?id=${u.id}" id="${u.id}" class="rounded-circle btn btn-sm btn-info" title="Edit">
+											<a href="#" id="${u.id}" class="rounded-circle btn btn-sm btn-info" title="Edit">
 												<i class="fas fa-pencil-alt"></i>
 											</a>
 										</td>

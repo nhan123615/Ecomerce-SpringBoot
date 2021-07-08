@@ -8,27 +8,39 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.coeding.entity.PaypalDetail;
+import com.coeding.service.CategoryService;
+import com.coeding.service.PaymentDetailService;
 import com.coeding.service.PaymentService;
+import com.coeding.service.PaypalDetailService;
+import com.paypal.api.payments.PaymentDetail;
 
 /**
  * 
- * @author Vy
- * list , detail
+ * @author Vy list , detail
  */
 @Controller
+
 @RequestMapping("/admin")
 public class AdminPaymentController {
 	@Autowired
-	private PaymentService payment;
+	PaypalDetailService paymentDetail;
 	
+	@Autowired
+	private PaymentService payment;
+
 	@GetMapping("/payment")
 	public String ListPaymentController(Model model) {
-		model.addAttribute("paymentList",payment.findAll());
+		model.addAttribute("paymentList", payment.findAll());
 		return "template/admin/payment/list";
 	}
-	@RequestMapping(value="/payment/detail" , method = RequestMethod.GET)
-	public String DetailPaymentController(@RequestParam("id") Long id , Model model) {
-		model.addAttribute("detailPayment" , payment.findById(id));
+
+	@RequestMapping(value = "/payment/detail", method = RequestMethod.GET)
+	public String DetailPaymentController(@RequestParam("id") Long id, PaymentDetail pmt ,Model model) {
+		
+		model.addAttribute("id" , id);
+		model.addAttribute("paymentDetail" , paymentDetail.findAll());
+		
 		return "template/admin/payment/detail";
 	}
 }

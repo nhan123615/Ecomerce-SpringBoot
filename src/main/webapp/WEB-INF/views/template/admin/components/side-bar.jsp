@@ -99,6 +99,80 @@
                         </li>
                     </ul>
                 </li>
+                <li id="manageruser" class="nav-item">
+                    <a id="linktype" href="#" class="nav-link">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Manager User
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a id="typelist" href="${pageContext.servletContext.contextPath}/admin/user" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>User List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="newtype" href="" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>New User</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="managersubscriber" class="nav-item">
+                    <a id="linktype" href="#" class="nav-link">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Manager Subscriber
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a id="typelist" href="${pageContext.servletContext.contextPath}/admin/subscriber" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Subscriber List</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="managerorder" class="nav-item">
+                    <a id="linktype" href="#" class="nav-link">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Manager Order
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a id="typelist" href="${pageContext.servletContext.contextPath}/admin/order" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Order List</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="managerpayment" class="nav-item">
+                    <a id="linktype" href="#" class="nav-link">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Manager Payment
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a id="typelist" href="${pageContext.servletContext.contextPath}/admin/payment" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Payment List</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

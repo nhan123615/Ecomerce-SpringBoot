@@ -49,7 +49,7 @@
 							<div class="col-12">
 								<h4>Order ID</h4>
 								<div class="post">
-									<p>ID: 123456789<p>
+									<p>ID: ${orderDetail.id}<p>
 									<p>Order Date: ${orderDetail.orderDate}</p>
 								</div>
 
