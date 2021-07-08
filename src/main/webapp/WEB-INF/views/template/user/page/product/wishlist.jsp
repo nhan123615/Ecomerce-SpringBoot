@@ -40,11 +40,13 @@
 														<a
 															href="${pageContext.servletContext.contextPath}/product/detail?id=${product.id}"><img
 															src="${pageContext.request.contextPath}/product/display/0&${product.id}"
-															alt="" width="100px" height="100px"></a>
+															alt="" width="100px" height="100px"
+															onclick="addProductToViewList(${product.id})"></a>
 													</div>
 													<div class="ps-product__content">
 														<a
-															href="${pageContext.servletContext.contextPath}/product/detail?id=${product.id}">${product.productName }</a>
+															href="${pageContext.servletContext.contextPath}/product/detail?id=${product.id}"
+															onclick="addProductToViewList(${product.id})">${product.productName }</a>
 														<p>
 															Sold By:<strong> Angry-Nerds SHOP</strong>
 														</p>
@@ -75,37 +77,6 @@
 	</div>
 	<jsp:include page="../../components/footer.jsp"></jsp:include>
 	<script>
-	/* //@Author Lam Cong Hau
-	var countWish = document.querySelector('#countWish');
-	var cookie = document.cookie;
-	var arr_product;
-	var products = [];
-	var cartItems = [];
-	
-	window.onload = initData();
-	function initData() {
-		cookies();
-		if (arr_product != null) {
-			if (arr_product[0] != "") {
-				countWish.innerHTML = arr_product.length;
-			}else{
-				countWish.innerHTML = 0;
-			}
-		}
-		/* initCartItem(); */
-/* 		getAllProducts();
-	} */
-
-/* 	function cookies() {
-		cookie = document.cookie;
-		if (cookie != null) {
-			matchs = cookie.match("wishlist=([^;]*)");
-			if (matchs != null) {
-				arr_product = matchs[1].split('a');
-			}
-		}
-	} */ 
-	
 	var tblProduct = document.querySelector('#wishProductTable');
 	function removeFromWishList(id) {
 		const data = null;
@@ -159,22 +130,6 @@
 	}
 	
 	// Add to cart in wishlist page
-	/*  function getAllProducts(){
-	            const data = null;
-	            const xhr = new XMLHttpRequest();
-	            xhr.addEventListener("readystatechange", function () {
-	                if (this.readyState === this.DONE) {
-	                    var json = JSON.parse(this.responseText);
-	                    console.log(json)
-	                    products = json
-	                }
-	            });
-	
-	            xhr.open("GET", "${pageContext.servletContext.contextPath}/filter/getAllProducts");
-	            xhr.setRequestHeader('Content-type', 'application/json');
-	            xhr.send(data);
-	        } */
-	
 	 function checkStock(productId,qty){
          if (qty !=null){
              for (let i = 0; i < products.length ; i++) {
@@ -244,5 +199,22 @@
 		        xhr.send(data);
 	       }		
     }
+     
+     function addProductToViewList(id) {
+			const data = null;
+			const xhr = new XMLHttpRequest();
+			xhr.addEventListener("readystatechange", function() {
+				if (this.readyState === this.DONE) {
+					
+				}
+			});
+			xhr
+					.open(
+							"GET",
+							"${pageContext.servletContext.contextPath}/api/wish-list/addProductToViewList?id_product="
+									+ id);
+			xhr.setRequestHeader('Content-type', 'application/json');
+			xhr.send(data);
+		}
 	</script>
 </body>
