@@ -21,6 +21,12 @@
 										<div class="ps-product__gallery" data-arrow="true">
 											<div class="item">
 												<a
+														href="${pageContext.request.contextPath}/product/display/0&${product.id}"><img
+														src="${pageContext.request.contextPath}/product/display/0&${product.id}"
+														alt="" style="width: 489px; height: 489px"></a>
+											</div>
+											<div class="item">
+												<a
 													href="${pageContext.request.contextPath}/product/display/1&${product.id}"><img
 													src="${pageContext.request.contextPath}/product/display/1&${product.id}"
 													alt="" style="width: 489px; height: 489px"></a>
@@ -42,6 +48,11 @@
 								</figure>
 								<div class="ps-product__variants" data-item="4" data-md="4"
 									data-sm="4" data-arrow="false">
+									<div class="item">
+										<img
+												src="${pageContext.request.contextPath}/product/display/0&${product.id}"
+												alt="" style="width: 60px; height: 60px">
+									</div>
 									<div class="item">
 										<img
 											src="${pageContext.request.contextPath}/product/display/1&${product.id}"
@@ -110,19 +121,22 @@
 								</div>
 								<div class="ps-product__shopping">
 									<figure>
+										<span style="color: red" class="invalid-${product.id}"></span>
 										<figcaption>Quantity</figcaption>
 										<div class="form-group--number">
-											<button class="up">
+											<button class="up" value="${product.id}">
 												<i class="fa fa-plus"></i>
 											</button>
-											<button class="down">
+											<button class="down" value="${product.id}">
 												<i class="fa fa-minus"></i>
 											</button>
-											<input class="form-control" type="text" placeholder="1">
+											<div>
+												<input class="form-control itemQty-${product.id}" type="text" placeholder="1" value="1" readonly >
+											</div>
 										</div>
 									</figure>
-									<a class="ps-btn ps-btn--black" href="#">Add to cart</a><a
-										class="ps-btn" href="#">Buy Now</a>
+									<a class="ps-btn ps-btn--black toCart" value="${product.id}">Add to cart</a><a
+										class="ps-btn buyNow" value="${product.id}">Buy Now</a>
 									<div class="ps-product__actions">
 										<a onClick="addToWishList(${product.id})" data-toggle="tooltip"
 											data-placement="top" title="Add to Wishlist"><i
@@ -495,88 +509,20 @@
 			</div>
 		</div>
 	</div>
-	<div id="productPopup">
-		<c:forEach var="p" items="${allProducts}">
-			<div class="modal fade product-quickview-open"
-				id="product-quickview-${p.id}" tabindex="-1" role="dialog"
-				aria-labelledby="product-quickview-${p.id}" aria-hidden="true">
-				<div class="modal-dialog modal-dialog-centered" role="document">
-					<div class="modal-content">
-						<span class="modal-close" data-dismiss="modal"><i
-							class="icon-cross2"></i></span>
-						<article
-							class="ps-product--detail ps-product--fullwidth ps-product--quickview">
-							<div class="ps-product__header">
-								<div class="ps-product__thumbnail" data-vertical="false">
-									<div class="ps-product__images" data-arrow="true">
-										<div class="item">
-											<img
-												src="${pageContext.request.contextPath}/product/display/0&${p.id}"
-												alt="" style="width: 404px; height: 404px">
-										</div>
-										<div class="item">
-											<img
-												src="${pageContext.request.contextPath}/product/display/1&${p.id}"
-												alt="" style="width: 404px; height: 404px">
-										</div>
-										<div class="item">
-											<img
-												src="${pageContext.request.contextPath}/product/display/2&${p.id}"
-												alt="" style="width: 404px; height: 404px">
-										</div>
-										<div class="item">
-											<img
-												src="${pageContext.request.contextPath}/product/display/3&${p.id}"
-												alt="" style="width: 404px; height: 404px">
-										</div>
-									</div>
-								</div>
-								<div class="ps-product__info">
-									<h1>${p.productName}</h1>
-									<div class="ps-product__meta">
-										<p>
-											Brand: <a
-												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.brand.name}</a>
-										</p>
-										<div class="ps-product__rating">
-											<select class="ps-rating" data-read-only="true">
-												<option value="1">1</option>
-												<option value="1">2</option>
-												<option value="1">3</option>
-												<option value="1">4</option>
-												<option value="2">5</option>
-											</select><span>(1 review)</span>
-										</div>
-									</div>
-									<h4 class="ps-product__price">$${p.price}</h4>
-									<div class="ps-product__desc">
-										<p>
-											Sold By:<a
-												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"><strong>
-													Angry Nerds</strong></a>
-										</p>
-										<div class="ps-list--dot">${p.shortDescription }</div>
-									</div>
-									<div class="ps-product__shopping">
-										<a class="ps-btn ps-btn--black" href="#">Add to cart</a><a
-											class="ps-btn" href="#">Buy Now</a>
-									</div>
-								</div>
-							</div>
-						</article>
-					</div>
-				</div>
-			</div>
-		</c:forEach>
-	</div>
 	<jsp:include page="../../components/footer.jsp"></jsp:include>
 	<script>
+
+		$(document).ready(function(){
 			var countWish = document.querySelector('#countWish');
 			var cookie = document.cookie;
 			var arr_product;
+			var cartItems = [];
+			var products = [];
 			window.onload = initData();
 			function initData() {
 				cookies();
+				initCartItem();
+				getAllProducts();
 				if (arr_product != null) {
 					if (arr_product[0] != "") {
 						countWish.innerHTML = arr_product.length;
@@ -585,7 +531,7 @@
 					}
 				}
 			}
-			
+
 			function cookies() {
 				cookie = document.cookie;
 				if (cookie != null) {
@@ -613,26 +559,291 @@
 						.open(
 								"GET",
 								"${pageContext.servletContext.contextPath}/api/wish-list/addProductToWishList?id_product="
-										+ id);
+								+ id);
 				xhr.setRequestHeader('Content-type', 'application/json');
 				xhr.send(data);
 			}
-			
+
 			function addProductToViewList(id) {
 				const data = null;
 				const xhr = new XMLHttpRequest();
 				xhr.addEventListener("readystatechange", function() {
 					if (this.readyState === this.DONE) {
-						
+
 					}
 				});
 				xhr
 						.open(
 								"GET",
 								"${pageContext.servletContext.contextPath}/api/wish-list/addProductToViewList?id_product="
-										+ id);
+								+ id);
 				xhr.setRequestHeader('Content-type', 'application/json');
 				xhr.send(data);
 			}
-		</script>
+
+
+//////////////////////////////////////////////////
+			//increase Qty
+			$(document).on("click",".up", function(event){
+				var productId = this.value;
+				var qty = document.querySelector('.itemQty-'+this.value);
+				var invalid = document.querySelector('.invalid-'+this.value);
+				var invalidText = document.querySelector('.invalid-text-'+this.value)
+				// alert(invalidText)
+				if (checkStock(productId,qty.value)){
+					qty.value = Number(qty.value) + 1
+					updateCartItems(qty.value)
+					if (invalidText!=null){
+						invalidText.remove()
+					}
+				}else{
+					event.preventDefault()
+					invalid.innerHTML = "<div class='invalid-text-"+this.value+"'>Out of Stock !</div>"
+				}
+
+			});
+
+			function checkStock(productId,qty){
+				for (let i = 0; i < products.length ; i++) {
+					if (products[i].id == productId){
+						if (qty < products[i].stockQuantity){
+							return true;
+						}else{
+							return false;
+						}
+					}
+				}
+				return false;
+			}
+
+			//decrease Qty
+			$(document).on("click",".down", function(event){
+				var productId = this.value;
+				var qty = document.querySelector('.itemQty-'+this.value);
+				var invalidText = document.querySelector('.invalid-text-'+this.value)
+				if (Number(qty.value) != 1){
+					qty.value = Number(qty.value) - 1
+					if (invalidText!=null){
+						invalidText.remove()
+					}
+                }else{
+                    event.preventDefault()
+
+                }
+				updateCartItems(qty.value)
+			});
+
+			function getAllProducts(){
+
+				const data = null;
+				const xhr = new XMLHttpRequest();
+				xhr.addEventListener("readystatechange", function () {
+					if (this.readyState === this.DONE) {
+						var json = JSON.parse(this.responseText);
+						console.log(json)
+						products = json
+					}
+				});
+
+				xhr.open("GET", "${pageContext.servletContext.contextPath}/filter/getAllProducts");
+				xhr.setRequestHeader('Content-type', 'application/json');
+				xhr.send(data);
+			}
+
+			function initCartItem() {
+				const data = null;
+				const xhr = new XMLHttpRequest();
+				xhr.addEventListener("readystatechange", function () {
+					if (this.readyState === this.DONE) {
+						var json = JSON.parse(this.responseText);
+						console.log(json)
+						cartItems.push(json)
+
+					}
+				});
+
+				xhr.open("GET", "${pageContext.servletContext.contextPath}/cart/get?productId="+new URLSearchParams(window.location.search).get("id"));
+				xhr.setRequestHeader('Content-type', 'application/json');
+				xhr.send(data);
+			}
+			function countCartItems() {
+				document.getElementById('cartItemCount-1').innerHTML = cartItems.length
+				document.getElementById('cartItemCount-2').innerHTML = cartItems.length
+			}
+
+			function showCartItems() {
+				document.getElementById('cart-content-1').removeAttribute('style')
+				document.getElementById('cart-content-2').removeAttribute('style')
+				document.getElementById('cart-content-1').innerHTML = getCartItemContent(cartItems);
+				document.getElementById('cart-content-2').innerHTML = getCartItemContent(cartItems);
+				if (cartItems.length ==0){
+					document.getElementById('cart-content-1').setAttribute("style", "display: none;");
+					document.getElementById('cart-content-2').setAttribute("style", "display: none;");
+				}
+			}
+
+
+			function getCartItemContent(items) {
+				var cartItemContent ="";
+				if (cartItems.length >0){
+					var totalPrice = 0;
+					for (let i = 0; i < cartItems.length; i++) {
+						totalPrice += cartItems[i].totalPrice
+						cartItemContent += "<div class='ps-cart__items'>";
+						cartItemContent +="<div class='ps-product--cart-mobile'>"
+						cartItemContent +="<div class='ps-product__thumbnail'><a href='#'><img src='${pageContext.request.contextPath}/product/display/0&"+cartItems[i].product.id+"' alt=''></a></div>"
+						cartItemContent +="<div class='ps-product__content '><a class='ps-product__remove removeCartProduct ' value='"+cartItems[i].product.id+"' ><i class='icon-cross ' ></i></a><a href='product-default.html'>"+cartItems[i].product.productName+"</a>"
+						cartItemContent +="<p><strong>Sold by:</strong>  ANGRY NERDS</p><small>"+cartItems[i].sellingQuantity+" x $"+cartItems[i].product.price+"</small>"
+						cartItemContent +=" </div> </div>"
+						cartItemContent +=" </div>"
+					}
+					cartItemContent+="<hr>"
+					cartItemContent+="<div class='ps-cart__footer'>"
+					cartItemContent += "<h3>Sub Total:<strong>$"+totalPrice+"</strong></h3>"
+					cartItemContent +="<figure><a class='ps-btn' href='${pageContext.servletContext.contextPath}/cart'>View Cart</a><a class='ps-btn checkout' href='${pageContext.servletContext.contextPath}/customer/product/checkout'>Checkout</a></figure>"
+					cartItemContent +=" </div>"
+				}
+				return cartItemContent;
+			}
+
+			function updateCartItems(Qty) {
+
+				cartItems[0].sellingQuantity = parseInt(Qty)
+				cartItems[0].totalPrice =  parseInt(cartItems[0].sellingQuantity) * parseFloat(cartItems[0].product.price)
+			}
+
+			//add to Cart
+			$(document).on("click",".toCart", function(event){
+				// alert(cartItems[0].sellingQuantity)
+				updateCartItemsCookie(cartItems)
+			});
+
+			$(document).on("click",".buyNow", function(event){
+				updateCartItemsCookie(cartItems)
+				window.setTimeout(function () {
+					window.location.href = "${pageContext.servletContext.contextPath}/cart";
+				},300)
+			});
+
+
+
+			function toCart(value,event){
+				if (checkStock(value,getCartProductQty(value))){
+					addItemToCart("${pageContext.servletContext.contextPath}/cart/get?productId="+value)
+				}else{
+					event.preventDefault()
+				}
+			}
+
+			function getCartProductQty(productId){
+				if (cartItems.length>0){
+					for (let i = 0; i < cartItems.length; i++) {
+						if (cartItems[i].product.id == productId){
+							return cartItems[i].sellingQuantity
+						}
+					}
+				}
+				return null;
+			}
+
+			function addItemToCart(url){
+				const data = null;
+				const xhr = new XMLHttpRequest();
+				xhr.addEventListener("readystatechange", function () {
+					if (this.readyState === this.DONE) {
+						var json = JSON.parse(this.responseText);
+						console.log(json)
+						if (cartItems.length>0){
+							var count = 0;
+							for (let i = 0; i < cartItems.length; i++) {
+								//if duplicate sellingQuantity +=1
+								if (cartItems[i].product.id == json.product.id){
+									cartItems[i].sellingQuantity += 1
+									cartItems[i].totalPrice =  parseFloat(cartItems[i].totalPrice) *  parseInt(cartItems[i].sellingQuantity)
+									count += 1
+								}
+							}
+							if (count == 0){
+								cartItems.push(json)
+								countCartItems()
+							}
+							updateCartItemsCookie(cartItems)
+							showCartItems()
+							console.log(cartItems)
+						}else{
+							cartItems.push(json)
+							console.log(cartItems)
+							countCartItems()
+							showCartItems()
+							updateCartItemsCookie(cartItems)
+						}
+
+					}
+				});
+
+				xhr.open("GET", url);
+				xhr.setRequestHeader('Content-type', 'application/json');
+				xhr.send(data);
+			}
+
+			$(document).on("click",".removeCartProduct", function(){
+				if (cartItems.length >0){
+					var deleteProductId = $(this).attr('value')
+					var deleteProductIndex = -1;
+					// alert($(this).attr('value'));
+					for (let i = 0; i < cartItems.length; i++) {
+						if (cartItems[i].product.id == deleteProductId){
+							deleteProductIndex = i;
+							break;
+						}
+					}
+					if (deleteProductIndex != -1){
+						cartItems.splice(deleteProductIndex, 1);
+						countCartItems()
+						showCartItems()
+						updateCartItemsCookie(cartItems)
+						initCartItem();
+					}
+
+
+				}
+			});
+
+
+			function updateCartItemsCookie(cartItemsArr) {
+				var value = "[]";
+				if (cartItemsArr.length >0){
+					value ="["
+					for (let i = 0; i < cartItemsArr.length; i++) {
+						value += JSON.stringify(cartItemsArr[i]) +","
+					}
+					value = value.substring(0,value.length-1)
+					value +="]"
+				}
+
+				const data = value;
+				const xhr = new XMLHttpRequest();
+				xhr.addEventListener("readystatechange", function () {
+					if (this.readyState === this.DONE) {
+						var json = JSON.parse(this.responseText);
+						// if (json.length>0){
+						console.log(json)
+						cartItems = json
+						// }
+					}
+				});
+
+				xhr.open("POST", "${pageContext.servletContext.contextPath}/cart/update");
+				xhr.setRequestHeader('Content-type', 'application/json');
+				console.log(data)
+				xhr.send(data);
+				countCartItems();
+				showCartItems();
+			}
+
+
+		})
+
+
+	</script>
 </body>

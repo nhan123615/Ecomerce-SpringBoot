@@ -70,14 +70,14 @@
                     <hr>
                     <figure id="filterPrice">
                         <h4 class="widget-title">By Price</h4>
-<%--                        <form action="" method="get" class="text-center">--%>
-                            <div class="d-flex ml-4" style="align-items: center">
-                                <input class="form-control" type="number" name="priceFrom" id="from" placeholder="From" style = "width: 100px" required>
-                                <div style="height: 1px; width: 10px;    background: #bdbdbd;     margin: 0 .625rem;"></div>
-                                <input  class="form-control" type="number" name="priceTo" id="to" placeholder="To" style = "width: 100px" required>
-                            </div>
-                            <button class="ps-btn mt-3" style="padding: 10px 55px" id="btnPrice">Apply</button>
-<%--                        </form>--%>
+                        <%--                        <form action="" method="get" class="text-center">--%>
+                        <div class="d-flex ml-4" style="align-items: center">
+                            <input class="form-control" type="number" name="priceFrom" id="from" placeholder="From" style = "width: 100px" required>
+                            <div style="height: 1px; width: 10px;    background: #bdbdbd;     margin: 0 .625rem;"></div>
+                            <input  class="form-control" type="number" name="priceTo" id="to" placeholder="To" style = "width: 100px" required>
+                        </div>
+                        <button class="ps-btn mt-3" style="padding: 10px 55px" id="btnPrice">Apply</button>
+                        <%--                        </form>--%>
                     </figure>
                     <figure>
                         <h4 class="widget-title">By Rating</h4>
@@ -209,56 +209,52 @@
 
 <div id="productPopup">
 
-    <c:forEach var="p" items="${allProducts}">
+<%--    <c:forEach var="p" items="${allProducts}">--%>
 
-        <div class="modal fade product-quickview-open" id="product-quickview-${p.id}" tabindex="-1" role="dialog" aria-labelledby="product-quickview-${p.id}" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content"><span class="modal-close" data-dismiss="modal"><i class="icon-cross2"></i></span>
-                    <article class="ps-product--detail ps-product--fullwidth ps-product--quickview">
-                        <div class="ps-product__header">
-                            <div class="ps-product__thumbnail" data-vertical="false">
-                                <div class="ps-product__images" data-arrow="true">
-                                    <div class="item"><img src="${pageContext.request.contextPath}/product/display/0&${p.id}" alt="" style="width: 404px;height: 404px"></div>
-                                    <div class="item"><img src="${pageContext.request.contextPath}/product/display/1&${p.id}" alt="" style="width: 404px;height: 404px"></div>
-                                    <div class="item"><img src="${pageContext.request.contextPath}/product/display/2&${p.id}" alt="" style="width: 404px;height: 404px"></div>
-                                    <div class="item"><img src="${pageContext.request.contextPath}/product/display/3&${p.id}" alt="" style="width: 404px;height: 404px"></div>
-                                </div>
-                            </div>
-                            <div class="ps-product__info">
-                                <h1>${p.productName}</h1>
-                                <div class="ps-product__meta">
-                                    <p>Brand: <a href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.brand.name}</a></p>
-                                    <div class="ps-product__rating">
-                                        <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>(1 review)</span>
-                                    </div>
-                                </div>
-                                <h4 class="ps-product__price">$${p.price}</h4>
-                                <div class="ps-product__desc">
-                                    <p>Sold By:<a href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"><strong> Angry Nerds</strong></a></p>
-                                    <ul class="ps-list--dot">
-                                        <li> Unrestrained and portable active stereo speaker</li>
-                                        <li> Free from the confines of wires and chords</li>
-                                        <li> 20 hours of portable capabilities</li>
-                                        <li> Double-ended Coil Cord with 3.5mm Stereo Plugs Included</li>
-                                        <li> 20 hours of portable capabilities</li>
-                                    </ul>
-                                </div>
-                                <div class="ps-product__shopping"><a class="ps-btn ps-btn--black" >Add to cart</a><a class="ps-btn" >Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </div>
+<%--        <div class="modal fade product-quickview-open" id="product-quickview-${p.id}" tabindex="-1" role="dialog" aria-labelledby="product-quickview-${p.id}" aria-hidden="true">--%>
+<%--            <div class="modal-dialog modal-dialog-centered" role="document">--%>
+<%--                <div class="modal-content"><span class="modal-close" data-dismiss="modal"><i class="icon-cross2"></i></span>--%>
+<%--                    <article class="ps-product--detail ps-product--fullwidth ps-product--quickview">--%>
+<%--                        <div class="ps-product__header">--%>
+<%--                            <div class="ps-product__thumbnail" data-vertical="false">--%>
+<%--                                <div class="ps-product__images" data-arrow="true">--%>
+<%--                                    <div class="item"><img src="${pageContext.request.contextPath}/product/display/0&${p.id}" alt="" style="width: 404px;height: 404px"></div>--%>
+<%--                                    <div class="item"><img src="${pageContext.request.contextPath}/product/display/1&${p.id}" alt="" style="width: 404px;height: 404px"></div>--%>
+<%--                                    <div class="item"><img src="${pageContext.request.contextPath}/product/display/2&${p.id}" alt="" style="width: 404px;height: 404px"></div>--%>
+<%--                                    <div class="item"><img src="${pageContext.request.contextPath}/product/display/3&${p.id}" alt="" style="width: 404px;height: 404px"></div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="ps-product__info">--%>
+<%--                                <h1>${p.productName}</h1>--%>
+<%--                                <div class="ps-product__meta">--%>
+<%--                                    <p>Brand: <a href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.brand.name}</a></p>--%>
+<%--                                    <div class="ps-product__rating">--%>
+<%--                                        <select class="ps-rating" data-read-only="true">--%>
+<%--                                            <option value="1">1</option>--%>
+<%--                                            <option value="1">2</option>--%>
+<%--                                            <option value="1">3</option>--%>
+<%--                                            <option value="1">4</option>--%>
+<%--                                            <option value="2">5</option>--%>
+<%--                                        </select><span>(1 review)</span>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                                <h4 class="ps-product__price">$${p.price}</h4>--%>
+<%--                                <div class="ps-product__desc">--%>
+<%--                                    <p>Sold By:<a href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"><strong> Angry Nerds</strong></a></p>--%>
+<%--                                    <div class="ps-list--dot">--%>
+<%--                                            ${p.shortDescription}--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                                <div class="ps-product__shopping"><a class="ps-btn ps-btn--black toCart"  value="${p.id}">Add to cart</a><a class="ps-btn buyNow" value="${p.id}">Buy Now</a>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </article>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
 
-    </c:forEach>
+<%--    </c:forEach>--%>
 
 </div>
 
@@ -312,6 +308,7 @@
                     if (products[i].id == productId){
                         if (qty < products[i].stockQuantity){
                             return true;
+
                         }else{
                             return false;
                         }
@@ -355,17 +352,28 @@
                 }
             }
         });
-//add to Cart
+
+        //add to Cart
         $(document).on("click",".toCart", function(event){
-            console.log(this.value)
-          if (checkStock(this.value,getCartProductQty(this.value))){
-              addItemToCart("${pageContext.servletContext.contextPath}/cart/get?productId="+this.value)
-          }else{
-              event.preventDefault()
-          }
-
-
+            toCart(this.getAttribute('value'),event)
         });
+
+        $(document).on("click",".buyNow", function(event){
+            toCart(this.getAttribute('value'),event)
+            window.setTimeout(function () {
+                window.location.href = "${pageContext.servletContext.contextPath}/cart";
+            },300)
+        });
+
+
+
+        function toCart(value,event){
+            if (checkStock(value,getCartProductQty(value))){
+                addItemToCart("${pageContext.servletContext.contextPath}/cart/get?productId="+value)
+            }else{
+                event.preventDefault()
+            }
+        }
 
 //btn Price
         btnPrice.addEventListener('click', function() {
@@ -522,7 +530,7 @@
             }
             return productTable;
         }
-		
+
         function  getBrand(json) {
             var brandDiv =""
             for (let i = 0; i <json.length; i++) {
@@ -646,7 +654,7 @@
                 if (this.readyState === this.DONE) {
                     var json = JSON.parse(this.responseText);
                     // if (json.length>0){
-                    console.log("update shop by category"+json)
+                    console.log(json)
                     cartItems = json
                     // }
                 }
@@ -679,66 +687,67 @@
     })
 </script>
 <script>
-// @author Lam Cong Hau
-var countWish = document.querySelector('#countWish');
-var cookie = document.cookie;
-var arr_product;
-window.onload = initData();
-function initData() {
-	cookies();
-	if (arr_product != null) {
-		if (arr_product[0] != "") {
-			countWish.innerHTML = arr_product.length;
-		}else{
-			countWish.innerHTML = 0;
-		}
-	}
-}
+    // @author Lam Cong Hau
+    var countWish = document.querySelector('#countWish');
+    var cookie = document.cookie;
+    var arr_product;
+    window.onload = initData();
+    function initData() {
+        cookies();
+        if (arr_product != null) {
+            if (arr_product[0] != "") {
+                countWish.innerHTML = arr_product.length;
+            }else{
+                countWish.innerHTML = 0;
+            }
+        }
+    }
 
-function cookies() {
-	cookie = document.cookie;
-	if (cookie != null) {
-		matchs = cookie.match("wishlist=([^;]*)");
-		if (matchs != null) {
-			arr_product = matchs[1].split('a');
-		}
-	}
-}
-function addToWishList(id) {
-	const data = null;
-	const xhr = new XMLHttpRequest();
-	xhr.addEventListener("readystatechange", function() {
-		if (this.readyState === this.DONE) {
-			if(this.responseText === "successful"){
-				alert("You have successfully added!");
-			}else if(this.responseText === "failed"){
-				alert("You can only add 1 time!");
-			}
-			initData();
-		}
-	});
-	xhr
-			.open(
-					"GET",
-					"${pageContext.servletContext.contextPath}/api/wish-list/addProductToWishList?id_product="
-							+ id);
-	xhr.setRequestHeader('Content-type', 'application/json');
-	xhr.send(data);
-}
+    function cookies() {
+        cookie = document.cookie;
+        if (cookie != null) {
+            matchs = cookie.match("wishlist=([^;]*)");
+            if (matchs != null) {
+                arr_product = matchs[1].split('a');
+            }
+        }
+    }
+    function addToWishList(id) {
+        const data = null;
+        const xhr = new XMLHttpRequest();
+        xhr.addEventListener("readystatechange", function() {
+            if (this.readyState === this.DONE) {
+                if(this.responseText === "successful"){
+                    alert("You have successfully added!");
+                }else if(this.responseText === "failed"){
+                    alert("You can only add 1 time!");
+                }
+                cookies();
+                initData();
+            }
+        });
+        xhr
+            .open(
+                "GET",
+                "${pageContext.servletContext.contextPath}/api/wish-list/addProductToWishList?id_product="
+                + id);
+        xhr.setRequestHeader('Content-type', 'application/json');
+        xhr.send(data);
+    }
 
-function addProductToViewList(id) {
-	const data = null;
-	const xhr = new XMLHttpRequest();
-	xhr.addEventListener("readystatechange", function() {
-	});
-	xhr
-			.open(
-					"GET",
-					"${pageContext.servletContext.contextPath}/api/wish-list/addProductToViewList?id_product="
-							+ id);
-	xhr.setRequestHeader('Content-type', 'application/json');
-	xhr.send(data);
-}
+    function addProductToViewList(id) {
+        const data = null;
+        const xhr = new XMLHttpRequest();
+        xhr.addEventListener("readystatechange", function() {
+        });
+        xhr
+            .open(
+                "GET",
+                "${pageContext.servletContext.contextPath}/api/wish-list/addProductToViewList?id_product="
+                + id);
+        xhr.setRequestHeader('Content-type', 'application/json');
+        xhr.send(data);
+    }
 </script>
 </body>
 

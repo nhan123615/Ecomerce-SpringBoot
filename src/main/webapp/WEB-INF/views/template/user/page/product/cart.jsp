@@ -102,6 +102,7 @@
         }
 
         function getAllProducts(){
+
             const data = null;
             const xhr = new XMLHttpRequest();
             xhr.addEventListener("readystatechange", function () {

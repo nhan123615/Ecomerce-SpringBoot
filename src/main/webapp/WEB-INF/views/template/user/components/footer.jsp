@@ -1,4 +1,55 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
+
+<%--Quick view product--%>
+<c:forEach var="p" items="${allProducts}">
+
+	<div class="modal fade product-quickview-open" id="product-quickview-${p.id}" tabindex="-1" role="dialog" aria-labelledby="product-quickview-${p.id}" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content"><span class="modal-close" data-dismiss="modal"><i class="icon-cross2"></i></span>
+				<article class="ps-product--detail ps-product--fullwidth ps-product--quickview">
+					<div class="ps-product__header">
+						<div class="ps-product__thumbnail" data-vertical="false">
+							<div class="ps-product__images" data-arrow="true">
+								<div class="item"><img src="${pageContext.request.contextPath}/product/display/0&${p.id}" alt="" style="width: 404px;height: 404px"></div>
+								<div class="item"><img src="${pageContext.request.contextPath}/product/display/1&${p.id}" alt="" style="width: 404px;height: 404px"></div>
+								<div class="item"><img src="${pageContext.request.contextPath}/product/display/2&${p.id}" alt="" style="width: 404px;height: 404px"></div>
+								<div class="item"><img src="${pageContext.request.contextPath}/product/display/3&${p.id}" alt="" style="width: 404px;height: 404px"></div>
+							</div>
+						</div>
+						<div class="ps-product__info">
+							<h1>${p.productName}</h1>
+							<div class="ps-product__meta">
+								<p>Brand: <a href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.brand.name}</a></p>
+								<div class="ps-product__rating">
+									<select class="ps-rating" data-read-only="true">
+										<option value="1">1</option>
+										<option value="1">2</option>
+										<option value="1">3</option>
+										<option value="1">4</option>
+										<option value="2">5</option>
+									</select><span>(1 review)</span>
+								</div>
+							</div>
+							<h4 class="ps-product__price">$${p.price}</h4>
+							<div class="ps-product__desc">
+								<p>Sold By:<a href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"><strong> Angry Nerds</strong></a></p>
+								<div class="ps-list--dot">
+										${p.shortDescription}
+								</div>
+							</div>
+							<div class="ps-product__shopping"><a class="ps-btn ps-btn--black toCart"  value="${p.id}">Add to cart</a><a class="ps-btn buyNow" value="${p.id}">Buy Now</a>
+							</div>
+						</div>
+					</div>
+				</article>
+			</div>
+		</div>
+	</div>
+
+</c:forEach>
+<%--Quick view product--%>
 <hr>
 <!-- Messenger Plugin chat Code -->
 <div id="fb-root"></div>
@@ -397,6 +448,98 @@
 		console.log(data)
 		xhr.send(data);
 	}
+
+	//add to Cart
+	$(document).on("click",".toCart", function(event){
+		toCart(this.getAttribute('value'),event)
+	});
+
+	$(document).on("click",".buyNow", function(event){
+		toCart(this.getAttribute('value'),event)
+		window.setTimeout(function () {
+			window.location.href = "${pageContext.servletContext.contextPath}/cart";
+		},300)
+	});
+
+
+
+	function toCart(value,event){
+		if (checkStock(value,getCartProductQty(value))){
+			addItemToCart("${pageContext.servletContext.contextPath}/cart/get?productId="+value)
+		}else{
+			event.preventDefault()
+		}
+	}
+
+	function checkStock(productId,qty){
+		if (qty !=null){
+			for (let i = 0; i < products.length ; i++) {
+				if (products[i].id == productId){
+					if (qty < products[i].stockQuantity){
+						return true;
+					}else{
+						return false;
+					}
+				}
+			}
+		}else{
+			return true;
+		}
+
+		return false;
+	}
+
+	function getCartProductQty(productId){
+		if (cartItems.length>0){
+			for (let i = 0; i < cartItems.length; i++) {
+				if (cartItems[i].product.id == productId){
+					return cartItems[i].sellingQuantity
+				}
+			}
+		}
+		return null;
+	}
+
+	function addItemToCart(url){
+		const data = null;
+		const xhr = new XMLHttpRequest();
+		xhr.addEventListener("readystatechange", function () {
+			if (this.readyState === this.DONE) {
+				var json = JSON.parse(this.responseText);
+				console.log(json)
+				if (cartItems.length>0){
+					var count = 0;
+					for (let i = 0; i < cartItems.length; i++) {
+						//if duplicate sellingQuantity +=1
+						if (cartItems[i].product.id == json.product.id){
+							cartItems[i].sellingQuantity += 1
+							cartItems[i].totalPrice =  parseFloat(cartItems[i].totalPrice) *  parseInt(cartItems[i].sellingQuantity)
+							count += 1
+						}
+					}
+					if (count == 0){
+						cartItems.push(json)
+						countCartItems()
+					}
+					updateCartItemsCookie(cartItems)
+					showCartItems()
+					console.log(cartItems)
+				}else{
+					cartItems.push(json)
+					console.log(cartItems)
+					countCartItems()
+					showCartItems()
+					updateCartItemsCookie(cartItems)
+				}
+
+			}
+		});
+
+		xhr.open("GET", url);
+		xhr.setRequestHeader('Content-type', 'application/json');
+		xhr.send(data);
+	}
+
 	/* }) */
 </script>
 </html>

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <jsp:include page="../components/head.jsp"></jsp:include>
 
@@ -11,11 +12,11 @@
 <br>
 <br>
 <div id="homepage-1">
-    <%--                                            #//commit--%>
 
-    <div class="ps-home-banner ps-home-banner--1">
-        <div class="ps-container">
-            <div class="ps-section__left">
+
+    <div class="ps-home-banner ps-home-banner--1" >
+        <div class="ps-container" >
+            <div class="ps-section__left" >
                 <div class="ps-carousel--nav-inside owl-slider"
                      data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000"
                      data-owl-gap="0" data-owl-nav="true" data-owl-dots="true"
@@ -23,26 +24,28 @@
                      data-owl-item-md="1" data-owl-item-lg="1" data-owl-duration="1000"
                      data-owl-mousedrag="on" data-owl-animate-in="fadeIn"
                      data-owl-animate-out="fadeOut">
-                    <div class="ps-banner bg--cover"
-                         data-background="img/slider/home-1/slide-1.jpg">
-                        <a class="ps-banner__overlay" href="shop-default.html"></a>
-                    </div>
-                    <div class="ps-banner bg--cover"
-                         data-background="img/slider/home-1/slide-2.jpg">
-                        <a class="ps-banner__overlay" href="shop-default.html"></a>
-                    </div>
-                    <div class="ps-banner bg--cover"
-                         data-background="img/slider/home-1/slide-3.jpg">
-                        <a class="ps-banner__overlay" href="shop-default.html"></a>
-                    </div>
+                    <c:forEach items="${allProducts}" var="p">
+                        <div class="ps-banner bg--cover"
+                             data-background="${pageContext.request.contextPath}/product/display/0&${p.id}" style=" background-repeat:no-repeat; background-position: center center;" >
+                            <a class="ps-banner__overlay" href="shop-default.html"></a>
+                        </div>
+<%--                        <div class="ps-banner bg--cover"--%>
+<%--                        style="background-image: url(${pageContext.request.contextPath}/product/display/0&${p.id});background-repeat:no-repeat; background-position: center center;"--%>
+<%--                        >--%>
+
+<%--                        </div>--%>
+                    </c:forEach>
                 </div>
             </div>
-            <div class="ps-section__right">
-                <a class="ps-collection" href="#"><img
-                        src="img/slider/home-1/promotion-1.jpg" alt=""></a><a
-                    class="ps-collection" href="#"><img
-                    src="img/slider/home-1/promotion-2.jpg" alt=""></a>
-            </div>
+                <div class="ps-section__right" >
+                                    <a class="ps-collection" href="#">
+                                        <img src="img/slider/home-1/promotion-2.jpg" alt="">
+                                    </a>
+                                    <a class="ps-collection" href="#">
+                                        <img src="img/slider/home-1/promotion-2.jpg" alt="">
+                                    </a>
+                </div>
+
         </div>
     </div>
     <div class="ps-site-features">

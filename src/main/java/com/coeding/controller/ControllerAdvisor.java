@@ -2,6 +2,7 @@ package com.coeding.controller;
 
 import com.coeding.entity.Brand;
 import com.coeding.entity.Category;
+import com.coeding.entity.Product;
 import com.coeding.entity.Type;
 import com.coeding.service.BrandService;
 import com.coeding.service.CategoryService;
@@ -68,6 +69,11 @@ public class ControllerAdvisor {
             map.put(c.getName(),types);
         });
         return map;
+    }
+
+    @ModelAttribute("allProducts")
+    public List<Product> allProducts(){
+        return productService.findAll();
     }
 
 //commit
