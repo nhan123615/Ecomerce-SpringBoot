@@ -646,7 +646,7 @@
                 if (this.readyState === this.DONE) {
                     var json = JSON.parse(this.responseText);
                     // if (json.length>0){
-                    console.log(json)
+                    console.log("update shop by category"+json)
                     cartItems = json
                     // }
                 }
@@ -714,7 +714,6 @@ function addToWishList(id) {
 			}else if(this.responseText === "failed"){
 				alert("You can only add 1 time!");
 			}
-			cookies();
 			initData();
 		}
 	});
