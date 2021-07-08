@@ -21,9 +21,9 @@
 										<div class="ps-product__gallery" data-arrow="true">
 											<div class="item">
 												<a
-														href="${pageContext.request.contextPath}/product/display/0&${product.id}"><img
-														src="${pageContext.request.contextPath}/product/display/0&${product.id}"
-														alt="" style="width: 489px; height: 489px"></a>
+													href="${pageContext.request.contextPath}/product/display/0&${product.id}"><img
+													src="${pageContext.request.contextPath}/product/display/0&${product.id}"
+													alt="" style="width: 489px; height: 489px"></a>
 											</div>
 											<div class="item">
 												<a
@@ -50,8 +50,8 @@
 									data-sm="4" data-arrow="false">
 									<div class="item">
 										<img
-												src="${pageContext.request.contextPath}/product/display/0&${product.id}"
-												alt="" style="width: 60px; height: 60px">
+											src="${pageContext.request.contextPath}/product/display/0&${product.id}"
+											alt="" style="width: 60px; height: 60px">
 									</div>
 									<div class="item">
 										<img
@@ -131,16 +131,18 @@
 												<i class="fa fa-minus"></i>
 											</button>
 											<div>
-												<input class="form-control itemQty-${product.id}" type="text" placeholder="1" value="1" readonly >
+												<input class="form-control itemQty-${product.id}"
+													type="text" placeholder="1" value="1" readonly>
 											</div>
 										</div>
 									</figure>
-									<a class="ps-btn ps-btn--black toCart" value="${product.id}">Add to cart</a><a
-										class="ps-btn buyNow" value="${product.id}">Buy Now</a>
+									<a class="ps-btn ps-btn--black toCart" value="${product.id}">Add
+										to cart</a><a class="ps-btn buyNow" value="${product.id}">Buy
+										Now</a>
 									<div class="ps-product__actions">
-										<a onClick="addToWishList(${product.id})" data-toggle="tooltip"
-											data-placement="top" title="Add to Wishlist"><i
-											class="icon-heart"></i></a>
+										<a onClick="addToWishList(${product.id})"
+											data-toggle="tooltip" data-placement="top"
+											title="Add to Wishlist"><i class="icon-heart"></i></a>
 									</div>
 								</div>
 							</div>
@@ -406,7 +408,8 @@
 								<div class="ps-product">
 									<div class="ps-product__thumbnail">
 										<a
-											href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onClick="addProductToViewList(${p.id})"><img
+											href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"
+											onClick="addProductToViewList(${p.id})"><img
 											src="${pageContext.request.contextPath}/product/display/0&${p.id}"
 											alt="" width="203px" height="203px"></a>
 										<ul class="ps-product__actions">
@@ -465,7 +468,8 @@
 								<div class="ps-product">
 									<div class="ps-product__thumbnail">
 										<a
-											href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onClick="addProductToViewList(${p.id})"><img
+											href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"
+											onClick="addProductToViewList(${p.id})"><img
 											src="${pageContext.request.contextPath}/product/display/0&${p.id}"
 											alt="" width="203px" height="203px"></a>
 										<ul class="ps-product__actions">
@@ -511,76 +515,81 @@
 	</div>
 	<jsp:include page="../../components/footer.jsp"></jsp:include>
 	<script>
+	//@Author Lam Cong Hau
+	var countWish = document.querySelector('#countWish');
+	var cookie = document.cookie;
+	var arr_product;
+	window.onload = initData();
+	function initData() {
+		cookies();
+		if (arr_product != null) {
+			if (arr_product[0] != "") {
+				countWish.innerHTML = arr_product.length;
+			}else{
+				countWish.innerHTML = 0;
+			}
+		}
+	}
+	
+	function cookies() {
+		cookie = document.cookie;
+		if (cookie != null) {
+			matchs = cookie.match("wishlist=([^;]*)");
+			if (matchs != null) {
+				arr_product = matchs[1].split('a');
+			}
+		}
+	}
+	function addToWishList(id) {
+		const data = null;
+		const xhr = new XMLHttpRequest();
+		xhr.addEventListener("readystatechange", function() {
+			if (this.readyState === this.DONE) {
+				if(this.responseText === "successful"){
+					alert("You have successfully added!");
+				}else if(this.responseText === "failed"){
+					alert("You can only add 1 time!");
+				}
+				cookies();
+				initData();
+			}
+		});
+		xhr
+				.open(
+						"GET",
+						"${pageContext.servletContext.contextPath}/api/wish-list/addProductToWishList?id_product="
+								+ id);
+		xhr.setRequestHeader('Content-type', 'application/json');
+		xhr.send(data);
+	}
+	
+	function addProductToViewList(id) {
+		const data = null;
+		const xhr = new XMLHttpRequest();
+		xhr.addEventListener("readystatechange", function() {
+			if (this.readyState === this.DONE) {
+				
+			}
+		});
+		xhr
+				.open(
+						"GET",
+						"${pageContext.servletContext.contextPath}/api/wish-list/addProductToViewList?id_product="
+								+ id);
+		xhr.setRequestHeader('Content-type', 'application/json');
+		xhr.send(data);
+	}
+	</script>
+	<script>
 
 		$(document).ready(function(){
-			var countWish = document.querySelector('#countWish');
-			var cookie = document.cookie;
-			var arr_product;
 			var cartItems = [];
 			var products = [];
 			window.onload = initData();
 			function initData() {
-				cookies();
 				initCartItem();
 				getAllProducts();
-				if (arr_product != null) {
-					if (arr_product[0] != "") {
-						countWish.innerHTML = arr_product.length;
-					}else{
-						countWish.innerHTML = 0;
-					}
-				}
 			}
-
-			function cookies() {
-				cookie = document.cookie;
-				if (cookie != null) {
-					matchs = cookie.match("wishlist=([^;]*)");
-					if (matchs != null) {
-						arr_product = matchs[1].split('a');
-					}
-				}
-			}
-			function addToWishList(id) {
-				const data = null;
-				const xhr = new XMLHttpRequest();
-				xhr.addEventListener("readystatechange", function() {
-					if (this.readyState === this.DONE) {
-						if(this.responseText === "successful"){
-							alert("You have successfully added!");
-						}else if(this.responseText === "failed"){
-							alert("You can only add 1 time!");
-						}
-						cookies();
-						initData();
-					}
-				});
-				xhr
-						.open(
-								"GET",
-								"${pageContext.servletContext.contextPath}/api/wish-list/addProductToWishList?id_product="
-								+ id);
-				xhr.setRequestHeader('Content-type', 'application/json');
-				xhr.send(data);
-			}
-
-			function addProductToViewList(id) {
-				const data = null;
-				const xhr = new XMLHttpRequest();
-				xhr.addEventListener("readystatechange", function() {
-					if (this.readyState === this.DONE) {
-
-					}
-				});
-				xhr
-						.open(
-								"GET",
-								"${pageContext.servletContext.contextPath}/api/wish-list/addProductToViewList?id_product="
-								+ id);
-				xhr.setRequestHeader('Content-type', 'application/json');
-				xhr.send(data);
-			}
-
 
 //////////////////////////////////////////////////
 			//increase Qty
