@@ -2,6 +2,7 @@ package com.coeding.controller;
 
 import com.coeding.entity.Brand;
 import com.coeding.entity.Category;
+import com.coeding.entity.Product;
 import com.coeding.entity.Type;
 import com.coeding.service.BrandService;
 import com.coeding.service.CategoryService;
@@ -40,6 +41,13 @@ public class ControllerAdvisor {
         return  categoryService.findAll();
     }
 
+    @ModelAttribute("setCategories")
+    public Set<Category> setCategories(){
+        Set<Category> set = new HashSet<>();
+
+        categoryService.findAll().forEach(c->set.add(c));
+        return set;
+    }
 
     @ModelAttribute("brands")
     public List<Brand> brands(){
@@ -68,6 +76,13 @@ public class ControllerAdvisor {
             map.put(c.getName(),types);
         });
         return map;
+    }
+
+
+
+    @ModelAttribute("allProducts")
+    public List<Product> allProducts(){
+        return productService.findAll();
     }
 
 //commit

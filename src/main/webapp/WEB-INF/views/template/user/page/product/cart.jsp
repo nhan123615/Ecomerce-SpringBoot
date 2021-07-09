@@ -102,6 +102,7 @@
         }
 
         function getAllProducts(){
+
             const data = null;
             const xhr = new XMLHttpRequest();
             xhr.addEventListener("readystatechange", function () {
@@ -279,7 +280,7 @@
                 if (this.readyState === this.DONE) {
                     var json = JSON.parse(this.responseText);
                     // if (json.length>0){
-                    console.log(json)
+                    console.log("cart: "+json)
                     cartItems = json
                     // }
                 }

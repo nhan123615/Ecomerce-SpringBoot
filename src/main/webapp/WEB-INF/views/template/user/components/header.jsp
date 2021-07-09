@@ -256,7 +256,7 @@
             </div>
             <div class="header__right">
                 <div class="header__actions"><a class="header__extra" href="#"><i class="icon-chart-bars"></i><span><i>0</i></span></a><a class="header__extra" href="${pageContext.servletContext.contextPath}/product/wishlist"><i class="icon-heart"></i><span><i id="countWish">0</i></span></a>
-                    <div class="ps-cart--mini"><a class="header__extra" href="#"><i class="icon-bag2"></i><span><i id="cartItemCount-1">0</i></span></a>
+                    <div class="ps-cart--mini"><a class="header__extra" ><i class="icon-bag2"></i><span><i id="cartItemCount-1">0</i></span></a>
                         <div class="ps-cart__content"  id="cart-content-1" style="display: none" >
                             <div class="ps-cart__items">
                                 <div class="ps-product--cart-mobile">
@@ -292,7 +292,7 @@
                                     <ul class="ps-dropdown-menu" >
                                             <c:choose>
                                             <c:when test="${user.role  == 'ROLE_USER' }">
-                                                <li style="border-bottom: 1px solid black"><a href="${pageContext.servletContext.contextPath}/customer">Info</a></li>
+                                                <li style="border-bottom: 1px solid black"><a href="${pageContext.servletContext.contextPath}/customer/info">Info</a></li>
                                             </c:when>
                                             <c:otherwise>
                                                 <li style="border-bottom: 1px solid black"><a href="${pageContext.servletContext.contextPath}/admin">Admin Page</a></li>
@@ -520,7 +520,7 @@
         </a></div>
         <div class="navigation__right">
             <div class="header__actions">
-                <div class="ps-cart--mini appendFooter"><a class="header__extra" href="#"><i class="icon-bag2"></i><span><i id="cartItemCount-2">0</i></span></a>
+                <div class="ps-cart--mini appendFooter"><a class="header__extra" ><i class="icon-bag2"></i><span><i id="cartItemCount-2">0</i></span></a>
                     <div class="ps-cart__content"  id="cart-content-2" style="display: none">
                         <div class="ps-cart__items">
                             <div class="ps-product--cart-mobile">
@@ -548,7 +548,7 @@
                         <c:when test="${user !=null }">
                                                 <c:choose>
                                                     <c:when test="${user.role  == 'ROLE_USER' }">
-                                                        <div class="ps-block__right"><a href="${pageContext.servletContext.contextPath}/customer">${user.username}</a></div>
+                                                        <div class="ps-block__right"><a href="${pageContext.servletContext.contextPath}/customer/info">${user.username}</a></div>
 
                                                     </c:when>
                                                     <c:otherwise>

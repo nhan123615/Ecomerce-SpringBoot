@@ -40,11 +40,13 @@
 														<a
 															href="${pageContext.servletContext.contextPath}/product/detail?id=${product.id}"><img
 															src="${pageContext.request.contextPath}/product/display/0&${product.id}"
-															alt="" width="100px" height="100px"></a>
+															alt="" width="100px" height="100px"
+															onclick="addProductToViewList(${product.id})"></a>
 													</div>
 													<div class="ps-product__content">
 														<a
-															href="${pageContext.servletContext.contextPath}/product/detail?id=${product.id}">${product.productName }</a>
+															href="${pageContext.servletContext.contextPath}/product/detail?id=${product.id}"
+															onclick="addProductToViewList(${product.id})">${product.productName }</a>
 														<p>
 															Sold By:<strong> Angry-Nerds SHOP</strong>
 														</p>
@@ -55,8 +57,8 @@
 												}</td>
 											<td data-label="Status" class="text-center"><span
 												class="ps-tag ps-tag--in-stock ">${product.enabled }</span></td>
-											<td data-label="action"><a class="ps-btn" href="#">Add
-													to cart</a></td>
+											<td data-label="action"><a class="ps-btn"
+												onclick="addItemToCart(${product.id})">Add to cart</a></td>
 										</tr>
 									</c:forEach>
 								</c:when>
@@ -75,30 +77,6 @@
 	</div>
 	<jsp:include page="../../components/footer.jsp"></jsp:include>
 	<script>
-	var countWish = document.querySelector('#countWish');
-	var cookie = document.cookie;
-	var arr_product;
-	window.onload = initData();
-	function initData() {
-		cookies();
-		if (arr_product != null) {
-			if (arr_product[0] != "") {
-				countWish.innerHTML = arr_product.length;
-			}else{
-				countWish.innerHTML = 0;
-			}
-		}
-	}
-
-	function cookies() {
-		cookie = document.cookie;
-		if (cookie != null) {
-			matchs = cookie.match("wishlist=([^;]*)");
-			if (matchs != null) {
-				arr_product = matchs[1].split('a');
-			}
-		}
-	}
 	var tblProduct = document.querySelector('#wishProductTable');
 	function removeFromWishList(id) {
 		const data = null;
@@ -106,7 +84,6 @@
 		xhr.addEventListener("readystatechange", function() {
 			if (this.readyState === this.DONE) {
 				var json = JSON.parse(this.responseText);
-				cookies();
 				initData();
 				if (json.length > 0) {
 					tblProduct.innerHTML = getWishListTable(json);
@@ -123,6 +100,7 @@
 		xhr.setRequestHeader('Content-type', 'application/json');
 		xhr.send(data);
 	}
+	
 	function getWishListTable(json) {
 		var wishListTable = '';
 		for (let i = 0; i < json.length; i++) {
@@ -143,12 +121,100 @@
 					+ json[i].price + '</td>';
 			wishListTable += '<td data-label="Status" class="text-center"><span class="ps-tag ps-tag--in-stock ">'
 					+ json[i].enabled + '</span></td>';
-			wishListTable += '<td data-label="action"><a class="ps-btn" href="#">Add to cart</a></td></tr>';
+			wishListTable += '<td data-label="action"><a class="ps-btn" onclick="addItemToCart('+json[i].id+')">Add to cart</a></td></tr>';
 		}
 		return wishListTable;
 	}
 	function getNoWishProductFound() {
 		return '<tr><td colspan="5" class="text-center"><h1>No wishlist found !!!</h1></td></tr>';
 	}
+	
+	// Add to cart in wishlist page
+	 function checkStock(productId,qty){
+         if (qty !=null){
+             for (let i = 0; i < products.length ; i++) {
+                 if (products[i].id == productId){
+                     if (qty < products[i].stockQuantity){
+                         return true;
+                     }else{
+                         return false;
+                     }
+                 }
+             }
+         }else{
+             return true;
+         }
+
+         return false;
+     }
+
+     function getCartProductQty(productId){
+         if (cartItems.length>0){
+             for (let i = 0; i < cartItems.length; i++) {
+                 if (cartItems[i].product.id == productId){
+                     return cartItems[i].sellingQuantity
+                 }
+             }
+         }
+         return null;
+     }	
+     
+     function addItemToCart(id){
+		 if (checkStock(id,getCartProductQty(id))){
+			 const data = null;
+		        const xhr = new XMLHttpRequest();
+		        xhr.addEventListener("readystatechange", function () {
+		            if (this.readyState === this.DONE) {
+		                var json = JSON.parse(this.responseText);
+		                console.log("json addItem: "+json)
+		                if (cartItems.length>0){
+		                    var count = 0;
+		                    for (let i = 0; i < cartItems.length; i++) {
+		                        //if duplicate sellingQuantity +=1
+		                        if (cartItems[i].product.id == json.product.id){
+		                            cartItems[i].sellingQuantity += 1
+		                            cartItems[i].totalPrice =  parseFloat(cartItems[i].totalPrice) *  parseInt(cartItems[i].sellingQuantity)
+		                            count += 1
+		                        }
+		                    }
+		                    if (count == 0){
+		                        cartItems.push(json)
+		                        countCartItems()
+		                    }
+		                    updateCartItemsCookie(cartItems)
+		                    console.log(cartItems)
+		                }else{
+		                    cartItems.push(json)
+		                    console.log("cartItems: "+cartItems)
+		                    countCartItems()
+		                    updateCartItemsCookie(cartItems)
+		                }
+		                removeFromWishList(id)
+		            }
+		        });
+
+		        xhr.open("GET", "${pageContext.servletContext.contextPath}/cart/get?productId="
+						+ id);
+		        xhr.setRequestHeader('Content-type', 'application/json');
+		        xhr.send(data);
+	       }		
+    }
+     
+     function addProductToViewList(id) {
+			const data = null;
+			const xhr = new XMLHttpRequest();
+			xhr.addEventListener("readystatechange", function() {
+				if (this.readyState === this.DONE) {
+					
+				}
+			});
+			xhr
+					.open(
+							"GET",
+							"${pageContext.servletContext.contextPath}/api/wish-list/addProductToViewList?id_product="
+									+ id);
+			xhr.setRequestHeader('Content-type', 'application/json');
+			xhr.send(data);
+		}
 	</script>
 </body>

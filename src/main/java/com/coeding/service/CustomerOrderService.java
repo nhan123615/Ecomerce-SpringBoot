@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * author Nhanle
- * */
+ */
 @Service
 @Transactional
 public class CustomerOrderService implements DAO<CustomerOrder> {
@@ -43,8 +43,13 @@ public class CustomerOrderService implements DAO<CustomerOrder> {
         repo.deleteById(id);
     }
 
-    public CustomerOrder findOrderByCustomerId(Long customerId){
+    public CustomerOrder findOrderByCustomerId(Long customerId) {
         return repo.findTop1ByCustomerIdOrderByOrderDateDesc(customerId);
     }
+
+    public List<CustomerOrder> findAllOrderByCustomerId(Long customerId) {
+        return repo.findByCustomerId(customerId);
+    }
+
 }
 //commit
