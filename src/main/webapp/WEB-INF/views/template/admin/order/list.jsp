@@ -106,10 +106,10 @@
 									</thead>
 									<tbody>
 										<!-- SHOW DỮ LIỆU  -->
-										<%
+								<%-- 		<%
 										List<CustomerOrder> orderList = (List<CustomerOrder>) request.getAttribute("orderList");
 										System.out.print(orderList);
-										%>
+										%> --%>
 
 										<c:forEach items="${orderList}" var="o">
 											<tr>

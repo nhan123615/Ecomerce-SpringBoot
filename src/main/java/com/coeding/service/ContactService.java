@@ -1,11 +1,14 @@
 package com.coeding.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.coeding.entity.Contact;
 import com.coeding.repository.ContactRepository;
+import com.coeding.repository.DAO;
 
 
 /**
@@ -14,14 +17,30 @@ import com.coeding.repository.ContactRepository;
  */
 @Service
 @Transactional
-public class ContactService {
+public class ContactService implements DAO<Contact>{
 
-	private final ContactRepository repo;
+	private ContactRepository repo;
     @Autowired
     public ContactService(ContactRepository repo) {
     	this.repo = repo;
     }
+    @Override
     public void save(Contact vo) {
         repo.save(vo);
     }
+	@Override
+	public List<Contact> findAll() {
+		// TODO Auto-generated method stub
+		return repo.findAll();
+	}
+	@Override
+	public Contact findById(Long id) {
+		// TODO Auto-generated method stub
+		return repo.findById(id).get();
+	}
+	@Override
+	public void delete(Long id) {
+		repo.deleteById(id);
+		
+	}
 }
