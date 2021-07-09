@@ -7,5 +7,5 @@ import com.coeding.entity.CustomerOrder;
 
 @Repository
 public interface OrderRepository extends JpaRepository<CustomerOrder,Long>  {
-
+	
 }

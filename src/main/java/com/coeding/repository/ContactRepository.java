@@ -12,6 +12,6 @@ import antlr.collections.List;
  *
  */
 @Repository
-public interface ContactRepository extends JpaRepository<Contact,Integer> {
+public interface ContactRepository extends JpaRepository<Contact, Long> {
 	 List findByNameContaining(String a);
 }
