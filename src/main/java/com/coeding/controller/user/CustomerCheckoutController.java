@@ -36,7 +36,7 @@ public class CustomerCheckoutController {
 
     @GetMapping("/checkout")
     public String customerHomePage(Authentication authentication, Model model) {
-        String template = "template/user/customer/customer-info";
+        String template = "redirect:/customer/info";
         log.info("set template customer info");
         if (authentication != null) {
             UserDetail userDetails = (UserDetail) authentication.getPrincipal();

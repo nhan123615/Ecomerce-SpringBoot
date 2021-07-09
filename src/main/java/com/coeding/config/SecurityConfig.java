@@ -1,5 +1,7 @@
 package com.coeding.config;
 
+import com.coeding.entity.UserDetail;
+import com.coeding.service.CustomerService;
 import com.coeding.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -27,10 +29,11 @@ import java.util.stream.Collectors;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private UserService userService;
-
+    private CustomerService customerService;
     @Autowired
-    SecurityConfig(UserService userService) {
+    SecurityConfig(UserService userService,CustomerService customerService) {
         this.userService = userService;
+        this.customerService = customerService;
     }
 
     @Bean
@@ -70,10 +73,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     @Override
                     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
                         String role ="";
+                        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
                         authentication.getAuthorities().forEach(r->{
                             try {
                                 if (r.getAuthority().equals("ROLE_USER")){
-                                    response.sendRedirect(request.getContextPath()+"/customer");
+                                    Long inputCustomerInfo = customerService.countByUserId(userDetails.getUser().getId());
+                                    if (inputCustomerInfo >0){
+                                        response.sendRedirect(request.getContextPath()+"/customer");
+                                    }else {
+                                        response.sendRedirect(request.getContextPath()+"/customer/info");
+                                    }
                                 }else{
                                     response.sendRedirect(request.getContextPath()+"/admin");
                                 }

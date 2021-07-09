@@ -18,11 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/customer")
 public class CustomerHomeController {
 	
-	private CustomerService customerService;
-	
-	public CustomerHomeController(CustomerService customer) {
-		this.customerService = customer;
-	}
 
     @GetMapping
     public String customerHomePage(Authentication authentication, Model model){
@@ -32,11 +27,4 @@ public class CustomerHomeController {
         return  "template/user/customer/index";
     }
     
-    @PostMapping(value = "/submit")
-	public String save(Customer ctm,Model model,@RequestParam("id") Long id) {
-		Customer cus = customerService.findById(id);
-//		cus.setName(ctm.getName());
-    	customerService.save(ctm);
-		return "redirect:/";
-	}
 }

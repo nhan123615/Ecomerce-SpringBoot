@@ -292,7 +292,7 @@
                                     <ul class="ps-dropdown-menu" >
                                             <c:choose>
                                             <c:when test="${user.role  == 'ROLE_USER' }">
-                                                <li style="border-bottom: 1px solid black"><a href="${pageContext.servletContext.contextPath}/customer">Info</a></li>
+                                                <li style="border-bottom: 1px solid black"><a href="${pageContext.servletContext.contextPath}/customer/info">Info</a></li>
                                             </c:when>
                                             <c:otherwise>
                                                 <li style="border-bottom: 1px solid black"><a href="${pageContext.servletContext.contextPath}/admin">Admin Page</a></li>
@@ -548,7 +548,7 @@
                         <c:when test="${user !=null }">
                                                 <c:choose>
                                                     <c:when test="${user.role  == 'ROLE_USER' }">
-                                                        <div class="ps-block__right"><a href="${pageContext.servletContext.contextPath}/customer">${user.username}</a></div>
+                                                        <div class="ps-block__right"><a href="${pageContext.servletContext.contextPath}/customer/info">${user.username}</a></div>
 
                                                     </c:when>
                                                     <c:otherwise>

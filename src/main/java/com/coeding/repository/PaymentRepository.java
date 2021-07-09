@@ -12,6 +12,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PaymentRepository extends JpaRepository<Payment,Long>  {
     Payment findTop1ByCustomerOrderIdOrderByPaymentDateDesc(Long customerOrderId);
-
+    Long countByCustomerOrderId(Long customerOrderId);
 }
 //commit
