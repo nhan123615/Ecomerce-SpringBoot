@@ -136,8 +136,8 @@
 											</div>
 										</div>
 									</figure>
-									<a class="ps-btn ps-btn--black toCart" value="${product.id}">Add
-										to cart</a><a class="ps-btn buyNow" value="${product.id}">Buy
+									<a class="ps-btn ps-btn--black toCartDetail" value="${product.id}">Add
+										to cart</a><a class="ps-btn buyNowDetail" value="${product.id}">Buy
 										Now</a>
 									<div class="ps-product__actions">
 										<a onClick="addToWishList(${product.id})"
@@ -413,7 +413,7 @@
 											src="${pageContext.request.contextPath}/product/display/0&${p.id}"
 											alt="" width="203px" height="203px"></a>
 										<ul class="ps-product__actions">
-											<li><a href="#" data-toggle="tooltip"
+											<li class="toCart" value="${p.id}"><a data-toggle="tooltip"
 												data-placement="top" title="Add To Cart"><i
 													class="icon-bag2"></i></a></li>
 											<li><a href="#" data-placement="top" title="Quick View"
@@ -473,7 +473,7 @@
 											src="${pageContext.request.contextPath}/product/display/0&${p.id}"
 											alt="" width="203px" height="203px"></a>
 										<ul class="ps-product__actions">
-											<li><a href="#" data-toggle="tooltip"
+											<li class="toCart" value="${p.id}"><a  data-toggle="tooltip"
 												data-placement="top" title="Add To Cart"><i
 													class="icon-bag2"></i></a></li>
 											<li><a href="#" data-placement="top" title="Quick View"
@@ -601,7 +601,7 @@
 				// alert(invalidText)
 				if (checkStock(productId,qty.value)){
 					qty.value = Number(qty.value) + 1
-					updateCartItems(qty.value)
+					updateCartItems(new URLSearchParams(window.location.search).get("id"),qty.value)
 					if (invalidText!=null){
 						invalidText.remove()
 					}
@@ -639,7 +639,7 @@
                     event.preventDefault()
 
                 }
-				updateCartItems(qty.value)
+				updateCartItems(new URLSearchParams(window.location.search).get("id"),qty.value)
 			});
 
 			function getAllProducts(){
@@ -715,15 +715,20 @@
 				return cartItemContent;
 			}
 
-			function updateCartItems(Qty) {
-
-				cartItems[0].sellingQuantity = parseInt(Qty)
-				cartItems[0].totalPrice =  parseInt(cartItems[0].sellingQuantity) * parseFloat(cartItems[0].product.price)
+			function updateCartItems(productId,Qty) {
+				if (cartItems.length>0){
+					for (let i = 0; i < cartItems.length; i++) {
+						if (cartItems[i].product.id == productId){
+							cartItems[i].sellingQuantity = parseInt(Qty)
+							cartItems[i].totalPrice =  parseInt(cartItems[0].sellingQuantity) * parseFloat(cartItems[i].product.price)
+						}
+					}
+				}
 			}
 
 			//add to Cart
-			$(document).on("click",".toCart", function(event){
-				// alert(cartItems[0].sellingQuantity)
+			$(document).on("click",".toCartDetail", function(event){
+				alert(cartItems[0].sellingQuantity)
 				updateCartItemsCookie(cartItems)
 			});
 
@@ -852,7 +857,6 @@
 
 
 		})
-
 
 	</script>
 </body>

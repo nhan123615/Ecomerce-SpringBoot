@@ -448,18 +448,22 @@
 		console.log(data)
 		xhr.send(data);
 	}
+		 //add to Cart
+		 $(document).on("click",".toCart", function(event){
+			 initCartItem();
+			 toCart(this.getAttribute('value'),event)
+		 });
 
-	//add to Cart
-	$(document).on("click",".toCart", function(event){
-		toCart(this.getAttribute('value'),event)
-	});
+		 $(document).on("click",".buyNow", function(event){
+			 initCartItem();
+			 toCart(this.getAttribute('value'),event)
+			 window.setTimeout(function () {
+				 window.location.href = "${pageContext.servletContext.contextPath}/cart";
+			 },300)
+		 });
 
-	$(document).on("click",".buyNow", function(event){
-		toCart(this.getAttribute('value'),event)
-		window.setTimeout(function () {
-			window.location.href = "${pageContext.servletContext.contextPath}/cart";
-		},300)
-	});
+
+
 
 
 
