@@ -168,6 +168,72 @@
         </div>
 
 </c:forEach>
+    <div class="ps-page--product">
+        <div class="ps-container">
+            <div class="ps-section--default">
+                <div class="ps-section__header">
+                    <h3>Recent viewed</h3>
+                </div>
+                <div class="ps-section__content">
+                    <div class="ps-carousel--nav owl-slider" data-owl-auto="true"
+                         data-owl-loop="false" data-owl-speed="10000" data-owl-gap="30"
+                         data-owl-nav="true" data-owl-dots="true" data-owl-item="6"
+                         data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3"
+                         data-owl-item-lg="4" data-owl-item-xl="5" data-owl-duration="1000"
+                         data-owl-mousedrag="on">
+                        <c:if test="${viewlist != null}">
+                            <c:forEach var="p" items="${viewlist}">
+                                <div class="ps-product">
+                                    <div class="ps-product__thumbnail">
+                                        <a
+                                                href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"
+                                                onClick="addProductToViewList(${p.id})"><img
+                                                src="${pageContext.request.contextPath}/product/display/0&${p.id}"
+                                                alt="" width="203px" height="203px"></a>
+                                        <ul class="ps-product__actions">
+                                            <li class="toCart" value="${p.id}"><a data-toggle="tooltip"
+                                                                                  data-placement="top" title="Add To Cart"><i
+                                                    class="icon-bag2"></i></a></li>
+                                            <li><a href="#" data-placement="top" title="Quick View"
+                                                   data-toggle="modal" data-target="#product-quickview-${p.id}"><i
+                                                    class="icon-eye"></i></a></li>
+                                            <li><a onClick="addToWishList(${p.id})"
+                                                   data-toggle="tooltip" data-placement="top"
+                                                   title="Add to Wishlist"><i class="icon-heart"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="ps-product__container">
+                                        <div class="ps-product__content">
+                                            <a class="ps-product__title"
+                                               href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
+                                            <div class="ps-product__rating">
+                                                <select class="ps-rating" data-read-only="true">
+                                                    <option value="1">1</option>
+                                                    <option value="1">2</option>
+                                                    <option value="1">3</option>
+                                                    <option value="1">4</option>
+                                                    <option value="2">5</option>
+                                                </select><span>(1 review)</span>
+                                            </div>
+                                            <p class="ps-product__price">$${p.price}</p>
+                                        </div>
+                                        <div class="ps-product__content hover">
+                                            <a class="ps-product__title"
+                                               href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
+                                            <p class="ps-product__price">$${p.price}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </c:if>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
 
 
 </div>

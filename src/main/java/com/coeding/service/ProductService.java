@@ -61,9 +61,19 @@ public class ProductService implements DAO<Product> {
         return repo.findByTypeName(typeName);
     }
 
-    public List<Product> findByPriceBetween(Double min,Double max){
+    public List<Product> findByPriceBetween(Double min, Double max) {
         return repo.findByPriceBetween(min, max);
     }
+
+    public List<Product> findByProductName(String productName) {
+        return repo.findByProductNameContains(productName);
+    }
+
+
+    public List<Product> findByProductNameAndCategoryId(String productName,Long categoryId) {
+        return repo.findByProductNameContainsAndAndCategoryId(productName, categoryId);
+    }
+
 
 
 }

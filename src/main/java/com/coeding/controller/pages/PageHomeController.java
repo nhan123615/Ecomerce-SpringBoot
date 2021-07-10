@@ -3,6 +3,7 @@ package com.coeding.controller.pages;
 import com.coeding.entity.Product;
 import com.coeding.entity.User;
 import com.coeding.entity.UserDetail;
+import com.coeding.helper.CookieHelper;
 import com.coeding.service.CategoryService;
 import com.coeding.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,11 +34,12 @@ public class PageHomeController {
 
 	private CategoryService categoryService;
 	private ProductService productService;
-
+	private CookieHelper cookieHelper;
 	@Autowired
-	public PageHomeController(CategoryService categoryService, ProductService productService) {
+	public PageHomeController(CategoryService categoryService, ProductService productService,CookieHelper cookieHelper) {
 		this.categoryService = categoryService;
 		this.productService = productService;
+		this.cookieHelper = cookieHelper;
 	}
 
 	@GetMapping
@@ -57,7 +59,7 @@ public class PageHomeController {
 		});
 
 		model.addAttribute("productByCategory",productByCategory);
-
+		model.addAttribute("viewlist",cookieHelper.getCookieByName(request,productService,"viewlist"));
 		return "template/user/page/index";
 	}
 	

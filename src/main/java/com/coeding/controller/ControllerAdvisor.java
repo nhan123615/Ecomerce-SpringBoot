@@ -41,13 +41,6 @@ public class ControllerAdvisor {
         return  categoryService.findAll();
     }
 
-    @ModelAttribute("setCategories")
-    public Set<Category> setCategories(){
-        Set<Category> set = new HashSet<>();
-
-        categoryService.findAll().forEach(c->set.add(c));
-        return set;
-    }
 
     @ModelAttribute("brands")
     public List<Brand> brands(){

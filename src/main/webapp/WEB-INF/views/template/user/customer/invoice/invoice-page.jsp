@@ -36,20 +36,30 @@
                                         </tr>
                                         </thead>
                                         <tbody >
-                                            <c:forEach items="${customerOrders}" var="order">
-                                                <tr>
-                                                    <td><a href="${pageContext.servletContext.contextPath}/customer/order/detail?id=${order.id}">NO.0${order.id}</a></td>
-                                                <td>
-                                                <c:forEach items="${order.cartItems}" var="items" varStatus="loop">
-                                                        <a href="${pageContext.servletContext.contextPath}/product/detail?id=${items.product.id}">${items.product.productName}</a>
-                                                        <c:if test="${not loop.last}">,&nbsp</c:if>
-                                                </c:forEach>
-                                                </td>
-                                                    <td><fmt:formatDate value='${order.orderDate}'  type='date' pattern='dd/MM/yyyy'/></td>
-                                                    <td>$ <fmt:formatNumber type="number" value="${order.totalPrice}"/></td>
-                                                    <td>${order.status ? "Success" :"Cancel"}</td>
-                                                </tr>
-                                            </c:forEach>
+                                            <c:choose>
+                                                <c:when test="${not empty customerOrders}">
+                                                    <c:forEach items="${customerOrders}" var="order">
+                                                        <tr>
+                                                            <td><a href="${pageContext.servletContext.contextPath}/customer/order/detail?id=${order.id}">NO.0${order.id}</a></td>
+                                                            <td>
+                                                                <c:forEach items="${order.cartItems}" var="items" varStatus="loop">
+                                                                    <a href="${pageContext.servletContext.contextPath}/product/detail?id=${items.product.id}">${items.product.productName}</a>
+                                                                    <c:if test="${not loop.last}">,&nbsp</c:if>
+                                                                </c:forEach>
+                                                            </td>
+                                                            <td><fmt:formatDate value='${order.orderDate}'  type='date' pattern='dd/MM/yyyy'/></td>
+                                                            <td>$ <fmt:formatNumber type="number" value="${order.totalPrice}"/></td>
+                                                            <td>${order.status ? "Success" :"Cancel"}</td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <tr>
+                                                        <td colspan="5" class="text-center"><h1>No Orders To Show !</h1></td>
+                                                    </tr>
+                                                </c:otherwise>
+                                            </c:choose>
+
                                         </tbody>
                                     </table>
                                 </div>

@@ -10,7 +10,9 @@ import java.util.Set;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
+import com.coeding.entity.UserDetail;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +36,12 @@ public class PageWhishListController {
 	private ProductService productService;
 
 	@GetMapping("/wishlist")
-	public String cartPage(HttpServletRequest res, Model model) {
+	public String cartPage(Authentication authentication,HttpServletRequest res, Model model) {
+		if (authentication!=null){
+			UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+			model.addAttribute("user",userDetails.getUser());
+		}
+
 		log.info("wishlist: ");
 		Cookie[] cl = res.getCookies();
 		List<Product> whishlist = new ArrayList<Product>();
@@ -54,4 +61,7 @@ public class PageWhishListController {
 		model.addAttribute("wishlist", whishlist);
 		return "template/user/page/product/wishlist";
 	}
+
+
+
 }

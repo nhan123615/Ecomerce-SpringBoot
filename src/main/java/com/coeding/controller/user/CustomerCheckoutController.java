@@ -34,8 +34,21 @@ public class CustomerCheckoutController {
         this.customerOrderService = customerOrderService;
     }
 
+    @GetMapping("/checkout-page")
+    public String checkoutPage(Authentication authentication, Model model){
+        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+        model.addAttribute("user", userDetails.getUser());
+
+        List<CartItem> cartItems = cart.getCartItems();
+        if (cartItems.size()>0){
+            model.addAttribute("cartItems",cartItems);
+            model.addAttribute("total",cart.calCartTotal());
+        }
+        return "template/user/customer/product/checkout-page";
+    }
+
     @GetMapping("/checkout")
-    public String customerHomePage(Authentication authentication, Model model) {
+    public String customerCheckoutProductPage(Authentication authentication, Model model) {
         String template = "redirect:/customer/info";
         log.info("set template customer info");
         if (authentication != null) {
