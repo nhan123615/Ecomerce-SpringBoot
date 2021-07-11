@@ -52,7 +52,7 @@ public class PageHomeController {
 		}
 
 		Map<String,List<Product>> productByCategory = new HashMap<>();
-		List<Product> listProduct = productService.findAll();
+		List<Product> listProduct = productService.findAllIgnoreStatus();
 
 		categoryService.findAll().forEach(c->{
 			productByCategory.put(c.getName(),productByCategory(listProduct,c.getName()));

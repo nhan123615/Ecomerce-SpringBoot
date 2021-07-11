@@ -29,8 +29,9 @@
                                          data-owl-loop="false" data-owl-speed="10000" data-owl-gap="30"
                                          data-owl-nav="true" data-owl-dots="true" data-owl-item="4"
                                          data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3"
-                                         data-owl-item-lg="4" data-owl-item-xl="3" data-owl-duration="1000"
+                                         data-owl-item-lg="3" data-owl-item-xl="3" data-owl-duration="1000"
                                          data-owl-mousedrag="on" >
+                                          ${viewlist.size() ==1 ? "<div class='ps-product'></div>":""}
                                         <c:choose>
                                             <c:when test="${not empty viewlist}">
                                                 <c:forEach var="p" items="${viewlist}">
@@ -41,17 +42,27 @@
                                                                     onclick="addProductToViewList(${p.id})"><img
                                                                     src="${pageContext.request.contextPath}/product/display/0&${p.id}"
                                                                     alt="" width="203px" height="203px"></a>
-                                                            <ul class="ps-product__actions">
-                                                                <li class="toCart" value="${p.id}"><a data-toggle="tooltip"
-                                                                                                      data-placement="top" title="Add To Cart"><i
-                                                                        class="icon-bag2"></i></a></li>
-                                                                <li><a href="#" data-placement="top" title="Quick View"
-                                                                       data-toggle="modal" data-target="#product-quickview-${p.id}"><i
-                                                                        class="icon-eye"></i></a></li>
-                                                                <li><a onClick="addToWishList(${p.id})"
-                                                                       data-toggle="tooltip" data-placement="top"
-                                                                       title="Add to Wishlist"><i class="icon-heart"></i></a></li>
-                                                            </ul>
+                                                            <c:choose>
+                                                                <c:when test="${p.enabled}">
+                                                                    <ul class="ps-product__actions">
+                                                                        <li class="toCart" value="${p.id}"><a data-toggle="tooltip"
+                                                                                                              data-placement="top" title="Add To Cart"><i
+                                                                                class="icon-bag2"></i></a></li>
+                                                                        <li><a href="#" data-placement="top" title="Quick View"
+                                                                               data-toggle="modal" data-target="#product-quickview-${p.id}"><i
+                                                                                class="icon-eye"></i></a></li>
+                                                                        <li><a onClick="addToWishList(${p.id})"
+                                                                               data-toggle="tooltip" data-placement="top"
+                                                                               title="Add to Wishlist"><i class="icon-heart"></i></a></li>
+                                                                    </ul>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <div class="ps-product__badge out-stock">Out Of Stock</div>
+                                                                </c:otherwise>
+                                                            </c:choose>
+
+
+
                                                         </div>
                                                         <div class="ps-product__container">
                                                             <div class="ps-product__content">
@@ -168,7 +179,7 @@
         var products = [];
         window.onload = initData();
         function initData() {
-            initCartItem();
+            // initCartItem();
             getAllProducts();
         }
 

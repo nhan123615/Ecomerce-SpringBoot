@@ -122,17 +122,25 @@
                         <div class="ps-product">
                             <div class="ps-product__thumbnail">
                                 <a href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})"><img
-                                        src="${pageContext.request.contextPath}/product/display/0&${p.id}" alt="" style="width: 161px;height: 161px"></a>
-<%--                                <div class="ps-product__badge">-16%</div>--%>
-                                <ul class="ps-product__actions">
-                                    <li class="toCart" value="${p.id}"><a  data-toggle="tooltip" data-placement="top"
-                                           title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                    <li><a href="#" data-placement="top" title="Quick View"
-                                           data-toggle="modal" data-target="#product-quickview-${p.id}"><i
-                                            class="icon-eye"></i></a></li>
-                                    <li><a  data-toggle="tooltip" data-placement="top"
-                                           title="Add to Whishlist"  onclick="addToWishList(${p.id})"><i class="icon-heart"></i></a></li>
-                                </ul>
+                                        src="${pageContext.request.contextPath}/product/display/0&${p.id}" alt="" style="width: 218px;height: 218px"></a>
+
+                                <c:choose>
+                                    <c:when test="${p.enabled}">
+                                        <ul class="ps-product__actions">
+                                            <li class="toCart" value="${p.id}"><a  data-toggle="tooltip" data-placement="top"
+                                                                                   title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                            <li><a href="#" data-placement="top" title="Quick View"
+                                                   data-toggle="modal" data-target="#product-quickview-${p.id}"><i
+                                                    class="icon-eye"></i></a></li>
+                                            <li><a  data-toggle="tooltip" data-placement="top"
+                                                    title="Add to Whishlist"  onclick="addToWishList(${p.id})"><i class="icon-heart"></i></a></li>
+                                        </ul>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="ps-product__badge out-stock">Out Of Stock</div>
+                                    </c:otherwise>
+                                </c:choose>
+
                             </div>
                             <div class="ps-product__container">
                                 <a class="ps-product__vendor" href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})">Angry Nerds</a>
@@ -190,17 +198,24 @@
                                                 onclick="addProductToViewList(${p.id})"><img
                                                 src="${pageContext.request.contextPath}/product/display/0&${p.id}"
                                                 alt="" width="203px" height="203px"></a>
-                                        <ul class="ps-product__actions">
-                                            <li class="toCart" value="${p.id}"><a data-toggle="tooltip"
-                                                                                  data-placement="top" title="Add To Cart"><i
-                                                    class="icon-bag2"></i></a></li>
-                                            <li><a href="#" data-placement="top" title="Quick View"
-                                                   data-toggle="modal" data-target="#product-quickview-${p.id}"><i
-                                                    class="icon-eye"></i></a></li>
-                                            <li><a onClick="addToWishList(${p.id})"
-                                                   data-toggle="tooltip" data-placement="top"
-                                                   title="Add to Wishlist"><i class="icon-heart"></i></a></li>
-                                        </ul>
+                                        <c:choose>
+                                            <c:when test="${p.enabled}">
+                                                <ul class="ps-product__actions">
+                                                    <li class="toCart" value="${p.id}"><a data-toggle="tooltip"
+                                                                                          data-placement="top" title="Add To Cart"><i
+                                                            class="icon-bag2"></i></a></li>
+                                                    <li><a href="#" data-placement="top" title="Quick View"
+                                                           data-toggle="modal" data-target="#product-quickview-${p.id}"><i
+                                                            class="icon-eye"></i></a></li>
+                                                    <li><a onClick="addToWishList(${p.id})"
+                                                           data-toggle="tooltip" data-placement="top"
+                                                           title="Add to Wishlist"><i class="icon-heart"></i></a></li>
+                                                </ul>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <div class="ps-product__badge out-stock">Out Of Stock</div>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </div>
                                     <div class="ps-product__container">
                                         <div class="ps-product__content">

@@ -69,7 +69,7 @@
                 </form>
             </div>
             <div class="header__right">
-                <div class="header__actions"><a class="header__extra" href="#"><i class="icon-chart-bars"></i><span><i>0</i></span></a><a class="header__extra" href="${pageContext.servletContext.contextPath}/product/wishlist"><i class="icon-heart"></i><span><i id="countWish">0</i></span></a>
+                <div class="header__actions"><a class="header__extra" href="#" style="display: none"><i class="icon-chart-bars"></i><span><i>0</i></span></a><a class="header__extra" href="${pageContext.servletContext.contextPath}/product/wishlist"><i class="icon-heart"></i><span><i id="countWish">0</i></span></a>
                     <div class="ps-cart--mini"><a class="header__extra" ><i class="icon-bag2"></i><span><i id="cartItemCount-1">0</i></span></a>
                         <div class="ps-cart__content"  id="cart-content-1" style="display: none" >
                             <div class="ps-cart__items">
@@ -102,7 +102,7 @@
                                 <ul class="navigation__extra">
                                      <li>
                                         <div class="ps-dropdown language">
-                                            <div class="ps-block__right"><a href="#">${user.username}</a></div>
+                                            <div class="ps-block__right"><a >${user.username}</a></div>
                                     <ul class="ps-dropdown-menu" >
                                             <c:choose>
                                             <c:when test="${user.role  == 'ROLE_USER' }">

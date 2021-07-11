@@ -75,7 +75,7 @@ public class ControllerAdvisor {
 
     @ModelAttribute("allProducts")
     public List<Product> allProducts(){
-        return productService.findAll();
+        return productService.findAllIgnoreStatus();
     }
 
 //commit
