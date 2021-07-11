@@ -110,10 +110,10 @@
 			wishListTable += '<td data-label="Product">';
 			wishListTable += '<div class="ps-product--cart">';
 			wishListTable += '<div class="ps-product__thumbnail">';
-			wishListTable += '<a href="${pageContext.servletContext.contextPath}/product/detail?id='+json[i].id+'"><img src="${pageContext.request.contextPath}/product/display/0&'+json[i].id+'" alt="" width="100px" height="100px"></a>';
+			wishListTable += '<a href="${pageContext.servletContext.contextPath}/product/detail?id='+json[i].id+'" onclick="addProductToViewList('+json[i].id+')"><img src="${pageContext.request.contextPath}/product/display/0&'+json[i].id+'" alt="" width="100px" height="100px"></a>';
 			wishListTable += '</div>';
 			wishListTable += '<div class="ps-product__content">';
-			wishListTable += '<a href="${pageContext.servletContext.contextPath}/product/detail?id='+json[i].id+'">'+json[i].productName+'</a><p>Sold By:<strong> Angry-Nerds SHOP</strong></p>';
+			wishListTable += '<a href="${pageContext.servletContext.contextPath}/product/detail?id='+json[i].id+'" onclick="addProductToViewList('+json[i].id+')">'+json[i].productName+'</a><p>Sold By:<strong> Angry-Nerds SHOP</strong></p>';
 			wishListTable += '</div>';
 			wishListTable += '</div>';
 			wishListTable += '</td>';
@@ -130,7 +130,7 @@
 	}
 	
 	// Add to cart in wishlist page
-	 function checkStock(productId,qty){
+	 /* function checkStock(productId,qty){
          if (qty !=null){
              for (let i = 0; i < products.length ; i++) {
                  if (products[i].id == productId){
@@ -146,9 +146,9 @@
          }
 
          return false;
-     }
+     } */
 
-     function getCartProductQty(productId){
+     /* function getCartProductQty(productId){
          if (cartItems.length>0){
              for (let i = 0; i < cartItems.length; i++) {
                  if (cartItems[i].product.id == productId){
@@ -157,7 +157,7 @@
              }
          }
          return null;
-     }	
+     }	 */
      
      function addItemToCart(id){
 		 if (checkStock(id,getCartProductQty(id))){

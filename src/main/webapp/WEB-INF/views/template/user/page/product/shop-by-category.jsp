@@ -171,10 +171,10 @@
                                                             </ul>
                                                         </div>
                                                         <div class="ps-product__container">
-                                                            <div class="ps-product__content"><a class="ps-product__title" href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
+                                                            <div class="ps-product__content"><a class="ps-product__title" href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})">${p.productName}</a>
                                                                 <p class="ps-product__price">$${p.price}</p>
                                                             </div>
-                                                            <div class="ps-product__content hover"><a class="ps-product__title" href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
+                                                            <div class="ps-product__content hover"><a class="ps-product__title" href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})">${p.productName}</a>
                                                                 <p class="ps-product__price">$${p.price}</p>
                                                             </div>
                                                         </div>
@@ -522,10 +522,10 @@
                 productTable += "<li><a data-placement='top' title='Quick View' data-toggle='modal' data-target='#product-quickview-"+json[i].id+"'><i class='icon-eye'></i></a></li>";
                 productTable += "<li><a onclick='addToWishList("+json[i].id+")' data-toggle='tooltip' data-placement='top' title='Add to Wishlist'><i class='icon-heart'></i></a></li> </ul> </div>";
                 productTable += "<div class='ps-product__container'> <div class='ps-product__content'>";
-                productTable += "<a class='ps-product__title' href='${pageContext.servletContext.contextPath}/product/detail?id="+json[i].id+"'>"+json[i].productName+"</a>";
+                productTable += "<a class='ps-product__title' href='${pageContext.servletContext.contextPath}/product/detail?id="+json[i].id+"' onclick='addProductToViewList("+json[i].id+")'>"+json[i].productName+"</a>";
                 productTable +=  "<p class='ps-product__price'>$"+json[i].price+"</p> </div>";
                 productTable +=  "<div class='ps-product__content hover'>";
-                productTable += "<a class='ps-product__title' href='${pageContext.servletContext.contextPath}/product/detail?id="+json[i].id+"'>"+json[i].productName+"</a>";
+                productTable += "<a class='ps-product__title' href='${pageContext.servletContext.contextPath}/product/detail?id="+json[i].id+"' onclick='addProductToViewList("+json[i].id+")'>"+json[i].productName+"</a>";
                 productTable +=  "<p class='ps-product__price'>$"+json[i].price+"</p></div></div></div></div>";
             }
             return productTable;

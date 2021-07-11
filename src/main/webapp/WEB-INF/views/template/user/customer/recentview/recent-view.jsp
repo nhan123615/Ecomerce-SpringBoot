@@ -38,7 +38,7 @@
                                                         <div class="ps-product__thumbnail">
                                                             <a
                                                                     href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"
-                                                                    onClick="addProductToViewList(${p.id})"><img
+                                                                    onclick="addProductToViewList(${p.id})"><img
                                                                     src="${pageContext.request.contextPath}/product/display/0&${p.id}"
                                                                     alt="" width="203px" height="203px"></a>
                                                             <ul class="ps-product__actions">
@@ -56,7 +56,7 @@
                                                         <div class="ps-product__container">
                                                             <div class="ps-product__content">
                                                                 <a class="ps-product__title"
-                                                                   href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
+                                                                   href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})">${p.productName}</a>
                                                                 <div class="ps-product__rating">
                                                                     <select class="ps-rating" data-read-only="true">
                                                                         <option value="1">1</option>

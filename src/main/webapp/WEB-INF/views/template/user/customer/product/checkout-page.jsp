@@ -40,8 +40,8 @@
                                                     <tr>
                                                         <td data-label="Product">
                                                             <div class="ps-product--cart">
-                                                                <div class="ps-product__thumbnail"><a href="${pageContext.servletContext.contextPath}/product/detail?id=${item.product.id}"><img src="${pageContext.request.contextPath}/product/display/0&${item.product.id}" alt=""></a></div>
-                                                                <div class="ps-product__content"><a href="${pageContext.servletContext.contextPath}/product/detail?id=${item.product.id}">${item.product.productName}</a>
+                                                                <div class="ps-product__thumbnail"><a href="${pageContext.servletContext.contextPath}/product/detail?id=${item.product.id}" onclick="addProductToViewList(${item.product.id})"><img src="${pageContext.request.contextPath}/product/display/0&${item.product.id}" alt=""></a></div>
+                                                                <div class="ps-product__content"><a href="${pageContext.servletContext.contextPath}/product/detail?id=${item.product.id}" onclick="addProductToViewList(${item.product.id})">${item.product.productName}</a>
                                                                     <p>Sold By:<strong> ANGRY NERDS</strong></p>
                                                                 </div>
                                                             </div>
@@ -84,7 +84,7 @@
                                 <div class="ps-section__cart-actions" style="display: flex;justify-content: space-between;">
                                     <c:if test="${cartItems !=null}">
                                         <a class="ps-btn" href="${pageContext.servletContext.contextPath}/product"><i class="icon-arrow-left"></i> Back to Shop</a>
-                                        <a class="ps-btn ps-btn--outline hide-1" href="shop-default.html" style="display: none"><i class="icon-sync"></i> Update cart</a>
+                                        <a class="ps-btn ps-btn--outline hide-1" href="#" style="display: none"><i class="icon-sync"></i> Update cart</a>
                                         <a class="ps-btn hide-2 checkout" href="${pageContext.servletContext.contextPath}/customer/product/checkout" >Check out <i class="icon-arrow-right"></i></a>
                                     </c:if>
                                 </div>
@@ -328,8 +328,8 @@
                     table+="<tr>"
                     table +="<td data-label='Product'>"
                     table +="<div class='ps-product--cart'>"
-                    table +="<div class='ps-product__thumbnail'><a href='${pageContext.servletContext.contextPath}/product/detail?id="+item[i].product.id+"'><img src='${pageContext.request.contextPath}/product/display/0&"+item[i].product.id+"' alt=''></a></div>"
-                    table +="<div class='ps-product__content'><a href='${pageContext.servletContext.contextPath}/product/detail?id="+item[i].product.id+"'>"+item[i].product.productName+"</a>"
+                    table +="<div class='ps-product__thumbnail'><a href='${pageContext.servletContext.contextPath}/product/detail?id="+item[i].product.id+"' onclick='addProductToViewList("+item[i].product.id+")'><img src='${pageContext.request.contextPath}/product/display/0&"+item[i].product.id+"' alt=''></a></div>"
+                    table +="<div class='ps-product__content'><a href='${pageContext.servletContext.contextPath}/product/detail?id="+item[i].product.id+"' onclick='addProductToViewList("+item[i].product.id+")'>"+item[i].product.productName+"</a>"
                     table +="<p>Sold By:<strong> ANGRY NERDS</strong></p>"
                     table +="</div> </div> </td>"
                     table +="<td class='price text-center' data-label='Price'>$"+item[i].product.price+"</td>"
@@ -371,6 +371,21 @@
     })
 
 
+</script>
+<script>
+function addProductToViewList(id) {
+    const data = null;
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener("readystatechange", function() {
+    });
+    xhr
+        .open(
+            "GET",
+            "${pageContext.servletContext.contextPath}/api/wish-list/addProductToViewList?id_product="
+            + id);
+    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.send(data);
+}
 </script>
 </body>
 

@@ -74,7 +74,7 @@
 								<h1>${product.productName }</h1>
 								<div class="ps-product__meta">
 									<p>
-										Brand:<a href="shop-default.html">${product.brand.name }</a>
+										Brand:<a href="#">${product.brand.name }</a>
 									</p>
 									<div class="ps-product__rating">
 										<select class="ps-rating" data-read-only="true">
@@ -208,7 +208,7 @@
 											</div>
 										</div>
 										<div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12 ">
-											<form class="ps-form--review" action="index.html"
+											<form class="ps-form--review" action="#"
 												method="get">
 												<h4>Submit Your Review</h4>
 												<p>
@@ -409,7 +409,7 @@
 									<div class="ps-product__thumbnail">
 										<a
 											href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"
-											onClick="addProductToViewList(${p.id})"><img
+											onclick="addProductToViewList(${p.id})"><img
 											src="${pageContext.request.contextPath}/product/display/0&${p.id}"
 											alt="" width="203px" height="203px"></a>
 										<ul class="ps-product__actions">
@@ -419,7 +419,7 @@
 											<li><a href="#" data-placement="top" title="Quick View"
 												data-toggle="modal" data-target="#product-quickview-${p.id}"><i
 													class="icon-eye"></i></a></li>
-											<li><a onClick="addToWishList(${p.id})"
+											<li><a onclick="addToWishList(${p.id})"
 												data-toggle="tooltip" data-placement="top"
 												title="Add to Wishlist"><i class="icon-heart"></i></a></li>
 										</ul>
@@ -427,7 +427,7 @@
 									<div class="ps-product__container">
 										<div class="ps-product__content">
 											<a class="ps-product__title"
-												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
+												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})">${p.productName}</a>
 											<div class="ps-product__rating">
 												<select class="ps-rating" data-read-only="true">
 													<option value="1">1</option>
@@ -441,7 +441,7 @@
 										</div>
 										<div class="ps-product__content hover">
 											<a class="ps-product__title"
-												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
+												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})">${p.productName}</a>
 											<p class="ps-product__price">$${p.price}</p>
 										</div>
 									</div>
@@ -469,7 +469,7 @@
 									<div class="ps-product__thumbnail">
 										<a
 											href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"
-											onClick="addProductToViewList(${p.id})"><img
+											onclick="addProductToViewList(${p.id})"><img
 											src="${pageContext.request.contextPath}/product/display/0&${p.id}"
 											alt="" width="203px" height="203px"></a>
 										<ul class="ps-product__actions">
@@ -487,7 +487,7 @@
 									<div class="ps-product__container">
 										<div class="ps-product__content">
 											<a class="ps-product__title"
-												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
+												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})">${p.productName}</a>
 											<div class="ps-product__rating">
 												<select class="ps-rating" data-read-only="true">
 													<option value="1">1</option>
@@ -501,7 +501,7 @@
 										</div>
 										<div class="ps-product__content hover">
 											<a class="ps-product__title"
-												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
+												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})">${p.productName}</a>
 											<p class="ps-product__price">$${p.price}</p>
 										</div>
 									</div>

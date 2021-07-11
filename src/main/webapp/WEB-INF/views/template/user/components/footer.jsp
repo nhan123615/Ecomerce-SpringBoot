@@ -576,8 +576,8 @@
 			var table =""
 			for (let i = 0; i <json.length ; i++) {
 				table += "<div class='ps-product ps-product--wide ps-product--search-result'>"
-				table += "<div class='ps-product__thumbnail'><a href='${pageContext.servletContext.contextPath}/product/detail?id="+json[i].id+"'><img src='${pageContext.request.contextPath}/product/display/0&"+json[i].id+"' style='width:60px;height:60px'></a></div>"
-				table += "<div class='ps-product__content'><a class='ps-product__title' href='${pageContext.servletContext.contextPath}/product/detail?id="+json[i].id+"'>"+json[i].productName+"</a>"
+				table += "<div class='ps-product__thumbnail'><a href='${pageContext.servletContext.contextPath}/product/detail?id="+json[i].id+"' onclick='addProductToViewList("+json[i].id+")'><img src='${pageContext.request.contextPath}/product/display/0&"+json[i].id+"' style='width:60px;height:60px'></a></div>"
+				table += "<div class='ps-product__content'><a class='ps-product__title' href='${pageContext.servletContext.contextPath}/product/detail?id="+json[i].id+"' onclick='addProductToViewList("+json[i].id+")'>"+json[i].productName+"</a>"
 				table += "<p class='ps-product__price' style='font-size: 17px'>$"+json[i].price+"</p>"
 				table += "</div></div>"
 			}

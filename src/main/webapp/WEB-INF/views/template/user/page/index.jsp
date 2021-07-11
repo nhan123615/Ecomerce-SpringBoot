@@ -121,7 +121,7 @@
                         <c:forEach items="${productByCategory[c.name]}" var="p">
                         <div class="ps-product">
                             <div class="ps-product__thumbnail">
-                                <a href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"><img
+                                <a href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})"><img
                                         src="${pageContext.request.contextPath}/product/display/0&${p.id}" alt="" style="width: 161px;height: 161px"></a>
 <%--                                <div class="ps-product__badge">-16%</div>--%>
                                 <ul class="ps-product__actions">
@@ -135,9 +135,9 @@
                                 </ul>
                             </div>
                             <div class="ps-product__container">
-                                <a class="ps-product__vendor" href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">Angry Nerds</a>
+                                <a class="ps-product__vendor" href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})">Angry Nerds</a>
                                 <div class="ps-product__content">
-                                    <a class="ps-product__title" href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
+                                    <a class="ps-product__title" href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})">${p.productName}</a>
                                     <div class="ps-product__rating">
                                         <select class="ps-rating" data-read-only="true">
                                             <option value="1">1</option>
@@ -153,7 +153,7 @@
                                     </p>
                                 </div>
                                 <div class="ps-product__content hover">
-                                    <a class="ps-product__title" href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
+                                    <a class="ps-product__title" href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})">${p.productName}</a>
                                     <p class="ps-product__price sale">
                                         $<fmt:formatNumber type="number" value="${p.price}"/>
                                     </p>
@@ -187,7 +187,7 @@
                                     <div class="ps-product__thumbnail">
                                         <a
                                                 href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"
-                                                onClick="addProductToViewList(${p.id})"><img
+                                                onclick="addProductToViewList(${p.id})"><img
                                                 src="${pageContext.request.contextPath}/product/display/0&${p.id}"
                                                 alt="" width="203px" height="203px"></a>
                                         <ul class="ps-product__actions">
@@ -205,7 +205,7 @@
                                     <div class="ps-product__container">
                                         <div class="ps-product__content">
                                             <a class="ps-product__title"
-                                               href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
+                                               href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})">${p.productName}</a>
                                             <div class="ps-product__rating">
                                                 <select class="ps-rating" data-read-only="true">
                                                     <option value="1">1</option>
@@ -219,7 +219,7 @@
                                         </div>
                                         <div class="ps-product__content hover">
                                             <a class="ps-product__title"
-                                               href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
+                                               href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})">${p.productName}</a>
                                             <p class="ps-product__price">$${p.price}</p>
                                         </div>
                                     </div>
@@ -239,79 +239,6 @@
 </div>
 <jsp:include page="../components/footer.jsp"></jsp:include>
 <script>
-    var countWish = document.querySelector('#countWish');
-    var cookie = document.cookie;
-    var arr_product;
-    window.onload = initData();
-    function initData() {
-        cookies();
-        if (arr_product != null) {
-            if (arr_product[0] != "") {
-                countWish.innerHTML = arr_product.length;
-            } else {
-                countWish.innerHTML = 0;
-            }
-        }
-    }
-
-    function cookies() {
-        cookie = document.cookie;
-        if (cookie != null) {
-            matchs = cookie.match("wishlist=([^;]*)");
-            if (matchs != null) {
-                arr_product = matchs[1].split('a');
-            }
-        }
-    }
-    /* function addToWishList(id) {
-        const data = null;
-        const xhr = new XMLHttpRequest();
-        xhr.addEventListener("readystatechange", function() {
-            if (this.readyState === this.DONE) {
-                if (this.responseText === "successful") {
-                    alert("You have successfully added!");
-                } else if (this.responseText === "failed") {
-                    alert("You can only add 1 time!");
-                }
-                cookies();
-                initData();
-            }
-        });
-        xhr
-                .open(
-                        "GET",
-                        "${pageContext.servletContext.contextPath}/api/wish-list/addProductToWishList?id_product="
-									+ id);
-			xhr.setRequestHeader('Content-type', 'application/json');
-			xhr.send(data);
-		} */
-</script>
-<script>
-    // @author Lam Cong Hau
-    var countWish = document.querySelector('#countWish');
-    var cookie = document.cookie;
-    var arr_product;
-    window.onload = initData();
-    function initData() {
-        cookies();
-        if (arr_product != null) {
-            if (arr_product[0] != "") {
-                countWish.innerHTML = arr_product.length;
-            }else{
-                countWish.innerHTML = 0;
-            }
-        }
-    }
-
-    function cookies() {
-        cookie = document.cookie;
-        if (cookie != null) {
-            matchs = cookie.match("wishlist=([^;]*)");
-            if (matchs != null) {
-                arr_product = matchs[1].split('a');
-            }
-        }
-    }
     function addToWishList(id) {
         const data = null;
         const xhr = new XMLHttpRequest();
