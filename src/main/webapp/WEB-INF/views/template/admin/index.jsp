@@ -212,7 +212,7 @@
 			var salesChart = new Chart($salesChart, {
 				type : 'bar',
 				data : {
-					labels : [ 'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'AGU',
+					labels : [ 'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL',
 							'AGU', 'SEP', 'OCT', 'NOV', 'DEC' ],
 					datasets : [
 							{

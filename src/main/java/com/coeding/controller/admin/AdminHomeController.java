@@ -4,10 +4,12 @@ import com.coeding.entity.CustomerOrder;
 import com.coeding.entity.UserDetail;
 import com.coeding.service.ContactService;
 import com.coeding.service.OrderService;
+import com.coeding.service.PaymentService;
 import com.coeding.service.SubscriberService;
 import com.coeding.service.UserService;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +36,8 @@ public class AdminHomeController {
 	SubscriberService subService;
 	@Autowired
 	ContactService contactService;
+	@Autowired
+	PaymentService paymentService;
 
 	@GetMapping
 	public String customerHomePage(Authentication authentication, Model model) {
@@ -45,27 +49,30 @@ public class AdminHomeController {
 		model.addAttribute("numberSub", subService.findAll().size());
 		model.addAttribute("numberContact", contactService.findAll().size());
 
-		Date currentDate = new Date(System.currentTimeMillis());
-		HashMap<Integer, Double> salesByYear = orderService.statistiqueSalesByYear(currentDate.getYear() - 1);
-		List<Double> priceLastYear = new ArrayList<Double>();
-		for (Integer month : salesByYear.keySet()) {
-			priceLastYear.add(salesByYear.get(month));
-		}
+		Calendar c = Calendar.getInstance();
+		int month = c.get(Calendar.MONTH) + 1;
+		int year = c.get(Calendar.YEAR);
+
+		HashMap<Integer, Double> salesByYear = paymentService.statistiqueSalesByYear(year - 1);
+		List<Double> priceLastYear = paymentService.getListPricePayment(salesByYear);
 		model.addAttribute("priceLastYear", priceLastYear);
-		
-		List<Double> priceThisYear = new ArrayList<Double>();
-		salesByYear = orderService.statistiqueSalesByYear(currentDate.getYear());
-		double totalSales = 0.0;
-		for (Integer month : salesByYear.keySet()) {
-			if (month == (currentDate.getMonth()+1)) {
-				double comparerByMonth = ((salesByYear.get(month) - salesByYear.get(month - 1))/salesByYear.get(month - 1)) * 100;
-				model.addAttribute("comparerByMonth", Math.round(comparerByMonth));
-			}
-			totalSales += salesByYear.get(month);
-			priceThisYear.add(salesByYear.get(month));
-		}
+
+		salesByYear = paymentService.statistiqueSalesByYear(year);
+		List<Double> priceThisYear = paymentService.getListPricePayment(salesByYear);
 		model.addAttribute("priceThisYear", priceThisYear);
+		double totalSales = paymentService.totalSales(salesByYear);
 		model.addAttribute("totalSales", totalSales);
+		for (Integer m : salesByYear.keySet()) {
+			if (m == month) {
+				if (salesByYear.get(m - 1) > 0) {
+					double comparerByMonth = ((salesByYear.get(m) - salesByYear.get(m - 1)) / salesByYear.get(m - 1))
+							* 100;
+					model.addAttribute("comparerByMonth", Math.round(comparerByMonth));
+				}else {
+					model.addAttribute("comparerByMonth", 0);
+				}
+			}
+		}
 		return "template/admin/index";
 	}
 }
