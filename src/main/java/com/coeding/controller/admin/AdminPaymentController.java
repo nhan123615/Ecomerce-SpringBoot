@@ -41,8 +41,7 @@ public class AdminPaymentController {
 
 	@RequestMapping(value = "/payment/detail", method = RequestMethod.GET)
 	public String DetailPaymentController(@RequestParam("id") Long id, Authentication authentication,PaymentDetail pmt ,Model model) {
-		model.addAttribute("id" , id);
-		model.addAttribute("paymentDetail" , paymentDetail.findAll());
+		model.addAttribute("paymentDetail" , payment.findById(id));
 		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
 		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/payment/detail";
