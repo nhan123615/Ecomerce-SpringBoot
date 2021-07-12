@@ -71,9 +71,11 @@ public class ControllerAdvisor {
         return map;
     }
 
+
+
     @ModelAttribute("allProducts")
     public List<Product> allProducts(){
-        return productService.findAll();
+        return productService.findAllIgnoreStatus();
     }
 
 //commit

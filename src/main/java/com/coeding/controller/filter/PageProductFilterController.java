@@ -147,6 +147,16 @@ public class PageProductFilterController {
         return products;
     }
 
+    @GetMapping("/search")
+    public List<Product> searchFilter(
+            @RequestParam(name = "categoryId",required = false) Long categoryId,
+            @RequestParam(name = "productName",required = false)String productName){
+            if (categoryId !=null){
+                return productService.findByProductNameAndCategoryId(productName, categoryId);
+            }
+            return productService.findByProductName(productName);
+    }
+
 
 
     @GetMapping("/brand")

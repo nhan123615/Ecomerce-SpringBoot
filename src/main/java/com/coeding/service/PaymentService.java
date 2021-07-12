@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * author Nhanle
- * */
+ */
 @Service
 @Transactional
 public class PaymentService implements DAO<Payment> {
@@ -41,8 +41,12 @@ public class PaymentService implements DAO<Payment> {
         repo.deleteById(id);
     }
 
-    public Payment findPaymentByCustomerOrderId(Long customerOrderId){
+    public Payment findPaymentByCustomerOrderId(Long customerOrderId) {
         return repo.findTop1ByCustomerOrderIdOrderByPaymentDateDesc(customerOrderId);
+    }
+
+    public Long countByCustomerOrderId(Long customerOrderId) {
+        return repo.countByCustomerOrderId(customerOrderId);
     }
 
 }

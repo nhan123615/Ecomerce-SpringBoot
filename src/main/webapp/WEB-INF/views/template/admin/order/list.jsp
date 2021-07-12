@@ -122,7 +122,72 @@
 								</div>
 								<!-- /.card-body -->
 							</div>
-							<!-- /.card -->
+							<!-- List Content -->
+							<form action="" method="GET" class="table-responsive"
+								id="form-table">
+								<table
+									class="table table-bordered table-hover text-nowrap btn-table mb-0">
+									<thead>
+										<tr>
+											<th class="text-center">ID</th>
+											<th class="text-center">Delivery Custom Address</th>
+											<th class="text-center">Delivery Custom Name</th>
+											<th class="text-center">Delivery Custom Phone</th>
+											<th class="text-center">Order Date</th>
+											<th class="text-center">Status</th>
+											<th class="text-center">Total Price</th>
+											<th class="text-center">Custom Id</th>
+											<th class="text-center">Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										<!-- SHOW DỮ LIỆU  -->
+								<%-- 		<%
+										List<CustomerOrder> orderList = (List<CustomerOrder>) request.getAttribute("orderList");
+										System.out.print(orderList);
+										%> --%>
+
+										<c:forEach items="${orderList}" var="o">
+											<tr>
+												<td class="text-center">${o.id}</td>
+												<td class="text-center">${o.deliverCustomerAddress}</td>
+												<td class="text-center">${o.deliverCustomerName}</td>
+												<td class="text-center">${o.deliverCustomerPhone}</td>
+												<td class="text-center">${o.orderDate}</td>
+												<td class="text-center position-relative"><c:choose>
+														<c:when test="${o.status == true}">
+															<a href=""
+																class="my-btn-state rounded-circle btn btn-sm btn-success">
+																<i class="fas fa-check"></i>
+															</a>
+														</c:when>
+
+														<c:otherwise>
+															<a href=""
+																class="my-btn-state rounded-circle btn btn-sm btn-danger">
+																<i class="fas fa-minus"></i>
+															</a>
+														</c:otherwise>
+													</c:choose></td>
+												<td class="text-center">${o.totalPrice}</td>
+												<td class="text-center">${o.customer.id}</td>
+												<td class="text-center"><a
+													href="${pageContext.servletContext.contextPath}/admin/order/detail?id=${o.id}"
+													class="rounded-circle btn btn-sm btn-primary"
+													title="Change Password"> <i class="far fa-eye"></i>
+												</a> <a href="#" id="${u.id}"
+													class="rounded-circle btn btn-sm btn-info" title="Edit">
+														<i class="fas fa-pencil-alt"></i>
+												</a></td>
+											</tr>
+										</c:forEach>
+
+
+
+										<!-- END SHOW DỮ LIỆU  -->
+									</tbody>
+								</table>
+							</form>
 						</div>
 						<!-- /.col -->
 					</div>

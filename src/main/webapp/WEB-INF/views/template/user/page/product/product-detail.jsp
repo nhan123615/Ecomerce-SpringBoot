@@ -16,8 +16,12 @@
 					<div class="ps-product--detail ps-product--fullwidth">
 						<div class="ps-product__header">
 							<div class="ps-product__thumbnail" data-vertical="true">
+
 								<figure>
 									<div class="ps-wrapper">
+										<c:if test="${product.enabled == false}">
+											<div class="ps-product__badge out-stock" style="background-color: #000;color: #fff;font-size: 14px;font-weight: 600;line-height: 20px;padding: 5px 10px;border-radius: 4px;">Out Of Stock</div>
+										</c:if>
 										<div class="ps-product__gallery" data-arrow="true">
 											<div class="item">
 												<a
@@ -74,7 +78,7 @@
 								<h1>${product.productName }</h1>
 								<div class="ps-product__meta">
 									<p>
-										Brand:<a href="shop-default.html">${product.brand.name }</a>
+										Brand:<a href="#">${product.brand.name }</a>
 									</p>
 									<div class="ps-product__rating">
 										<select class="ps-rating" data-read-only="true">
@@ -119,32 +123,34 @@
 										</c:if>
 									</figure>
 								</div>
-								<div class="ps-product__shopping">
-									<figure>
-										<span style="color: red" class="invalid-${product.id}"></span>
-										<figcaption>Quantity</figcaption>
-										<div class="form-group--number">
-											<button class="up" value="${product.id}">
-												<i class="fa fa-plus"></i>
-											</button>
-											<button class="down" value="${product.id}">
-												<i class="fa fa-minus"></i>
-											</button>
-											<div>
-												<input class="form-control itemQty-${product.id}"
-													type="text" placeholder="1" value="1" readonly>
+								<c:if test="${product.enabled}">
+									<div class="ps-product__shopping">
+										<figure>
+											<span style="color: red" class="invalid-${product.id}"></span>
+											<figcaption>Quantity</figcaption>
+											<div class="form-group--number">
+												<button class="up" value="${product.id}">
+													<i class="fa fa-plus"></i>
+												</button>
+												<button class="down" value="${product.id}">
+													<i class="fa fa-minus"></i>
+												</button>
+												<div>
+													<input class="form-control itemQty-${product.id}"
+														   type="text" placeholder="1" value="1" readonly>
+												</div>
 											</div>
-										</div>
-									</figure>
-									<a class="ps-btn ps-btn--black toCartDetail" value="${product.id}">Add
-										to cart</a><a class="ps-btn buyNowDetail" value="${product.id}">Buy
+										</figure>
+										<a class="ps-btn ps-btn--black toCartDetail" value="${product.id}">Add
+											to cart</a><a class="ps-btn buyNowDetail" value="${product.id}">Buy
 										Now</a>
-									<div class="ps-product__actions">
-										<a onClick="addToWishList(${product.id})"
-											data-toggle="tooltip" data-placement="top"
-											title="Add to Wishlist"><i class="icon-heart"></i></a>
+										<div class="ps-product__actions">
+											<a onClick="addToWishList(${product.id})"
+											   data-toggle="tooltip" data-placement="top"
+											   title="Add to Wishlist"><i class="icon-heart"></i></a>
+										</div>
 									</div>
-								</div>
+								</c:if>
 							</div>
 						</div>
 						<div class="ps-product__content ps-tab-root">
@@ -208,7 +214,7 @@
 											</div>
 										</div>
 										<div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12 ">
-											<form class="ps-form--review" action="index.html"
+											<form class="ps-form--review" action="#"
 												method="get">
 												<h4>Submit Your Review</h4>
 												<p>
@@ -394,7 +400,7 @@
 
 			<div class="ps-section--default">
 				<div class="ps-section__header">
-					<h3>Products that you have viewed</h3>
+					<h3>Recent viewed</h3>
 				</div>
 				<div class="ps-section__content">
 					<div class="ps-carousel--nav owl-slider" data-owl-auto="true"
@@ -409,25 +415,34 @@
 									<div class="ps-product__thumbnail">
 										<a
 											href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"
-											onClick="addProductToViewList(${p.id})"><img
+											onclick="addProductToViewList(${p.id})"><img
 											src="${pageContext.request.contextPath}/product/display/0&${p.id}"
 											alt="" width="203px" height="203px"></a>
-										<ul class="ps-product__actions">
-											<li class="toCart" value="${p.id}"><a data-toggle="tooltip"
-												data-placement="top" title="Add To Cart"><i
-													class="icon-bag2"></i></a></li>
-											<li><a href="#" data-placement="top" title="Quick View"
-												data-toggle="modal" data-target="#product-quickview-${p.id}"><i
-													class="icon-eye"></i></a></li>
-											<li><a onClick="addToWishList(${p.id})"
-												data-toggle="tooltip" data-placement="top"
-												title="Add to Wishlist"><i class="icon-heart"></i></a></li>
-										</ul>
+										<c:choose>
+										<c:when test="${p.enabled}">
+											<ul class="ps-product__actions">
+												<li class="toCart" value="${p.id}"><a data-toggle="tooltip"
+																					  data-placement="top" title="Add To Cart"><i
+														class="icon-bag2"></i></a></li>
+												<li><a href="#" data-placement="top" title="Quick View"
+													   data-toggle="modal" data-target="#product-quickview-${p.id}"><i
+														class="icon-eye"></i></a></li>
+												<li><a onclick="addToWishList(${p.id})"
+													   data-toggle="tooltip" data-placement="top"
+													   title="Add to Wishlist"><i class="icon-heart"></i></a></li>
+											</ul>
+										</c:when>
+										<c:otherwise>
+											<div class="ps-product__badge out-stock">Out Of Stock</div>
+										</c:otherwise>
+										</c:choose>
+
+
 									</div>
 									<div class="ps-product__container">
 										<div class="ps-product__content">
 											<a class="ps-product__title"
-												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
+												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})">${p.productName}</a>
 											<div class="ps-product__rating">
 												<select class="ps-rating" data-read-only="true">
 													<option value="1">1</option>
@@ -441,7 +456,7 @@
 										</div>
 										<div class="ps-product__content hover">
 											<a class="ps-product__title"
-												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
+												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})">${p.productName}</a>
 											<p class="ps-product__price">$${p.price}</p>
 										</div>
 									</div>
@@ -469,7 +484,7 @@
 									<div class="ps-product__thumbnail">
 										<a
 											href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"
-											onClick="addProductToViewList(${p.id})"><img
+											onclick="addProductToViewList(${p.id})"><img
 											src="${pageContext.request.contextPath}/product/display/0&${p.id}"
 											alt="" width="203px" height="203px"></a>
 										<ul class="ps-product__actions">
@@ -487,7 +502,7 @@
 									<div class="ps-product__container">
 										<div class="ps-product__content">
 											<a class="ps-product__title"
-												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
+												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})">${p.productName}</a>
 											<div class="ps-product__rating">
 												<select class="ps-rating" data-read-only="true">
 													<option value="1">1</option>
@@ -501,7 +516,7 @@
 										</div>
 										<div class="ps-product__content hover">
 											<a class="ps-product__title"
-												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
+												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})">${p.productName}</a>
 											<p class="ps-product__price">$${p.price}</p>
 										</div>
 									</div>
@@ -854,8 +869,6 @@
 				countCartItems();
 				showCartItems();
 			}
-
-
 		})
 
 	</script>
