@@ -1,5 +1,6 @@
 package com.coeding.service;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -40,7 +41,7 @@ public class OrderService implements DAO<CustomerOrder> {
 
 	}
 
-	public int numberNewOrder() {
+	public int numberNewOrder1() {
 		Date currentDate = new Date(System.currentTimeMillis());
 		List<CustomerOrder> list = repo.findAll();
 		int size = 0;
@@ -53,7 +54,16 @@ public class OrderService implements DAO<CustomerOrder> {
 		}
 		return size;
 	}
-
+	public int numberNewOrder() {
+		Calendar c = Calendar.getInstance();
+		int day = c.get(Calendar.DAY_OF_MONTH);
+		int month = c.get(Calendar.MONTH)+1;
+		int year = c.get(Calendar.YEAR);
+		int number = 0;
+		number = repo.countOrderToDay(day, month, year);
+		return number;
+	}
+	
 	public HashMap<Integer, Double> statistiqueSalesByYear(int year) {
 		double totalPrice1 = 0.0;
 		double totalPrice2 = 0.0;
