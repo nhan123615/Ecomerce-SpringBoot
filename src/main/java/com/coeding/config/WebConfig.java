@@ -17,6 +17,7 @@ public class WebConfig extends WebMvcConfigurerAdapter
 
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/access-denied").setViewName("template/user/404/page-not-found");
+        registry.addViewController("/internal-error").setViewName("template/user/404/internal-error");
     }
 
 //config not found page
@@ -27,6 +28,10 @@ public class WebConfig extends WebMvcConfigurerAdapter
                     "/access-denied"));
             container.addErrorPages(new ErrorPage(HttpStatus.METHOD_NOT_ALLOWED,
                     "/access-denied"));
+            container.addErrorPages(new ErrorPage(HttpStatus.BAD_REQUEST,
+                    "/access-denied"));
+            container.addErrorPages(new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR,
+                    "/internal-error"));
         };
     }
 

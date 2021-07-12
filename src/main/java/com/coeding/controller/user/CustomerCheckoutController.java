@@ -62,6 +62,7 @@ public class CustomerCheckoutController {
                 customer = customerService.findByUserId(userDetails.getUser().getId());
                 if (customer.getAddress() != null && customer.getFirstName() != null && customer.getLastName() != null && customer.getPhone() != null) {
                     log.info("customer already input all field of info");
+                    List<CartItem> listItem = new ArrayList<>(cart.getCartItems());
                     model.addAttribute("customerOrder", new CustomerOrder(
                             customer.getFirstName() + " " + customer.getLastName(),
                             customer.getAddress(),
@@ -69,7 +70,7 @@ public class CustomerCheckoutController {
                             cart.calCartTotal(),
                             false,
                             customer,
-                            cart.getCartItems()
+                            listItem
                     ));
                     log.info("set template checkout");
                     template = "template/user/customer/product/checkout";
@@ -95,11 +96,13 @@ public class CustomerCheckoutController {
                 listItem
         );
 
+        if ( customerOrderService.saveVO(customerOrder) !=null){
+            cart.clearCartItem();
+            model.addAttribute("customerOrder",customerOrder);
+            log.info("return to payment page");
+            return "template/user/customer/payment/paypal/payment-paypal";
+        }
 
-        customerOrderService.save(customerOrder);
-        cart.clearCartItem();
-        model.addAttribute("customerOrder",customerOrder);
-        log.info("return to payment page");
-        return "template/user/customer/payment/paypal/payment-paypal";
+        return "redirect:/customer/product/checkout-page";
     }
 }

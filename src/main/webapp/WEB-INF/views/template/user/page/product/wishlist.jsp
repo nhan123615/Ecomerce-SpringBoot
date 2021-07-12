@@ -56,7 +56,7 @@
 											<td class="price text-center" data-label="Price">$${product.price
 												}</td>
 											<td data-label="Status" class="text-center"><span
-												class="ps-tag ps-tag--in-stock ">${product.enabled }</span></td>
+												class="ps-tag ps-tag--in-stock ">${product.enabled ?"In-Stock":"" }</span></td>
 											<td data-label="action"><a class="ps-btn"
 												onclick="addItemToCart(${product.id})">Add to cart</a></td>
 										</tr>

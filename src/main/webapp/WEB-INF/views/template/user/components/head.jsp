@@ -25,5 +25,7 @@
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/plugins/select2/dist/css/select2.min.css">
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/style.css">
     <link rel="shortcut icon" type="image/png" href="${pageContext.servletContext.contextPath}/img/favicon.png">
+<%--    <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/pagination.css">--%>
+    <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/PagingStyle.css">
 
 </head>

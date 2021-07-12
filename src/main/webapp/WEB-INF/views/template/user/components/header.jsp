@@ -102,7 +102,17 @@
                                 <ul class="navigation__extra">
                                      <li>
                                         <div class="ps-dropdown language">
-                                            <div class="ps-block__right"><a >${user.username}</a></div>
+                                            <div class="ps-block__right"><a
+                                    <c:choose>
+                                    <c:when test="${user.role  == 'ROLE_USER' }">
+                                     href="${pageContext.servletContext.contextPath}/customer"
+                                    </c:when>
+                                    <c:otherwise>
+                                    href="${pageContext.servletContext.contextPath}/admin"
+                                    </c:otherwise>
+                                    </c:choose>
+
+                                            >${user.username}</a></div>
                                     <ul class="ps-dropdown-menu" >
                                             <c:choose>
                                             <c:when test="${user.role  == 'ROLE_USER' }">
