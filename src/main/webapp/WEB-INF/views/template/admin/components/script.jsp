@@ -65,11 +65,6 @@
 	src="${pageContext.servletContext.contextPath}/dist/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="${pageContext.servletContext.contextPath}/dist/js/demo.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<%-- <script
-	src="${pageContext.servletContext.contextPath}/dist/js/pages/dashboard.js"></script> --%>
-<%-- <script
-	src="${pageContext.servletContext.contextPath}/dist/js/pages/dashboard3.js"></script> --%>
 <script>
 	function addClass(id1, id2, id3) {
 		$(id1).addClass('nav-item menu-is-opening menu-open');
