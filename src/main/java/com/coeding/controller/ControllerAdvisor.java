@@ -78,6 +78,13 @@ public class ControllerAdvisor {
         return productService.findAllIgnoreStatus();
     }
 
+
+    @ModelAttribute("topProducts")
+    public List<Product> topProducts(){
+        List<Product> list = new ArrayList<>();
+        productService.findTop5().forEach(pid->list.add(productService.findById(pid)));
+        return list;
+    }
 //commit
 
 }

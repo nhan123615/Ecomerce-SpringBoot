@@ -79,5 +79,8 @@ public class ProductService implements DAO<Product> {
         return repo.findAll();
     }
 
+    public List<Long> findTop5(){
+        return repo.findTop5();
+    }
 
 }

@@ -50,7 +50,7 @@ public class CustomerCashController {
 			paymentService.save(new com.coeding.entity.Payment(
 					order.getTotalPrice(),
 					"cash",
-					true,
+					false,
 					order
 			));
 			order.setStatus(true);

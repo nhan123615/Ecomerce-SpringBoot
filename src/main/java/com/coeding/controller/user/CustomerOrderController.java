@@ -6,10 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * author Nhanle
@@ -64,4 +63,11 @@ public class CustomerOrderController {
         return "template/user/customer/invoice/invoice-detail";
     }
 
+    @GetMapping("/json/order")
+    @ResponseBody
+    public List<CustomerOrder> getJsonOrder(Authentication authentication){
+        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+        Customer customer = customerService.findByUserId(userDetails.getUser().getId());
+        return customerOrderService.findAllOrderByCustomerId(customer.getId());
+    }
 }

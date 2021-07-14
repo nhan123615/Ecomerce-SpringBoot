@@ -79,7 +79,8 @@
                 <c:if test="${cartItems !=null}">
                     <a class="ps-btn" href="${pageContext.servletContext.contextPath}/product"><i class="icon-arrow-left"></i> Back to Shop</a>
                     <a class="ps-btn ps-btn--outline hide-1" href="shop-default.html" style="display: none"><i class="icon-sync"></i> Update cart</a>
-                    <a class="ps-btn hide-2 checkout" href="${pageContext.servletContext.contextPath}/customer/product/checkout" >Check out <i class="icon-arrow-right"></i></a>
+<%--                    <a class="ps-btn hide-2 checkout" href="${pageContext.servletContext.contextPath}/customer/product/checkout" >Check out <i class="icon-arrow-right"></i></a>--%>
+                    <a class="ps-btn hide-2 checkout" onclick="checkout()" >Check out <i class="icon-arrow-right"></i></a>
                 </c:if>
             </div>
         </div>
@@ -359,6 +360,14 @@
 
     })
 
+
+</script>
+<script>
+    function checkout(){
+        window.setTimeout(function () {
+            window.location.href = "${pageContext.servletContext.contextPath}/customer/product/checkout";
+        },300)
+    }
 
 </script>
 </body>

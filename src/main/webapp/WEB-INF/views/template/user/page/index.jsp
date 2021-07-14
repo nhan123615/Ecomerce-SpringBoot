@@ -101,16 +101,140 @@
 		</div>
 		<c:forEach items="${categories}" var="c">
 
-			<div class="ps-product-list ps-clothings">
-				<div class="ps-container">
-					<div class="ps-section__header">
-						<h3>${c.name}</h3>
-						<ul class="ps-section__links">
-							<li><a
-								href="${pageContext.servletContext.contextPath}/product?category=${c.id}">View
-									All</a></li>
-						</ul>
-					</div>
+        </div>
+    </div>
+    <div class="ps-site-features">
+        <div class="ps-container">
+            <div class="ps-block--site-features">
+                <div class="ps-block__item">
+                    <div class="ps-block__left">
+                        <i class="icon-rocket"></i>
+                    </div>
+                    <div class="ps-block__right">
+                        <h4>Free Delivery</h4>
+                        <p>For all oders over $99</p>
+                    </div>
+                </div>
+                <div class="ps-block__item">
+                    <div class="ps-block__left">
+                        <i class="icon-sync"></i>
+                    </div>
+                    <div class="ps-block__right">
+                        <h4>90 Days Return</h4>
+                        <p>If goods have problems</p>
+                    </div>
+                </div>
+                <div class="ps-block__item">
+                    <div class="ps-block__left">
+                        <i class="icon-credit-card"></i>
+                    </div>
+                    <div class="ps-block__right">
+                        <h4>Secure Payment</h4>
+                        <p>100% secure payment</p>
+                    </div>
+                </div>
+                <div class="ps-block__item">
+                    <div class="ps-block__left">
+                        <i class="icon-bubbles"></i>
+                    </div>
+                    <div class="ps-block__right">
+                        <h4>24/7 Support</h4>
+                        <p>Dedicated support</p>
+                    </div>
+                </div>
+                <div class="ps-block__item">
+                    <div class="ps-block__left">
+                        <i class="icon-gift"></i>
+                    </div>
+                    <div class="ps-block__right">
+                        <h4>Gift Service</h4>
+                        <p>Support gift service</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<%--    top product--%>
+    <div class="ps-product-list ps-clothings">
+        <div class="ps-container">
+
+            <div class="ps-section__header">
+                <div class="ps-block--countdown-deal">
+                    <div class="ps-block__right">
+                        <figure>
+                            <figcaption>Top 5 Products</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ps-section__content">
+                <div class="ps-carousel--nav owl-slider" data-owl-auto="false"
+                     data-owl-loop="false" data-owl-speed="10000" data-owl-gap="0"
+                     data-owl-nav="true" data-owl-dots="true" data-owl-item="7"
+                     data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3"
+                     data-owl-item-lg="4" data-owl-item-xl="6" data-owl-duration="1000"
+                     data-owl-mousedrag="on">
+                    <c:forEach items="${topProducts}" var="p">
+                        <div class="ps-product">
+                            <div class="ps-product__thumbnail">
+                                <a href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})"><img
+                                        src="${pageContext.request.contextPath}/product/display/0&${p.id}" alt="" style="width: 218px;height: 218px"></a>
+
+                                <c:choose>
+                                    <c:when test="${p.enabled}">
+                                        <ul class="ps-product__actions">
+                                            <li class="toCart" value="${p.id}"><a  data-toggle="tooltip" data-placement="top"
+                                                                                   title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                            <li><a href="#" data-placement="top" title="Quick View"
+                                                   data-toggle="modal" data-target="#product-quickview-${p.id}"><i
+                                                    class="icon-eye"></i></a></li>
+                                            <li><a  data-toggle="tooltip" data-placement="top"
+                                                    title="Add to Whishlist"  onclick="addToWishList(${p.id})"><i class="icon-heart"></i></a></li>
+                                        </ul>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="ps-product__badge out-stock">Out Of Stock</div>
+                                    </c:otherwise>
+                                </c:choose>
+
+                            </div>
+                            <div class="ps-product__container">
+                                <a class="ps-product__vendor" href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})">Angry Nerds</a>
+                                <div class="ps-product__content">
+                                    <a class="ps-product__title" href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})">${p.productName}</a>
+                                    <div class="ps-product__rating">
+                                        <select class="ps-rating" data-read-only="true">
+                                            <option value="1">1</option>
+                                            <option value="1">2</option>
+                                            <option value="1">3</option>
+                                            <option value="1">4</option>
+                                            <option value="2">5</option>
+                                        </select><span>01</span>
+                                    </div>
+                                    <p class="ps-product__price sale">
+                                        $<fmt:formatNumber type="number" value="${p.price}"/>
+
+                                    </p>
+                                </div>
+                                <div class="ps-product__content hover">
+                                    <a class="ps-product__title" href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})">${p.productName}</a>
+                                    <p class="ps-product__price sale">
+                                        $<fmt:formatNumber type="number" value="${p.price}"/>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+<%--    top product--%>
+
+<c:forEach items="${categories}" var="c">
 
 					<div class="ps-section__content">
 						<div class="ps-carousel--nav owl-slider" data-owl-auto="false"
