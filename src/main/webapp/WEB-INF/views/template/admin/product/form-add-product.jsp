@@ -252,11 +252,11 @@
 			}
 
 			// This is a sample function which is called when a file is selected in CKFinder.
-			function SetFileField(fileUrl, data) {
+			/* function SetFileField(fileUrl, data) {
 				document.getElementById(data["selectActionData"]).innerHTML = this
 					.getSelectedFile().name;
 				document.getElementById("imgpreview").src = fileUrl;
-			}
+			} */
 		/*Avatar end*/
 		</script>
 		<script>

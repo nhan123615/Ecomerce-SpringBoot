@@ -1,8 +1,8 @@
 package com.coeding.controller.admin;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Locale;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -31,15 +31,17 @@ import lombok.extern.slf4j.Slf4j;
 public class AdminBannerImageController {
 	@Autowired
 	BannerGalleryService bannerService;
-	
+
 	@GetMapping(value = "/banner")
 	public String listBanner(Authentication authentication, Locale locale, Model model) {
 		log.info("list banner");
 		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
 		model.addAttribute("user", userDetails.getUser());
+		List<BannerGallery> listBanner = bannerService.findAll();
+		model.addAttribute("listBanner", listBanner);
 		return "template/admin/banner/list-banner-image";
 	}
-	
+
 	@GetMapping(value = "/banner/new")
 	public String newBanner(Authentication authentication, Locale locale, Model model) {
 		log.info("new banner");
@@ -63,6 +65,33 @@ public class AdminBannerImageController {
 				bannerGallery.setImage(m.getBytes());
 				bannerService.save(bannerGallery);
 			}
+		}
+		return "redirect:/admin/banner";
+	}
+
+	@GetMapping(value = "/banner/edit")
+	public String editBanner(@RequestParam(value = "id") Long id, Authentication authentication, Locale locale,
+			Model model) {
+		log.info("edit banner");
+		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+		model.addAttribute("user", userDetails.getUser());
+		BannerGallery bannerGallery = bannerService.findById(id);
+		model.addAttribute("bannerGallery", bannerGallery);
+		return "template/admin/banner/form-edit-banner-image";
+	}
+
+	@PostMapping(value = "/banner/edit")
+	public String updateBanner(@RequestParam("img") MultipartFile uploadfile, BannerGallery bannerGallery,
+			Locale locale, Model model) throws IOException {
+		log.info("update banner");
+		BannerGallery b = bannerService.findById(bannerGallery.getId());
+		if (!uploadfile.isEmpty()) {
+			String fileName = uploadfile.getOriginalFilename();
+			String name = uploadfile.getName();
+			String type = uploadfile.getContentType();
+			log.info(fileName + "," + name + "," + type);
+			b.setImage(uploadfile.getBytes());
+			bannerService.save(b);
 		}
 		return "redirect:/admin/banner";
 	}

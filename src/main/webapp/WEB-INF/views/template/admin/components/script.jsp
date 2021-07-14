@@ -120,4 +120,13 @@
 	if ($(location).attr('pathname') === '/admin/payment/detail') {
 		addClass1('#managerpayment', '#linkpayment');
 	}
+	if ($(location).attr('pathname') === '/admin/banner') {
+		addClass('#managerbanner', '#linkbanner', '#bannerlist');
+	}
+	if ($(location).attr('pathname') === '/admin/banner/new') {
+		addClass('#managerbanner', '#linkbanner', '#newbanner');
+	}
+	if ($(location).attr('pathname') === '/admin/banner/edit') {
+		addClass('#managerbanner', '#linkbanner');
+	}
 </script>
