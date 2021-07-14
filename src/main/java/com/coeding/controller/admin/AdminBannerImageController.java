@@ -80,6 +80,7 @@ public class AdminBannerImageController {
 		return "template/admin/banner/form-edit-banner-image";
 	}
 
+
 	@PostMapping(value = "/banner/edit")
 	public String updateBanner(@RequestParam("img") MultipartFile uploadfile, BannerGallery bannerGallery,
 			Locale locale, Model model) throws IOException {
@@ -93,6 +94,12 @@ public class AdminBannerImageController {
 			b.setImage(uploadfile.getBytes());
 			bannerService.save(b);
 		}
+		return "redirect:/admin/banner";
+	}
+
+	@GetMapping("/banner/delete")
+	public String deleteBanner (@RequestParam(value = "id") Long id){
+		bannerService.delete(id);
 		return "redirect:/admin/banner";
 	}
 }

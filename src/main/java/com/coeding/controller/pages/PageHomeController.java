@@ -81,7 +81,7 @@ public class PageHomeController {
 		return list.stream().filter(p -> p.getCategory().getName().equals(categoryName)).collect(Collectors.toList());
 	}
 
-	@GetMapping("banner/display/{id}")
+	@GetMapping("/banner/display/{id}")
 	@ResponseBody
 	public void showBannerImage(@PathVariable("id") Long id, HttpServletResponse response)
 			throws ServletException, IOException {

@@ -14,27 +14,27 @@
 		</div>
 		<jsp:include page="../components/nav-bar.jsp"></jsp:include>
 		<jsp:include page="../components/side-bar.jsp"></jsp:include>
-
-		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper">
+		<!-- @author: Nhanle -->
+		<div class="content-wrapper" style="min-height: 1299.69px;">
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>Banner Image List</h1>
+							<h1>Brand list</h1>
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
 								<li class="breadcrumb-item"><a
 									href="${pageContext.servletContext.contextPath}/admin">Home</a></li>
-								<li class="breadcrumb-item active">Banner Image List</li>
+								<li class="breadcrumb-item active">Brand list</li>
 							</ol>
 						</div>
 					</div>
 				</div>
 				<!-- /.container-fluid -->
 			</section>
+
 			<!-- Main content -->
 			<section class="content">
 				<div class="container-fluid">
@@ -43,7 +43,7 @@
 							<!-- /.card -->
 							<div class="card">
 								<div class="card-header">
-									<h3 class="card-title">Banner image list</h3>
+									<h3 class="card-title">Brand list</h3>
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
@@ -52,8 +52,8 @@
 										<div class="row">
 											<div class="col-sm-3">
 												<a
-													href="${pageContext.servletContext.contextPath}/admin/banner/new"
-													class="btn btn-success">Add banner image</a>
+													href="${pageContext.servletContext.contextPath}/admin/brand/new"
+													class="btn btn-success">Add brand</a>
 											</div>
 											<div class="col-sm-12">
 												<table id="example1"
@@ -64,33 +64,20 @@
 															<th class="sorting" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Id</th>
 															<th class="sorting" tabindex="0" aria-controls="example1"
-																rowspan="1" colspan="1">Image</th>
+																rowspan="1" colspan="1">Name</th>
 															<th class="sorting" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Action</th>
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach var="b" items="${listBanner }">
+														<c:forEach var="brand" items="${list }">
 															<tr>
-																<td>${b.id }</td>
-																<td class="text-center"><img
-																	src="${pageContext.request.contextPath}/banner/display/${b.id}"
-																	width="100px" height="100px"></td>
-																<td class="project-actions text-center">
-																	<a
+																<td>${brand.id }</td>
+																<td>${brand.name }</td>
+																<td class="project-actions text-center"><a
 																	class="btn btn-info btn-sm"
-																	href="${pageContext.request.contextPath}/admin/banner/edit?id=${b.id}"><i
-																		class="fas fa-pencil-alt"></i>
-																		Edit
-																	</a>
-																	&nbsp;&nbsp;
-																	<a
-																			class="btn btn-info btn-sm btn-danger"
-																			href="${pageContext.request.contextPath}/admin/banner/delete?id=${b.id}">
-																		<i class="fas fa-trash-alt"></i>
-																		Delete
-																	</a>
-																</td>
+																	href="${pageContext.request.contextPath}/admin/brand/edit?id=${brand.id}"><i
+																		class="fas fa-pencil-alt"></i>Edit</a></td>
 															</tr>
 														</c:forEach>
 													</tbody>
@@ -107,10 +94,12 @@
 						</div>
 						<!-- /.col -->
 					</div>
+					<!-- /.row -->
 				</div>
+				<!-- /.container-fluid -->
 			</section>
+			<!-- /.content -->
 		</div>
-
 		<jsp:include page="../components/footer.jsp"></jsp:include>
 		<!-- Control Sidebar -->
 		<aside class="control-sidebar control-sidebar-dark">

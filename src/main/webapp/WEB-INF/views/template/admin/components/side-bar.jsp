@@ -99,6 +99,55 @@
                         </li>
                     </ul>
                 </li>
+
+                <li id="managerbrand" class="nav-item">
+                    <a id="linkbrand" href="#" class="nav-link">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Manager Brand
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a id="brandlist" href="${pageContext.servletContext.contextPath}/admin/brand" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Brand List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="newbrand" href="${pageContext.servletContext.contextPath}/admin/brand/new" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>New Brand</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li id="managercategory" class="nav-item">
+                    <a id="linkcategory" href="#" class="nav-link">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Manager Category
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a id="categorylist" href="${pageContext.servletContext.contextPath}/admin/category" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Category List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="newcategory" href="${pageContext.servletContext.contextPath}/admin/category/new" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>New Category</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li id="managerbanner" class="nav-item">
                     <a id="linkbanner" href="#" class="nav-link">
                         <i class="nav-icon fas fa-table"></i>
