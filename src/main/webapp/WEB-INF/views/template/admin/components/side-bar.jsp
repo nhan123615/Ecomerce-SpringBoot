@@ -55,7 +55,7 @@
                 </li>
                 <li id="managerproduct" class="nav-item">
                     <a id="linkproduct" href="#" class="nav-link">
-                        <i class="nav-icon fas fa-book"></i>
+                        <i class="nav-icon fas fa-table"></i>
                         <p>
                             Manager Product
                             <i class="fas fa-angle-left right"></i>
@@ -95,6 +95,29 @@
                             <a id="newtype" href="${pageContext.servletContext.contextPath}/admin/type/new" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>New Type</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="managerbanner" class="nav-item">
+                    <a id="linkbanner" href="#" class="nav-link">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Manager Banner Image
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                    	 <li class="nav-item">
+                            <a id="bannerlist" href="${pageContext.servletContext.contextPath}/admin/banner" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Banner Image List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="newbanner" href="${pageContext.servletContext.contextPath}/admin/banner/new" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>New Banner Image</p>
                             </a>
                         </li>
                     </ul>
