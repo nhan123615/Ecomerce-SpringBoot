@@ -42,6 +42,7 @@ public class AdminAccountConfig {
                                 admin.getEmail(),
                                 "ROLE_ADMIN",
                                 true));
+
                     }else {
                         System.err.println("Duplicate with admin email: " + admin.getEmail() + " please select the different one");
                     }

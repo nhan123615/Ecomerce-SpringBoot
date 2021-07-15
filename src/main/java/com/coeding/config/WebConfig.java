@@ -7,7 +7,12 @@ import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerF
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.*;
+
+import java.util.List;
+
 /**
  * author Nhanle
  * */
@@ -18,20 +23,23 @@ public class WebConfig extends WebMvcConfigurerAdapter
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/access-denied").setViewName("template/user/404/page-not-found");
         registry.addViewController("/internal-error").setViewName("template/user/404/internal-error");
+        registry.addViewController("/method-denied").setViewName("template/user/404/method-denied");
     }
 
-//config not found page
+
+    //config not found page
     @Bean
     public WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> containerCustomizer() {
         return container -> {
             container.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND,
                     "/access-denied"));
             container.addErrorPages(new ErrorPage(HttpStatus.METHOD_NOT_ALLOWED,
-                    "/access-denied"));
+                    "/method-denied"));
             container.addErrorPages(new ErrorPage(HttpStatus.BAD_REQUEST,
                     "/access-denied"));
             container.addErrorPages(new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR,
                     "/internal-error"));
+
         };
     }
 

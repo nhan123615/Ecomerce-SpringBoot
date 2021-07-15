@@ -6,6 +6,7 @@ import com.coeding.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -57,13 +58,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //				.and()
                 .authorizeRequests()
                 .antMatchers("/customer/**").hasRole("USER")
-                .antMatchers("/admin/**").hasRole("ADMIN")
+//                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/admin/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT,"/admin/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/admin/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/admin/**").hasAnyRole("ADMIN","ADMIN_TRAINEE")
                 .antMatchers("/**","/css/**","/js/**","/img/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
                 .exceptionHandling()
                 .accessDeniedPage("/access-denied")
+
 
                 .and()
                 .formLogin()
