@@ -27,6 +27,10 @@ public class AdminAccountConfig {
     private String password;
     private String email;
 
+    private String usernameTrainee;
+    private String passwordTrainee;
+    private String emailTrainee;
+
     @Bean
     public CommandLineRunner loadData(UserRepository userRepo, PasswordEncoder passwordEncoder, AdminAccountConfig admin) {
         return new CommandLineRunner() {
@@ -34,7 +38,30 @@ public class AdminAccountConfig {
             public void run(String... args) {
                 int user = userRepo.countByUsername(admin.getUsername());
                 int userEmail = userRepo.countByEmail(admin.getEmail());
-                if (user == 0) {
+
+                int userTrainee = userRepo.countByUsername(admin.getUsernameTrainee());
+                int userEmailTrainee = userRepo.countByEmail(admin.getEmailTrainee());
+
+
+                if (userTrainee == 0 ) {
+                    if (userEmailTrainee ==0){
+                        userRepo.save(new User(
+                                admin.getUsernameTrainee().trim(),
+                                passwordEncoder.encode(admin.getPasswordTrainee().trim()),
+                                admin.getEmailTrainee(),
+                                "ROLE_ADMIN_TRAINEE",
+                                true));
+
+                    }else {
+                        System.err.println("Duplicate with admin trainee email: " + admin.getEmailTrainee() + " please select the different one");
+                    }
+                } else {
+                    System.err.println("Duplicate with admin trainee username: " + admin.getUsernameTrainee() + " please select the different one");
+                }
+
+
+
+                if (user == 0 ) {
                     if (userEmail ==0){
                         userRepo.save(new User(
                                 admin.getUsername().trim(),
