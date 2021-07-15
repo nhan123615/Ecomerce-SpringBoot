@@ -214,7 +214,7 @@
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach var="product" items="${list }">
+														<c:forEach var="product" items="${topProducts }">
 															<tr>
 																<td>${product.id }</td>
 																<td>${product.productName }</td>

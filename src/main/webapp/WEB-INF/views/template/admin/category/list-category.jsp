@@ -53,7 +53,7 @@
 											<div class="col-sm-3">
 												<a
 													href="${pageContext.servletContext.contextPath}/admin/category/new"
-													class="btn btn-success">Add brand</a>
+													class="btn btn-success">Add category</a>
 											</div>
 											<div class="col-sm-12">
 												<table id="example1"

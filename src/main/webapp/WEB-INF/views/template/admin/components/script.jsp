@@ -129,4 +129,22 @@
 	if ($(location).attr('pathname') === '/admin/banner/edit') {
 		addClass('#managerbanner', '#linkbanner');
 	}
+	if ($(location).attr('pathname') === '/admin/brand') {
+		addClass('#managerbrand', '#linkbrand', '#brandlist');
+	}
+	if ($(location).attr('pathname') === '/admin/brand/new') {
+		addClass('#managerbrand', '#linkbrand', '#newbrand');
+	}
+	if ($(location).attr('pathname') === '/admin/brand/edit') {
+		addClass('#managerbrand', '#linkbrand');
+	}
+	if ($(location).attr('pathname') === '/admin/category') {
+		addClass('#managercategory', '#linkcategory', '#categorylist');
+	}
+	if ($(location).attr('pathname') === '/admin/category/new') {
+		addClass('#managercategory', '#linkcategory', '#newcategory');
+	}
+	if ($(location).attr('pathname') === '/admin/category/edit') {
+		addClass('#managercategory', '#linkcategory');
+	}
 </script>

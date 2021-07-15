@@ -1,10 +1,12 @@
 package com.coeding.controller.admin;
 
 import com.coeding.entity.CustomerOrder;
+import com.coeding.entity.Product;
 import com.coeding.entity.UserDetail;
 import com.coeding.service.ContactService;
 import com.coeding.service.OrderService;
 import com.coeding.service.PaymentService;
+import com.coeding.service.ProductService;
 import com.coeding.service.SubscriberService;
 import com.coeding.service.UserService;
 
@@ -38,7 +40,8 @@ public class AdminHomeController {
 	ContactService contactService;
 	@Autowired
 	PaymentService paymentService;
-
+	@Autowired
+	ProductService productService;
 	@GetMapping
 	public String customerHomePage(Authentication authentication, Model model) {
 		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
@@ -73,6 +76,9 @@ public class AdminHomeController {
 				}
 			}
 		}
+		List<Product> list = new ArrayList<>();
+		productService.findTop5().forEach(pid->list.add(productService.findById(pid)));
+		model.addAttribute("topProducts", list);
 		return "template/admin/index";
 	}
 }
