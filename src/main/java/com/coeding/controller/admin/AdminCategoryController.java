@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Locale;
 
 /**
@@ -54,9 +55,11 @@ public class AdminCategoryController {
 	}
 
 	@PostMapping(value = "/category/new")
-	public String saveType(Category category, Locale locale, Model model) {
+	public String saveType(Category category, Locale locale, Model model, HttpServletRequest request) {
 		category.setEnabled(true);
 		categoryService.save(category);
+		String message = (String) request.getSession().getAttribute("message");
+		request.getSession().setAttribute("message", "Submit success !");
 		return "redirect:/admin/category";
 	}
 
@@ -69,11 +72,13 @@ public class AdminCategoryController {
 	}
 
 	@PostMapping(value = "/category/update")
-	public String update(Category category, Locale locale, Model model) {
+	public String update(Category category, Locale locale, Model model,HttpServletRequest request) {
 		Category c = categoryService.findById(category.getId());
 		c.setEnabled(category.isEnabled());
 		c.setName(category.getName());
 		categoryService.save(c);
+		String message = (String) request.getSession().getAttribute("message");
+		request.getSession().setAttribute("message", "Submit success !");
 		return "redirect:/admin/category";
 	}
 }

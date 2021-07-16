@@ -64,14 +64,17 @@ public class AdminUserController {
 		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/user/detail";
 	}
+
 	@RequestMapping(value = "/user/saveUpdate", method = RequestMethod.POST)
-	public String SaveUserController(Model model, User user,HttpServletResponse response, Authentication authentication) {	     
+	public String SaveUserController(Model model, User user,HttpServletResponse response, Authentication authentication,HttpServletRequest request) {
 		User userIn = userService.findById(user.getId());
 		userIn.setEnabled(user.isEnabled());
 		userIn.setRole(user.getRole());
 		userService.saveUser(userIn);
 		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
 		model.addAttribute("user", userDetails.getUser());
+		String message = (String) request.getSession().getAttribute("message");
+		request.getSession().setAttribute("message", "Update success !");
 		return "redirect:/admin/user";
 	}
 }

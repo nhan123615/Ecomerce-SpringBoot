@@ -20,6 +20,8 @@ import com.coeding.service.BannerGalleryService;
 
 import lombok.extern.slf4j.Slf4j;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * 
  * @author Lam Cong Hau
@@ -51,7 +53,7 @@ public class AdminBannerImageController {
 	}
 
 	@PostMapping(value = "/banner/new")
-	public String saveBanner(@RequestParam("image") MultipartFile[] uploadfile, Locale locale, Model model)
+	public String saveBanner(@RequestParam("image") MultipartFile[] uploadfile, Locale locale, Model model, HttpServletRequest request)
 			throws IOException {
 		log.info("new banner");
 		log.info("file size: " + uploadfile.length);
@@ -64,6 +66,8 @@ public class AdminBannerImageController {
 				BannerGallery bannerGallery = new BannerGallery();
 				bannerGallery.setImage(m.getBytes());
 				bannerService.save(bannerGallery);
+				String message = (String) request.getSession().getAttribute("message");
+				request.getSession().setAttribute("message", "Submit success !");
 			}
 		}
 		return "redirect:/admin/banner";
@@ -83,7 +87,7 @@ public class AdminBannerImageController {
 
 	@PostMapping(value = "/banner/edit")
 	public String updateBanner(@RequestParam("img") MultipartFile uploadfile, BannerGallery bannerGallery,
-			Locale locale, Model model) throws IOException {
+			Locale locale, Model model,HttpServletRequest request) throws IOException {
 		log.info("update banner");
 		BannerGallery b = bannerService.findById(bannerGallery.getId());
 		if (!uploadfile.isEmpty()) {
@@ -93,11 +97,13 @@ public class AdminBannerImageController {
 			log.info(fileName + "," + name + "," + type);
 			b.setImage(uploadfile.getBytes());
 			bannerService.save(b);
+			String message = (String) request.getSession().getAttribute("message");
+			request.getSession().setAttribute("message", "Update success !");
 		}
 		return "redirect:/admin/banner";
 	}
 
-	@GetMapping("/banner/delete")
+	@PostMapping("/banner/delete")
 	public String deleteBanner (@RequestParam(value = "id") Long id){
 		bannerService.delete(id);
 		return "redirect:/admin/banner";

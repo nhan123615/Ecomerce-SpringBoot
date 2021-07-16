@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <script
 	src="${pageContext.servletContext.contextPath}/plugins-admin/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -148,84 +150,5 @@
 		addClass('#managercategory', '#linkcategory');
 	}
 </script>
+    <jsp:include page="../../user/message/message.jsp"></jsp:include>
 
-
-<script>
-	jQuery(document).ready(function () {
-		var value = '${sessionScope.message}';
-		alert(value)
-	})
-
-
-
-	function alert(str){
-		switch(str){
-			case "alert-success": success_prompt("Submit Successful");break;
-			case "alert_warning": warning_prompt("error warning");break;
-			case "alert-danger": fail_prompt("Submission failed");break;
-			case "alert_info": info_prompt("Data not found");break;
-			default:alert_prompt("Data not found");
-		}
-
-	}
-
-	/**
-	 * Pop-up prompt box, default 1.2 seconds to disappear automatically
-	 * @param message prompt message
-	 * @param style prompt style, there are alert-success, alert-danger, alert-warning, alert-info
-	 * @param time disappearing time
-	 */
-	var prompt = function (message, style, time)
-	{
-		style = (style === undefined) ? 'alert-success' : style;
-		time = (time === undefined) ? 1200 : time;
-		$('<div id="promptModal">')
-				.appendTo('body')
-				.addClass('alert '+ style)
-				.css({"display":"block",
-					"z-index":99999,
-					"left":($(document.body).outerWidth(true) - 180) ,
-
-					"top":($(window).height() - 45)/13 ,
-					"position": "absolute",
-					"padding": "20px",
-					"border-radius": "5px"})
-				.html(message)
-				.show()
-				.delay(time)
-				.fadeOut(10,function(){
-					$('#promptModal').remove();
-				});
-	};
-	// "left":($(document.body).outerWidth(true) - 120) / 2,
-	// "top":($(window).height() - 45) / 2,
-	// success prompt
-	var success_prompt = function(message, time)
-	{
-		prompt(message, 'alert-success', time);
-	};
-
-	// failure prompt
-	var fail_prompt = function(message, time)
-	{
-		prompt(message, 'alert-danger', time);
-	};
-
-	// remind
-	var warning_prompt = function(message, time)
-	{
-		prompt(message, 'alert-warning', time);
-	};
-
-	// message notification
-	var info_prompt = function(message, time)
-	{
-		prompt(message, 'alert-info', time);
-	};
-
-	// message notification
-	var alert_prompt = function(message, time)
-	{
-		prompt(message, 'alert-pormpt', time);
-	};
-</script>

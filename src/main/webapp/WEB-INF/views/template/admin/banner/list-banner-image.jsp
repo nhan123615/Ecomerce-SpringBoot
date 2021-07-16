@@ -76,7 +76,7 @@
 																<td class="text-center"><img
 																	src="${pageContext.request.contextPath}/banner/display/${b.id}"
 																	width="100px" height="100px"></td>
-																<td class="project-actions text-center">
+																<td class="project-actions text-center d-flex" style="justify-content: center">
 																	<a
 																	class="btn btn-info btn-sm"
 																	href="${pageContext.request.contextPath}/admin/banner/edit?id=${b.id}"><i
@@ -84,12 +84,16 @@
 																		Edit
 																	</a>
 																	&nbsp;&nbsp;
-																	<a
-																			class="btn btn-info btn-sm btn-danger"
-																			href="${pageContext.request.contextPath}/admin/banner/delete?id=${b.id}">
-																		<i class="fas fa-trash-alt"></i>
-																		Delete
-																	</a>
+																	<form action="${pageContext.request.contextPath}/admin/banner/delete" method="post">
+																		<input type="hidden" name="id" value="${b.id}">
+																		<button
+																				class="btn btn-info btn-sm btn-danger"
+																			>
+																			<i class="fas fa-trash-alt"></i>
+																			Delete
+																		</button>
+																	</form>
+
 																</td>
 															</tr>
 														</c:forEach>

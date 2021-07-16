@@ -58,8 +58,10 @@ public class AdminBrandController {
 	}
 
 	@PostMapping(value = "/brand/new")
-	public String saveType(Brand brand, Locale locale, Model model) {
+	public String saveType(Brand brand, Locale locale, Model model,HttpServletRequest request) {
 		brandService.save(brand);
+		String message = (String) request.getSession().getAttribute("message");
+		request.getSession().setAttribute("message", "Submit success !");
 		return "redirect:/admin/brand";
 	}
 
@@ -77,9 +79,7 @@ public class AdminBrandController {
 		b.setName(brand.getName());
 		brandService.save(b);
 		String message = (String) request.getSession().getAttribute("message");
-		if (message !=null){
-			request.getSession().setAttribute("message", "Duplicate email");
-		}
+		request.getSession().setAttribute("message", "Update success !");
 
 		return "redirect:/admin/brand";
 	}

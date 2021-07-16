@@ -17,6 +17,8 @@ import com.coeding.entity.UserDetail;
 import com.coeding.service.CategoryService;
 import com.coeding.service.TypeService;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * 
  * @author Lam Cong Hau
@@ -49,9 +51,11 @@ public class AdminTypeController {
 	}
 
 	@PostMapping(value = "/type/new")
-	public String saveType(Type type, Locale locale, Model model) {
+	public String saveType(Type type, Locale locale, Model model, HttpServletRequest request) {
 		logger.info("post : saveType");
 		typeService.save(type);
+		String message = (String) request.getSession().getAttribute("message");
+		request.getSession().setAttribute("message", "Submit success !");
 		return "redirect:/admin/type";
 	}
 
@@ -66,11 +70,13 @@ public class AdminTypeController {
 	}
 
 	@PostMapping(value = "/type/update")
-	public String update(Type type, Locale locale, Model model) throws IOException {
+	public String update(Type type, Locale locale, Model model,HttpServletRequest request) throws IOException {
 		Type t = typeService.findById(type.getId());
 		t.setCategory(type.getCategory());
 		t.setName(type.getName());
 		typeService.save(t);
+		String message = (String) request.getSession().getAttribute("message");
+		request.getSession().setAttribute("message", "Update success !");
 		return "redirect:/admin/type";
 	}
 }
