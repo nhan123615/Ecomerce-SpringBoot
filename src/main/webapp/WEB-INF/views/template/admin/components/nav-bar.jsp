@@ -9,7 +9,7 @@
             <a href="${pageContext.servletContext.contextPath}/admin" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="#" class="nav-link">Contact</a>
+            <a href="#" class="nav-link" onclick="alert('alert-success')">Contact</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
             <a href="${pageContext.servletContext.contextPath}/logout" class="nav-link">Logout</a>

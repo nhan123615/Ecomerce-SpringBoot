@@ -788,7 +788,7 @@
 								//if duplicate sellingQuantity +=1
 								if (cartItems[i].product.id == json.product.id){
 									cartItems[i].sellingQuantity += 1
-									cartItems[i].totalPrice =  parseFloat(cartItems[i].totalPrice) *  parseInt(cartItems[i].sellingQuantity)
+									cartItems[i].totalPrice =  parseFloat(cartItems[i].product.price) *  parseInt(cartItems[i].sellingQuantity)
 									count += 1
 								}
 							}

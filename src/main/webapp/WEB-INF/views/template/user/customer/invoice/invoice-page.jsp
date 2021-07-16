@@ -51,7 +51,7 @@
                                         <tbody class="data-container" id="listPage">
 
                                             <c:choose>
-                                                <c:when test="${not empty customerOrders}">
+                                                <c:when test="${not empty customerOrders || customerOrders !=null}">
                                                     <c:forEach items="${customerOrders}" var="order">
                                                             <tr>
                                                                 <td><a href="${pageContext.servletContext.contextPath}/customer/order/detail?id=${order.id}">NO.0${order.id}</a></td>

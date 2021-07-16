@@ -35,6 +35,7 @@
                                         <ul class="ps-tab-list">
                                             <li class="active"><a class="ps-btn ps-btn--sm" href="#visa">Cash</a></li>
                                             <li><a class="ps-btn ps-btn--sm" href="#paypal">Paypal</a></li>
+                                            <li><a class="ps-btn ps-btn--sm" href="#momo">MoMo</a></li>
                                         </ul>
                                         <div class="ps-tabs">
                                                 <div class="ps-tab active" id="visa">
@@ -46,6 +47,11 @@
                                                 <div class="ps-tab" id="paypal">
                                                     <form action="${pageContext.servletContext.contextPath}/customer/payment/paypal" method="post">
                                                     <button class="ps-btn" >Proceed with Paypal</button>
+                                                    </form>
+                                                </div>
+                                                <div class="ps-tab" id="momo">
+                                                    <form action="${pageContext.servletContext.contextPath}/customer/payment/momo" method="post">
+                                                        <button class="ps-btn" >Proceed with MoMo</button>
                                                     </form>
                                                 </div>
                                         </div>

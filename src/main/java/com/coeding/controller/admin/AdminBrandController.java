@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Locale;
 
@@ -71,10 +72,15 @@ public class AdminBrandController {
 	}
 
 	@PostMapping(value = "/brand/update")
-	public String update(Brand brand, Locale locale, Model model) {
+	public String update(Brand brand, Locale locale, Model model, HttpServletRequest request) {
 		Brand b = brandService.findById(brand.getId());
 		b.setName(brand.getName());
 		brandService.save(b);
+		String message = (String) request.getSession().getAttribute("message");
+		if (message !=null){
+			request.getSession().setAttribute("message", "Duplicate email");
+		}
+
 		return "redirect:/admin/brand";
 	}
 }

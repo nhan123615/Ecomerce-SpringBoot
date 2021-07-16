@@ -10,7 +10,7 @@
             <h1 class="text-danger">Oops! Something went wrong.</h1>
 
         </div>
-        <div class="ps-page__content"><img src="img/coming-soon.jpg" alt="">
+        <div class="ps-page__content"><img src="${pageContext.servletContext.contextPath}/img/coming-soon.jpg" alt="">
             <figure>
                 <figcaption>PLEASE CONTACT DEVELOPER !</figcaption>
             </figure>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +24,7 @@ public class CustomerOrderController {
     private PaypalDetailService paypalDetailService;
 
     @Autowired
-    public CustomerOrderController(CustomerOrderService customerOrderService,CustomerService customerService,PaymentService paymentService,PaypalDetailService paypalDetailService) {
+    public CustomerOrderController(CustomerOrderService customerOrderService, CustomerService customerService, PaymentService paymentService, PaypalDetailService paypalDetailService) {
         this.customerOrderService = customerOrderService;
         this.customerService = customerService;
         this.paymentService = paymentService;
@@ -36,36 +37,43 @@ public class CustomerOrderController {
         model.addAttribute("user", userDetails.getUser());
 
         Customer customer = customerService.findByUserId(userDetails.getUser().getId());
+        List<CustomerOrder> orders;
 
-        model.addAttribute("customerOrders", customerOrderService.findAllOrderByCustomerId(customer.getId()));
+        try{
+            orders =  customerOrderService.findAllOrderByCustomerId(customer.getId());
+        }catch (Exception e){
+            orders = new ArrayList<>();
+        }
+
+        model.addAttribute("customerOrders",orders );
         return "template/user/customer/invoice/invoice-page";
 
     }
 
     @GetMapping("/detail")
-    public String customerOrderDetail(Authentication authentication,Model model,@RequestParam("id")Long id){
+    public String customerOrderDetail(Authentication authentication, Model model, @RequestParam("id") Long id) {
         UserDetail userDetails = (UserDetail) authentication.getPrincipal();
         model.addAttribute("user", userDetails.getUser());
 
         CustomerOrder order = customerOrderService.findById(id);
         Long countPayment = paymentService.countByCustomerOrderId(order.getId());
-        if (countPayment >0){
+        if (countPayment > 0) {
             Payment payment = paymentService.findPaymentByCustomerOrderId(order.getId());
             Long countPaypalDetail = paypalDetailService.countByPaymentId(payment.getId());
-            if (countPaypalDetail >0){
-                PaypalDetail paypalDetail =  paypalDetailService.findByPaymentId(payment.getId());
-                model.addAttribute("paypalDetail",paypalDetail);
+            if (countPaypalDetail > 0) {
+                PaypalDetail paypalDetail = paypalDetailService.findByPaymentId(payment.getId());
+                model.addAttribute("paypalDetail", paypalDetail);
             }
-            model.addAttribute("payment",payment);
+            model.addAttribute("payment", payment);
         }
 
-        model.addAttribute("order",order) ;
+        model.addAttribute("order", order);
         return "template/user/customer/invoice/invoice-detail";
     }
 
     @GetMapping("/json/order")
     @ResponseBody
-    public List<CustomerOrder> getJsonOrder(Authentication authentication){
+    public List<CustomerOrder> getJsonOrder(Authentication authentication) {
         UserDetail userDetails = (UserDetail) authentication.getPrincipal();
         Customer customer = customerService.findByUserId(userDetails.getUser().getId());
         return customerOrderService.findAllOrderByCustomerId(customer.getId());
