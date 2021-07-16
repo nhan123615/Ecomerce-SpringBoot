@@ -35,7 +35,7 @@
                                         <ul class="ps-tab-list">
                                             <li class="active"><a class="ps-btn ps-btn--sm" href="#visa">Cash</a></li>
                                             <li><a class="ps-btn ps-btn--sm" href="#paypal">Paypal</a></li>
-                                            <li><a class="ps-btn ps-btn--sm" href="#momo">MoMo</a></li>
+                                            <li><a class="ps-btn ps-btn--sm" href="#momo" style="display: none">MoMo</a></li>
                                         </ul>
                                         <div class="ps-tabs">
                                                 <div class="ps-tab active" id="visa">
