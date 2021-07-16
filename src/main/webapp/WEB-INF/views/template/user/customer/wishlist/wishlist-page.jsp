@@ -201,8 +201,10 @@
                         console.log("cartItems: "+cartItems)
                         countCartItems()
                         updateCartItemsCookie(cartItems)
+                        initData()
                     }
                     removeFromWishList(id)
+                    
                 }
             });
 
