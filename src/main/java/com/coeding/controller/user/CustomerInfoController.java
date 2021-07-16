@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * author Nhanle
  */
@@ -52,19 +54,23 @@ public class CustomerInfoController {
 
 
     @PostMapping("/update")
-    public String updateCustomerInfo(Customer customer){
+    public String updateCustomerInfo(Customer customer, HttpServletRequest request){
         customerService.save(customer);
+        String message = (String) request.getSession().getAttribute("message");
+        request.getSession().setAttribute("message", "Update success !");
         return "redirect:/customer/info";
     }
 
 
     @PostMapping("/new")
-    public String createCustomerInfo(Authentication authentication,Customer customer){
+    public String createCustomerInfo(Authentication authentication,Customer customer,HttpServletRequest request){
         UserDetail userDetails = (UserDetail) authentication.getPrincipal();
         Long countCustomer = customerService.countByUserId(userDetails.getUser().getId());
         if (countCustomer == 0){
             customer.setUser(userDetails.getUser());
             customerService.save(customer);
+            String message = (String) request.getSession().getAttribute("message");
+            request.getSession().setAttribute("message", "Submit success !");
         }
         return "redirect:/customer/info";
     }

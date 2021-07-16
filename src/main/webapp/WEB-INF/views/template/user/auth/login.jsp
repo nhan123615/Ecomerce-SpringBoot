@@ -17,13 +17,10 @@
     </div>
     <div class="ps-my-account">
         <div class="container">
-            <jsp:include page="../message/message.jsp"></jsp:include>
+<%--            <jsp:include page="../message/message.jsp"></jsp:include>--%>
 
 
-            <c:if test="${param.containsKey('error')}">
-                <br>
-                <b style="color: red">Login failed!</b>
-            </c:if>
+
 
             <form class="ps-form--account ps-tab-root" action="${pageContext.servletContext.contextPath}/login" method="post" modelAttribute="user">
                 <ul class="ps-tab-list">
