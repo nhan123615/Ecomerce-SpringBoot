@@ -51,7 +51,6 @@ public class CustomerCheckoutController {
     public String customerCheckoutProductPage(Authentication authentication, Model model) {
         String template = "redirect:/customer/info";
         log.info("set template customer info");
-        if (authentication != null) {
             UserDetail userDetails = (UserDetail) authentication.getPrincipal();
             model.addAttribute("user", userDetails.getUser());
 
@@ -76,14 +75,15 @@ public class CustomerCheckoutController {
                     template = "template/user/customer/product/checkout";
                 }
             }
-        }
 
         log.info("return teamplate");
         return template;
     }
 
     @PostMapping("/checkout")
-    public String processCustomerOrder(CustomerOrder order, Model model) {
+    public String processCustomerOrder(Authentication authentication, CustomerOrder order, Model model) {
+        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+        model.addAttribute("user", userDetails.getUser());
         log.info("save order with deliver info : " + order.getDeliverCustomerName() + "," + order.getDeliverCustomerPhone() + "," + order.getDeliverCustomerAddress());
         List<CartItem> listItem = new ArrayList<>(cart.getCartItems());
         CustomerOrder customerOrder = new CustomerOrder(
