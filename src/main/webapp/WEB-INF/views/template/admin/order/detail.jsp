@@ -17,7 +17,7 @@
 		</div>
 		<jsp:include page="../components/nav-bar.jsp"></jsp:include>
 		<jsp:include page="../components/side-bar.jsp"></jsp:include>
-		<div class="content-wrapper" style="min-height: 1418.47px;">
+		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<div class="container-fluid">
