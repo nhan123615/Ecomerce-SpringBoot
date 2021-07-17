@@ -69,30 +69,12 @@
 
 										<h4>Customer Infomation</h4>
 										<div class="post">
-											<div class="user-block">
-												<img class="img-circle img-bordered-sm"
-													src="../../dist/img/user7-128x128.jpg" alt="User Image">
-												<span class="username"> <a href="#">${orderDetail.customer.firstName}
-														${orderDetail.customer.lastName}</a>
-												</span> <span class="description">Sent you a message - 3
-													days ago</span>
-											</div>
-											<!-- /.user-block -->
-											<p>Lorem ipsum represents a long-held tradition for
-												designers, typographers and the like. Some people hate it
-												and argue for its demise, but others ignore.</p>
-										</div>
-										<h4>Status</h4>
-										<div class="post">
-											<c:choose>
-												<c:when test="${orderDetail.status == false}">
-													<p>Status: Inactive</p>
-												</c:when>
-
-												<c:otherwise>
-													<p>Status: Active</p>
-												</c:otherwise>
-											</c:choose>
+											<p>ID: ${orderDetail.customer.id}</p>
+											<p>Name:
+												${orderDetail.customer.firstName}${orderDetail.customer.lastName}</p>
+											<p>Phone: ${orderDetail.customer.phone}</p>
+											<p>Address:
+												${orderDetail.customer.address}</p>
 										</div>
 									</div>
 								</div>
@@ -103,7 +85,7 @@
 								</h3>
 								<div class="text-muted">
 									<c:forEach items="${orderDetail.cartItems}" var="od">
-										<p class="text-sm">${od.product.productName} :
+										<p class="text-sm">${od.product.productName}:
 											${od.sellingQuantity} pcs</p>
 									</c:forEach>
 								</div>

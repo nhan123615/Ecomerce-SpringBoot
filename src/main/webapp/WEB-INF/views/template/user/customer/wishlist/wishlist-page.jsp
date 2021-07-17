@@ -195,13 +195,14 @@
                             countCartItems()
                         }
                         updateCartItemsCookie(cartItems)
+                        showCartItems()
                         console.log(cartItems)
                     }else{
                         cartItems.push(json)
                         console.log("cartItems: "+cartItems)
                         countCartItems()
+                        showCartItems()
                         updateCartItemsCookie(cartItems)
-                        initData()
                     }
                     removeFromWishList(id)
                     

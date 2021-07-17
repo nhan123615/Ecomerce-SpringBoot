@@ -128,36 +128,6 @@
 	function getNoWishProductFound() {
 		return '<tr><td colspan="5" class="text-center"><h1>No wishlist found !!!</h1></td></tr>';
 	}
-	
-	// Add to cart in wishlist page
-	 /* function checkStock(productId,qty){
-         if (qty !=null){
-             for (let i = 0; i < products.length ; i++) {
-                 if (products[i].id == productId){
-                     if (qty < products[i].stockQuantity){
-                         return true;
-                     }else{
-                         return false;
-                     }
-                 }
-             }
-         }else{
-             return true;
-         }
-
-         return false;
-     } */
-
-     /* function getCartProductQty(productId){
-         if (cartItems.length>0){
-             for (let i = 0; i < cartItems.length; i++) {
-                 if (cartItems[i].product.id == productId){
-                     return cartItems[i].sellingQuantity
-                 }
-             }
-         }
-         return null;
-     }	 */
      
      function addItemToCart(id){
 		 if (checkStock(id,getCartProductQty(id))){
@@ -190,7 +160,6 @@
 		                    countCartItems()
 		                    showCartItems()
 		                    updateCartItemsCookie(cartItems)
-		                    initData()
 		                }
 		                removeFromWishList(id)
 		            }
