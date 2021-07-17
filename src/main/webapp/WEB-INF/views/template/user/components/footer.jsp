@@ -602,7 +602,7 @@
 			case "alert-danger": message = "Failed !";break;
 			case "alert_info": message ="Data not found";break;
 			default:
-				if (value.includes("invalid")||value.includes("failed")){
+				if (value.includes("invalid")||value.includes("failed")||value.includes("only")){
 					style = "alert-danger";
 				}else{
 					style = "alert-success";

@@ -561,11 +561,10 @@
 		xhr.addEventListener("readystatechange", function() {
 			if (this.readyState === this.DONE) {
 				if(this.responseText === "successful"){
-					alert("You have successfully added!");
+					msg("Add to wishlist sucessful!");
 				}else if(this.responseText === "failed"){
-					alert("You can only add 1 time!");
+					msg("You can only add 1 time!");
 				}
-				cookies();
 				initData();
 			}
 		});
@@ -883,7 +882,7 @@
 				case "alert-danger": message = "Failed !";break;
 				case "alert_info": message ="Data not found";break;
 				default:
-					if (value.includes("invalid")||value.includes("failed")){
+					if (value.includes("invalid")||value.includes("failed")||value.includes("only")){
 						style = "alert-danger";
 					}else{
 						style = "alert-success";

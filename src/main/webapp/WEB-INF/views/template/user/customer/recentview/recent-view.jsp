@@ -137,12 +137,11 @@
         const xhr = new XMLHttpRequest();
         xhr.addEventListener("readystatechange", function() {
             if (this.readyState === this.DONE) {
-                if(this.responseText === "successful"){
-                    alert("You have successfully added!");
-                }else if(this.responseText === "failed"){
-                    alert("You can only add 1 time!");
-                }
-                cookies();
+            	if(this.responseText === "successful"){
+					msg("Add to wishlist sucessful!");
+				}else if(this.responseText === "failed"){
+					msg("You can only add 1 time!");
+				}
                 initData();
             }
         });
