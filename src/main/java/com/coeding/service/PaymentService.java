@@ -80,5 +80,9 @@ public class PaymentService implements DAO<Payment> {
 		}
 		return totalSales;
 	}
+	
+	public List<Payment> findAllPaymentByCustomerId(Long customerId){
+		return repo.findAllByCustomerIdOrderByPaymentDateDesc(customerId);
+	}
 }
 //commit

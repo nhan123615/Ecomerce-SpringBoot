@@ -23,7 +23,7 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>Payment ID</h1>
+							<h1>Payment Detail</h1>
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
@@ -60,7 +60,7 @@
 							<div class="col-12 col-md-12 col-lg-8 order-2 order-md-1">
 								<div class="row">
 									<div class="col-12">
-										<h4>Payment ID</h4>
+										<h4>Payment Detail</h4>
 										<div class="post">
 											<p>ID: ${paymentDetail.id}</p>
 											<p>Payment Date: ${paymentDetail.paymentDate}</p>
@@ -68,30 +68,10 @@
 										</div>
 										<h4>Customer Infomation</h4>
 										<div class="post">
-											<div class="user-block">
-												<img class="img-circle img-bordered-sm"
-													src="../../dist/img/user7-128x128.jpg" alt="User Image">
-												<span class="username"> <a href="#">${paymentDetail.customerOrder.customer.firstName} 
-														${paymentDetail.customerOrder.customer.lastName}</a>
-												</span> <span class="description">Sent you a message - 3
-													days ago</span>
-											</div>
-											<!-- /.user-block -->
-											<p>Lorem ipsum represents a long-held tradition for
-												designers, typographers and the like. Some people hate it
-												and argue for its demise, but others ignore.</p>
-										</div>
-										<h4>Status</h4>
-										<div class="post">
-											<c:choose>
-												<c:when test="${paymentDetail.status == false}">
-													<p>Status: Inactive</p>
-												</c:when>
-
-												<c:otherwise>
-													<p>Status: Active</p>
-												</c:otherwise>
-											</c:choose>
+												<p>ID: ${paymentDetail.customerOrder.customer.id}</p>
+												<p>Name: ${paymentDetail.customerOrder.customer.firstName}${paymentDetail.customerOrder.customer.lastName}</p>
+												<p>Phone: ${paymentDetail.customerOrder.customer.phone}</p>
+												<p>Address: ${paymentDetail.customerOrder.customer.address}</p>
 										</div>
 									</div>
 								</div>
@@ -118,7 +98,8 @@
 									</li>
 								</ul>
 								<div class="text-center mt-5 mb-3">
-									<a href="${pageContext.servletContext.contextPath}/admin/payment"
+									<a
+										href="${pageContext.servletContext.contextPath}/admin/payment"
 										class="btn btn-sm btn-warning">Back To Payment List</a>
 								</div>
 							</div>
