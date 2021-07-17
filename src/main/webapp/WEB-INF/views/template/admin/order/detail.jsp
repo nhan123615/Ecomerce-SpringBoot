@@ -71,10 +71,10 @@
 										<div class="post">
 											<p>ID: ${orderDetail.customer.id}</p>
 											<p>Name:
-												${orderDetail.customer.firstName}${orderDetail.customer.lastName}</p>
-											<p>Phone: ${orderDetail.customer.phone}</p>
+												${orderDetail.deliverCustomerName}</p>
+											<p>Phone: ${orderDetail.deliverCustomerPhone}</p>
 											<p>Address:
-												${orderDetail.customer.address}</p>
+												${orderDetail.deliverCustomerAddress}</p>
 										</div>
 									</div>
 								</div>

@@ -69,9 +69,9 @@
 										<h4>Customer Infomation</h4>
 										<div class="post">
 												<p>ID: ${paymentDetail.customerOrder.customer.id}</p>
-												<p>Name: ${paymentDetail.customerOrder.customer.firstName}${paymentDetail.customerOrder.customer.lastName}</p>
-												<p>Phone: ${paymentDetail.customerOrder.customer.phone}</p>
-												<p>Address: ${paymentDetail.customerOrder.customer.address}</p>
+												<p>Name: ${paymentDetail.customerOrder.deliverCustomerName}</p>
+												<p>Phone: ${paymentDetail.customerOrder.deliverCustomerPhone}</p>
+												<p>Address: ${paymentDetail.customerOrder.deliverCustomerAddress}</p>
 										</div>
 									</div>
 								</div>
