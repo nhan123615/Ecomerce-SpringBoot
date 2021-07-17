@@ -58,10 +58,12 @@ public class PageHomeController {
 	@GetMapping
 	public String customerHomePage(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication, Model model) {
-		if (authentication != null) {
-			UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-			model.addAttribute("user", userDetails.getUser());
-		}
+//		if (authentication != null) {
+//			if (authentication instanceof  UserDetail){
+//				UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//				model.addAttribute("user", userDetails.getUser());
+//			}
+//		}
 
 		Map<String, List<Product>> productByCategory = new HashMap<>();
 		List<Product> listProduct = productService.findAllIgnoreStatus();

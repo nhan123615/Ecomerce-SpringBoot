@@ -60,8 +60,8 @@ public class AdminProductController {
 		logger.info("list: " + list.size());
 		model.addAttribute("categories", categoryService.findAll());
 		model.addAttribute("list", list);
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/product/list-product";
 	}
 
@@ -70,8 +70,8 @@ public class AdminProductController {
 		logger.info("get : newProduct");
 		model.addAttribute("brands", brandService.findAll());
 		model.addAttribute("categories", categoryService.findAll());
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/product/form-add-product";
 	}
 
@@ -126,8 +126,8 @@ public class AdminProductController {
 		model.addAttribute("brands", brandService.findAll());
 		model.addAttribute("categories", categoryService.findAll());
 		model.addAttribute("types", typeService.findAll());
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/product/form-edit-product";
 	}
 
@@ -177,8 +177,8 @@ public class AdminProductController {
 		for (String color : listColor) {
 			model.addAttribute(color, color);
 		}
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/product/detail-product";
 	}
 }

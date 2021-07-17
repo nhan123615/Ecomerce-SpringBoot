@@ -25,8 +25,8 @@ public class AdminSubscriberController {
 	@GetMapping("subscriber")
 	public String ListSubscriberController(Authentication authentication, Model model) {
 		model.addAttribute("sub",subscriber.findAll());
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/subscriber/list";
 	}
 }

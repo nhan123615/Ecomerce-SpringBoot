@@ -743,8 +743,10 @@
 
 			//add to Cart
 			$(document).on("click",".toCartDetail", function(event){
-				alert(cartItems[0].sellingQuantity)
+				// alert(cartItems[0].sellingQuantity)
 				updateCartItemsCookie(cartItems)
+				msg("Add to cart sucessful !");
+
 			});
 
 			$(document).on("click",".buyNow", function(event){
@@ -871,5 +873,53 @@
 			}
 		})
 
+		function msg(value){
+			var style = value;
+			var time = 1200;
+			var message;
+			switch(value){
+				case "alert-success": message ="Successful !";break;
+				case "alert_warning": message ="error warning";break;
+				case "alert-danger": message = "Failed !";break;
+				case "alert_info": message ="Data not found";break;
+				default:
+					if (value.includes("invalid")||value.includes("failed")){
+						style = "alert-danger";
+					}else{
+						style = "alert-success";
+					}
+					message =value ;
+			}
+			var height = ($(window).height() - 45)/5;
+
+			if ($(window).scrollTop() >=height) {
+				height =($(window).scrollTop() +70)
+			}
+
+
+			$('<div id="promptModal">')
+					.appendTo('body')
+					.addClass('alert ' + style)
+					.css({
+						"display": "block",
+						"z-index": 99999,
+						"left": ($(document.body).outerWidth(true) - 200),
+						"top": height ,
+						"position": "absolute",
+						"padding": "20px",
+						"border-radius": "5px",
+						"width":"200px",
+						"text-align":"center",
+
+					})
+					.html(message)
+					.show()
+					.delay(time)
+					.fadeOut(10, function () {
+						$('#promptModal').remove();
+					});
+
+
+		}
 	</script>
 </body>

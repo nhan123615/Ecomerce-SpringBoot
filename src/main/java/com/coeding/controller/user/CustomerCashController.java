@@ -1,15 +1,13 @@
 package com.coeding.controller.user;
 
-import com.coeding.entity.Customer;
-import com.coeding.entity.CustomerOrder;
-import com.coeding.entity.PaypalDetail;
-import com.coeding.entity.UserDetail;
+import com.coeding.entity.*;
 import com.coeding.service.*;
 import com.paypal.api.payments.Links;
 import com.paypal.api.payments.Payment;
 import com.paypal.base.rest.PayPalRESTException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,22 +28,36 @@ public class CustomerCashController {
 	private CustomerService customerService;
 	private CustomerOrder order;
 	private PaymentService paymentService;
-
+	private UserService userService;
 	@Autowired
-	public CustomerCashController(CustomerOrderService customerOrderService, CustomerService customerService,  PaymentService paymentService) {
+	public CustomerCashController(CustomerOrderService customerOrderService, CustomerService customerService,  PaymentService paymentService,UserService userService) {
 		this.customerOrderService = customerOrderService;
 		this.customerService = customerService;
 		this.paymentService = paymentService;
+		this.userService = userService;
+
 	}
 
 
 
 	@PostMapping("/cash")
 	public String payment(Authentication authentication) {
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		Long countCustomer = customerService.countByUserId(userDetails.getUser().getId());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+		User user = null;
+		if (authentication.getPrincipal() instanceof  UserDetail){
+			UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+			user = userDetails.getUser();
+		}
+
+		if (authentication.getPrincipal() instanceof OAuth2User) {
+			OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
+			user = userService.findByEmail(String.valueOf(oAuth2User.getAttributes().get("email")));
+		}
+
+
+		Long countCustomer = customerService.countByUserId(user.getId());
 		if (countCustomer >0) {
-			Customer customer = customerService.findByUserId(userDetails.getUser().getId());
+			Customer customer = customerService.findByUserId(user.getId());
 			order = customerOrderService.findOrderByCustomerId(customer.getId());
 			paymentService.save(new com.coeding.entity.Payment(
 					order.getTotalPrice(),
@@ -62,8 +74,8 @@ public class CustomerCashController {
 
 	@GetMapping("/cash/payment-success")
 	public String paymentSuccessPage(Authentication authentication, Model model) {
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		return "template/user/customer/payment/cash/payment-success";
 	}
 }

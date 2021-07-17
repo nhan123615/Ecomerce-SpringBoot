@@ -30,8 +30,8 @@ public class CustomerRecentViewProductController {
 
     @GetMapping
     public String customerRecentPage(Authentication authentication, Model model, HttpServletRequest res){
-        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-        model.addAttribute("user",userDetails.getUser());
+//        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//        model.addAttribute("user",userDetails.getUser());
 
         model.addAttribute("viewlist", cookieHelper.getCookieByName(res,productService,"viewlist"));
         return  "template/user/customer/recentview/recent-view";
