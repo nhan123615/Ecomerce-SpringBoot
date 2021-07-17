@@ -36,8 +36,8 @@ public class AdminTypeController {
 	@GetMapping("/type")
 	public String show(Authentication authentication, Model model) {
 		model.addAttribute("list", typeService.findAll());
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/type/list-type";
 	}
 	
@@ -45,8 +45,8 @@ public class AdminTypeController {
 	public String newType(Authentication authentication, Locale locale, Model model) {
 		logger.info("get : newType");
 		model.addAttribute("categories", categoryService.findAll());
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/type/form-add-type";
 	}
 
@@ -64,8 +64,8 @@ public class AdminTypeController {
 		Type t = typeService.findById(id);
 		model.addAttribute("type", t);
 		model.addAttribute("categories", categoryService.findAll());
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/type/form-edit-type";
 	}
 

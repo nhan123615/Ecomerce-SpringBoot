@@ -43,8 +43,8 @@ public class AdminBrandController {
 	public String show(Authentication authentication, Model model) {
 
 		model.addAttribute("list", brandService.findAll());
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/brand/list-brand";
 	}
 	
@@ -52,8 +52,8 @@ public class AdminBrandController {
 	public String newType(Authentication authentication, Locale locale, Model model) {
 
 		model.addAttribute("brand", new Brand());
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/brand/form-add-brand";
 	}
 
@@ -67,8 +67,8 @@ public class AdminBrandController {
 
 	@GetMapping(value = "/brand/edit")
 	public String edit(@RequestParam(value = "id") Long id, Authentication authentication, Locale locale, Model model) {
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		model.addAttribute("brand", brandService.findById(id));
 		return "template/admin/brand/form-edit-brand";
 	}

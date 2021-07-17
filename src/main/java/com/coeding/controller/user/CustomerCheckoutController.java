@@ -3,9 +3,11 @@ package com.coeding.controller.user;
 import com.coeding.entity.*;
 import com.coeding.service.CustomerOrderService;
 import com.coeding.service.CustomerService;
+import com.coeding.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,18 +28,20 @@ public class CustomerCheckoutController {
     private CustomerService customerService;
     private CustomerOrderService customerOrderService;
     private Cart cart;
+    private UserService userService;
 
     @Autowired
-    public CustomerCheckoutController(CustomerService customerService, Cart cart, CustomerOrderService customerOrderService) {
+    public CustomerCheckoutController(CustomerService customerService, Cart cart, CustomerOrderService customerOrderService,UserService userService) {
         this.customerService = customerService;
         this.cart = cart;
         this.customerOrderService = customerOrderService;
+        this.userService=userService;
     }
 
     @GetMapping("/checkout-page")
     public String checkoutPage(Authentication authentication, Model model){
-        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-        model.addAttribute("user", userDetails.getUser());
+//        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//        model.addAttribute("user", userDetails.getUser());
 
         List<CartItem> cartItems = cart.getCartItems();
         if (cartItems.size()>0){
@@ -51,14 +55,24 @@ public class CustomerCheckoutController {
     public String customerCheckoutProductPage(Authentication authentication, Model model) {
         String template = "redirect:/customer/info";
         log.info("set template customer info");
+//            UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//            model.addAttribute("user", userDetails.getUser());
+        User user = null;
+        if (authentication.getPrincipal() instanceof  UserDetail){
             UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-            model.addAttribute("user", userDetails.getUser());
+            user = userDetails.getUser();
+        }
 
-            Long countCustomer = customerService.countByUserId(userDetails.getUser().getId());
+        if (authentication.getPrincipal() instanceof OAuth2User) {
+            OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
+            user = userService.findByEmail(String.valueOf(oAuth2User.getAttributes().get("email")));
+        }
+
+            Long countCustomer = customerService.countByUserId(user.getId());
 
             if (countCustomer > 0) {
                 log.info("customer already input info");
-                customer = customerService.findByUserId(userDetails.getUser().getId());
+                customer = customerService.findByUserId(user.getId());
                 if (customer.getAddress() != null && customer.getFirstName() != null && customer.getLastName() != null && customer.getPhone() != null) {
                     log.info("customer already input all field of info");
                     List<CartItem> listItem = new ArrayList<>(cart.getCartItems());
@@ -82,8 +96,9 @@ public class CustomerCheckoutController {
 
     @PostMapping("/checkout")
     public String processCustomerOrder(Authentication authentication, CustomerOrder order, Model model) {
-        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-        model.addAttribute("user", userDetails.getUser());
+//        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//        model.addAttribute("user", userDetails.getUser());
+
         log.info("save order with deliver info : " + order.getDeliverCustomerName() + "," + order.getDeliverCustomerPhone() + "," + order.getDeliverCustomerAddress());
         List<CartItem> listItem = new ArrayList<>(cart.getCartItems());
         CustomerOrder customerOrder = new CustomerOrder(

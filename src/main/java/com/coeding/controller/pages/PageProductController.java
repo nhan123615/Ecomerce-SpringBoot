@@ -46,11 +46,11 @@ public class PageProductController {
             @RequestParam(name = "type", required = false) Long typeId
     ) {
 
-        if (authentication != null) {
-            LOGGER.info("check User with (authentication != null)");
-            UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-            model.addAttribute("user", userDetails.getUser());
-        }
+//        if (authentication != null) {
+//            LOGGER.info("check User with (authentication != null)");
+//            UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//            model.addAttribute("user", userDetails.getUser());
+//        }
 
         if (categoryId != null) {
             LOGGER.info("load by CategoryId (categoryId != null)");

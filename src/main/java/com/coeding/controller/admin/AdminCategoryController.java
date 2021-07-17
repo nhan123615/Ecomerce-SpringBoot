@@ -40,8 +40,8 @@ public class AdminCategoryController {
 	public String show(Authentication authentication, Model model) {
 
 		model.addAttribute("list", categoryService.findAll());
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/category/list-category";
 	}
 	
@@ -49,8 +49,8 @@ public class AdminCategoryController {
 	public String newType(Authentication authentication, Locale locale, Model model) {
 
 		model.addAttribute("category", new Category());
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/category/form-add-category";
 	}
 
@@ -65,8 +65,8 @@ public class AdminCategoryController {
 
 	@GetMapping(value = "/category/edit")
 	public String edit(@RequestParam(value = "id") Long id, Authentication authentication, Locale locale, Model model) {
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		model.addAttribute("category", categoryService.findById(id));
 		return "template/admin/category/form-edit-category";
 	}

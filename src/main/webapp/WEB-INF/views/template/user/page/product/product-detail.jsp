@@ -883,8 +883,12 @@
 				case "alert-danger": message = "Failed !";break;
 				case "alert_info": message ="Data not found";break;
 				default:
+					if (value.includes("invalid")||value.includes("failed")){
+						style = "alert-danger";
+					}else{
+						style = "alert-success";
+					}
 					message =value ;
-					style = "alert-success";
 			}
 			var height = ($(window).height() - 45)/5;
 

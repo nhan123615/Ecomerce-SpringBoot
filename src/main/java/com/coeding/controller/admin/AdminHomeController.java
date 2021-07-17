@@ -44,8 +44,8 @@ public class AdminHomeController {
 	ProductService productService;
 	@GetMapping
 	public String customerHomePage(Authentication authentication, Model model) {
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		int size = orderService.numberNewOrder();
 		model.addAttribute("numberNewOrder", size);
 		model.addAttribute("numberUser", userService.findAll().size());

@@ -39,8 +39,8 @@ public class CustomerHomeController {
 
     @GetMapping
     public String customerHomePage(Authentication authentication, Model model, HttpServletRequest res){
-        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-        model.addAttribute("user",userDetails.getUser());
+//        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//        model.addAttribute("user",userDetails.getUser());
         List<Product> viewList = cookieHelper.getCookieByName(res,productService,"viewlist");
 
         if (cart.getCartItems().size()>0){

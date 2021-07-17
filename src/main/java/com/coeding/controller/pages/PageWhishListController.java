@@ -37,10 +37,10 @@ public class PageWhishListController {
 
 	@GetMapping("/wishlist")
 	public String cartPage(Authentication authentication,HttpServletRequest res, Model model) {
-		if (authentication!=null){
-			UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-			model.addAttribute("user",userDetails.getUser());
-		}
+//		if (authentication!=null){
+//			UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//			model.addAttribute("user",userDetails.getUser());
+//		}
 
 		log.info("wishlist: ");
 		Cookie[] cl = res.getCookies();

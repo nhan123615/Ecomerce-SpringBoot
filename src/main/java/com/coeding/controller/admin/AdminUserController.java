@@ -44,24 +44,24 @@ public class AdminUserController {
 	@GetMapping("/user")
 	public String ListUserController(Authentication authentication, Model model) {
 		model.addAttribute("userList" , userService.findAll());
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		return  "template/admin/user/list";
 	}
 	@GetMapping("/user/edit")
 	public String EditUserController(
 			@RequestParam(value = "id") Long id,Model model, Authentication authentication){
 		model.addAttribute("userDetail" , userService.findById(id));
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/user/edit";
 	}
 	@GetMapping("/user/detail")
 	public String DetailUserController(
 			@RequestParam(value = "id") Long id,Model model, Authentication authentication){
 		model.addAttribute("userDetail" , userService.findById(id));
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/user/detail";
 	}
 
@@ -71,8 +71,8 @@ public class AdminUserController {
 		userIn.setEnabled(user.isEnabled());
 		userIn.setRole(user.getRole());
 		userService.saveUser(userIn);
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		String message = (String) request.getSession().getAttribute("message");
 		request.getSession().setAttribute("message", "Update success !");
 		return "redirect:/admin/user";

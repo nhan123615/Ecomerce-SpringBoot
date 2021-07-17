@@ -37,8 +37,8 @@ public class AdminBannerImageController {
 	@GetMapping(value = "/banner")
 	public String listBanner(Authentication authentication, Locale locale, Model model) {
 		log.info("list banner");
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		List<BannerGallery> listBanner = bannerService.findAll();
 		model.addAttribute("listBanner", listBanner);
 		return "template/admin/banner/list-banner-image";
@@ -47,8 +47,8 @@ public class AdminBannerImageController {
 	@GetMapping(value = "/banner/new")
 	public String newBanner(Authentication authentication, Locale locale, Model model) {
 		log.info("new banner");
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/banner/form-add-banner-image";
 	}
 
@@ -77,8 +77,8 @@ public class AdminBannerImageController {
 	public String editBanner(@RequestParam(value = "id") Long id, Authentication authentication, Locale locale,
 			Model model) {
 		log.info("edit banner");
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		BannerGallery bannerGallery = bannerService.findById(id);
 		model.addAttribute("bannerGallery", bannerGallery);
 		return "template/admin/banner/form-edit-banner-image";

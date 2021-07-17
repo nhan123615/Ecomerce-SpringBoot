@@ -1,15 +1,13 @@
 package com.coeding.controller.user;
 
-import com.coeding.entity.Customer;
-import com.coeding.entity.CustomerOrder;
-import com.coeding.entity.PaypalDetail;
-import com.coeding.entity.UserDetail;
+import com.coeding.entity.*;
 import com.coeding.service.*;
 import com.paypal.api.payments.Links;
 import com.paypal.api.payments.Payment;
 import com.paypal.base.rest.PayPalRESTException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +27,7 @@ public class CustomerPaypalController {
     private CustomerOrder order;
     private PaypalDetailService paypalDetailService;
     private PaymentService paymentService;
+    private UserService userService;
 
     @Autowired
     public CustomerPaypalController(PaypalService service, CustomerOrderService customerOrderService, CustomerService customerService, PaypalDetailService paypalDetailService, PaymentService paymentService) {
@@ -57,10 +56,20 @@ public class CustomerPaypalController {
             HttpServletRequest request,
             Authentication authentication
     ) {
-        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-        Long countCustomer = customerService.countByUserId(userDetails.getUser().getId());
+//        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+        User user = null;
+        if (authentication.getPrincipal() instanceof  UserDetail){
+            UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+            user = userDetails.getUser();
+        }
+
+        if (authentication.getPrincipal() instanceof OAuth2User) {
+            OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
+            user = userService.findByEmail(String.valueOf(oAuth2User.getAttributes().get("email")));
+        }
+        Long countCustomer = customerService.countByUserId(user.getId());
         if (countCustomer > 0) {
-            Customer customer = customerService.findByUserId(userDetails.getUser().getId());
+            Customer customer = customerService.findByUserId(user.getId());
             order = customerOrderService.findOrderByCustomerId(customer.getId());
 
             try {
@@ -91,8 +100,8 @@ public class CustomerPaypalController {
 
     @GetMapping(value = CANCEL_URL)
     public String cancelPay(Authentication authentication, Model model) {
-        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-        model.addAttribute("user", userDetails.getUser());
+//        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//        model.addAttribute("user", userDetails.getUser());
 //        return "template/user/customer/payment/paypal/payment-failed";
         return "redirect:/customer/payment/paypal/payment-failed";
 
@@ -100,9 +109,8 @@ public class CustomerPaypalController {
 
     @GetMapping(value = SUCCESS_URL)
     public String successPay(Authentication authentication, Model model, @RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId) {
-        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-
-        model.addAttribute("user", userDetails.getUser());
+//        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//        model.addAttribute("user", userDetails.getUser());
         try {
             Payment payment = service.executePayment(paymentId, payerId);
 //	            System.out.println(payment.toJSON());
@@ -148,8 +156,8 @@ public class CustomerPaypalController {
 
     @GetMapping("/paypal/payment-success")
     public String paymentSuccessPage(Authentication authentication, Model model) {
-        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-        model.addAttribute("user", userDetails.getUser());
+//        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//        model.addAttribute("user", userDetails.getUser());
         return "template/user/customer/payment/paypal/payment-success";
     }
 
