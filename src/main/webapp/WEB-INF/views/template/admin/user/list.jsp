@@ -95,7 +95,7 @@
 																<td class="text-center"><a
 																	href="${pageContext.servletContext.contextPath}/admin/user/detail?id=${u.id}"
 																	class="rounded-circle btn btn-sm btn-secondary"
-																	title="Change Password"> <i class="fas fa-info"></i>
+																	title="Detail"> <i class="fas fa-info"></i>
 																</a> <a
 																	href="${pageContext.request.contextPath}/admin/user/edit?id=${u.id}"
 																	id="${u.id}" class="rounded-circle btn btn-sm btn-info"

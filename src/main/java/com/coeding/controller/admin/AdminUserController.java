@@ -2,10 +2,12 @@ package com.coeding.controller.admin;
 
 import com.coeding.entity.Customer;
 import com.coeding.entity.CustomerOrder;
+import com.coeding.entity.Payment;
 import com.coeding.entity.User;
 import com.coeding.entity.UserDetail;
 import com.coeding.service.CustomerOrderService;
 import com.coeding.service.CustomerService;
+import com.coeding.service.PaymentService;
 import com.coeding.service.UserService;
 
 import antlr.StringUtils;
@@ -37,10 +39,8 @@ import javax.validation.Valid;
 
 /**
  * 
- * @author Vy
- * list , edit , update , detail
- * @author Lam Cong Hau
- * extend detail
+ * @author Vy list , edit , update , detail
+ * @author Lam Cong Hau extend detail
  */
 @Controller
 @RequestMapping("/admin")
@@ -48,46 +48,61 @@ public class AdminUserController {
 	private UserService userService;
 	private CustomerService customerService;
 	private CustomerOrderService customerOrderService;
+	private PaymentService paymentService;
+
 	@Autowired
-	public AdminUserController(UserService user, CustomerService customerService, CustomerOrderService customerOrderService) {
+	public AdminUserController(UserService user, CustomerService customerService,
+			CustomerOrderService customerOrderService, PaymentService paymentService) {
 		this.userService = user;
 		this.customerService = customerService;
 		this.customerOrderService = customerOrderService;
+		this.paymentService = paymentService;
 	}
+
 	@GetMapping("/user")
 	public String ListUserController(Authentication authentication, Model model) {
-		model.addAttribute("userList" , userService.findAll());
+		model.addAttribute("userList", userService.findAll());
 		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
 		model.addAttribute("user", userDetails.getUser());
-		return  "template/admin/user/list";
+		return "template/admin/user/list";
 	}
+
 	@GetMapping("/user/edit")
-	public String EditUserController(
-			@RequestParam(value = "id") Long id,Model model, Authentication authentication){
-		model.addAttribute("userDetail" , userService.findById(id));
+	public String EditUserController(@RequestParam(value = "id") Long id, Model model, Authentication authentication) {
+		model.addAttribute("userDetail", userService.findById(id));
 		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
 		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/user/edit";
 	}
+
 	@GetMapping("/user/detail")
-	public String DetailUserController(
-			@RequestParam(value = "id") Long id,Model model, Authentication authentication){
-		model.addAttribute("userDetail" , userService.findById(id));
+	public String DetailUserController(@RequestParam(value = "id") Long id, Model model,
+			Authentication authentication) {
+		model.addAttribute("userDetail", userService.findById(id));
 		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
 		model.addAttribute("user", userDetails.getUser());
-		
-        List<CustomerOrder> orders;
-        try{
-            orders =  customerOrderService.findAllOrderByCustomerId(id);
-        }catch (Exception e){
-            orders = new ArrayList<>();
-        }
-        model.addAttribute("customerOrders",orders );
+
+		Customer cus = customerService.findByUserId(id);
+		if (cus != null) {
+			List<CustomerOrder> orders;
+			try {
+				orders = customerOrderService.findAllOrderByCustomerId(cus.getId());
+			} catch (Exception e) {
+				orders = new ArrayList<>();
+			}
+			model.addAttribute("customerOrders", orders);
+
+			List<Payment> payments = paymentService.findAllPaymentByCustomerId(cus.getId());
+			model.addAttribute("payments", payments);
+
+			model.addAttribute("customer", cus);
+		}
 		return "template/admin/user/detail1";
 	}
 
 	@RequestMapping(value = "/user/saveUpdate", method = RequestMethod.POST)
-	public String SaveUserController(Model model, User user,HttpServletResponse response, Authentication authentication,HttpServletRequest request) {
+	public String SaveUserController(Model model, User user, HttpServletResponse response,
+			Authentication authentication, HttpServletRequest request) {
 		User userIn = userService.findById(user.getId());
 		userIn.setEnabled(user.isEnabled());
 		userIn.setRole(user.getRole());
