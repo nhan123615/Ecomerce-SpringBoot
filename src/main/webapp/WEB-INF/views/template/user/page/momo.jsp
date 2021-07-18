@@ -2,7 +2,7 @@
 <%--${payment}--%>
 <br>
 <pre>
-	{
+{
 "partnerCode" : "${payment['partnerCode']}",
 "orderId" :"${payment['orderId']}",
 "orderInfo" :"${payment['orderInfo']}",
