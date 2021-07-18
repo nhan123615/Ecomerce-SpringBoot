@@ -20,15 +20,8 @@
 			<section class="content-header">
 				<div class="container-fluid">
 					<div class="row mb-2">
-						<div class="col-sm-6">
-							<h1>Type list</h1>
-						</div>
-						<div class="col-sm-6">
-							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a
-									href="${pageContext.servletContext.contextPath}/admin">Home</a></li>
-								<li class="breadcrumb-item active">Type list</li>
-							</ol>
+						<div class="col-sm-12">
+							<h1 class="text-center">Type Manager</h1>
 						</div>
 					</div>
 				</div>
@@ -43,18 +36,16 @@
 							<!-- /.card -->
 							<div class="card">
 								<div class="card-header">
-									<h3 class="card-title">Type list</h3>
+										<a
+												href="${pageContext.servletContext.contextPath}/admin/type/new"
+												class="btn btn-success">Add type</a>
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
 									<div id="example1_wrapper"
 										class="dataTables_wrapper dt-bootstrap4">
 										<div class="row">
-											<div class="col-sm-3">
-												<a
-													href="${pageContext.servletContext.contextPath}/admin/type/new"
-													class="btn btn-success">Add type</a>
-											</div>
+
 											<div class="col-sm-12">
 												<table id="example1"
 													class="table table-bordered table-striped dataTable dtr-inline"
@@ -74,7 +65,7 @@
 													<tbody>
 														<c:forEach var="type" items="${list }">
 															<tr>
-																<td>${type.id }</td>
+																<td>NO.${type.id }</td>
 																<td>${type.name }</td>
 																<td>${type.category.name }</td>
 																<td class="project-actions text-center"><a

@@ -45,32 +45,30 @@
 				<div class="card card-solid">
 					<div class="card-body">
 						<div class="row">
-							<nav class="w-100">
+							<nav class="w-100 mb-3">
 								<div class="nav nav-tabs" id="product-tab" role="tablist">
 									<a class="nav-item nav-link active" id="product-desc-tab"
 										data-toggle="tab" href="#product-desc" role="tab"
-										aria-controls="product-desc" aria-selected="true">Information
-										Of User</a>
+										aria-controls="product-desc" aria-selected="true">User Details</a>
 									<c:if test="${userDetail.role == 'ROLE_USER'}">
 										<a class="nav-item nav-link" id="product-desc-tab1"
 											data-toggle="tab" href="#product-desc1" role="tab"
-											aria-controls="product-desc1" aria-selected="false">Information
-											Of Customer</a>
+											aria-controls="product-desc1" aria-selected="false">Customer Details</a>
 										<a class="nav-item nav-link" id="product-comments-tab"
 											data-toggle="tab" href="#product-comments" role="tab"
-											aria-controls="product-comments" aria-selected="false">Order
-											Of Customer</a>
+											aria-controls="product-comments" aria-selected="false">Order Details
+										</a>
 										<a class="nav-item nav-link" id="product-rating-tab"
 											data-toggle="tab" href="#product-rating" role="tab"
-											aria-controls="product-rating" aria-selected="false">Payment
-											Of Customer</a>
+											aria-controls="product-rating" aria-selected="false">Payment Details
+										</a>
 									</c:if>
 								</div>
 							</nav>
 							<div class="tab-content w-100" id="nav-tabContent">
 								<div class="tab-pane fade show active" id="product-desc"
 									role="tabpanel" aria-labelledby="product-desc-tab">
-									<div class="card-body">
+									<div class="card-body mt-3">
 										<div class="form-group row" style="">
 											<label for="name"
 												class="col-sm-2 col-form-label text-sm-right required">UserName</label>
@@ -109,35 +107,35 @@
 												</select>
 											</div>
 										</div>
-										<c:if test="${userDetail.role == 'ROLE_USER'}">
-											<div class="form-group row">
-												<label for="name"
-													class="col-sm-2 col-form-label text-sm-right required">Name</label>
-												<div class="col-xs-12 col-sm-8">
-													<input type="text" id="name" name="name"
-														value="${customer.firstName} ${customer.lastName}"
-														class="form-control form-control-sm" disabled>
-												</div>
-											</div>
-											<div class="form-group row">
-												<label for="phone"
-													class="col-sm-2 col-form-label text-sm-right required">Phone</label>
-												<div class="col-xs-12 col-sm-8">
-													<input type="text" id="phone" name="phone"
-														value="${customer.phone}"
-														class="form-control form-control-sm" disabled>
-												</div>
-											</div>
-											<div class="form-group row">
-												<label for="address"
-													class="col-sm-2 col-form-label text-sm-right required">Address</label>
-												<div class="col-xs-12 col-sm-8">
-													<input type="text" id="address" name="address"
-														value="${customer.address}"
-														class="form-control form-control-sm" disabled>
-												</div>
-											</div>
-										</c:if>
+<%--										<c:if test="${userDetail.role == 'ROLE_USER'}">--%>
+<%--											<div class="form-group row">--%>
+<%--												<label for="name"--%>
+<%--													class="col-sm-2 col-form-label text-sm-right required">Name</label>--%>
+<%--												<div class="col-xs-12 col-sm-8">--%>
+<%--													<input type="text" id="name" name="name"--%>
+<%--														value="${customer.firstName} ${customer.lastName}"--%>
+<%--														class="form-control form-control-sm" disabled>--%>
+<%--												</div>--%>
+<%--											</div>--%>
+<%--											<div class="form-group row">--%>
+<%--												<label for="phone"--%>
+<%--													class="col-sm-2 col-form-label text-sm-right required">Phone</label>--%>
+<%--												<div class="col-xs-12 col-sm-8">--%>
+<%--													<input type="text" id="phone" name="phone"--%>
+<%--														value="${customer.phone}"--%>
+<%--														class="form-control form-control-sm" disabled>--%>
+<%--												</div>--%>
+<%--											</div>--%>
+<%--											<div class="form-group row">--%>
+<%--												<label for="address"--%>
+<%--													class="col-sm-2 col-form-label text-sm-right required">Address</label>--%>
+<%--												<div class="col-xs-12 col-sm-8">--%>
+<%--													<input type="text" id="address" name="address"--%>
+<%--														value="${customer.address}"--%>
+<%--														class="form-control form-control-sm" disabled>--%>
+<%--												</div>--%>
+<%--											</div>--%>
+<%--										</c:if>--%>
 									</div>
 									<div class="card-footer">
 										<div class="col-12 col-sm-8 offset-sm-2">

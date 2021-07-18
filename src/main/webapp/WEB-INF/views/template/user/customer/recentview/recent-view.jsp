@@ -48,7 +48,7 @@
                                                                         <li class="toCart" value="${p.id}"><a data-toggle="tooltip"
                                                                                                               data-placement="top" title="Add To Cart"><i
                                                                                 class="icon-bag2"></i></a></li>
-                                                                        <li><a href="#" data-placement="top" title="Quick View"
+                                                                        <li><a  data-placement="top" title="Quick View"
                                                                                data-toggle="modal" data-target="#product-quickview-${p.id}"><i
                                                                                 class="icon-eye"></i></a></li>
                                                                         <li><a onClick="addToWishList(${p.id})"

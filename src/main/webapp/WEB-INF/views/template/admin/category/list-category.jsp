@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="../components/head.jsp"></jsp:include>
@@ -20,15 +22,8 @@
 			<section class="content-header">
 				<div class="container-fluid">
 					<div class="row mb-2">
-						<div class="col-sm-6">
-							<h1>Category list</h1>
-						</div>
-						<div class="col-sm-6">
-							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a
-									href="${pageContext.servletContext.contextPath}/admin">Home</a></li>
-								<li class="breadcrumb-item active">Category list</li>
-							</ol>
+						<div class="col-sm-12">
+							<h1 class="text-center">Category Manager</h1>
 						</div>
 					</div>
 				</div>
@@ -43,58 +38,56 @@
 							<!-- /.card -->
 							<div class="card">
 								<div class="card-header">
-									<h3 class="card-title">Category list</h3>
+										<a
+												href="${pageContext.servletContext.contextPath}/admin/category/new"
+												class="btn btn-success">Add category</a>
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
 									<div id="example1_wrapper"
 										class="dataTables_wrapper dt-bootstrap4">
 										<div class="row">
-											<div class="col-sm-3">
-												<a
-													href="${pageContext.servletContext.contextPath}/admin/category/new"
-													class="btn btn-success">Add category</a>
-											</div>
+
 											<div class="col-sm-12">
 												<table id="example1"
 													class="table table-bordered table-striped dataTable dtr-inline"
 													role="grid" aria-describedby="example1_info">
 													<thead>
 														<tr role="row">
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Id</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Name</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Status</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Updated</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Action</th>
 														</tr>
 													</thead>
 													<tbody>
 														<c:forEach var="category" items="${list }">
 															<tr>
-																<td>${category.id }</td>
+																<td>NO.${category.id }</td>
 																<td>${category.name }</td>
 																<c:choose>
 																	<c:when test="${category.enabled }">
-																		<td>
+																		<td class="text-center">
 																			<span class="my-btn-state rounded-circle btn btn-sm btn-success">
 																			<i class="fas fa-check"></i>
 																			</span>
 																		</td>
 																	</c:when>
 																	<c:otherwise>
-																		<td>
+																		<td class="text-center">
 																			<span class="my-btn-state rounded-circle btn btn-sm btn-danger">
 																				<i class="fas fa-minus"></i>
 																			</span>
 																		</td>
 																	</c:otherwise>
 																</c:choose>
-																<td>${category.updated }</td>
+																<td class="text-center"><fmt:formatDate value='${category.updated }'  type='date' pattern='dd/MM/yyyy'/></td>
 																<td class="project-actions text-center"><a
 																	class="btn btn-info btn-sm"
 																	href="${pageContext.request.contextPath}/admin/category/edit?id=${category.id}"><i

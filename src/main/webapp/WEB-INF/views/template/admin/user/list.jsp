@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="../components/head.jsp"></jsp:include>
@@ -20,15 +22,8 @@
 			<section class="content-header">
 				<div class="container-fluid">
 					<div class="row mb-2">
-						<div class="col-sm-6">
-							<h1>User Manager :: List</h1>
-						</div>
-						<div class="col-sm-6">
-							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a
-									href="${pageContext.servletContext.contextPath}/admin">Home</a></li>
-								<li class="breadcrumb-item active">User List</li>
-							</ol>
+						<div class="col-sm-12">
+							<h1 class="text-center">User Manager</h1>
 						</div>
 					</div>
 				</div>
@@ -42,9 +37,6 @@
 						<div class="col-12">
 							<!-- /.card -->
 							<div class="card">
-								<div class="card-header">
-									<h3 class="card-title">User list</h3>
-								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
 									<div id="example1_wrapper"
@@ -56,47 +48,53 @@
 													role="grid" aria-describedby="example1_info">
 													<thead>
 														<tr role="row">
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Id</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
-																rowspan="1" colspan="1">Email</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Username</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
+																rowspan="1" colspan="1">Email</th>
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Status</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Role</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Action</th>
 														</tr>
 													</thead>
 													<tbody>
 														<c:forEach items="${userList}" var="u">
 															<tr>
-																<td class="text-center">${u.id}</td>
+																<td class="text-center">NO.${u.id}</td>
+																<td class="text-center">
+																	<a href="${pageContext.servletContext.contextPath}/admin/user/detail?id=${u.id}">${u.username}
+																	</a>
+																</td>
 																<td class="text-center">${u.email}</td>
-																<td class="text-center">${u.username}</td>
 																<td class="text-center position-relative"><c:choose>
 																		<c:when test="${u.enabled == true}">
-																			<a href=""
+																			<a
 																				class="my-btn-state rounded-circle btn btn-sm btn-success">
 																				<i class="fas fa-check"></i>
 																			</a>
 																		</c:when>
 
 																		<c:otherwise>
-																			<a href=""
+																			<a
 																				class="my-btn-state rounded-circle btn btn-sm btn-danger">
 																				<i class="fas fa-minus"></i>
 																			</a>
 																		</c:otherwise>
-																	</c:choose></td>
-																<td class="text-center">${u.role}</td>
-																<td class="text-center"><a
-																	href="${pageContext.servletContext.contextPath}/admin/user/detail?id=${u.id}"
-																	class="rounded-circle btn btn-sm btn-secondary"
-																	title="Detail"> <i class="fas fa-info"></i>
-																</a> <a
+																	</c:choose>
+																</td>
+																<td class="text-center">${fn:substring(u.role, 5, fn:length(u.role))}</td>
+																<td class="text-center">
+<%--																	<a--%>
+<%--																	href="${pageContext.servletContext.contextPath}/admin/user/detail?id=${u.id}"--%>
+<%--																	class="rounded-circle btn btn-sm btn-secondary"--%>
+<%--																	title="Detail"> <i class="fas fa-info"></i>--%>
+<%--																</a> --%>
+																	<a
 																	href="${pageContext.request.contextPath}/admin/user/edit?id=${u.id}"
 																	id="${u.id}" class="rounded-circle btn btn-sm btn-info"
 																	title="Edit"> <i class="fas fa-pencil-alt"></i>

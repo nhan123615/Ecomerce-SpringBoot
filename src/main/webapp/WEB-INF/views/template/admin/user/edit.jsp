@@ -100,7 +100,7 @@
 									</div>
 									<div class="card-footer">
 										<div class="col-12 col-sm-8 offset-sm-2">
-											<button class="btn btn-sm btn-success mr-1" href="#">Save</button>
+											<button class="btn btn-sm btn-success mr-1" >Save</button>
 											<a class="btn btn-sm btn-danger mr-1"
 												href="${pageContext.servletContext.contextPath}/admin/user">Cancel</a>
 										</div>

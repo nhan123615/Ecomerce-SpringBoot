@@ -70,12 +70,12 @@
 							href="mailto:contact@martfury.co">contact@martfury.co</a>
 					</p>
 					<ul class="ps-list--social">
-						<li><a class="facebook" href="#"><i
+						<li><a class="facebook" ><i
 								class="fa fa-facebook"></i></a></li>
-						<li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-						<li><a class="google-plus" href="#"><i
+						<li><a class="twitter" ><i class="fa fa-twitter"></i></a></li>
+						<li><a class="google-plus" ><i
 								class="fa fa-google-plus"></i></a></li>
-						<li><a class="instagram" href="#"><i
+						<li><a class="instagram" ><i
 								class="fa fa-instagram"></i></a></li>
 					</ul>
 				</div>
@@ -83,10 +83,10 @@
 			<aside class="widget widget_footer">
 				<h4 class="widget-title">Quick links</h4>
 				<ul class="ps-list--link">
-					<li><a href="#">Policy</a></li>
-					<li><a href="#">Term & Condition</a></li>
-					<li><a href="#">Shipping</a></li>
-					<li><a href="#">Return</a></li>
+					<li><a >Policy</a></li>
+					<li><a >Term & Condition</a></li>
+					<li><a >Shipping</a></li>
+					<li><a >Return</a></li>
 					<li><a href="faqs.html">FAQs</a></li>
 				</ul>
 			</aside>
@@ -94,15 +94,15 @@
 				<h4 class="widget-title">Company</h4>
 				<ul class="ps-list--link">
 					<li><a href="about-us.html">About Us</a></li>
-					<li><a href="#">Affilate</a></li>
-					<li><a href="#">Career</a></li>
+					<li><a >Affilate</a></li>
+					<li><a >Career</a></li>
 					<li><a href="contact-us.html">Contact</a></li>
 				</ul>
 			</aside>
 			<aside class="widget widget_footer">
 				<h4 class="widget-title">Bussiness</h4>
 				<ul class="ps-list--link">
-					<li><a href="#">Our Press</a></li>
+					<li><a >Our Press</a></li>
 					<li><a href="checkout.html">Checkout</a></li>
 					<li><a href="my-account.html">My account</a></li>
 					<li><a href="shop-default.html">Shop</a></li>
@@ -111,53 +111,53 @@
 		</div>
 		<div class="ps-footer__links">
 			<p>
-				<strong>Consumer Electric:</strong><a href="#">Air Conditioners</a><a
-					href="#">Audios &amp; Theaters</a><a href="#">Car Electronics</a><a
-					href="#">Office Electronics</a><a href="#">TV Televisions</a><a
-					href="#">Washing Machines</a>
+				<strong>Consumer Electric:</strong><a >Air Conditioners</a><a
+					>Audios &amp; Theaters</a><a >Car Electronics</a><a
+					>Office Electronics</a><a >TV Televisions</a><a
+					>Washing Machines</a>
 			</p>
 			<p>
-				<strong>Clothing &amp; Apparel:</strong><a href="#">Printers</a><a
-					href="#">Projectors</a><a href="#">Scanners</a><a href="#">Store
-					&amp; Business</a><a href="#">4K Ultra HD TVs</a><a href="#">LED
-					TVs</a><a href="#">OLED TVs</a>
+				<strong>Clothing &amp; Apparel:</strong><a >Printers</a><a
+					>Projectors</a><a >Scanners</a><a >Store
+					&amp; Business</a><a >4K Ultra HD TVs</a><a >LED
+					TVs</a><a >OLED TVs</a>
 			</p>
 			<p>
-				<strong>Home, Garden &amp; Kitchen:</strong><a href="#">Cookware</a><a
-					href="#">Decoration</a><a href="#">Furniture</a><a href="#">Garden
-					Tools</a><a href="#">Garden Equipments</a><a href="#">Powers And
-					Hand Tools</a><a href="#">Utensil &amp; Gadget</a>
+				<strong>Home, Garden &amp; Kitchen:</strong><a >Cookware</a><a
+					>Decoration</a><a >Furniture</a><a >Garden
+					Tools</a><a >Garden Equipments</a><a >Powers And
+					Hand Tools</a><a >Utensil &amp; Gadget</a>
 			</p>
 			<p>
-				<strong>Health &amp; Beauty:</strong><a href="#">Hair Care</a><a
-					href="#">Decoration</a><a href="#">Hair Care</a><a href="#">Makeup</a><a
-					href="#">Body Shower</a><a href="#">Skin Care</a><a href="#">Cologine</a><a
-					href="#">Perfume</a>
+				<strong>Health &amp; Beauty:</strong><a >Hair Care</a><a
+					>Decoration</a><a >Hair Care</a><a >Makeup</a><a
+					>Body Shower</a><a >Skin Care</a><a >Cologine</a><a
+					>Perfume</a>
 			</p>
 			<p>
-				<strong>Jewelry &amp; Watches:</strong><a href="#">Necklace</a><a
-					href="#">Pendant</a><a href="#">Diamond Ring</a><a href="#">Sliver
-					Earing</a><a href="#">Leather Watcher</a><a href="#">Gucci</a>
+				<strong>Jewelry &amp; Watches:</strong><a >Necklace</a><a
+					>Pendant</a><a >Diamond Ring</a><a >Sliver
+					Earing</a><a >Leather Watcher</a><a >Gucci</a>
 			</p>
 			<p>
-				<strong>Computer &amp; Technologies:</strong><a href="#">Desktop
-					PC</a><a href="#">Laptop</a><a href="#">Smartphones</a><a href="#">Tablet</a><a
-					href="#">Game Controller</a><a href="#">Audio &amp; Video</a><a
-					href="#">Wireless Speaker</a><a href="#">Done</a>
+				<strong>Computer &amp; Technologies:</strong><a >Desktop
+					PC</a><a >Laptop</a><a >Smartphones</a><a >Tablet</a><a
+					>Game Controller</a><a >Audio &amp; Video</a><a
+					>Wireless Speaker</a><a >Done</a>
 			</p>
 		</div>
 		<div class="ps-footer__copyright">
 			<p>Â© 2018 Martfury. All Rights Reserved</p>
 			<p>
-				<span>We Using Safe Payment For:</span><a href="#"><img
+				<span>We Using Safe Payment For:</span><a ><img
 					src="${pageContext.servletContext.contextPath}/img/payment-method/1.jpg"
-					alt=""></a><a href="#"><img
+					alt=""></a><a ><img
 					src="${pageContext.servletContext.contextPath}/img/payment-method/2.jpg"
-					alt=""></a><a href="#"><img
+					alt=""></a><a ><img
 					src="${pageContext.servletContext.contextPath}/img/payment-method/3.jpg"
-					alt=""></a><a href="#"><img
+					alt=""></a><a ><img
 					src="${pageContext.servletContext.contextPath}/img/payment-method/4.jpg"
-					alt=""></a><a href="#"><img
+					alt=""></a><a ><img
 					src="${pageContext.servletContext.contextPath}/img/payment-method/5.jpg"
 					alt=""></a>
 			</p>
@@ -167,7 +167,7 @@
 <div class="ps-popup" id="subscribe" data-time="500">
 	<div class="ps-popup__content bg--cover"
 		data-background="${pageContext.servletContext.contextPath}/img/bg/subscribe.jpg">
-		<a class="ps-popup__close" href="#"><i class="icon-cross"></i></a>
+		<a class="ps-popup__close" ><i class="icon-cross"></i></a>
 		<form class="ps-form--subscribe-popup" action="index.html"
 			method="get">
 			<div class="ps-form__content">
@@ -201,7 +201,7 @@
 	<div class="loader-section section-right"></div>
 </div>
 <div class="ps-search" id="site-search">
-	<a class="ps-btn--close" href="#"></a>
+	<a class="ps-btn--close" ></a>
 	<div class="ps-search__content">
 		<form class="ps-form--primary-search" action="do_action" method="post">
 			<input class="form-control" type="text" placeholder="Search for...">

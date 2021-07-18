@@ -68,6 +68,46 @@
 <!-- AdminLTE for demo purposes -->
 <script src="${pageContext.servletContext.contextPath}/dist/js/demo.js"></script>
 <script>
+	var path = $(location).attr('pathname');
+	// HOME
+	if (path==="/admin"){
+		addClass1('#dashboard','#home')
+	}
+	// DATA
+
+	if (path.includes("/type")){
+		addClass1('#data','#typelist')
+	}
+	if (path.includes("/brand")){
+		addClass1('#data','#brandlist')
+	}
+	if (path.includes("/category")){
+		addClass1('#data','#categorylist')
+	}
+	if (path.includes("/banner")){
+		addClass1('#data','#bannerlist')
+	}
+
+	// MANAGEMENT
+
+	if (path.includes("/product")){
+		addClass('#managerproduct','#linkproduct','#productlist')
+	}
+
+	if (path.includes("/user")){
+		addClass('#managerproduct','#linkproduct','#userlist')
+	}
+	if (path.includes("/subscriber")){
+		addClass('#managerproduct','#linkproduct','#subscriberlist')
+	}
+	if (path.includes("/order")){
+		addClass('#managerproduct','#linkproduct','#orderlist')
+	}
+	if (path.includes("/payment")){
+		addClass('#managerproduct','#linkproduct','#paymentlist')
+	}
+
+
 	function addClass(id1, id2, id3) {
 		$(id1).addClass('nav-item menu-is-opening menu-open');
 		$(id2).addClass('nav-link active');
@@ -77,78 +117,78 @@
 		$(id1).addClass('nav-item menu-is-opening menu-open');
 		$(id2).addClass('nav-link active');
 	}
-
-	if ($(location).attr('pathname') === '/admin') {
-		addClass('#dashboard', '#linkdashboard', '#home');
-	}
-	if ($(location).attr('pathname') === '/admin/product/new') {
-		addClass('#managerproduct', '#linkproduct', '#newproduct');
-	}
-	if ($(location).attr('pathname') === '/admin/type/new') {
-		addClass('#managertype', '#linktype', '#newtype');
-	}
-	if ($(location).attr('pathname') === '/admin/product') {
-		addClass('#managerproduct', '#linkproduct', '#productlist');
-	}
-	if ($(location).attr('pathname') === '/admin/product/detail'
-			|| $(location).attr('pathname') === '/admin/product/edit') {
-		addClass1('#managerproduct', '#linkproduct');
-	}
-	if ($(location).attr('pathname') === '/admin/type') {
-		addClass('#managertype', '#linktype', '#typelist');
-	}
-	if ($(location).attr('pathname') === '/admin/type/edit') {
-		addClass1('#managertype', '#linktype');
-	}
-	if ($(location).attr('pathname') === '/admin/user') {
-		addClass('#manageruser', '#linkuser', '#userlist');
-	}
-	if ($(location).attr('pathname') === '/admin/user/detail'
-			|| $(location).attr('pathname') === '/admin/user/edit') {
-		addClass1('#manageruser', '#linkuser');
-	}
-	if ($(location).attr('pathname') === '/admin/subscriber') {
-		addClass('#managersubscriber', '#linksubscriber', '#subscriberlist');
-	}
-	if ($(location).attr('pathname') === '/admin/order') {
-		addClass('#managerorder', '#linkorder', '#orderlist');
-	}
-	if ($(location).attr('pathname') === '/admin/order/detail') {
-		addClass1('#managerorder', '#linkorder');
-	}
-	if ($(location).attr('pathname') === '/admin/payment') {
-		addClass('#managerpayment', '#linkpayment', '#paymentlist');
-	}
-	if ($(location).attr('pathname') === '/admin/payment/detail') {
-		addClass1('#managerpayment', '#linkpayment');
-	}
-	if ($(location).attr('pathname') === '/admin/banner') {
-		addClass('#managerbanner', '#linkbanner', '#bannerlist');
-	}
-	if ($(location).attr('pathname') === '/admin/banner/new') {
-		addClass('#managerbanner', '#linkbanner', '#newbanner');
-	}
-	if ($(location).attr('pathname') === '/admin/banner/edit') {
-		addClass('#managerbanner', '#linkbanner');
-	}
-	if ($(location).attr('pathname') === '/admin/brand') {
-		addClass('#managerbrand', '#linkbrand', '#brandlist');
-	}
-	if ($(location).attr('pathname') === '/admin/brand/new') {
-		addClass('#managerbrand', '#linkbrand', '#newbrand');
-	}
-	if ($(location).attr('pathname') === '/admin/brand/edit') {
-		addClass('#managerbrand', '#linkbrand');
-	}
-	if ($(location).attr('pathname') === '/admin/category') {
-		addClass('#managercategory', '#linkcategory', '#categorylist');
-	}
-	if ($(location).attr('pathname') === '/admin/category/new') {
-		addClass('#managercategory', '#linkcategory', '#newcategory');
-	}
-	if ($(location).attr('pathname') === '/admin/category/edit') {
-		addClass('#managercategory', '#linkcategory');
-	}
+	//
+	// if ($(location).attr('pathname') === '/admin') {
+	// 	addClass('#dashboard', '#linkdashboard', '#home');
+	// }
+	// if ($(location).attr('pathname') === '/admin/product/new') {
+	// 	addClass('#managerproduct', '#linkproduct', '#newproduct');
+	// }
+	// if ($(location).attr('pathname') === '/admin/type/new') {
+	// 	addClass('#managertype', '#linktype', '#newtype');
+	// }
+	// if ($(location).attr('pathname') === '/admin/product') {
+	// 	addClass('#managerproduct', '#linkproduct', '#productlist');
+	// }
+	// if ($(location).attr('pathname') === '/admin/product/detail'
+	// 		|| $(location).attr('pathname') === '/admin/product/edit') {
+	// 	addClass1('#managerproduct', '#linkproduct');
+	// }
+	// if ($(location).attr('pathname') === '/admin/type') {
+	// 	addClass('#managertype', '#linktype', '#typelist');
+	// }
+	// if ($(location).attr('pathname') === '/admin/type/edit') {
+	// 	addClass1('#managertype', '#linktype');
+	// }
+	// if ($(location).attr('pathname') === '/admin/user') {
+	// 	addClass('#manageruser', '#linkuser', '#userlist');
+	// }
+	// if ($(location).attr('pathname') === '/admin/user/detail'
+	// 		|| $(location).attr('pathname') === '/admin/user/edit') {
+	// 	addClass1('#manageruser', '#linkuser');
+	// }
+	// if ($(location).attr('pathname') === '/admin/subscriber') {
+	// 	addClass('#managersubscriber', '#linksubscriber', '#subscriberlist');
+	// }
+	// if ($(location).attr('pathname') === '/admin/order') {
+	// 	addClass('#managerorder', '#linkorder', '#orderlist');
+	// }
+	// if ($(location).attr('pathname') === '/admin/order/detail') {
+	// 	addClass1('#managerorder', '#linkorder');
+	// }
+	// if ($(location).attr('pathname') === '/admin/payment') {
+	// 	addClass('#managerpayment', '#linkpayment', '#paymentlist');
+	// }
+	// if ($(location).attr('pathname') === '/admin/payment/detail') {
+	// 	addClass1('#managerpayment', '#linkpayment');
+	// }
+	// if ($(location).attr('pathname') === '/admin/banner') {
+	// 	addClass('#managerbanner', '#linkbanner', '#bannerlist');
+	// }
+	// if ($(location).attr('pathname') === '/admin/banner/new') {
+	// 	addClass('#managerbanner', '#linkbanner', '#newbanner');
+	// }
+	// if ($(location).attr('pathname') === '/admin/banner/edit') {
+	// 	addClass('#managerbanner', '#linkbanner');
+	// }
+	// if ($(location).attr('pathname') === '/admin/brand') {
+	// 	addClass('#managerbrand', '#linkbrand', '#brandlist');
+	// }
+	// if ($(location).attr('pathname') === '/admin/brand/new') {
+	// 	addClass('#managerbrand', '#linkbrand', '#newbrand');
+	// }
+	// if ($(location).attr('pathname') === '/admin/brand/edit') {
+	// 	addClass('#managerbrand', '#linkbrand');
+	// }
+	// if ($(location).attr('pathname') === '/admin/category') {
+	// 	addClass('#managercategory', '#linkcategory', '#categorylist');
+	// }
+	// if ($(location).attr('pathname') === '/admin/category/new') {
+	// 	addClass('#managercategory', '#linkcategory', '#newcategory');
+	// }
+	// if ($(location).attr('pathname') === '/admin/category/edit') {
+	// 	addClass('#managercategory', '#linkcategory');
+	// }
 </script>
     <jsp:include page="../../user/message/message.jsp"></jsp:include>
 

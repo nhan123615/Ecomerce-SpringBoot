@@ -3,6 +3,7 @@ package com.coeding.controller.user;
 import com.coeding.entity.Customer;
 import com.coeding.entity.User;
 import com.coeding.entity.UserDetail;
+import com.coeding.helper.UserHelper;
 import com.coeding.service.CustomerService;
 import com.coeding.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,26 +27,28 @@ public class CustomerInfoController {
 
     private CustomerService customerService;
     private UserService userService;
+    private UserHelper userHelper;
     @Autowired
-    public CustomerInfoController(CustomerService customer,UserService userService) {
+    public CustomerInfoController(CustomerService customer,UserService userService,UserHelper userHelper) {
         this.customerService = customer;
         this.userService = userService;
+        this.userHelper = userHelper;
     }
 
     @GetMapping
     public String customerInfoPage(Authentication authentication, Model model) {
 //        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
 //        model.addAttribute("user", userDetails.getUser());
-        User user = null;
-        if (authentication.getPrincipal() instanceof  UserDetail){
-            UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-            user = userDetails.getUser();
-        }
-
-        if (authentication.getPrincipal() instanceof OAuth2User) {
-            OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
-            user = userService.findByEmail(String.valueOf(oAuth2User.getAttributes().get("email")));
-        }
+        User user = userHelper.getUser(authentication,userService);
+//        if (authentication.getPrincipal() instanceof  UserDetail){
+//            UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//            user = userDetails.getUser();
+//        }
+//
+//        if (authentication.getPrincipal() instanceof OAuth2User) {
+//            OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
+//            user = userService.findByEmail(String.valueOf(oAuth2User.getAttributes().get("email")));
+//        }
 
 
         Long countCustomer = customerService.countByUserId(user.getId());
@@ -79,16 +82,16 @@ public class CustomerInfoController {
 
     @PostMapping("/new")
     public String createCustomerInfo(Authentication authentication,Customer customer,HttpServletRequest request){
-        User user = null;
-        if (authentication.getPrincipal() instanceof  UserDetail){
-            UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-            user = userDetails.getUser();
-        }
-
-        if (authentication.getPrincipal() instanceof OAuth2User) {
-            OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
-            user = userService.findByEmail(String.valueOf(oAuth2User.getAttributes().get("email")));
-        }
+        User user = userHelper.getUser(authentication,userService);
+//        if (authentication.getPrincipal() instanceof  UserDetail){
+//            UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//            user = userDetails.getUser();
+//        }
+//
+//        if (authentication.getPrincipal() instanceof OAuth2User) {
+//            OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
+//            user = userService.findByEmail(String.valueOf(oAuth2User.getAttributes().get("email")));
+//        }
 //        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
         Long countCustomer = customerService.countByUserId(user.getId());
         if (countCustomer == 0){

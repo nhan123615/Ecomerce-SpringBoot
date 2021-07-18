@@ -1,6 +1,7 @@
 package com.coeding.controller.user;
 
 import com.coeding.entity.*;
+import com.coeding.helper.UserHelper;
 import com.coeding.service.CustomerOrderService;
 import com.coeding.service.CustomerService;
 import com.coeding.service.UserService;
@@ -29,13 +30,15 @@ public class CustomerCheckoutController {
     private CustomerOrderService customerOrderService;
     private Cart cart;
     private UserService userService;
+    private UserHelper userHelper;
 
     @Autowired
-    public CustomerCheckoutController(CustomerService customerService, Cart cart, CustomerOrderService customerOrderService,UserService userService) {
+    public CustomerCheckoutController(CustomerService customerService, Cart cart, CustomerOrderService customerOrderService,UserService userService,UserHelper userHelper) {
         this.customerService = customerService;
         this.cart = cart;
         this.customerOrderService = customerOrderService;
         this.userService=userService;
+        this.userHelper=userHelper;
     }
 
     @GetMapping("/checkout-page")
@@ -57,16 +60,16 @@ public class CustomerCheckoutController {
         log.info("set template customer info");
 //            UserDetail userDetails = (UserDetail) authentication.getPrincipal();
 //            model.addAttribute("user", userDetails.getUser());
-        User user = null;
-        if (authentication.getPrincipal() instanceof  UserDetail){
-            UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-            user = userDetails.getUser();
-        }
-
-        if (authentication.getPrincipal() instanceof OAuth2User) {
-            OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
-            user = userService.findByEmail(String.valueOf(oAuth2User.getAttributes().get("email")));
-        }
+        User user = userHelper.getUser(authentication,userService);
+//        if (authentication.getPrincipal() instanceof  UserDetail){
+//            UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//            user = userDetails.getUser();
+//        }
+//
+//        if (authentication.getPrincipal() instanceof OAuth2User) {
+//            OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
+//            user = userService.findByEmail(String.valueOf(oAuth2User.getAttributes().get("email")));
+//        }
 
             Long countCustomer = customerService.countByUserId(user.getId());
 

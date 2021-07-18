@@ -78,7 +78,7 @@
 								<h1>${product.productName }</h1>
 								<div class="ps-product__meta">
 									<p>
-										Brand:<a href="#">${product.brand.name }</a>
+										Brand:<a >${product.brand.name }</a>
 									</p>
 									<div class="ps-product__rating">
 										<select class="ps-rating" data-read-only="true">
@@ -281,12 +281,12 @@
 					</aside>
 					<aside class="widget widget_sell-on-site">
 						<p>
-							<i class="icon-store"></i> Sell on Martfury?<a href="#">
+							<i class="icon-store"></i> Sell on Martfury?<a >
 								Register Now !</a>
 						</p>
 					</aside>
 					<aside class="widget widget_ads">
-						<a href="#"><img
+						<a ><img
 							src="${pageContext.request.contextPath}/img/ads/product-ads.png"
 							alt=""></a>
 					</aside>
@@ -300,22 +300,22 @@
 										alt=""></a>
 									<div class="ps-product__badge">-37%</div>
 									<ul class="ps-product__actions">
-										<li><a href="#" data-toggle="tooltip"
+										<li><a  data-toggle="tooltip"
 											data-placement="top" title="Add To Cart"><i
 												class="icon-bag2"></i></a></li>
-										<li><a href="#" data-placement="top" title="Quick View"
+										<li><a  data-placement="top" title="Quick View"
 											data-toggle="modal" data-target="#product-quickview"><i
 												class="icon-eye"></i></a></li>
-										<li><a href="#" data-toggle="tooltip"
+										<li><a  data-toggle="tooltip"
 											data-placement="top" title="Add to Whishlist"><i
 												class="icon-heart"></i></a></li>
-										<li><a href="#" data-toggle="tooltip"
+										<li><a  data-toggle="tooltip"
 											data-placement="top" title="Compare"><i
 												class="icon-chart-bars"></i></a></li>
 									</ul>
 								</div>
 								<div class="ps-product__container">
-									<a class="ps-product__vendor" href="#">Robert's Store</a>
+									<a class="ps-product__vendor" >Robert's Store</a>
 									<div class="ps-product__content">
 										<a class="ps-product__title" href="product-default.html">Grand
 											Slam Indoor Of Show Jumping Novel</a>
@@ -350,22 +350,22 @@
 										alt=""></a>
 									<div class="ps-product__badge">-5%</div>
 									<ul class="ps-product__actions">
-										<li><a href="#" data-toggle="tooltip"
+										<li><a  data-toggle="tooltip"
 											data-placement="top" title="Add To Cart"><i
 												class="icon-bag2"></i></a></li>
-										<li><a href="#" data-placement="top" title="Quick View"
+										<li><a  data-placement="top" title="Quick View"
 											data-toggle="modal" data-target="#product-quickview"><i
 												class="icon-eye"></i></a></li>
-										<li><a href="#" data-toggle="tooltip"
+										<li><a  data-toggle="tooltip"
 											data-placement="top" title="Add to Whishlist"><i
 												class="icon-heart"></i></a></li>
-										<li><a href="#" data-toggle="tooltip"
+										<li><a  data-toggle="tooltip"
 											data-placement="top" title="Compare"><i
 												class="icon-chart-bars"></i></a></li>
 									</ul>
 								</div>
 								<div class="ps-product__container">
-									<a class="ps-product__vendor" href="#">Youngshop</a>
+									<a class="ps-product__vendor" >Youngshop</a>
 									<div class="ps-product__content">
 										<a class="ps-product__title" href="product-default.html">Sound
 											Intone I65 Earphone White Version</a>
@@ -424,7 +424,7 @@
 												<li class="toCart" value="${p.id}"><a data-toggle="tooltip"
 																					  data-placement="top" title="Add To Cart"><i
 														class="icon-bag2"></i></a></li>
-												<li><a href="#" data-placement="top" title="Quick View"
+												<li><a  data-placement="top" title="Quick View"
 													   data-toggle="modal" data-target="#product-quickview-${p.id}"><i
 														class="icon-eye"></i></a></li>
 												<li><a onclick="addToWishList(${p.id})"
@@ -491,7 +491,7 @@
 											<li class="toCart" value="${p.id}"><a  data-toggle="tooltip"
 												data-placement="top" title="Add To Cart"><i
 													class="icon-bag2"></i></a></li>
-											<li><a href="#" data-placement="top" title="Quick View"
+											<li><a  data-placement="top" title="Quick View"
 												data-toggle="modal" data-target="#product-quickview-${p.id}"><i
 													class="icon-eye"></i></a></li>
 											<li><a onClick="addToWishList(${p.id})"

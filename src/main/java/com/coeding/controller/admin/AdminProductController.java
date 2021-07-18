@@ -56,7 +56,7 @@ public class AdminProductController {
 
 	@GetMapping("/product")
 	public String show(Authentication authentication, Model model) {
-		List<Product> list = productService.findAll();
+		List<Product> list = productService.findAllIgnoreStatus();
 		logger.info("list: " + list.size());
 		model.addAttribute("categories", categoryService.findAll());
 		model.addAttribute("list", list);

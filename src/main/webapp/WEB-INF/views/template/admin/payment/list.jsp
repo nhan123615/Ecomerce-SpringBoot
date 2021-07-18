@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="../components/head.jsp"></jsp:include>
@@ -20,15 +22,8 @@
 			<section class="content-header">
 				<div class="container-fluid">
 					<div class="row mb-2">
-						<div class="col-sm-6">
-							<h1>Payment list</h1>
-						</div>
-						<div class="col-sm-6">
-							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a
-									href="${pageContext.servletContext.contextPath}/admin">Home</a></li>
-								<li class="breadcrumb-item active">Payment List</li>
-							</ol>
+						<div class="col-sm-12">
+							<h1 class="text-center">Payment Manager</h1>
 						</div>
 					</div>
 				</div>
@@ -42,9 +37,6 @@
 						<div class="col-12">
 							<!-- /.card -->
 							<div class="card">
-								<div class="card-header">
-									<h3 class="card-title">Payment list</h3>
-								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
 									<div id="example1_wrapper"
@@ -56,18 +48,19 @@
 													role="grid" aria-describedby="example1_info">
 													<thead>
 														<tr role="row">
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Id</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
-																rowspan="1" colspan="1">Amount</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
-																rowspan="1" colspan="1">Payment Detail</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
-																rowspan="1" colspan="1">Payment Method</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
-																rowspan="1" colspan="1">Status</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting  text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Customer ID</th>
+															<th class="sorting  text-center" tabindex="0" aria-controls="example1"
+																rowspan="1" colspan="1">Amount</th>
+															<th class="sorting  text-center" tabindex="0" aria-controls="example1"
+																rowspan="1" colspan="1">Payment Detail</th>
+															<th class="sorting  text-center" tabindex="0" aria-controls="example1"
+																rowspan="1" colspan="1">Payment Method</th>
+															<th class="sorting  text-center" tabindex="0" aria-controls="example1"
+																rowspan="1" colspan="1">Status</th>
+
 															<th class="sorting" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Action</th>
 														</tr>
@@ -75,34 +68,42 @@
 													<tbody>
 														<c:forEach var="p" items="${paymentList }">
 															<tr>
-																<td>${p.id }</td>
-																<td>${p.amount }</td>
-																<td>${p.paymentDate }</td>
-																<td>${p.paymentMethod }</td>
+																<td>NO.${p.id }</td>
 																<td>
+																	<a href="${pageContext.request.contextPath}/admin/payment/detail?id=${p.id}">
+																			${p.customerOrder.customer.firstName} ${p.customerOrder.customer.lastName}
+																	</a>
+
+																</td>
+																<td>${p.amount }</td>
+																<td ><fmt:formatDate value='${p.paymentDate }'  type='date' pattern='dd/MM/yyyy'/></td>
+																<td>${p.paymentMethod }</td>
+																<td class="text-center">
 																	<c:choose>
 																		<c:when test="${p.status == true}">
-																			<a href=""
+																			<a
 																				class="my-btn-state rounded-circle btn btn-sm btn-success">
 																				<i class="fas fa-check"></i>
 																			</a>
 																		</c:when>
 				
 																		<c:otherwise>
-																			<a href=""
+																			<a
 																				class="my-btn-state rounded-circle btn btn-sm btn-danger">
 																				<i class="fas fa-minus"></i>
 																			</a>
 																		</c:otherwise>
 																	</c:choose>
 																</td>
-																<td>${p.customerOrder.customer.id}</td>
-																<td class="project-actions text-center"><a
-																	class="btn btn-primary btn-sm"
-																	href="${pageContext.request.contextPath}/admin/payment/detail?id=${p.id}"><i
-																		class="fas fa-folder"></i>View</a> <a
+
+																<td class="project-actions text-center">
+<%--																	<a--%>
+<%--																	class="btn btn-primary btn-sm"--%>
+<%--																	href="${pageContext.request.contextPath}/admin/payment/detail?id=${p.id}"><i--%>
+<%--																		class="fas fa-folder"></i>View</a>--%>
+																	<a
 																	class="btn btn-info btn-sm"
-																	href="#"><i
+																	><i
 																		class="fas fa-pencil-alt"></i>Edit</a></td>
 															</tr>
 														</c:forEach>

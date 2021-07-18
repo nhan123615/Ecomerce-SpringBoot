@@ -145,15 +145,15 @@
             <version>2.5</version>
         </dependency>
         <!--CKFinder end -->
-        <!--MOMO-->
+<!--        MOMO-->
 
-        <!--		<dependency>-->
-        <!--			<groupId>io.github.momo-wallet</groupId>-->
-        <!--			<artifactId>momopayment</artifactId>-->
-        <!--			<version>1.0</version>-->
-        <!--		</dependency>-->
+        		<dependency>
+        			<groupId>io.github.momo-wallet</groupId>
+        			<artifactId>momopayment</artifactId>
+        			<version>1.0</version>
+        		</dependency>
 
-        <!--MOMO-->
+<!--        MOMO-->
 
         <!--		social login-->
         <dependency>
@@ -164,16 +164,16 @@
 
     </dependencies>
 
-    <!--	<distributionManagement>-->
-    <!--		<snapshotRepository>-->
-    <!--			<id>ossrh</id>-->
-    <!--			<url>https://oss.sonatype.org/content/repositories/snapshots</url>-->
-    <!--		</snapshotRepository>-->
-    <!--		<repository>-->
-    <!--			<id>ossrh</id>-->
-    <!--			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>-->
-    <!--		</repository>-->
-    <!--	</distributionManagement>-->
+    	<distributionManagement>
+    		<snapshotRepository>
+    			<id>ossrh</id>
+    			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    		</snapshotRepository>
+    		<repository>
+    			<id>ossrh</id>
+    			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    		</repository>
+    	</distributionManagement>
 
 
     <build>

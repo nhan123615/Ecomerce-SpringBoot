@@ -21,15 +21,8 @@
 			<section class="content-header">
 				<div class="container-fluid">
 					<div class="row mb-2">
-						<div class="col-sm-6">
-							<h1>Banner Image List</h1>
-						</div>
-						<div class="col-sm-6">
-							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a
-									href="${pageContext.servletContext.contextPath}/admin">Home</a></li>
-								<li class="breadcrumb-item active">Banner Image List</li>
-							</ol>
+						<div class="col-sm-12">
+							<h1 class="text-center" >Banner Image Manager</h1>
 						</div>
 					</div>
 				</div>
@@ -43,36 +36,34 @@
 							<!-- /.card -->
 							<div class="card">
 								<div class="card-header">
-									<h3 class="card-title">Banner image list</h3>
+										<a
+												href="${pageContext.servletContext.contextPath}/admin/banner/new"
+												class="btn btn-success">Add Banner</a>
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
 									<div id="example1_wrapper"
 										class="dataTables_wrapper dt-bootstrap4">
 										<div class="row">
-											<div class="col-sm-3">
-												<a
-													href="${pageContext.servletContext.contextPath}/admin/banner/new"
-													class="btn btn-success">Add banner image</a>
-											</div>
+
 											<div class="col-sm-12">
 												<table id="example1"
 													class="table table-bordered table-striped dataTable dtr-inline"
 													role="grid" aria-describedby="example1_info">
 													<thead>
 														<tr role="row">
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Id</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Image</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Action</th>
 														</tr>
 													</thead>
 													<tbody>
 														<c:forEach var="b" items="${listBanner }">
 															<tr>
-																<td>${b.id }</td>
+																<td class="text-center">NO.${b.id }</td>
 																<td class="text-center"><img
 																	src="${pageContext.request.contextPath}/banner/display/${b.id}"
 																	width="100px" height="100px"></td>

@@ -20,7 +20,7 @@
                                     <div class="ps-block__panel">
                                         <figure><small>Contact</small>
                                             <p>
-                                                <a href="#">${customerOrder.deliverCustomerName}</a>
+                                                <a >${customerOrder.deliverCustomerName}</a>
                                                 &nbsp;
                                                 <span>(${customerOrder.deliverCustomerPhone})</span>
                                             </p>
@@ -66,7 +66,7 @@
                                         </figure>
                                         <figure class="ps-block__items" style="height: 200px;overflow:hidden;overflow-y:scroll;">
                                         <c:forEach items="${customerOrder.cartItems}" var="cartItem">
-                                            <a href="#">
+                                            <a >
                                             <strong>${cartItem.product.productName} <span>x${cartItem.sellingQuantity}</span> </strong>
                                             <span> <small class="pr-3">$ <fmt:formatNumber type="number" value="${cartItem.totalPrice}"/></small></span>
 <%--                                                    --%>

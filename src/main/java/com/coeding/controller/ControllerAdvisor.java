@@ -1,6 +1,7 @@
 package com.coeding.controller;
 
 import com.coeding.entity.*;
+import com.coeding.helper.UserHelper;
 import com.coeding.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -30,31 +31,33 @@ public class ControllerAdvisor  extends DefaultHandlerExceptionResolver  {
     private ProductService productService;
     private TypeService typeService;
     private UserService userService;
+    private UserHelper userHelper;
 
     @Autowired
-    public ControllerAdvisor(CategoryService categoryService, BrandService brandService, ProductService productService, TypeService typeService,UserService userService) {
+    public ControllerAdvisor(CategoryService categoryService, BrandService brandService, ProductService productService, TypeService typeService,UserService userService,UserHelper userHelper) {
         this.categoryService = categoryService;
         this.brandService = brandService;
         this.productService = productService;
         this.typeService = typeService;
         this.userService = userService;
+        this.userHelper = userHelper;
     }
 
 
     @ModelAttribute("user")
     public User user(Authentication authentication){
-        User model = null;
-        if (authentication != null) {
-            if (authentication.getPrincipal() instanceof  UserDetail){
-                UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-                model = userDetails.getUser();
-            }
-            if (authentication.getPrincipal() instanceof OAuth2User) {
-                OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
-                model = userService.findByEmail(String.valueOf(oAuth2User.getAttributes().get("email")));
-            }
-        }
-        return model;
+//        User model = null;
+//        if (authentication != null) {
+//            if (authentication.getPrincipal() instanceof  UserDetail){
+//                UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//                model = userDetails.getUser();
+//            }
+//            if (authentication.getPrincipal() instanceof OAuth2User) {
+//                OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
+//                model = userService.findByEmail(String.valueOf(oAuth2User.getAttributes().get("email")));
+//            }
+//        }
+        return userHelper.getUser(authentication,userService);
     }
 
     @ModelAttribute("categories")

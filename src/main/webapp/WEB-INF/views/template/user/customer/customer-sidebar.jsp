@@ -3,7 +3,7 @@
         <div class="ps-widget__header"><img src="${pageContext.servletContext.contextPath}/img/users/3.jpg" alt="">
             <figure>
                 <figcaption>Hello</figcaption>
-                <p><a href="#">${user.username}</a></p>
+                <p><a >${user.username}</a></p>
             </figure>
         </div>
         <div class="ps-widget__content">
