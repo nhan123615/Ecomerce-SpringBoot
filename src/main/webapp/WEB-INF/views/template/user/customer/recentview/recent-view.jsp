@@ -174,13 +174,13 @@
 <script>
 
     $(document).ready(function(){
-        var cartItems = [];
-        var products = [];
-        window.onload = initData();
-        function initData() {
-            // initCartItem();
-            getAllProducts();
-        }
+        // var cartItems = [];
+        // var products = [];
+        // window.onload = initData();
+        // function initData() {
+        //     // initCartItem();
+        //     getAllProducts();
+        // }
 
 //////////////////////////////////////////////////
 
@@ -292,7 +292,7 @@
             updateCartItemsCookie(cartItems)
             window.setTimeout(function () {
                 window.location.href = "${pageContext.servletContext.contextPath}/cart";
-            },300)
+            },500)
         });
 
 

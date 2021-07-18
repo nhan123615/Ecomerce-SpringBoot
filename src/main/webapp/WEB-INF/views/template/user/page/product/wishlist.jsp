@@ -77,6 +77,10 @@
 	</div>
 	<jsp:include page="../../components/footer.jsp"></jsp:include>
 	<script>
+
+
+
+
 	var tblProduct = document.querySelector('#wishProductTable');
 	function removeFromWishList(id) {
 		const data = null;
@@ -84,7 +88,7 @@
 		xhr.addEventListener("readystatechange", function() {
 			if (this.readyState === this.DONE) {
 				var json = JSON.parse(this.responseText);
-				initData();
+				updateWishlist();
 				if (json.length > 0) {
 					tblProduct.innerHTML = getWishListTable(json);
 				} else {
@@ -100,6 +104,7 @@
 		xhr.setRequestHeader('Content-type', 'application/json');
 		xhr.send(data);
 	}
+
 	
 	function getWishListTable(json) {
 		var wishListTable = '';
@@ -128,7 +133,7 @@
 	function getNoWishProductFound() {
 		return '<tr><td colspan="5" class="text-center"><h1>No wishlist found !!!</h1></td></tr>';
 	}
-     
+
      function addItemToCart(id){
 		 if (checkStock(id,getCartProductQty(id))){
 			 const data = null;
@@ -149,17 +154,17 @@
 		                    }
 		                    if (count == 0){
 		                        cartItems.push(json)
-		                        countCartItems()
 		                    }
-		                    updateCartItemsCookie(cartItems)
-		                    showCartItems()
+							updateCartItemsCookie(cartItems)
+							countCartItems()
+							showCartItems()
 		                    console.log(cartItems)
 		                }else{
 		                    cartItems.push(json)
 		                    console.log("cartItems: "+cartItems)
-		                    countCartItems()
-		                    showCartItems()
-		                    updateCartItemsCookie(cartItems)
+							updateCartItemsCookie(cartItems)
+							countCartItems()
+							showCartItems()
 		                }
 		                msg("Add to cart successful!");
 		                removeFromWishList(id)
@@ -174,7 +179,8 @@
 	    	   msg("Add to cart failed!");
 	       }		
     }
-     
+
+
      function addProductToViewList(id) {
 			const data = null;
 			const xhr = new XMLHttpRequest();

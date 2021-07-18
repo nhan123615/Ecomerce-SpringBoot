@@ -97,7 +97,8 @@
         xhr.addEventListener("readystatechange", function() {
             if (this.readyState === this.DONE) {
                 var json = JSON.parse(this.responseText);
-                initData();
+                // initData();
+                updateWishlist();
                 if (json.length > 0) {
                     tblProduct.innerHTML = getWishListTable(json);
                 } else {

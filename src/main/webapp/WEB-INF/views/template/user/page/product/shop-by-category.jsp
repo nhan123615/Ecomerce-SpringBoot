@@ -278,14 +278,14 @@
         var queryParams = new URLSearchParams(window.location.search);
         var btnPrice =document.querySelector('#btnPrice');
 //cookie and cartItem
-        var cartItems = [];
-        var products = []
-        window.onload =  initData();
-
-        function initData(){
-            initCartItem();
-            getAllProducts();
-        }
+//         var cartItems = [];
+//         var products = []
+//         window.onload =  initData();
+//
+//         function initData(){
+//             initCartItem();
+//             getAllProducts();
+//         }
 
         function getAllProducts(){
             const data = null;
@@ -363,7 +363,7 @@
             toCart(this.getAttribute('value'),event)
             window.setTimeout(function () {
                 window.location.href = "${pageContext.servletContext.contextPath}/cart";
-            },300)
+            },500)
         });
 
 

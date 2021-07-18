@@ -30,7 +30,7 @@ public class CustomerPaypalController {
     private UserService userService;
 
     @Autowired
-    public CustomerPaypalController(PaypalService service, CustomerOrderService customerOrderService, CustomerService customerService, PaypalDetailService paypalDetailService, PaymentService paymentService, UserService userService) {
+    public CustomerPaypalController(PaypalService service, CustomerOrderService customerOrderService, CustomerService customerService, PaypalDetailService paypalDetailService, PaymentService paymentService,UserService userService) {
         this.service = service;
         this.customerOrderService = customerOrderService;
         this.customerService = customerService;

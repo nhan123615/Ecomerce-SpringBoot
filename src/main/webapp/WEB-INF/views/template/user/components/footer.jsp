@@ -300,10 +300,22 @@
 				countWish.innerHTML = 0;
 			}
 		}
-		initCartItem();
+		// initCartItem();
+		initCartItemData();
 		getAllProducts();
 	}
 
+
+	function updateWishlist() {
+		cookies();
+		if (arr_product != null) {
+			if (arr_product[0] != "") {
+				countWish.innerHTML = arr_product.length;
+			} else {
+				countWish.innerHTML = 0;
+			}
+		}
+	}
 
 
 	function cookies() {
@@ -403,17 +415,47 @@
 		}
 	}
 
+	function initCartItemData() {
+		const data = null;
+		const xhr = new XMLHttpRequest();
+		xhr.addEventListener("readystatechange", function() {
+			if (this.readyState === this.DONE) {
+				var json = JSON.parse(this.responseText);
+				console.log("initCartItem->>>")
+				console.log(json)
+				// if (cartItems.length >0){
+				// 	cartItems.push(json)
+				// }else{
+				cartItems = json
+				// }
+			}
+			countCartItems()
+			showCartItems()
+		});
+
+		xhr
+				.open("GET",
+						"${pageContext.servletContext.contextPath}/cart/getAll");
+		xhr.setRequestHeader('Content-type', 'application/json');
+		xhr.send(data);
+	}
+
 	function initCartItem() {
 		const data = null;
 		const xhr = new XMLHttpRequest();
 		xhr.addEventListener("readystatechange", function() {
 			if (this.readyState === this.DONE) {
 				var json = JSON.parse(this.responseText);
+				console.log("initCartItem->>>")
 				console.log(json)
-				cartItems = json
-				countCartItems()
-				showCartItems()
+				// if (cartItems.length >0){
+				// 	cartItems.push(json)
+				// }else{
+					cartItems = json
+				// }
 			}
+			// countCartItems()
+			// showCartItems()
 		});
 
 		xhr
@@ -439,6 +481,7 @@
 			if (this.readyState === this.DONE) {
 				var json = JSON.parse(this.responseText);
 				// if (json.length>0){
+				console.log("updateCartItemsCookie->>>>>")
 				console.log(json)
 				cartItems = json
 				// }
@@ -462,7 +505,7 @@
 			 toCart(this.getAttribute('value'),event)
 			 window.setTimeout(function () {
 				 window.location.href = "${pageContext.servletContext.contextPath}/cart";
-			 },300)
+			 },500)
 		 });
 
 
@@ -513,7 +556,7 @@
 		xhr.addEventListener("readystatechange", function () {
 			if (this.readyState === this.DONE) {
 				var json = JSON.parse(this.responseText);
-				msg("Add to cart sucessful !");
+				console.log("JSON ->>>>")
 				console.log(json)
 				if (cartItems.length>0){
 					var count = 0;
@@ -527,18 +570,22 @@
 					}
 					if (count == 0){
 						cartItems.push(json)
-						countCartItems()
+						// countCartItems()
 					}
 					updateCartItemsCookie(cartItems)
 					showCartItems()
+					console.log("cartItems ->>>>")
 					console.log(cartItems)
 				}else{
 					cartItems.push(json)
+					console.log("cartItems ->>>>")
 					console.log(cartItems)
-					countCartItems()
+					// countCartItems()
 					showCartItems()
 					updateCartItemsCookie(cartItems)
 				}
+				countCartItems()
+				msg("Add to cart sucessful !");
 
 			}
 		});
@@ -546,6 +593,7 @@
 		xhr.open("GET", url);
 		xhr.setRequestHeader('Content-type', 'application/json');
 		xhr.send(data);
+
 	}
 
 	/* }) */

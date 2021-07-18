@@ -303,6 +303,7 @@
                     cartItems = json
                     countCartItems()
                     showCartItems()
+                    document.getElementById('tblShoppingCart').innerHTML = getTableShoppingCart(cartItems)
                 }
             });
 

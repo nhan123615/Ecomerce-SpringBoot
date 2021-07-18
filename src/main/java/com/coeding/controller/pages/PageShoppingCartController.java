@@ -43,6 +43,7 @@ public class PageShoppingCartController {
 
     @GetMapping("/getAll")
     public List<CartItem> getAllCartItem(){
+        log.info("getAll Cart Items ->>"+cart.getCartItems().size());
         return cart.getCartItems() ;
     }
 

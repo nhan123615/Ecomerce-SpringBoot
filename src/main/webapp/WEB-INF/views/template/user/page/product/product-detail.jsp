@@ -597,13 +597,13 @@
 	<script>
 
 		$(document).ready(function(){
-			var cartItems = [];
-			var products = [];
-			window.onload = initData();
-			function initData() {
-				initCartItem();
-				getAllProducts();
-			}
+			// var cartItems = [];
+			// var products = [];
+			// window.onload = initData();
+			// function initData() {
+			// 	initCartItem();
+			// 	getAllProducts();
+			// }
 
 //////////////////////////////////////////////////
 			//increase Qty
@@ -752,7 +752,7 @@
 				updateCartItemsCookie(cartItems)
 				window.setTimeout(function () {
 					window.location.href = "${pageContext.servletContext.contextPath}/cart";
-				},300)
+				},500)
 			});
 
 
@@ -816,28 +816,28 @@
 				xhr.send(data);
 			}
 
-			$(document).on("click",".removeCartProduct", function(){
-				if (cartItems.length >0){
-					var deleteProductId = $(this).attr('value')
-					var deleteProductIndex = -1;
-					// alert($(this).attr('value'));
-					for (let i = 0; i < cartItems.length; i++) {
-						if (cartItems[i].product.id == deleteProductId){
-							deleteProductIndex = i;
-							break;
-						}
-					}
-					if (deleteProductIndex != -1){
-						cartItems.splice(deleteProductIndex, 1);
-						countCartItems()
-						showCartItems()
-						updateCartItemsCookie(cartItems)
-						initCartItem();
-					}
-
-
-				}
-			});
+			// $(document).on("click",".removeCartProduct", function(){
+			// 	if (cartItems.length >0){
+			// 		var deleteProductId = $(this).attr('value')
+			// 		var deleteProductIndex = -1;
+			// 		// alert($(this).attr('value'));
+			// 		for (let i = 0; i < cartItems.length; i++) {
+			// 			if (cartItems[i].product.id == deleteProductId){
+			// 				deleteProductIndex = i;
+			// 				break;
+			// 			}
+			// 		}
+			// 		if (deleteProductIndex != -1){
+			// 			cartItems.splice(deleteProductIndex, 1);
+			// 			countCartItems()
+			// 			showCartItems()
+			// 			updateCartItemsCookie(cartItems)
+			// 			initCartItem();
+			// 		}
+			//
+			//
+			// 	}
+			// });
 
 
 			function updateCartItemsCookie(cartItemsArr) {
