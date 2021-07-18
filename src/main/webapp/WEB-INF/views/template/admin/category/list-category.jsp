@@ -69,7 +69,7 @@
 													<tbody>
 														<c:forEach var="category" items="${list }">
 															<tr>
-																<td>NO.${category.id }</td>
+																<td>${category.id }</td>
 																<td>${category.name }</td>
 																<c:choose>
 																	<c:when test="${category.enabled }">

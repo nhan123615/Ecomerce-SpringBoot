@@ -65,7 +65,7 @@
 													<tbody>
 														<c:forEach var="type" items="${list }">
 															<tr>
-																<td>NO.${type.id }</td>
+																<td>${type.id }</td>
 																<td>${type.name }</td>
 																<td>${type.category.name }</td>
 																<td class="project-actions text-center"><a

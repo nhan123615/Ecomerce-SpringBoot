@@ -63,7 +63,7 @@
 													<tbody>
 														<c:forEach var="b" items="${listBanner }">
 															<tr>
-																<td class="text-center">NO.${b.id }</td>
+																<td class="text-center">${b.id }</td>
 																<td class="text-center"><img
 																	src="${pageContext.request.contextPath}/banner/display/${b.id}"
 																	width="100px" height="100px"></td>

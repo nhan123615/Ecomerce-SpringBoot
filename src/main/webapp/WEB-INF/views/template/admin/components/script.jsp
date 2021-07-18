@@ -71,21 +71,21 @@
 	var path = $(location).attr('pathname');
 	// HOME
 	if (path==="/admin"){
-		addClass1('#dashboard','#home')
+		addClass('#dashboard', '#linkdashboard', '#home');
 	}
 	// DATA
 
 	if (path.includes("/type")){
-		addClass1('#data','#typelist')
+		addClass('#data', '#linkdata', '#typelist');
 	}
 	if (path.includes("/brand")){
-		addClass1('#data','#brandlist')
+		addClass('#data', '#linkdata', '#brandlist');
 	}
 	if (path.includes("/category")){
-		addClass1('#data','#categorylist')
+		addClass('#data', '#linkdata', '#categorylist');
 	}
 	if (path.includes("/banner")){
-		addClass1('#data','#bannerlist')
+		addClass('#data', '#linkdata', '#bannerlist');
 	}
 
 	// MANAGEMENT

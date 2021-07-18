@@ -81,7 +81,7 @@
 													<tbody>
 														<c:forEach var="product" items="${list }">
 															<tr>
-																<td>NO.${product.id }</td>
+																<td>${product.id }</td>
 																<td>
 																	<a href="${pageContext.request.contextPath}/admin/product/detail?id=${product.id}">${product.productName }</a>
 																</td>

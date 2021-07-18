@@ -63,7 +63,7 @@
 													<tbody>
 														<c:forEach var="brand" items="${list }">
 															<tr>
-																<td class="text-center">NO.${brand.id }</td>
+																<td class="text-center">${brand.id }</td>
 																<td class="text-center">${brand.name }</td>
 																<td class="project-actions text-center"><a
 																	class="btn btn-info btn-sm"

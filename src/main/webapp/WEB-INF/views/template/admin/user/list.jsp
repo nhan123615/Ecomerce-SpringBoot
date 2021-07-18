@@ -65,7 +65,7 @@
 													<tbody>
 														<c:forEach items="${userList}" var="u">
 															<tr>
-																<td class="text-center">NO.${u.id}</td>
+																<td class="text-center">${u.id}</td>
 																<td class="text-center">
 																	<a href="${pageContext.servletContext.contextPath}/admin/user/detail?id=${u.id}">${u.username}
 																	</a>

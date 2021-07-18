@@ -71,7 +71,7 @@
 													<tbody>
 														<c:forEach items="${orderList}" var="o">
 															<tr>
-																<td class="text-center">NO.${o.id}</td>
+																<td class="text-center">${o.id}</td>
 																<td class="text-center">
 																	<a href="${pageContext.servletContext.contextPath}/admin/order/detail?id=${o.id}">${o.deliverCustomerName}</a>
 																</td>

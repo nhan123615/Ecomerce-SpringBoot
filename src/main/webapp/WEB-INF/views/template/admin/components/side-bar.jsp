@@ -55,7 +55,7 @@
                 </li>
 
                 <li id="data" class="nav-item">
-                    <a  class="nav-link">
+                    <a id="linkdata"  class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Data

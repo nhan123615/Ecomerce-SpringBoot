@@ -68,7 +68,7 @@
 													<tbody>
 														<c:forEach var="p" items="${paymentList }">
 															<tr>
-																<td>NO.${p.id }</td>
+																<td>${p.id }</td>
 																<td>
 																	<a href="${pageContext.request.contextPath}/admin/payment/detail?id=${p.id}">
 																			${p.customerOrder.customer.firstName} ${p.customerOrder.customer.lastName}
