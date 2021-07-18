@@ -105,7 +105,7 @@
 																	href="${pageContext.servletContext.contextPath}/admin/order/detail?id=${o.id}"
 																	class="rounded-circle btn btn-sm btn-primary"
 																	title="Change Password"> <i class="far fa-eye"></i>
-																</a> <a href="#" id="${u.id}"
+																</a> <a href="${pageContext.servletContext.contextPath}/admin/order/edit?id=${o.id}" id="${u.id}"
 																	class="rounded-circle btn btn-sm btn-info" title="Edit">
 																		<i class="fas fa-pencil-alt"></i>
 																</a></td>
@@ -171,14 +171,16 @@
 													</c:choose></td>
 												<td class="text-center">${o.totalPrice}</td>
 												<td class="text-center">${o.customer.id}</td>
-												<td class="text-center"><a
-													href="${pageContext.servletContext.contextPath}/admin/order/detail?id=${o.id}"
+												<td class="text-center">
+													<a href="${pageContext.servletContext.contextPath}/admin/order/detail?id=${o.id}"
 													class="rounded-circle btn btn-sm btn-primary"
 													title="Change Password"> <i class="far fa-eye"></i>
-												</a> <a href="#" id="${u.id}"
+													</a> 
+													<a href="${pageContext.servletContext.contextPath}/admin/order/edit?id=${o.id}"
 													class="rounded-circle btn btn-sm btn-info" title="Edit">
 														<i class="fas fa-pencil-alt"></i>
-												</a></td>
+													</a>
+												</td>
 											</tr>
 										</c:forEach>
 

@@ -1,5 +1,7 @@
 package com.coeding.controller.admin;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -9,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.coeding.entity.Payment;
 import com.coeding.entity.PaypalDetail;
+import com.coeding.entity.User;
 import com.coeding.entity.UserDetail;
 import com.coeding.service.CategoryService;
 import com.coeding.service.PaymentDetailService;
@@ -25,8 +29,6 @@ import com.paypal.api.payments.PaymentDetail;
 
 @RequestMapping("/admin")
 public class AdminPaymentController {
-	@Autowired
-	PaypalDetailService paymentDetail;
 	
 	@Autowired
 	private PaymentService payment;
@@ -45,5 +47,17 @@ public class AdminPaymentController {
 		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
 		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/payment/detail";
+	}
+	@GetMapping("/payment/edit")
+	public String EditPaymentController(@RequestParam("id") Long id , Model model) {
+		model.addAttribute("paymentEdit" , payment.findById(id));
+		return "template/admin/payment/edit";
+	}
+	@RequestMapping(value = "/payment/saveUpdate", method = RequestMethod.POST)
+	public String SaveUserController(Model model, Payment paymentFrm,HttpServletResponse response, Authentication authentication) {	     
+		Payment paymentIn = payment.findById(paymentFrm.getId());
+		paymentIn.setStatus(paymentFrm.isStatus());
+		payment.save(paymentIn);
+		return "redirect:/admin/payment";
 	}
 }
