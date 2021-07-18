@@ -42,8 +42,8 @@
 									action="${pageContext.servletContext.contextPath}/admin/order/saveUpdate"
 									method="post">
 									<input type="hidden" id="id" name="id" value="${orderDetail.id}">
-							
-									<div class="card-body">
+							saf
+									<div classd="card-body">
 										<div class="form-group row" style="">
 											<label for="name"
 												class="col-sm-2 col-form-label text-sm-right required">Deliver Customer Name</label>
