@@ -204,6 +204,7 @@
                         showCartItems()
                         updateCartItemsCookie(cartItems)
                     }
+                    msg("Add to cart successful!");
                     removeFromWishList(id)
                     
                 }
@@ -213,6 +214,8 @@
                 + id);
             xhr.setRequestHeader('Content-type', 'application/json');
             xhr.send(data);
+        }else{
+        	msg("Add to cart failed!");
         }
     }
 
