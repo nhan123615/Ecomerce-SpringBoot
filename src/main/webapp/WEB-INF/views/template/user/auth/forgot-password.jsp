@@ -19,7 +19,7 @@
         <div class="container">
 
             <form class="ps-form--account ps-tab-root" action="${pageContext.servletContext.contextPath}/forgot-password" method="post" modelAttribute="forgotUser">
-                <jsp:include page="../message/message.jsp"></jsp:include>
+<%--                <jsp:include page="../message/message.jsp"></jsp:include>--%>
 
                 <ul class="ps-tab-list">
                     <li class="active"><a href="#sign-in">Forgot password</a></li>

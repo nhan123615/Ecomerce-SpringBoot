@@ -56,7 +56,7 @@
 											<td class="price text-center" data-label="Price">$${product.price
 												}</td>
 											<td data-label="Status" class="text-center"><span
-												class="ps-tag ps-tag--in-stock ">${product.enabled }</span></td>
+												class="ps-tag ps-tag--in-stock ">${product.enabled ?"In-Stock":"" }</span></td>
 											<td data-label="action"><a class="ps-btn"
 												onclick="addItemToCart(${product.id})">Add to cart</a></td>
 										</tr>
@@ -77,6 +77,10 @@
 	</div>
 	<jsp:include page="../../components/footer.jsp"></jsp:include>
 	<script>
+
+
+
+
 	var tblProduct = document.querySelector('#wishProductTable');
 	function removeFromWishList(id) {
 		const data = null;
@@ -84,7 +88,7 @@
 		xhr.addEventListener("readystatechange", function() {
 			if (this.readyState === this.DONE) {
 				var json = JSON.parse(this.responseText);
-				initData();
+				updateWishlist();
 				if (json.length > 0) {
 					tblProduct.innerHTML = getWishListTable(json);
 				} else {
@@ -100,6 +104,7 @@
 		xhr.setRequestHeader('Content-type', 'application/json');
 		xhr.send(data);
 	}
+
 	
 	function getWishListTable(json) {
 		var wishListTable = '';
@@ -110,10 +115,10 @@
 			wishListTable += '<td data-label="Product">';
 			wishListTable += '<div class="ps-product--cart">';
 			wishListTable += '<div class="ps-product__thumbnail">';
-			wishListTable += '<a href="${pageContext.servletContext.contextPath}/product/detail?id='+json[i].id+'"><img src="${pageContext.request.contextPath}/product/display/0&'+json[i].id+'" alt="" width="100px" height="100px"></a>';
+			wishListTable += '<a href="${pageContext.servletContext.contextPath}/product/detail?id='+json[i].id+'" onclick="addProductToViewList('+json[i].id+')"><img src="${pageContext.request.contextPath}/product/display/0&'+json[i].id+'" alt="" width="100px" height="100px"></a>';
 			wishListTable += '</div>';
 			wishListTable += '<div class="ps-product__content">';
-			wishListTable += '<a href="${pageContext.servletContext.contextPath}/product/detail?id='+json[i].id+'">'+json[i].productName+'</a><p>Sold By:<strong> Angry-Nerds SHOP</strong></p>';
+			wishListTable += '<a href="${pageContext.servletContext.contextPath}/product/detail?id='+json[i].id+'" onclick="addProductToViewList('+json[i].id+')">'+json[i].productName+'</a><p>Sold By:<strong> Angry-Nerds SHOP</strong></p>';
 			wishListTable += '</div>';
 			wishListTable += '</div>';
 			wishListTable += '</td>';
@@ -128,37 +133,7 @@
 	function getNoWishProductFound() {
 		return '<tr><td colspan="5" class="text-center"><h1>No wishlist found !!!</h1></td></tr>';
 	}
-	
-	// Add to cart in wishlist page
-	 function checkStock(productId,qty){
-         if (qty !=null){
-             for (let i = 0; i < products.length ; i++) {
-                 if (products[i].id == productId){
-                     if (qty < products[i].stockQuantity){
-                         return true;
-                     }else{
-                         return false;
-                     }
-                 }
-             }
-         }else{
-             return true;
-         }
 
-         return false;
-     }
-
-     function getCartProductQty(productId){
-         if (cartItems.length>0){
-             for (let i = 0; i < cartItems.length; i++) {
-                 if (cartItems[i].product.id == productId){
-                     return cartItems[i].sellingQuantity
-                 }
-             }
-         }
-         return null;
-     }	
-     
      function addItemToCart(id){
 		 if (checkStock(id,getCartProductQty(id))){
 			 const data = null;
@@ -179,16 +154,19 @@
 		                    }
 		                    if (count == 0){
 		                        cartItems.push(json)
-		                        countCartItems()
 		                    }
-		                    updateCartItemsCookie(cartItems)
+							updateCartItemsCookie(cartItems)
+							countCartItems()
+							showCartItems()
 		                    console.log(cartItems)
 		                }else{
 		                    cartItems.push(json)
 		                    console.log("cartItems: "+cartItems)
-		                    countCartItems()
-		                    updateCartItemsCookie(cartItems)
+							updateCartItemsCookie(cartItems)
+							countCartItems()
+							showCartItems()
 		                }
+		                msg("Add to cart successful!");
 		                removeFromWishList(id)
 		            }
 		        });
@@ -197,9 +175,12 @@
 						+ id);
 		        xhr.setRequestHeader('Content-type', 'application/json');
 		        xhr.send(data);
+	       }else{
+	    	   msg("Add to cart failed!");
 	       }		
     }
-     
+
+
      function addProductToViewList(id) {
 			const data = null;
 			const xhr = new XMLHttpRequest();

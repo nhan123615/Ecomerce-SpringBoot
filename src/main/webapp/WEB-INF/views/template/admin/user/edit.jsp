@@ -91,27 +91,16 @@
 											<div class="col-xs-12 col-sm-8">
 												<select id="role" name="role"
 													class="custom-select custom-select-sm">
-													<option value="default">- Select Role -</option>
-													<c:choose>
-														<c:when test="${userDetail.role == 'ROLE_ADMIN'}">
-															<option value="ROLE_ADMIN" selected="selected">
-																ADMIN</option>
-															<option value="ROLE_USER">USER</option>
-														</c:when>
-
-														<c:otherwise>
-															<option value="ROLE_USER" selected="selected">
-																USER</option>
-															<option value="ROLE_ADMIN">ADMIN</option>
-														</c:otherwise>
-													</c:choose>
+													<option value="ROLE_USER" ${userDetail.role == 'ROLE_USER' ?"selected='selected'" :""}>USER</option>
+													<option value="ROLE_ADMIN" ${userDetail.role == 'ROLE_ADMIN' ?"selected='selected'" :""}>ADMIN</option>
+													<option value="ROLE_ADMIN_TRAINEE" ${userDetail.role == 'ROLE_ADMIN_TRAINEE' ?"selected='selected'" :""}>ADMIN_TRAINEE</option>
 												</select>
 											</div>
 										</div>
 									</div>
 									<div class="card-footer">
 										<div class="col-12 col-sm-8 offset-sm-2">
-											<button class="btn btn-sm btn-success mr-1" href="#">Save</button>
+											<button class="btn btn-sm btn-success mr-1" >Save</button>
 											<a class="btn btn-sm btn-danger mr-1"
 												href="${pageContext.servletContext.contextPath}/admin/user">Cancel</a>
 										</div>

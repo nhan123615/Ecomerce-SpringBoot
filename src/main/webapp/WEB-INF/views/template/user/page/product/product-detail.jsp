@@ -16,8 +16,12 @@
 					<div class="ps-product--detail ps-product--fullwidth">
 						<div class="ps-product__header">
 							<div class="ps-product__thumbnail" data-vertical="true">
+
 								<figure>
 									<div class="ps-wrapper">
+										<c:if test="${product.enabled == false}">
+											<div class="ps-product__badge out-stock" style="background-color: #000;color: #fff;font-size: 14px;font-weight: 600;line-height: 20px;padding: 5px 10px;border-radius: 4px;">Out Of Stock</div>
+										</c:if>
 										<div class="ps-product__gallery" data-arrow="true">
 											<div class="item">
 												<a
@@ -74,7 +78,7 @@
 								<h1>${product.productName }</h1>
 								<div class="ps-product__meta">
 									<p>
-										Brand:<a href="shop-default.html">${product.brand.name }</a>
+										Brand:<a >${product.brand.name }</a>
 									</p>
 									<div class="ps-product__rating">
 										<select class="ps-rating" data-read-only="true">
@@ -119,32 +123,34 @@
 										</c:if>
 									</figure>
 								</div>
-								<div class="ps-product__shopping">
-									<figure>
-										<span style="color: red" class="invalid-${product.id}"></span>
-										<figcaption>Quantity</figcaption>
-										<div class="form-group--number">
-											<button class="up" value="${product.id}">
-												<i class="fa fa-plus"></i>
-											</button>
-											<button class="down" value="${product.id}">
-												<i class="fa fa-minus"></i>
-											</button>
-											<div>
-												<input class="form-control itemQty-${product.id}"
-													type="text" placeholder="1" value="1" readonly>
+								<c:if test="${product.enabled}">
+									<div class="ps-product__shopping">
+										<figure>
+											<span style="color: red" class="invalid-${product.id}"></span>
+											<figcaption>Quantity</figcaption>
+											<div class="form-group--number">
+												<button class="up" value="${product.id}">
+													<i class="fa fa-plus"></i>
+												</button>
+												<button class="down" value="${product.id}">
+													<i class="fa fa-minus"></i>
+												</button>
+												<div>
+													<input class="form-control itemQty-${product.id}"
+														   type="text" placeholder="1" value="1" readonly>
+												</div>
 											</div>
-										</div>
-									</figure>
-									<a class="ps-btn ps-btn--black toCartDetail" value="${product.id}">Add
-										to cart</a><a class="ps-btn buyNowDetail" value="${product.id}">Buy
+										</figure>
+										<a class="ps-btn ps-btn--black toCartDetail" value="${product.id}">Add
+											to cart</a><a class="ps-btn buyNowDetail" value="${product.id}">Buy
 										Now</a>
-									<div class="ps-product__actions">
-										<a onClick="addToWishList(${product.id})"
-											data-toggle="tooltip" data-placement="top"
-											title="Add to Wishlist"><i class="icon-heart"></i></a>
+										<div class="ps-product__actions">
+											<a onClick="addToWishList(${product.id})"
+											   data-toggle="tooltip" data-placement="top"
+											   title="Add to Wishlist"><i class="icon-heart"></i></a>
+										</div>
 									</div>
-								</div>
+								</c:if>
 							</div>
 						</div>
 						<div class="ps-product__content ps-tab-root">
@@ -208,7 +214,7 @@
 											</div>
 										</div>
 										<div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12 ">
-											<form class="ps-form--review" action="index.html"
+											<form class="ps-form--review" action="#"
 												method="get">
 												<h4>Submit Your Review</h4>
 												<p>
@@ -275,12 +281,12 @@
 					</aside>
 					<aside class="widget widget_sell-on-site">
 						<p>
-							<i class="icon-store"></i> Sell on Martfury?<a href="#">
+							<i class="icon-store"></i> Sell on Martfury?<a >
 								Register Now !</a>
 						</p>
 					</aside>
 					<aside class="widget widget_ads">
-						<a href="#"><img
+						<a ><img
 							src="${pageContext.request.contextPath}/img/ads/product-ads.png"
 							alt=""></a>
 					</aside>
@@ -294,22 +300,22 @@
 										alt=""></a>
 									<div class="ps-product__badge">-37%</div>
 									<ul class="ps-product__actions">
-										<li><a href="#" data-toggle="tooltip"
+										<li><a  data-toggle="tooltip"
 											data-placement="top" title="Add To Cart"><i
 												class="icon-bag2"></i></a></li>
-										<li><a href="#" data-placement="top" title="Quick View"
+										<li><a  data-placement="top" title="Quick View"
 											data-toggle="modal" data-target="#product-quickview"><i
 												class="icon-eye"></i></a></li>
-										<li><a href="#" data-toggle="tooltip"
+										<li><a  data-toggle="tooltip"
 											data-placement="top" title="Add to Whishlist"><i
 												class="icon-heart"></i></a></li>
-										<li><a href="#" data-toggle="tooltip"
+										<li><a  data-toggle="tooltip"
 											data-placement="top" title="Compare"><i
 												class="icon-chart-bars"></i></a></li>
 									</ul>
 								</div>
 								<div class="ps-product__container">
-									<a class="ps-product__vendor" href="#">Robert's Store</a>
+									<a class="ps-product__vendor" >Robert's Store</a>
 									<div class="ps-product__content">
 										<a class="ps-product__title" href="product-default.html">Grand
 											Slam Indoor Of Show Jumping Novel</a>
@@ -344,22 +350,22 @@
 										alt=""></a>
 									<div class="ps-product__badge">-5%</div>
 									<ul class="ps-product__actions">
-										<li><a href="#" data-toggle="tooltip"
+										<li><a  data-toggle="tooltip"
 											data-placement="top" title="Add To Cart"><i
 												class="icon-bag2"></i></a></li>
-										<li><a href="#" data-placement="top" title="Quick View"
+										<li><a  data-placement="top" title="Quick View"
 											data-toggle="modal" data-target="#product-quickview"><i
 												class="icon-eye"></i></a></li>
-										<li><a href="#" data-toggle="tooltip"
+										<li><a  data-toggle="tooltip"
 											data-placement="top" title="Add to Whishlist"><i
 												class="icon-heart"></i></a></li>
-										<li><a href="#" data-toggle="tooltip"
+										<li><a  data-toggle="tooltip"
 											data-placement="top" title="Compare"><i
 												class="icon-chart-bars"></i></a></li>
 									</ul>
 								</div>
 								<div class="ps-product__container">
-									<a class="ps-product__vendor" href="#">Youngshop</a>
+									<a class="ps-product__vendor" >Youngshop</a>
 									<div class="ps-product__content">
 										<a class="ps-product__title" href="product-default.html">Sound
 											Intone I65 Earphone White Version</a>
@@ -394,7 +400,7 @@
 
 			<div class="ps-section--default">
 				<div class="ps-section__header">
-					<h3>Products that you have viewed</h3>
+					<h3>Recent viewed</h3>
 				</div>
 				<div class="ps-section__content">
 					<div class="ps-carousel--nav owl-slider" data-owl-auto="true"
@@ -409,25 +415,34 @@
 									<div class="ps-product__thumbnail">
 										<a
 											href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"
-											onClick="addProductToViewList(${p.id})"><img
+											onclick="addProductToViewList(${p.id})"><img
 											src="${pageContext.request.contextPath}/product/display/0&${p.id}"
 											alt="" width="203px" height="203px"></a>
-										<ul class="ps-product__actions">
-											<li class="toCart" value="${p.id}"><a data-toggle="tooltip"
-												data-placement="top" title="Add To Cart"><i
-													class="icon-bag2"></i></a></li>
-											<li><a href="#" data-placement="top" title="Quick View"
-												data-toggle="modal" data-target="#product-quickview-${p.id}"><i
-													class="icon-eye"></i></a></li>
-											<li><a onClick="addToWishList(${p.id})"
-												data-toggle="tooltip" data-placement="top"
-												title="Add to Wishlist"><i class="icon-heart"></i></a></li>
-										</ul>
+										<c:choose>
+										<c:when test="${p.enabled}">
+											<ul class="ps-product__actions">
+												<li class="toCart" value="${p.id}"><a data-toggle="tooltip"
+																					  data-placement="top" title="Add To Cart"><i
+														class="icon-bag2"></i></a></li>
+												<li><a  data-placement="top" title="Quick View"
+													   data-toggle="modal" data-target="#product-quickview-${p.id}"><i
+														class="icon-eye"></i></a></li>
+												<li><a onclick="addToWishList(${p.id})"
+													   data-toggle="tooltip" data-placement="top"
+													   title="Add to Wishlist"><i class="icon-heart"></i></a></li>
+											</ul>
+										</c:when>
+										<c:otherwise>
+											<div class="ps-product__badge out-stock">Out Of Stock</div>
+										</c:otherwise>
+										</c:choose>
+
+
 									</div>
 									<div class="ps-product__container">
 										<div class="ps-product__content">
 											<a class="ps-product__title"
-												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
+												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})">${p.productName}</a>
 											<div class="ps-product__rating">
 												<select class="ps-rating" data-read-only="true">
 													<option value="1">1</option>
@@ -441,7 +456,7 @@
 										</div>
 										<div class="ps-product__content hover">
 											<a class="ps-product__title"
-												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
+												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})">${p.productName}</a>
 											<p class="ps-product__price">$${p.price}</p>
 										</div>
 									</div>
@@ -469,14 +484,14 @@
 									<div class="ps-product__thumbnail">
 										<a
 											href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"
-											onClick="addProductToViewList(${p.id})"><img
+											onclick="addProductToViewList(${p.id})"><img
 											src="${pageContext.request.contextPath}/product/display/0&${p.id}"
 											alt="" width="203px" height="203px"></a>
 										<ul class="ps-product__actions">
 											<li class="toCart" value="${p.id}"><a  data-toggle="tooltip"
 												data-placement="top" title="Add To Cart"><i
 													class="icon-bag2"></i></a></li>
-											<li><a href="#" data-placement="top" title="Quick View"
+											<li><a  data-placement="top" title="Quick View"
 												data-toggle="modal" data-target="#product-quickview-${p.id}"><i
 													class="icon-eye"></i></a></li>
 											<li><a onClick="addToWishList(${p.id})"
@@ -487,7 +502,7 @@
 									<div class="ps-product__container">
 										<div class="ps-product__content">
 											<a class="ps-product__title"
-												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
+												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})">${p.productName}</a>
 											<div class="ps-product__rating">
 												<select class="ps-rating" data-read-only="true">
 													<option value="1">1</option>
@@ -501,7 +516,7 @@
 										</div>
 										<div class="ps-product__content hover">
 											<a class="ps-product__title"
-												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
+												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})">${p.productName}</a>
 											<p class="ps-product__price">$${p.price}</p>
 										</div>
 									</div>
@@ -546,11 +561,10 @@
 		xhr.addEventListener("readystatechange", function() {
 			if (this.readyState === this.DONE) {
 				if(this.responseText === "successful"){
-					alert("You have successfully added!");
+					msg("Add to wishlist sucessful!");
 				}else if(this.responseText === "failed"){
-					alert("You can only add 1 time!");
+					msg("You can only add 1 time!");
 				}
-				cookies();
 				initData();
 			}
 		});
@@ -583,13 +597,13 @@
 	<script>
 
 		$(document).ready(function(){
-			var cartItems = [];
-			var products = [];
-			window.onload = initData();
-			function initData() {
-				initCartItem();
-				getAllProducts();
-			}
+			// var cartItems = [];
+			// var products = [];
+			// window.onload = initData();
+			// function initData() {
+			// 	initCartItem();
+			// 	getAllProducts();
+			// }
 
 //////////////////////////////////////////////////
 			//increase Qty
@@ -642,78 +656,41 @@
 				updateCartItems(new URLSearchParams(window.location.search).get("id"),qty.value)
 			});
 
-			function getAllProducts(){
-
+			function findProduct(productId) {
+				// initCartItem();
+				console.log("id: "+productId)
+				var qty = document.querySelector('.itemQty-'+productId);
 				const data = null;
 				const xhr = new XMLHttpRequest();
 				xhr.addEventListener("readystatechange", function () {
 					if (this.readyState === this.DONE) {
 						var json = JSON.parse(this.responseText);
 						console.log(json)
-						products = json
+
+						if (cartItems.length >0){
+							if (!updateCartItems(productId,qty.value)){
+								json.sellingQuantity = qty.value
+								cartItems.push(json)
+							}
+							console.log("CartItem Product detail->>>>>")
+							console.log(cartItems)
+						}else{
+							json.sellingQuantity = qty.value
+							cartItems.push(json)
+							console.log("CartItem Product detail->>>>>")
+							console.log(cartItems)
+						}
+						console.log("Update CartItem Product detail->>>>>")
+						updateCartItemsCookieData()
+
 					}
 				});
 
-				xhr.open("GET", "${pageContext.servletContext.contextPath}/filter/getAllProducts");
+				xhr.open("GET", "${pageContext.servletContext.contextPath}/cart/get?productId="+productId);
 				xhr.setRequestHeader('Content-type', 'application/json');
 				xhr.send(data);
 			}
 
-			function initCartItem() {
-				const data = null;
-				const xhr = new XMLHttpRequest();
-				xhr.addEventListener("readystatechange", function () {
-					if (this.readyState === this.DONE) {
-						var json = JSON.parse(this.responseText);
-						console.log(json)
-						cartItems.push(json)
-
-					}
-				});
-
-				xhr.open("GET", "${pageContext.servletContext.contextPath}/cart/get?productId="+new URLSearchParams(window.location.search).get("id"));
-				xhr.setRequestHeader('Content-type', 'application/json');
-				xhr.send(data);
-			}
-			function countCartItems() {
-				document.getElementById('cartItemCount-1').innerHTML = cartItems.length
-				document.getElementById('cartItemCount-2').innerHTML = cartItems.length
-			}
-
-			function showCartItems() {
-				document.getElementById('cart-content-1').removeAttribute('style')
-				document.getElementById('cart-content-2').removeAttribute('style')
-				document.getElementById('cart-content-1').innerHTML = getCartItemContent(cartItems);
-				document.getElementById('cart-content-2').innerHTML = getCartItemContent(cartItems);
-				if (cartItems.length ==0){
-					document.getElementById('cart-content-1').setAttribute("style", "display: none;");
-					document.getElementById('cart-content-2').setAttribute("style", "display: none;");
-				}
-			}
-
-
-			function getCartItemContent(items) {
-				var cartItemContent ="";
-				if (cartItems.length >0){
-					var totalPrice = 0;
-					for (let i = 0; i < cartItems.length; i++) {
-						totalPrice += cartItems[i].totalPrice
-						cartItemContent += "<div class='ps-cart__items'>";
-						cartItemContent +="<div class='ps-product--cart-mobile'>"
-						cartItemContent +="<div class='ps-product__thumbnail'><a href='#'><img src='${pageContext.request.contextPath}/product/display/0&"+cartItems[i].product.id+"' alt=''></a></div>"
-						cartItemContent +="<div class='ps-product__content '><a class='ps-product__remove removeCartProduct ' value='"+cartItems[i].product.id+"' ><i class='icon-cross ' ></i></a><a href='product-default.html'>"+cartItems[i].product.productName+"</a>"
-						cartItemContent +="<p><strong>Sold by:</strong>  ANGRY NERDS</p><small>"+cartItems[i].sellingQuantity+" x $"+cartItems[i].product.price+"</small>"
-						cartItemContent +=" </div> </div>"
-						cartItemContent +=" </div>"
-					}
-					cartItemContent+="<hr>"
-					cartItemContent+="<div class='ps-cart__footer'>"
-					cartItemContent += "<h3>Sub Total:<strong>$"+totalPrice+"</strong></h3>"
-					cartItemContent +="<figure><a class='ps-btn' href='${pageContext.servletContext.contextPath}/cart'>View Cart</a><a class='ps-btn checkout' href='${pageContext.servletContext.contextPath}/customer/product/checkout'>Checkout</a></figure>"
-					cartItemContent +=" </div>"
-				}
-				return cartItemContent;
-			}
 
 			function updateCartItems(productId,Qty) {
 				if (cartItems.length>0){
@@ -721,22 +698,28 @@
 						if (cartItems[i].product.id == productId){
 							cartItems[i].sellingQuantity = parseInt(Qty)
 							cartItems[i].totalPrice =  parseInt(cartItems[0].sellingQuantity) * parseFloat(cartItems[i].product.price)
+						return true;
 						}
 					}
 				}
+				return false;
 			}
 
 			//add to Cart
 			$(document).on("click",".toCartDetail", function(event){
-				alert(cartItems[0].sellingQuantity)
-				updateCartItemsCookie(cartItems)
+				// alert(cartItems[0].sellingQuantity)
+				findProduct(new URLSearchParams(window.location.search).get("id"));
+				// updateCartItemsCookieData(cartItems)
+				msg("Add to cart sucessful !");
+
 			});
 
-			$(document).on("click",".buyNow", function(event){
-				updateCartItemsCookie(cartItems)
+			$(document).on("click",".buyNowDetail", function(event){
+				// updateCartItemsCookie(cartItems)
+				findProduct(new URLSearchParams(window.location.search).get("id"));
 				window.setTimeout(function () {
 					window.location.href = "${pageContext.servletContext.contextPath}/cart";
-				},300)
+				},500)
 			});
 
 
@@ -773,7 +756,7 @@
 								//if duplicate sellingQuantity +=1
 								if (cartItems[i].product.id == json.product.id){
 									cartItems[i].sellingQuantity += 1
-									cartItems[i].totalPrice =  parseFloat(cartItems[i].totalPrice) *  parseInt(cartItems[i].sellingQuantity)
+									cartItems[i].totalPrice =  parseFloat(cartItems[i].product.price) *  parseInt(cartItems[i].sellingQuantity)
 									count += 1
 								}
 							}
@@ -800,36 +783,36 @@
 				xhr.send(data);
 			}
 
-			$(document).on("click",".removeCartProduct", function(){
-				if (cartItems.length >0){
-					var deleteProductId = $(this).attr('value')
-					var deleteProductIndex = -1;
-					// alert($(this).attr('value'));
-					for (let i = 0; i < cartItems.length; i++) {
-						if (cartItems[i].product.id == deleteProductId){
-							deleteProductIndex = i;
-							break;
-						}
-					}
-					if (deleteProductIndex != -1){
-						cartItems.splice(deleteProductIndex, 1);
-						countCartItems()
-						showCartItems()
-						updateCartItemsCookie(cartItems)
-						initCartItem();
-					}
+			// $(document).on("click",".removeCartProduct", function(){
+			// 	if (cartItems.length >0){
+			// 		var deleteProductId = $(this).attr('value')
+			// 		var deleteProductIndex = -1;
+			// 		// alert($(this).attr('value'));
+			// 		for (let i = 0; i < cartItems.length; i++) {
+			// 			if (cartItems[i].product.id == deleteProductId){
+			// 				deleteProductIndex = i;
+			// 				break;
+			// 			}
+			// 		}
+			// 		if (deleteProductIndex != -1){
+			// 			cartItems.splice(deleteProductIndex, 1);
+			// 			countCartItems()
+			// 			showCartItems()
+			// 			updateCartItemsCookie(cartItems)
+			// 			initCartItem();
+			// 		}
+			//
+			//
+			// 	}
+			// });
 
 
-				}
-			});
-
-
-			function updateCartItemsCookie(cartItemsArr) {
+			function updateCartItemsCookieData() {
 				var value = "[]";
-				if (cartItemsArr.length >0){
+				if (cartItems.length >0){
 					value ="["
-					for (let i = 0; i < cartItemsArr.length; i++) {
-						value += JSON.stringify(cartItemsArr[i]) +","
+					for (let i = 0; i < cartItems.length; i++) {
+						value += JSON.stringify(cartItems[i]) +","
 					}
 					value = value.substring(0,value.length-1)
 					value +="]"
@@ -843,7 +826,10 @@
 						// if (json.length>0){
 						console.log(json)
 						cartItems = json
+						countCartItems();
+						showCartItems();
 						// }
+
 					}
 				});
 
@@ -851,12 +837,57 @@
 				xhr.setRequestHeader('Content-type', 'application/json');
 				console.log(data)
 				xhr.send(data);
-				countCartItems();
-				showCartItems();
+
+			}
+		})
+
+		function msg(value){
+			var style = value;
+			var time = 1200;
+			var message;
+			switch(value){
+				case "alert-success": message ="Successful !";break;
+				case "alert_warning": message ="error warning";break;
+				case "alert-danger": message = "Failed !";break;
+				case "alert_info": message ="Data not found";break;
+				default:
+					if (value.includes("invalid")||value.includes("failed")||value.includes("only")){
+						style = "alert-danger";
+					}else{
+						style = "alert-success";
+					}
+					message =value ;
+			}
+			var height = ($(window).height() - 45)/5;
+
+			if ($(window).scrollTop() >=height) {
+				height =($(window).scrollTop() +70)
 			}
 
 
-		})
+			$('<div id="promptModal">')
+					.appendTo('body')
+					.addClass('alert ' + style)
+					.css({
+						"display": "block",
+						"z-index": 99999,
+						"left": ($(document.body).outerWidth(true) - 200),
+						"top": height ,
+						"position": "absolute",
+						"padding": "20px",
+						"border-radius": "5px",
+						"width":"200px",
+						"text-align":"center",
 
+					})
+					.html(message)
+					.show()
+					.delay(time)
+					.fadeOut(10, function () {
+						$('#promptModal').remove();
+					});
+
+
+		}
 	</script>
 </body>

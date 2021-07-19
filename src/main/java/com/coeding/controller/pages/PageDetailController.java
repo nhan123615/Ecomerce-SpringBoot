@@ -41,11 +41,11 @@ public class PageDetailController {
 	public String view(@RequestParam(value = "id") Long id, Authentication authentication, Locale locale, Model model, HttpServletRequest res) {
 		log.info("product detail {}.", locale);
 		
-		if (authentication != null) {
-			log.info("check User with (authentication != null)");
-			UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-			model.addAttribute("user", userDetails.getUser());
-		}
+//		if (authentication != null) {
+//			log.info("check User with (authentication != null)");
+//			UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//			model.addAttribute("user", userDetails.getUser());
+//		}
 		
 		Product p = productService.findById(id);
 		model.addAttribute("product", p);

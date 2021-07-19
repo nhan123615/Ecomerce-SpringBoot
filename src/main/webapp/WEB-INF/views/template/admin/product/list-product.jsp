@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="../components/head.jsp"></jsp:include>
@@ -20,15 +22,8 @@
 			<section class="content-header">
 				<div class="container-fluid">
 					<div class="row mb-2">
-						<div class="col-sm-6">
-							<h1>Product list</h1>
-						</div>
-						<div class="col-sm-6">
-							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a
-									href="${pageContext.servletContext.contextPath}/admin">Home</a></li>
-								<li class="breadcrumb-item active">Product list</li>
-							</ol>
+						<div class="col-sm-12">
+							<h1 class="text-center">Product Manager</h1>
 						</div>
 					</div>
 				</div>
@@ -43,45 +38,43 @@
 							<!-- /.card -->
 							<div class="card">
 								<div class="card-header">
-									<h3 class="card-title">Product list</h3>
+										<a
+												href="${pageContext.servletContext.contextPath}/admin/product/new"
+												class="btn btn-success">Add product</a>
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
 									<div id="example1_wrapper"
 										class="dataTables_wrapper dt-bootstrap4">
 										<div class="row">
-											<div class="col-sm-3">
-												<a
-													href="${pageContext.servletContext.contextPath}/admin/product/new"
-													class="btn btn-success">Add product</a>
-											</div>
+
 											<div class="col-sm-12">
 												<table id="example1"
 													class="table table-bordered table-striped dataTable dtr-inline"
 													role="grid" aria-describedby="example1_info">
 													<thead>
 														<tr role="row">
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Id</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Name</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Status</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Price</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Color</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Stock quantity</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Date update</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Brand</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Category</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Type</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Action</th>
 														</tr>
 													</thead>
@@ -89,19 +82,39 @@
 														<c:forEach var="product" items="${list }">
 															<tr>
 																<td>${product.id }</td>
-																<td>${product.productName }</td>
-																<td>${product.enabled }</td>
+																<td>
+																	<a href="${pageContext.request.contextPath}/admin/product/detail?id=${product.id}">${product.productName }</a>
+																</td>
+																<td class="text-center">
+																	<c:choose>
+																	<c:when test="${product.enabled == true}">
+																		<a
+																				class="my-btn-state rounded-circle btn btn-sm btn-success">
+																			<i class="fas fa-check"></i>
+																		</a>
+																	</c:when>
+
+																	<c:otherwise>
+																		<a
+																				class="my-btn-state rounded-circle btn btn-sm btn-danger">
+																			<i class="fas fa-minus"></i>
+																		</a>
+																	</c:otherwise>
+																	</c:choose>
+																</td>
 																<td>${product.price }</td>
 																<td>${product.productColor }</td>
 																<td>${product.stockQuantity }</td>
-																<td>${product.updated }</td>
+																<td><fmt:formatDate value='${product.updated }'  type='date' pattern='dd/MM/yyyy'/></td>
 																<td>${product.brand.name }</td>
 																<td>${product.category.name }</td>
 																<td>${product.type.name }</td>
-																<td class="project-actions text-center"><a
-																	class="btn btn-primary btn-sm"
-																	href="${pageContext.request.contextPath}/admin/product/detail?id=${product.id}"><i
-																		class="fas fa-folder"></i>View</a> <a
+																<td class="project-actions text-center">
+<%--																	<a--%>
+<%--																	class="btn btn-primary btn-sm"--%>
+<%--																	href="${pageContext.request.contextPath}/admin/product/detail?id=${product.id}"><i--%>
+<%--																		class="fas fa-folder"></i>View</a> --%>
+																	<a
 																	class="btn btn-info btn-sm"
 																	href="${pageContext.request.contextPath}/admin/product/edit?id=${product.id}"><i
 																		class="fas fa-pencil-alt"></i>Edit</a></td>

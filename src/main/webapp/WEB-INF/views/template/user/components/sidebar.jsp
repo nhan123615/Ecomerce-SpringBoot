@@ -7,8 +7,8 @@
         <div class="ps-cart--mobile">
             <div class="ps-cart__content"  >
                 <div class="ps-product--cart-mobile">
-                    <div class="ps-product__thumbnail"><a href="#"><img src="${pageContext.servletContext.contextPath}/img/products/clothing/7.jpg" alt=""></a></div>
-                    <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">MVMTH Classical Leather Watch In Black</a>
+                    <div class="ps-product__thumbnail"><a ><img src="${pageContext.servletContext.contextPath}/img/products/clothing/7.jpg" alt=""></a></div>
+                    <div class="ps-product__content"><a class="ps-product__remove" ><i class="icon-cross"></i></a><a href="product-default.html">MVMTH Classical Leather Watch In Black</a>
                         <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
                     </div>
                 </div>
@@ -27,92 +27,92 @@
     </div>
     <div class="ps-panel__content">
         <ul class="menu--mobile">
-            <li><a href="#">Hot Promotions</a>
+            <li><a >Hot Promotions</a>
             </li>
-            <li class="menu-item-has-children has-mega-menu"><a href="#">Consumer Electronic</a><span class="sub-toggle"></span>
+            <li class="menu-item-has-children has-mega-menu"><a >Consumer Electronic</a><span class="sub-toggle"></span>
                 <div class="mega-menu">
                     <div class="mega-menu__column">
                         <h4>Electronic<span class="sub-toggle"></span></h4>
                         <ul class="mega-menu__list">
-                            <li><a href="#">Home Audio &amp; Theathers</a>
+                            <li><a >Home Audio &amp; Theathers</a>
                             </li>
-                            <li><a href="#">TV &amp; Videos</a>
+                            <li><a >TV &amp; Videos</a>
                             </li>
-                            <li><a href="#">Camera, Photos &amp; Videos</a>
+                            <li><a >Camera, Photos &amp; Videos</a>
                             </li>
-                            <li><a href="#">Cellphones &amp; Accessories</a>
+                            <li><a >Cellphones &amp; Accessories</a>
                             </li>
-                            <li><a href="#">Headphones</a>
+                            <li><a >Headphones</a>
                             </li>
-                            <li><a href="#">Videosgames</a>
+                            <li><a >Videosgames</a>
                             </li>
-                            <li><a href="#">Wireless Speakers</a>
+                            <li><a >Wireless Speakers</a>
                             </li>
-                            <li><a href="#">Office Electronic</a>
+                            <li><a >Office Electronic</a>
                             </li>
                         </ul>
                     </div>
                     <div class="mega-menu__column">
                         <h4>Accessories &amp; Parts<span class="sub-toggle"></span></h4>
                         <ul class="mega-menu__list">
-                            <li><a href="#">Digital Cables</a>
+                            <li><a >Digital Cables</a>
                             </li>
-                            <li><a href="#">Audio &amp; Video Cables</a>
+                            <li><a >Audio &amp; Video Cables</a>
                             </li>
-                            <li><a href="#">Batteries</a>
+                            <li><a >Batteries</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </li>
-            <li><a href="#">Clothing &amp; Apparel</a>
+            <li><a >Clothing &amp; Apparel</a>
             </li>
-            <li><a href="#">Home, Garden &amp; Kitchen</a>
+            <li><a >Home, Garden &amp; Kitchen</a>
             </li>
-            <li><a href="#">Health &amp; Beauty</a>
+            <li><a >Health &amp; Beauty</a>
             </li>
-            <li><a href="#">Yewelry &amp; Watches</a>
+            <li><a >Yewelry &amp; Watches</a>
             </li>
-            <li class="menu-item-has-children has-mega-menu"><a href="#">Computer &amp; Technology</a><span class="sub-toggle"></span>
+            <li class="menu-item-has-children has-mega-menu"><a >Computer &amp; Technology</a><span class="sub-toggle"></span>
                 <div class="mega-menu">
                     <div class="mega-menu__column">
                         <h4>Computer &amp; Technologies<span class="sub-toggle"></span></h4>
                         <ul class="mega-menu__list">
-                            <li><a href="#">Computer &amp; Tablets</a>
+                            <li><a >Computer &amp; Tablets</a>
                             </li>
-                            <li><a href="#">Laptop</a>
+                            <li><a >Laptop</a>
                             </li>
-                            <li><a href="#">Monitors</a>
+                            <li><a >Monitors</a>
                             </li>
-                            <li><a href="#">Networking</a>
+                            <li><a >Networking</a>
                             </li>
-                            <li><a href="#">Drive &amp; Storages</a>
+                            <li><a >Drive &amp; Storages</a>
                             </li>
-                            <li><a href="#">Computer Components</a>
+                            <li><a >Computer Components</a>
                             </li>
-                            <li><a href="#">Security &amp; Protection</a>
+                            <li><a >Security &amp; Protection</a>
                             </li>
-                            <li><a href="#">Gaming Laptop</a>
+                            <li><a >Gaming Laptop</a>
                             </li>
-                            <li><a href="#">Accessories</a>
+                            <li><a >Accessories</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </li>
-            <li><a href="#">Babies &amp; Moms</a>
+            <li><a >Babies &amp; Moms</a>
             </li>
-            <li><a href="#">Sport &amp; Outdoor</a>
+            <li><a >Sport &amp; Outdoor</a>
             </li>
-            <li><a href="#">Phones &amp; Accessories</a>
+            <li><a >Phones &amp; Accessories</a>
             </li>
-            <li><a href="#">Books &amp; Office</a>
+            <li><a >Books &amp; Office</a>
             </li>
-            <li><a href="#">Cars &amp; Motocycles</a>
+            <li><a >Cars &amp; Motocycles</a>
             </li>
-            <li><a href="#">Home Improments</a>
+            <li><a >Home Improments</a>
             </li>
-            <li><a href="#">Vouchers &amp; Services</a>
+            <li><a >Vouchers &amp; Services</a>
             </li>
         </ul>
     </div>
@@ -257,7 +257,7 @@
                     </div>
                 </div>
             </li>
-            <li class="menu-item-has-children has-mega-menu"><a href="#">Pages</a><span class="sub-toggle"></span>
+            <li class="menu-item-has-children has-mega-menu"><a >Pages</a><span class="sub-toggle"></span>
                 <div class="mega-menu">
                     <div class="mega-menu__column">
                         <h4>Basic Page<span class="sub-toggle"></span></h4>
@@ -310,7 +310,7 @@
                     </div>
                 </div>
             </li>
-            <li class="menu-item-has-children has-mega-menu"><a href="#">Blogs</a><span class="sub-toggle"></span>
+            <li class="menu-item-has-children has-mega-menu"><a >Blogs</a><span class="sub-toggle"></span>
                 <div class="mega-menu">
                     <div class="mega-menu__column">
                         <h4>Blog Layout<span class="sub-toggle"></span></h4>

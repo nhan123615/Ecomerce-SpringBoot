@@ -2,6 +2,7 @@
 <%@ page import="java.util.List"%>
 <%@ page import="com.coeding.entity.User"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="../components/head.jsp"></jsp:include>
@@ -70,18 +71,7 @@
 											<div class="col-xs-12 col-sm-8">
 												<select id="enabled" name="enabled"
 													class="custom-select custom-select-sm">
-													<option value="default">- Select Status -</option>
-													<c:choose>
-														<c:when test="${userDetail.enabled == true}">
-															<option value="1" selected="selected">Active</option>
-															<option value="0">Inactive</option>
-														</c:when>
-
-														<c:otherwise>
-															<option value="0" selected="selected">Inactive</option>
-															<option value="1">Active</option>
-														</c:otherwise>
-													</c:choose>
+															<option >${userDetail.enabled ? "Active" :"InActive"}</option>
 												</select>
 											</div>
 										</div>
@@ -91,20 +81,7 @@
 											<div class="col-xs-12 col-sm-8">
 												<select id="role" name="role"
 													class="custom-select custom-select-sm">
-													<option value="default">- Select Role -</option>
-													<c:choose>
-														<c:when test="${userDetail.role == 'ROLE_ADMIN'}">
-															<option value="ROLE_ADMIN" selected="selected">
-																ADMIN</option>
-															<option value="ROLE_USER">USER</option>
-														</c:when>
-
-														<c:otherwise>
-															<option value="ROLE_USER" selected="selected">
-																USER</option>
-															<option value="ROLE_ADMIN">ADMIN</option>
-														</c:otherwise>
-													</c:choose>
+															<option >${fn:substring(userDetail.role, 5, fn:length(userDetail.role))}</option>
 												</select>
 											</div>
 										</div>

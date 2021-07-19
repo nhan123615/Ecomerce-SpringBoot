@@ -70,12 +70,12 @@
 							href="mailto:contact@martfury.co">contact@martfury.co</a>
 					</p>
 					<ul class="ps-list--social">
-						<li><a class="facebook" href="#"><i
+						<li><a class="facebook" ><i
 								class="fa fa-facebook"></i></a></li>
-						<li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-						<li><a class="google-plus" href="#"><i
+						<li><a class="twitter" ><i class="fa fa-twitter"></i></a></li>
+						<li><a class="google-plus" ><i
 								class="fa fa-google-plus"></i></a></li>
-						<li><a class="instagram" href="#"><i
+						<li><a class="instagram" ><i
 								class="fa fa-instagram"></i></a></li>
 					</ul>
 				</div>
@@ -83,10 +83,10 @@
 			<aside class="widget widget_footer">
 				<h4 class="widget-title">Quick links</h4>
 				<ul class="ps-list--link">
-					<li><a href="#">Policy</a></li>
-					<li><a href="#">Term & Condition</a></li>
-					<li><a href="#">Shipping</a></li>
-					<li><a href="#">Return</a></li>
+					<li><a >Policy</a></li>
+					<li><a >Term & Condition</a></li>
+					<li><a >Shipping</a></li>
+					<li><a >Return</a></li>
 					<li><a href="faqs.html">FAQs</a></li>
 				</ul>
 			</aside>
@@ -94,15 +94,15 @@
 				<h4 class="widget-title">Company</h4>
 				<ul class="ps-list--link">
 					<li><a href="about-us.html">About Us</a></li>
-					<li><a href="#">Affilate</a></li>
-					<li><a href="#">Career</a></li>
+					<li><a >Affilate</a></li>
+					<li><a >Career</a></li>
 					<li><a href="contact-us.html">Contact</a></li>
 				</ul>
 			</aside>
 			<aside class="widget widget_footer">
 				<h4 class="widget-title">Bussiness</h4>
 				<ul class="ps-list--link">
-					<li><a href="#">Our Press</a></li>
+					<li><a >Our Press</a></li>
 					<li><a href="checkout.html">Checkout</a></li>
 					<li><a href="my-account.html">My account</a></li>
 					<li><a href="shop-default.html">Shop</a></li>
@@ -111,53 +111,53 @@
 		</div>
 		<div class="ps-footer__links">
 			<p>
-				<strong>Consumer Electric:</strong><a href="#">Air Conditioners</a><a
-					href="#">Audios &amp; Theaters</a><a href="#">Car Electronics</a><a
-					href="#">Office Electronics</a><a href="#">TV Televisions</a><a
-					href="#">Washing Machines</a>
+				<strong>Consumer Electric:</strong><a >Air Conditioners</a><a
+					>Audios &amp; Theaters</a><a >Car Electronics</a><a
+					>Office Electronics</a><a >TV Televisions</a><a
+					>Washing Machines</a>
 			</p>
 			<p>
-				<strong>Clothing &amp; Apparel:</strong><a href="#">Printers</a><a
-					href="#">Projectors</a><a href="#">Scanners</a><a href="#">Store
-					&amp; Business</a><a href="#">4K Ultra HD TVs</a><a href="#">LED
-					TVs</a><a href="#">OLED TVs</a>
+				<strong>Clothing &amp; Apparel:</strong><a >Printers</a><a
+					>Projectors</a><a >Scanners</a><a >Store
+					&amp; Business</a><a >4K Ultra HD TVs</a><a >LED
+					TVs</a><a >OLED TVs</a>
 			</p>
 			<p>
-				<strong>Home, Garden &amp; Kitchen:</strong><a href="#">Cookware</a><a
-					href="#">Decoration</a><a href="#">Furniture</a><a href="#">Garden
-					Tools</a><a href="#">Garden Equipments</a><a href="#">Powers And
-					Hand Tools</a><a href="#">Utensil &amp; Gadget</a>
+				<strong>Home, Garden &amp; Kitchen:</strong><a >Cookware</a><a
+					>Decoration</a><a >Furniture</a><a >Garden
+					Tools</a><a >Garden Equipments</a><a >Powers And
+					Hand Tools</a><a >Utensil &amp; Gadget</a>
 			</p>
 			<p>
-				<strong>Health &amp; Beauty:</strong><a href="#">Hair Care</a><a
-					href="#">Decoration</a><a href="#">Hair Care</a><a href="#">Makeup</a><a
-					href="#">Body Shower</a><a href="#">Skin Care</a><a href="#">Cologine</a><a
-					href="#">Perfume</a>
+				<strong>Health &amp; Beauty:</strong><a >Hair Care</a><a
+					>Decoration</a><a >Hair Care</a><a >Makeup</a><a
+					>Body Shower</a><a >Skin Care</a><a >Cologine</a><a
+					>Perfume</a>
 			</p>
 			<p>
-				<strong>Jewelry &amp; Watches:</strong><a href="#">Necklace</a><a
-					href="#">Pendant</a><a href="#">Diamond Ring</a><a href="#">Sliver
-					Earing</a><a href="#">Leather Watcher</a><a href="#">Gucci</a>
+				<strong>Jewelry &amp; Watches:</strong><a >Necklace</a><a
+					>Pendant</a><a >Diamond Ring</a><a >Sliver
+					Earing</a><a >Leather Watcher</a><a >Gucci</a>
 			</p>
 			<p>
-				<strong>Computer &amp; Technologies:</strong><a href="#">Desktop
-					PC</a><a href="#">Laptop</a><a href="#">Smartphones</a><a href="#">Tablet</a><a
-					href="#">Game Controller</a><a href="#">Audio &amp; Video</a><a
-					href="#">Wireless Speaker</a><a href="#">Done</a>
+				<strong>Computer &amp; Technologies:</strong><a >Desktop
+					PC</a><a >Laptop</a><a >Smartphones</a><a >Tablet</a><a
+					>Game Controller</a><a >Audio &amp; Video</a><a
+					>Wireless Speaker</a><a >Done</a>
 			</p>
 		</div>
 		<div class="ps-footer__copyright">
 			<p>Â© 2018 Martfury. All Rights Reserved</p>
 			<p>
-				<span>We Using Safe Payment For:</span><a href="#"><img
+				<span>We Using Safe Payment For:</span><a ><img
 					src="${pageContext.servletContext.contextPath}/img/payment-method/1.jpg"
-					alt=""></a><a href="#"><img
+					alt=""></a><a ><img
 					src="${pageContext.servletContext.contextPath}/img/payment-method/2.jpg"
-					alt=""></a><a href="#"><img
+					alt=""></a><a ><img
 					src="${pageContext.servletContext.contextPath}/img/payment-method/3.jpg"
-					alt=""></a><a href="#"><img
+					alt=""></a><a ><img
 					src="${pageContext.servletContext.contextPath}/img/payment-method/4.jpg"
-					alt=""></a><a href="#"><img
+					alt=""></a><a ><img
 					src="${pageContext.servletContext.contextPath}/img/payment-method/5.jpg"
 					alt=""></a>
 			</p>
@@ -167,7 +167,7 @@
 <div class="ps-popup" id="subscribe" data-time="500">
 	<div class="ps-popup__content bg--cover"
 		data-background="${pageContext.servletContext.contextPath}/img/bg/subscribe.jpg">
-		<a class="ps-popup__close" href="#"><i class="icon-cross"></i></a>
+		<a class="ps-popup__close" ><i class="icon-cross"></i></a>
 		<form class="ps-form--subscribe-popup" action="index.html"
 			method="get">
 			<div class="ps-form__content">
@@ -201,7 +201,7 @@
 	<div class="loader-section section-right"></div>
 </div>
 <div class="ps-search" id="site-search">
-	<a class="ps-btn--close" href="#"></a>
+	<a class="ps-btn--close" ></a>
 	<div class="ps-search__content">
 		<form class="ps-form--primary-search" action="do_action" method="post">
 			<input class="form-control" type="text" placeholder="Search for...">
@@ -269,6 +269,7 @@
 	src="${pageContext.servletContext.contextPath}/plugins/gmap3.min.js"></script>
 <!-- custom scripts-->
 <script src="${pageContext.servletContext.contextPath}/js/main.js"></script>
+<script src="${pageContext.servletContext.contextPath}/js/message.js"></script>
 
 <script>
 	/* $(document).ready(function(){ */
@@ -299,9 +300,23 @@
 				countWish.innerHTML = 0;
 			}
 		}
-		initCartItem();
+		// initCartItem();
+		initCartItemData();
 		getAllProducts();
 	}
+
+
+	function updateWishlist() {
+		cookies();
+		if (arr_product != null) {
+			if (arr_product[0] != "") {
+				countWish.innerHTML = arr_product.length;
+			} else {
+				countWish.innerHTML = 0;
+			}
+		}
+	}
+
 
 	function cookies() {
 		cookie = document.cookie;
@@ -400,17 +415,47 @@
 		}
 	}
 
+	function initCartItemData() {
+		const data = null;
+		const xhr = new XMLHttpRequest();
+		xhr.addEventListener("readystatechange", function() {
+			if (this.readyState === this.DONE) {
+				var json = JSON.parse(this.responseText);
+				console.log("initCartItem->>>")
+				console.log(json)
+				// if (cartItems.length >0){
+				// 	cartItems.push(json)
+				// }else{
+				cartItems = json
+				// }
+			}
+			countCartItems()
+			showCartItems()
+		});
+
+		xhr
+				.open("GET",
+						"${pageContext.servletContext.contextPath}/cart/getAll");
+		xhr.setRequestHeader('Content-type', 'application/json');
+		xhr.send(data);
+	}
+
 	function initCartItem() {
 		const data = null;
 		const xhr = new XMLHttpRequest();
 		xhr.addEventListener("readystatechange", function() {
 			if (this.readyState === this.DONE) {
 				var json = JSON.parse(this.responseText);
+				console.log("initCartItem->>>")
 				console.log(json)
-				cartItems = json
-				countCartItems()
-				showCartItems()
+				// if (cartItems.length >0){
+				// 	cartItems.push(json)
+				// }else{
+					cartItems = json
+				// }
 			}
+			// countCartItems()
+			// showCartItems()
 		});
 
 		xhr
@@ -436,6 +481,7 @@
 			if (this.readyState === this.DONE) {
 				var json = JSON.parse(this.responseText);
 				// if (json.length>0){
+				console.log("updateCartItemsCookie->>>>>")
 				console.log(json)
 				cartItems = json
 				// }
@@ -459,7 +505,7 @@
 			 toCart(this.getAttribute('value'),event)
 			 window.setTimeout(function () {
 				 window.location.href = "${pageContext.servletContext.contextPath}/cart";
-			 },300)
+			 },500)
 		 });
 
 
@@ -510,6 +556,7 @@
 		xhr.addEventListener("readystatechange", function () {
 			if (this.readyState === this.DONE) {
 				var json = JSON.parse(this.responseText);
+				console.log("JSON ->>>>")
 				console.log(json)
 				if (cartItems.length>0){
 					var count = 0;
@@ -517,24 +564,28 @@
 						//if duplicate sellingQuantity +=1
 						if (cartItems[i].product.id == json.product.id){
 							cartItems[i].sellingQuantity += 1
-							cartItems[i].totalPrice =  parseFloat(cartItems[i].totalPrice) *  parseInt(cartItems[i].sellingQuantity)
+							cartItems[i].totalPrice =  parseFloat(cartItems[i].product.price) *  parseInt(cartItems[i].sellingQuantity)
 							count += 1
 						}
 					}
 					if (count == 0){
 						cartItems.push(json)
-						countCartItems()
+						// countCartItems()
 					}
 					updateCartItemsCookie(cartItems)
 					showCartItems()
+					console.log("cartItems ->>>>")
 					console.log(cartItems)
 				}else{
 					cartItems.push(json)
+					console.log("cartItems ->>>>")
 					console.log(cartItems)
-					countCartItems()
+					// countCartItems()
 					showCartItems()
 					updateCartItemsCookie(cartItems)
 				}
+				countCartItems()
+				msg("Add to cart sucessful !");
 
 			}
 		});
@@ -542,8 +593,99 @@
 		xhr.open("GET", url);
 		xhr.setRequestHeader('Content-type', 'application/json');
 		xhr.send(data);
+
 	}
 
 	/* }) */
 </script>
+
+<script>
+	$(document).ready(function(){
+		$(document).on("keyup","#input-search", function(event){
+			var categoryId =document.querySelector('.categorySearch');
+			var table =document.querySelector('.tableSearch');
+			var queryCategory =""
+			if (categoryId.value !== "all"){
+				queryCategory += "&categoryId="+categoryId.value
+			}
+			
+			const data = null;
+			const xhr = new XMLHttpRequest();
+			xhr.addEventListener("readystatechange", function() {
+				if (this.readyState === this.DONE) {
+					var json = JSON.parse(this.responseText);
+					console.log(json)
+					table.innerHTML = getSearchTable(json)
+				}
+			});
+
+			xhr.open("GET", "${pageContext.servletContext.contextPath}/filter/search?productName="+this.value+queryCategory);
+			xhr.setRequestHeader('Content-type', 'application/json');
+			xhr.send(data);
+		});
+		
+		function getSearchTable(json){
+			var table =""
+			for (let i = 0; i <json.length ; i++) {
+				table += "<div class='ps-product ps-product--wide ps-product--search-result'>"
+				table += "<div class='ps-product__thumbnail'><a href='${pageContext.servletContext.contextPath}/product/detail?id="+json[i].id+"' onclick='addProductToViewList("+json[i].id+")'><img src='${pageContext.request.contextPath}/product/display/0&"+json[i].id+"' style='width:60px;height:60px'></a></div>"
+				table += "<div class='ps-product__content'><a class='ps-product__title' href='${pageContext.servletContext.contextPath}/product/detail?id="+json[i].id+"' onclick='addProductToViewList("+json[i].id+")'>"+json[i].productName+"</a>"
+				table += "<p class='ps-product__price' style='font-size: 17px'>$"+json[i].price+"</p>"
+				table += "</div></div>"
+			}
+			return table
+		}
+
+	})
+
+
+
+	function msg(value){
+		var style = value;
+		var time = 1200;
+		var message;
+		switch(value){
+			case "alert-success": message ="Successful !";break;
+			case "alert_warning": message ="error warning";break;
+			case "alert-danger": message = "Failed !";break;
+			case "alert_info": message ="Data not found";break;
+			default:
+				if (value.includes("invalid")||value.includes("failed")||value.includes("only")){
+					style = "alert-danger";
+				}else{
+					style = "alert-success";
+				}
+				message =value ;
+		}
+		var height = ($(window).height() - 45)/5;
+
+		if ($(window).scrollTop() >=height) {
+			height =($(window).scrollTop() +70)
+		}
+
+
+		$('<div id="promptModal">')
+				.appendTo('body')
+				.addClass('alert ' + style)
+				.css({
+					"display": "block",
+					"z-index": 99999,
+					"left": ($(document.body).outerWidth(true) - 200),
+					"top": height ,
+					"position": "absolute",
+					"padding": "20px",
+					"border-radius": "5px",
+					"width":"200px",
+					"text-align":"center",
+
+				})
+				.html(message)
+				.show()
+				.delay(time)
+				.fadeOut(10, function () {
+					$('#promptModal').remove();
+				});
+	}
+</script>
+<jsp:include page="../message/message-user.jsp"></jsp:include>
 </html>
