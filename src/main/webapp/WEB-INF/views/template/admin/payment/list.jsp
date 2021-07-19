@@ -103,7 +103,7 @@
 <%--																		class="fas fa-folder"></i>View</a>--%>
 																	<a
 																	class="btn btn-info btn-sm"
-																	><i
+																	href="${pageContext.servletContext.contextPath}/admin/payment/edit?id=${p.id}"><i
 																		class="fas fa-pencil-alt"></i>Edit</a></td>
 															</tr>
 														</c:forEach>
