@@ -104,14 +104,14 @@
     $(document).ready(function(){
 
 //cookie and cartItem
-//         var cartItems = [];
-//         var products = [];
-//         window.onload = initData();
-//
-//         function initData(){
-//             initCartItem();
-//             getAllProducts();
-//         }
+        var cartItems = [];
+        var products = [];
+        window.onload = initData();
+
+        function initData(){
+            initCartItem();
+            getAllProducts();
+        }
 
         function getAllProducts(){
 

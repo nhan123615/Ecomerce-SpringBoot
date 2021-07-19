@@ -92,15 +92,15 @@
 <script>
     $(document).ready(function(){
 
-//cookie and cartItem
+// cookie and cartItem
 //         var cartItems = [];
 //         var products = [];
-//         window.onload = initData();
-//
-//         function initData(){
-//             initCartItem();
-//             getAllProducts();
-//         }
+        window.onload = initData();
+
+        function initData(){
+            initCartItem();
+            getAllProducts();
+        }
 
         function getAllProducts(){
 
@@ -192,6 +192,7 @@
                     countCartItems()
                     showCartItems()
                     updateCartItemsCookie(cartItems)
+
                     document.getElementById('tblShoppingCart').innerHTML = getTableShoppingCart(cartItems)
                     document.querySelector('.ps-table--shopping-cart tfoot').innerHTML = getFooterShoppingCartTable(cartItems)
                 }
@@ -283,6 +284,7 @@
                     // if (json.length>0){
                     console.log("cart: "+json)
                     cartItems = json
+                    initCartItem(cartItems);
                     // }
                 }
             });
