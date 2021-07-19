@@ -72,7 +72,7 @@
 								<div class="icon">
 									<i class="ion ion-stats-bars"></i>
 								</div>
-								<a href="#" class="small-box-footer">More info <i
+								<a  class="small-box-footer">More info <i
 									class="fas fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
@@ -189,27 +189,27 @@
 													role="grid" aria-describedby="example1_info">
 													<thead>
 														<tr role="row">
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Id</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Name</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Status</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Price</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Color</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Stock quantity</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Date update</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Brand</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Category</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Type</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Action</th>
 														</tr>
 													</thead>
@@ -269,7 +269,6 @@
 	<script
 		src="${pageContext.servletContext.contextPath}/plugins-admin/chart.js/Chart.min.js"></script>
 	<script>
-	
 		$(function() {
 			'use strict'
 
@@ -279,13 +278,15 @@
 			}
 			var mode = 'index'
 			var intersect = true
-			
+
 			var priceLastYear = $('#priceLastYear');
-			var arrLastYear = priceLastYear[0].value.replace("[", "").replace("]", "").split(",");
-			
+			var arrLastYear = priceLastYear[0].value.replace("[", "").replace(
+					"]", "").split(",");
+
 			var priceThisYear = $('#priceThisYear');
-			var arrThisYear = priceThisYear[0].value.replace("[", "").replace("]", "").split(",");
-			
+			var arrThisYear = priceThisYear[0].value.replace("[", "").replace(
+					"]", "").split(",");
+
 			var $salesChart = $('#sales-chart');
 			// eslint-disable-next-line no-unused-vars
 			var salesChart = new Chart($salesChart, {
@@ -297,14 +298,22 @@
 							{
 								backgroundColor : '#007bff',
 								borderColor : '#007bff',
-								data : [ arrThisYear[0], arrThisYear[1], arrThisYear[2], arrThisYear[3], arrThisYear[4], arrThisYear[5],
-									arrThisYear[6], arrThisYear[7], arrThisYear[8], arrThisYear[9], arrThisYear[10], arrThisYear[11] ]
+								data : [ arrThisYear[0], arrThisYear[1],
+										arrThisYear[2], arrThisYear[3],
+										arrThisYear[4], arrThisYear[5],
+										arrThisYear[6], arrThisYear[7],
+										arrThisYear[8], arrThisYear[9],
+										arrThisYear[10], arrThisYear[11] ]
 							},
 							{
 								backgroundColor : '#ced4da',
 								borderColor : '#ced4da',
-								data : [ arrLastYear[0], arrLastYear[1], arrLastYear[2], arrLastYear[3], arrLastYear[4], arrLastYear[5],
-									arrLastYear[6], arrLastYear[7], arrLastYear[8], arrLastYear[9], arrLastYear[10], arrLastYear[11] ]
+								data : [ arrLastYear[0], arrLastYear[1],
+										arrLastYear[2], arrLastYear[3],
+										arrLastYear[4], arrLastYear[5],
+										arrLastYear[6], arrLastYear[7],
+										arrLastYear[8], arrLastYear[9],
+										arrLastYear[10], arrLastYear[11] ]
 							} ]
 				},
 				options : {
@@ -354,12 +363,12 @@
 				}
 			})
 		});
-
 	</script>
 	<script>
 		$(function() {
 			$("#example1").DataTable(
 					{
+						"sort" : false,
 						"responsive" : true,
 						"lengthChange" : false,
 						"autoWidth" : false,

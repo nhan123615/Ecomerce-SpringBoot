@@ -31,15 +31,15 @@ public class AdminOrderController {
 	@GetMapping("/order")
 	public String ListOrderController(Authentication authentication, Model model) {
 		model.addAttribute("orderList",order.findAll());
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/order/list";
 	}
 	@GetMapping(value ="/order/detail")
 	public String DetailOrderController(Authentication authentication, Model model , @RequestParam("id") Long id) {
 		model.addAttribute("orderDetail", order.findById(id));
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/order/detail";
 	}
 	@GetMapping(value ="/order/edit")

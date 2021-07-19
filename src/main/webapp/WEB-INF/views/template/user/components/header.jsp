@@ -69,19 +69,19 @@
                 </form>
             </div>
             <div class="header__right">
-                <div class="header__actions"><a class="header__extra" href="#" style="display: none"><i class="icon-chart-bars"></i><span><i>0</i></span></a><a class="header__extra" href="${pageContext.servletContext.contextPath}/product/wishlist"><i class="icon-heart"></i><span><i id="countWish">0</i></span></a>
+                <div class="header__actions"><a class="header__extra"  style="display: none"><i class="icon-chart-bars"></i><span><i>0</i></span></a><a class="header__extra" href="${pageContext.servletContext.contextPath}/product/wishlist"><i class="icon-heart"></i><span><i id="countWish">0</i></span></a>
                     <div class="ps-cart--mini"><a class="header__extra" ><i class="icon-bag2"></i><span><i id="cartItemCount-1">0</i></span></a>
                         <div class="ps-cart__content"  id="cart-content-1" style="display: none" >
                             <div class="ps-cart__items">
                                 <div class="ps-product--cart-mobile">
-                                    <div class="ps-product__thumbnail"><a href="#"><img src="${pageContext.servletContext.contextPath}/img/products/clothing/7.jpg" alt=""></a></div>
-                                    <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross "></i></a><a href="product-default.html">MVMTH Classical Leather Watch In Black</a>
+                                    <div class="ps-product__thumbnail"><a ><img src="${pageContext.servletContext.contextPath}/img/products/clothing/7.jpg" alt=""></a></div>
+                                    <div class="ps-product__content"><a class="ps-product__remove" ><i class="icon-cross "></i></a><a href="product-default.html">MVMTH Classical Leather Watch In Black</a>
                                         <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
                                     </div>
                                 </div>
                                 <div class="ps-product--cart-mobile">
-                                    <div class="ps-product__thumbnail"><a href="#"><img src="${pageContext.servletContext.contextPath}/img/products/clothing/5.jpg" alt=""></a></div>
-                                    <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">Sleeve Linen Blend Caro Pane Shirt</a>
+                                    <div class="ps-product__thumbnail"><a ><img src="${pageContext.servletContext.contextPath}/img/products/clothing/5.jpg" alt=""></a></div>
+                                    <div class="ps-product__content"><a class="ps-product__remove" ><i class="icon-cross"></i></a><a href="product-default.html">Sleeve Linen Blend Caro Pane Shirt</a>
                                         <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
                                     </div>
                                 </div>
@@ -189,7 +189,7 @@
                     </li>
                     <li ><a href="${pageContext.servletContext.contextPath}/product">Shop</a>
                     </li>
-                    <li class="menu-item-has-children has-mega-menu"><a href="#">Pages</a><span class="sub-toggle"></span>
+                    <li class="menu-item-has-children has-mega-menu"><a >Pages</a><span class="sub-toggle"></span>
                         <div class="mega-menu">
                             <div class="mega-menu__column">
                                 <h4>Basic Page<span class="sub-toggle"></span></h4>
@@ -242,7 +242,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="menu-item-has-children has-mega-menu"><a href="#">Blogs</a><span class="sub-toggle"></span>
+                    <li class="menu-item-has-children has-mega-menu"><a >Blogs</a><span class="sub-toggle"></span>
                         <div class="mega-menu">
                             <div class="mega-menu__column">
                                 <h4>Blog Layout<span class="sub-toggle"></span></h4>
@@ -276,21 +276,21 @@
                     </li>
                 </ul>
                 <ul class="navigation__extra">
-                    <li><a href="#">Sell on Martfury</a></li>
-                    <li><a href="#">Tract your order</a></li>
+                    <li><a >Sell on Martfury</a></li>
+                    <li><a >Tract your order</a></li>
                     <li>
-                        <div class="ps-dropdown"><a href="#">US Dollar</a>
+                        <div class="ps-dropdown"><a >US Dollar</a>
                             <ul class="ps-dropdown-menu">
-                                <li><a href="#">Us Dollar</a></li>
-                                <li><a href="#">Euro</a></li>
+                                <li><a >Us Dollar</a></li>
+                                <li><a >Euro</a></li>
                             </ul>
                         </div>
                     </li>
                     <li>
-                        <div class="ps-dropdown language"><a href="#"><img src="${pageContext.servletContext.contextPath}/img/flag/en.png" alt="">English</a>
+                        <div class="ps-dropdown language"><a ><img src="${pageContext.servletContext.contextPath}/img/flag/en.png" alt="">English</a>
                             <ul class="ps-dropdown-menu">
-                                <li><a href="#"><img src="${pageContext.servletContext.contextPath}/img/flag/germany.png" alt=""> Germany</a></li>
-                                <li><a href="#"><img src="${pageContext.servletContext.contextPath}/img/flag/fr.png" alt=""> France</a></li>
+                                <li><a ><img src="${pageContext.servletContext.contextPath}/img/flag/germany.png" alt=""> Germany</a></li>
+                                <li><a ><img src="${pageContext.servletContext.contextPath}/img/flag/fr.png" alt=""> France</a></li>
                             </ul>
                         </div>
                     </li>
@@ -315,21 +315,21 @@
         </div>
         <div class="header__right">
             <ul class="navigation__extra">
-                <li><a href="#">Sell on Martfury</a></li>
-                <li><a href="#">Tract your order</a></li>
+                <li><a >Sell on Martfury</a></li>
+                <li><a >Tract your order</a></li>
                 <li>
-                    <div class="ps-dropdown"><a href="#">US Dollar</a>
+                    <div class="ps-dropdown"><a >US Dollar</a>
                         <ul class="ps-dropdown-menu">
-                            <li><a href="#">Us Dollar</a></li>
-                            <li><a href="#">Euro</a></li>
+                            <li><a >Us Dollar</a></li>
+                            <li><a >Euro</a></li>
                         </ul>
                     </div>
                 </li>
                 <li>
-                    <div class="ps-dropdown language"><a href="#"><img src="${pageContext.servletContext.contextPath}/img/flag/en.png" alt="">English</a>
+                    <div class="ps-dropdown language"><a ><img src="${pageContext.servletContext.contextPath}/img/flag/en.png" alt="">English</a>
                         <ul class="ps-dropdown-menu">
-                            <li><a href="#"><img src="${pageContext.servletContext.contextPath}/img/flag/germany.png" alt=""> Germany</a></li>
-                            <li><a href="#"><img src="${pageContext.servletContext.contextPath}/img/flag/fr.png" alt=""> France</a></li>
+                            <li><a ><img src="${pageContext.servletContext.contextPath}/img/flag/germany.png" alt=""> Germany</a></li>
+                            <li><a ><img src="${pageContext.servletContext.contextPath}/img/flag/fr.png" alt=""> France</a></li>
                         </ul>
                     </div>
                 </li>
@@ -348,14 +348,14 @@
                     <div class="ps-cart__content"  id="cart-content-2" style="display: none">
                         <div class="ps-cart__items">
                             <div class="ps-product--cart-mobile">
-                                <div class="ps-product__thumbnail"><a href="#"><img src="${pageContext.servletContext.contextPath}/img/products/clothing/7.jpg" alt=""></a></div>
-                                <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">MVMTH Classical Leather Watch In Black</a>
+                                <div class="ps-product__thumbnail"><a ><img src="${pageContext.servletContext.contextPath}/img/products/clothing/7.jpg" alt=""></a></div>
+                                <div class="ps-product__content"><a class="ps-product__remove" ><i class="icon-cross"></i></a><a href="product-default.html">MVMTH Classical Leather Watch In Black</a>
                                     <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
                                 </div>
                             </div>
                             <div class="ps-product--cart-mobile">
-                                <div class="ps-product__thumbnail"><a href="#"><img src="${pageContext.servletContext.contextPath}/img/products/clothing/5.jpg" alt=""></a></div>
-                                <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">Sleeve Linen Blend Caro Pane Shirt</a>
+                                <div class="ps-product__thumbnail"><a ><img src="${pageContext.servletContext.contextPath}/img/products/clothing/5.jpg" alt=""></a></div>
+                                <div class="ps-product__content"><a class="ps-product__remove" ><i class="icon-cross"></i></a><a href="product-default.html">Sleeve Linen Blend Caro Pane Shirt</a>
                                     <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
                                 </div>
                             </div>

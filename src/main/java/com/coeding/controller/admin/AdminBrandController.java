@@ -43,8 +43,8 @@ public class AdminBrandController {
 	public String show(Authentication authentication, Model model) {
 
 		model.addAttribute("list", brandService.findAll());
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/brand/list-brand";
 	}
 	
@@ -52,21 +52,23 @@ public class AdminBrandController {
 	public String newType(Authentication authentication, Locale locale, Model model) {
 
 		model.addAttribute("brand", new Brand());
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/brand/form-add-brand";
 	}
 
 	@PostMapping(value = "/brand/new")
-	public String saveType(Brand brand, Locale locale, Model model) {
+	public String saveType(Brand brand, Locale locale, Model model,HttpServletRequest request) {
 		brandService.save(brand);
+		String message = (String) request.getSession().getAttribute("message");
+		request.getSession().setAttribute("message", "Submit success !");
 		return "redirect:/admin/brand";
 	}
 
 	@GetMapping(value = "/brand/edit")
 	public String edit(@RequestParam(value = "id") Long id, Authentication authentication, Locale locale, Model model) {
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		model.addAttribute("brand", brandService.findById(id));
 		return "template/admin/brand/form-edit-brand";
 	}
@@ -77,9 +79,7 @@ public class AdminBrandController {
 		b.setName(brand.getName());
 		brandService.save(b);
 		String message = (String) request.getSession().getAttribute("message");
-		if (message !=null){
-			request.getSession().setAttribute("message", "Duplicate email");
-		}
+		request.getSession().setAttribute("message", "Update success !");
 
 		return "redirect:/admin/brand";
 	}

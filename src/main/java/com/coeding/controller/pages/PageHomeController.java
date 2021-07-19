@@ -9,6 +9,10 @@ import com.coeding.service.BannerGalleryService;
 import com.coeding.service.CategoryService;
 import com.coeding.service.ProductService;
 
+import com.mservice.allinone.models.CaptureMoMoRequest;
+import com.mservice.allinone.models.CaptureMoMoResponse;
+import com.mservice.allinone.processor.allinone.CaptureMoMo;
+import com.mservice.shared.sharedmodels.Environment;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,10 +62,12 @@ public class PageHomeController {
 	@GetMapping
 	public String customerHomePage(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication, Model model) {
-		if (authentication != null) {
-			UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-			model.addAttribute("user", userDetails.getUser());
-		}
+//		if (authentication != null) {
+//			if (authentication instanceof  UserDetail){
+//				UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//				model.addAttribute("user", userDetails.getUser());
+//			}
+//		}
 
 		Map<String, List<Product>> productByCategory = new HashMap<>();
 		List<Product> listProduct = productService.findAllIgnoreStatus();
@@ -92,5 +98,31 @@ public class PageHomeController {
 			response.getOutputStream().write(bannerGallery.getImage());
 		}
 		response.getOutputStream().close();
+	}
+
+	@GetMapping("momo")
+	public String getMoMoOrder(Model model){
+		String requestId = String.valueOf(System.currentTimeMillis());
+		String orderId = String.valueOf(System.currentTimeMillis());
+		long amount = 50000;
+
+		String orderInfo = "Pay With MoMo";
+		String returnURL = "https://google.com.vn";
+		String notifyURL = "https://google.com.vn";
+		String extraData = "";
+		String bankCode = "SML";
+		Environment environment = Environment.selectEnv("dev", Environment.ProcessType.PAY_GATE);
+		CaptureMoMo captureMoMo = new CaptureMoMo(environment);
+		CaptureMoMoRequest captureMoMoRequest = captureMoMo.createPaymentCreationRequest(orderId, requestId, Long.toString(amount), orderInfo, returnURL, notifyURL, extraData);
+//		try {
+//			CaptureMoMoResponse captureMoMoResponse = CaptureMoMo.process(environment, orderId, requestId, Long.toString(amount), orderInfo, returnURL, notifyURL, "");
+//		}catch (Exception e){
+//			model.addAttribute("response",e.getMessage());
+//		}
+
+		model.addAttribute("payment",captureMoMoRequest);
+
+		return "template/user/page/momo";
+
 	}
 }

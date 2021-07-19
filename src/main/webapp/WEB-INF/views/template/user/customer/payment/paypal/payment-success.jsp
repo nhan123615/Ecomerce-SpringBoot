@@ -18,7 +18,7 @@
         <div class="container">
             <div class="ps-block--payment-success">
                 <h3>Payment Success !</h3>
-                <p>Thanks for your payment. Please visit<a href="user-information.html"> here</a> to check your order status.</p>
+                <p>Thanks for your payment. Please visit<a href="${pageContext.servletContext.contextPath}/customer/order"> here</a> to check your order status.</p>
             </div>
         </div>
     </section>

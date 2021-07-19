@@ -30,8 +30,8 @@ public class CustomerWishlistController {
 
     @GetMapping
     public String customerWishlistPage(Authentication authentication, Model model, HttpServletRequest res){
-        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-        model.addAttribute("user",userDetails.getUser());
+//        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//        model.addAttribute("user",userDetails.getUser());
 
         model.addAttribute("wishlist", cookieHelper.getCookieByName(res,productService,"wishlist"));
         return  "template/user/customer/wishlist/wishlist-page";

@@ -61,7 +61,7 @@
 															<th class="sorting" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Email</th>
 															<th class="sorting" tabindex="0" aria-controls="example1"
-																rowspan="1" colspan="1">Frist name</th>
+																rowspan="1" colspan="1">First name</th>
 															<th class="sorting" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Last Name</th>
 														</tr>

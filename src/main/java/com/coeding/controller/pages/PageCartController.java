@@ -36,10 +36,10 @@ public class PageCartController {
 
     @GetMapping
     public String cartPage(Authentication authentication, Model model){
-        if (authentication!=null){
-            UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-            model.addAttribute("user",userDetails.getUser());
-        }
+//        if (authentication!=null){
+//            UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//            model.addAttribute("user",userDetails.getUser());
+//        }
 
         List<CartItem> cartItems = cart.getCartItems();
         if (cartItems.size()>0){

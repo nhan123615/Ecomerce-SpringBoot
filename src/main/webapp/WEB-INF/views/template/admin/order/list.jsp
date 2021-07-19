@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="../components/head.jsp"></jsp:include>
@@ -20,15 +22,8 @@
 			<section class="content-header">
 				<div class="container-fluid">
 					<div class="row mb-2">
-						<div class="col-sm-6">
-							<h1>Order list</h1>
-						</div>
-						<div class="col-sm-6">
-							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a
-									href="${pageContext.servletContext.contextPath}/admin">Home</a></li>
-								<li class="breadcrumb-item active">Order List</li>
-							</ol>
+						<div class="col-sm-12">
+							<h1 class="text-center">Order Manager</h1>
 						</div>
 					</div>
 				</div>
@@ -42,9 +37,6 @@
 						<div class="col-12">
 							<!-- /.card -->
 							<div class="card">
-								<div class="card-header">
-									<h3 class="card-title">Order list</h3>
-								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
 									<div id="example1_wrapper"
@@ -56,34 +48,36 @@
 													role="grid" aria-describedby="example1_info">
 													<thead>
 														<tr role="row">
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Id</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
-																rowspan="1" colspan="1">Delivery Custom Address</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
-																rowspan="1" colspan="1">Delivery Custom Name</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
-																rowspan="1" colspan="1">Delivery Custom Phone</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
+																rowspan="1" colspan="1">Deliver Name</th>
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
+																rowspan="1" colspan="1">Deliver Address</th>
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
+																rowspan="1" colspan="1">Deliver Phone</th>
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Order Date</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Status</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Total Price</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
-																rowspan="1" colspan="1">Custom Id</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
-																rowspan="1" colspan="1">Action</th>
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
+																rowspan="1" colspan="1">Customer</th>
+<%--															<th class="sorting text-center" tabindex="0" aria-controls="example1"--%>
+<%--																rowspan="1" colspan="1">Action</th>--%>
 														</tr>
 													</thead>
 													<tbody>
 														<c:forEach items="${orderList}" var="o">
 															<tr>
 																<td class="text-center">${o.id}</td>
+																<td class="text-center">
+																	<a href="${pageContext.servletContext.contextPath}/admin/order/detail?id=${o.id}">${o.deliverCustomerName}</a>
+																</td>
 																<td class="text-center">${o.deliverCustomerAddress}</td>
-																<td class="text-center">${o.deliverCustomerName}</td>
 																<td class="text-center">${o.deliverCustomerPhone}</td>
-																<td class="text-center">${o.orderDate}</td>
+																<td class="text-center"><fmt:formatDate value='${o.orderDate}'  type='date' pattern='dd/MM/yyyy'/></td>
 																<td class="text-center position-relative"><c:choose>
 																		<c:when test="${o.status == true}">
 																			<a href=""
@@ -100,15 +94,17 @@
 																		</c:otherwise>
 																	</c:choose></td>
 																<td class="text-center">${o.totalPrice}</td>
-																<td class="text-center">${o.customer.id}</td>
-																<td class="text-center"><a
-																	href="${pageContext.servletContext.contextPath}/admin/order/detail?id=${o.id}"
-																	class="rounded-circle btn btn-sm btn-primary"
-																	title="Change Password"> <i class="far fa-eye"></i>
-																</a> <a href="${pageContext.servletContext.contextPath}/admin/order/edit?id=${o.id}" id="${u.id}"
-																	class="rounded-circle btn btn-sm btn-info" title="Edit">
-																		<i class="fas fa-pencil-alt"></i>
-																</a></td>
+																<td class="text-center">${o.customer.firstName} ${o.customer.lastName}</td>
+<%--																<td class="text-center">--%>
+<%--&lt;%&ndash;																	<a&ndash;%&gt;--%>
+<%--&lt;%&ndash;																	href="${pageContext.servletContext.contextPath}/admin/order/detail?id=${o.id}"&ndash;%&gt;--%>
+<%--&lt;%&ndash;																	class="rounded-circle btn btn-sm btn-primary"&ndash;%&gt;--%>
+<%--&lt;%&ndash;																	title="Change Password"> <i class="far fa-eye"></i>&ndash;%&gt;--%>
+<%--&lt;%&ndash;																</a>&ndash;%&gt;--%>
+<%--																	<a  id="${u.id}"--%>
+<%--																	class="rounded-circle btn btn-sm btn-info" title="Edit">--%>
+<%--																		<i class="fas fa-pencil-alt"></i>--%>
+<%--																</a></td>--%>
 
 															</tr>
 														</c:forEach>

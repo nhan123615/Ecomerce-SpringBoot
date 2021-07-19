@@ -24,7 +24,7 @@
 					 data-owl-item="1" data-owl-item-xs="1" data-owl-item-sm="1"
 					 data-owl-item-md="1" data-owl-item-lg="1" data-owl-duration="1000"
 					 data-owl-mousedrag="on" data-owl-animate-in="fadeIn"
-					 data-owl-animate-out="fadeOut">
+					 data-owl-animate-out="fadeOut" style="width: 2500px">
 
 					<c:forEach items="${listBanner}" var="b">
 						<div class="ps-banner bg--cover"
@@ -34,7 +34,7 @@
 				</div>
 			</div>
 			<div class="ps-section__right">
-			<a class="ps-collection" href="#">
+			<a class="ps-collection" >
 				<div  style="height: 450px"></div>
 			</a>
 			</div>
@@ -124,7 +124,7 @@
 										<ul class="ps-product__actions">
 											<li class="toCart" value="${p.id}"><a  data-toggle="tooltip" data-placement="top"
 																				   title="Add To Cart"><i class="icon-bag2"></i></a></li>
-											<li><a href="#" data-placement="top" title="Quick View"
+											<li><a  data-placement="top" title="Quick View"
 												   data-toggle="modal" data-target="#product-quickview-${p.id}"><i
 													class="icon-eye"></i></a></li>
 											<li><a  data-toggle="tooltip" data-placement="top"
@@ -201,7 +201,7 @@
 											<ul class="ps-product__actions">
 												<li class="toCart" value="${p.id}"><a  data-toggle="tooltip" data-placement="top"
 																					   title="Add To Cart"><i class="icon-bag2"></i></a></li>
-												<li><a href="#" data-placement="top" title="Quick View"
+												<li><a  data-placement="top" title="Quick View"
 													   data-toggle="modal" data-target="#product-quickview-${p.id}"><i
 														class="icon-eye"></i></a></li>
 												<li><a  data-toggle="tooltip" data-placement="top"
@@ -276,7 +276,7 @@
 													<li class="toCart" value="${p.id}"><a data-toggle="tooltip"
 																						  data-placement="top" title="Add To Cart"><i
 															class="icon-bag2"></i></a></li>
-													<li><a href="#" data-placement="top" title="Quick View"
+													<li><a  data-placement="top" title="Quick View"
 														   data-toggle="modal" data-target="#product-quickview-${p.id}"><i
 															class="icon-eye"></i></a></li>
 													<li><a onClick="addToWishList(${p.id})"
@@ -332,11 +332,10 @@
 		xhr.addEventListener("readystatechange", function() {
 			if (this.readyState === this.DONE) {
 				if(this.responseText === "successful"){
-					alert("You have successfully added!");
+					msg("Add to wishlist sucessful!");
 				}else if(this.responseText === "failed"){
-					alert("You can only add 1 time!");
+					msg("You can only add 1 time!");
 				}
-				cookies();
 				initData();
 			}
 		});

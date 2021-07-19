@@ -97,7 +97,8 @@
         xhr.addEventListener("readystatechange", function() {
             if (this.readyState === this.DONE) {
                 var json = JSON.parse(this.responseText);
-                initData();
+                // initData();
+                updateWishlist();
                 if (json.length > 0) {
                     tblProduct.innerHTML = getWishListTable(json);
                 } else {
@@ -195,14 +196,16 @@
                             countCartItems()
                         }
                         updateCartItemsCookie(cartItems)
+                        showCartItems()
                         console.log(cartItems)
                     }else{
                         cartItems.push(json)
                         console.log("cartItems: "+cartItems)
                         countCartItems()
+                        showCartItems()
                         updateCartItemsCookie(cartItems)
-                        initData()
                     }
+                    msg("Add to cart successful!");
                     removeFromWishList(id)
                     
                 }
@@ -212,6 +215,8 @@
                 + id);
             xhr.setRequestHeader('Content-type', 'application/json');
             xhr.send(data);
+        }else{
+        	msg("Add to cart failed!");
         }
     }
 

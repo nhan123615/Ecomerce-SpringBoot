@@ -48,7 +48,7 @@
                                                                         <li class="toCart" value="${p.id}"><a data-toggle="tooltip"
                                                                                                               data-placement="top" title="Add To Cart"><i
                                                                                 class="icon-bag2"></i></a></li>
-                                                                        <li><a href="#" data-placement="top" title="Quick View"
+                                                                        <li><a  data-placement="top" title="Quick View"
                                                                                data-toggle="modal" data-target="#product-quickview-${p.id}"><i
                                                                                 class="icon-eye"></i></a></li>
                                                                         <li><a onClick="addToWishList(${p.id})"
@@ -137,12 +137,11 @@
         const xhr = new XMLHttpRequest();
         xhr.addEventListener("readystatechange", function() {
             if (this.readyState === this.DONE) {
-                if(this.responseText === "successful"){
-                    alert("You have successfully added!");
-                }else if(this.responseText === "failed"){
-                    alert("You can only add 1 time!");
-                }
-                cookies();
+            	if(this.responseText === "successful"){
+					msg("Add to wishlist sucessful!");
+				}else if(this.responseText === "failed"){
+					msg("You can only add 1 time!");
+				}
                 initData();
             }
         });
@@ -175,13 +174,13 @@
 <script>
 
     $(document).ready(function(){
-        var cartItems = [];
-        var products = [];
-        window.onload = initData();
-        function initData() {
-            // initCartItem();
-            getAllProducts();
-        }
+        // var cartItems = [];
+        // var products = [];
+        // window.onload = initData();
+        // function initData() {
+        //     // initCartItem();
+        //     getAllProducts();
+        // }
 
 //////////////////////////////////////////////////
 
@@ -293,7 +292,7 @@
             updateCartItemsCookie(cartItems)
             window.setTimeout(function () {
                 window.location.href = "${pageContext.servletContext.contextPath}/cart";
-            },300)
+            },500)
         });
 
 

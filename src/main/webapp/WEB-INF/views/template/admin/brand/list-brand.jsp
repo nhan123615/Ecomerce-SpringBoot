@@ -20,15 +20,8 @@
 			<section class="content-header">
 				<div class="container-fluid">
 					<div class="row mb-2">
-						<div class="col-sm-6">
-							<h1>Brand list</h1>
-						</div>
-						<div class="col-sm-6">
-							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a
-									href="${pageContext.servletContext.contextPath}/admin">Home</a></li>
-								<li class="breadcrumb-item active">Brand list</li>
-							</ol>
+						<div class="col-sm-12">
+							<h1 class="text-center">Brand Manager</h1>
 						</div>
 					</div>
 				</div>
@@ -43,37 +36,35 @@
 							<!-- /.card -->
 							<div class="card">
 								<div class="card-header">
-									<h3 class="card-title">Brand list</h3>
+										<a
+												href="${pageContext.servletContext.contextPath}/admin/brand/new"
+												class="btn btn-success">Add brand</a>
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
 									<div id="example1_wrapper"
 										class="dataTables_wrapper dt-bootstrap4">
 										<div class="row">
-											<div class="col-sm-3">
-												<a
-													href="${pageContext.servletContext.contextPath}/admin/brand/new"
-													class="btn btn-success">Add brand</a>
-											</div>
+
 											<div class="col-sm-12">
 												<table id="example1"
 													class="table table-bordered table-striped dataTable dtr-inline"
 													role="grid" aria-describedby="example1_info">
 													<thead>
 														<tr role="row">
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Id</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Name</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Action</th>
 														</tr>
 													</thead>
 													<tbody>
 														<c:forEach var="brand" items="${list }">
 															<tr>
-																<td>${brand.id }</td>
-																<td>${brand.name }</td>
+																<td class="text-center">${brand.id }</td>
+																<td class="text-center">${brand.name }</td>
 																<td class="project-actions text-center"><a
 																	class="btn btn-info btn-sm"
 																	href="${pageContext.request.contextPath}/admin/brand/edit?id=${brand.id}"><i

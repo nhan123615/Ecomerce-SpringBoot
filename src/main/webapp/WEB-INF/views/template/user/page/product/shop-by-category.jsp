@@ -278,14 +278,14 @@
         var queryParams = new URLSearchParams(window.location.search);
         var btnPrice =document.querySelector('#btnPrice');
 //cookie and cartItem
-        var cartItems = [];
-        var products = []
-        window.onload =  initData();
-
-        function initData(){
-            initCartItem();
-            getAllProducts();
-        }
+//         var cartItems = [];
+//         var products = []
+//         window.onload =  initData();
+//
+//         function initData(){
+//             initCartItem();
+//             getAllProducts();
+//         }
 
         function getAllProducts(){
             const data = null;
@@ -363,7 +363,7 @@
             toCart(this.getAttribute('value'),event)
             window.setTimeout(function () {
                 window.location.href = "${pageContext.servletContext.contextPath}/cart";
-            },300)
+            },500)
         });
 
 
@@ -727,12 +727,11 @@
         const xhr = new XMLHttpRequest();
         xhr.addEventListener("readystatechange", function() {
             if (this.readyState === this.DONE) {
-                if(this.responseText === "successful"){
-                    alert("You have successfully added!");
-                }else if(this.responseText === "failed"){
-                    alert("You can only add 1 time!");
-                }
-                cookies();
+            	if(this.responseText === "successful"){
+					msg("Add to wishlist sucessful!");
+				}else if(this.responseText === "failed"){
+					msg("You can only add 1 time!");
+				}
                 initData();
             }
         });

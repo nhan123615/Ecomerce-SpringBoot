@@ -36,16 +36,16 @@ public class AdminPaymentController {
 	@GetMapping("/payment")
 	public String ListPaymentController(Authentication authentication, Model model) {
 		model.addAttribute("paymentList", payment.findAll());
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/payment/list";
 	}
 
 	@RequestMapping(value = "/payment/detail", method = RequestMethod.GET)
 	public String DetailPaymentController(@RequestParam("id") Long id, Authentication authentication,PaymentDetail pmt ,Model model) {
 		model.addAttribute("paymentDetail" , payment.findById(id));
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/payment/detail";
 	}
 	@GetMapping("/payment/edit")
