@@ -23,7 +23,7 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1 class="m-0 text-dark">User Manager : Edit</h1>
+							<h1 class="m-0 text-dark">Payment Manager : Edit</h1>
 						</div>
 					</div>
 				</div>
@@ -38,7 +38,6 @@
 							<!-- SHOW ERRORS FORM -->
 							<!-- END SHOW ERRORS FORM -->
 							<div class="card card-info card-outline">
-							aahaha ${che}
 								<form id="editUser"
 									action="${pageContext.servletContext.contextPath}/admin/payment/saveUpdate"
 									method="post">
@@ -98,7 +97,7 @@
 										<div class="col-12 col-sm-8 offset-sm-2">
 											<button class="btn btn-sm btn-success mr-1" href="#">Save</button>
 											<a class="btn btn-sm btn-danger mr-1"
-												href="${pageContext.servletContext.contextPath}/admin/user">Cancel</a>
+												href="${pageContext.servletContext.contextPath}/admin/payment">Cancel</a>
 										</div>
 									</div>
 								</form>

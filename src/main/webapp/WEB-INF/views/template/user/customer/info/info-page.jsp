@@ -20,8 +20,6 @@
                         <div class="ps-form--account-setting">
                             <div class="ps-form__header">
                                 <h3> User Information</h3>
-                                
-            					asdsaf ${customerInfo.user.id}
                             </div>
                             <br>
                             <div class="ps-form__content">
