@@ -681,7 +681,7 @@
 							console.log(cartItems)
 						}
 						console.log("Update CartItem Product detail->>>>>")
-						updateCartItemsCookieData()
+						updateCartItemsCookieDataDetail()
 
 					}
 				});
@@ -716,9 +716,14 @@
 
 			$(document).on("click",".buyNowDetail", function(event){
 				// updateCartItemsCookie(cartItems)
+				var user = '${user}'
 				findProduct(new URLSearchParams(window.location.search).get("id"));
 				window.setTimeout(function () {
-					window.location.href = "${pageContext.servletContext.contextPath}/cart";
+					if (user !==""){
+						window.location.href = "${pageContext.servletContext.contextPath}/customer/product/checkout-page";
+					}else {
+						window.location.href = "${pageContext.servletContext.contextPath}/cart";
+					}
 				},500)
 			});
 
@@ -807,7 +812,7 @@
 			// });
 
 
-			function updateCartItemsCookieData() {
+			function updateCartItemsCookieDataDetail() {
 				var value = "[]";
 				if (cartItems.length >0){
 					value ="["

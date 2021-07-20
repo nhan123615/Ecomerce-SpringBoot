@@ -21,7 +21,10 @@
                     <div class="ps-section__right">
                         <div class="ps-section--account-setting">
                             <div class="ps-section__header">
-                                <h3>Invoice #0${order.id} -<strong>${order.status ? "Order Successful": "Order Canceled"}</strong></h3>
+                                <h3>
+                                    Invoice #0${order.id} -<strong>${order.status ? "Order Successful": "Order Canceled"}</strong>
+                                    -${payment.tracked ? ' <strong class="text-success">Delivered</strong>':' <strong class="text-danger">In-Stock</strong>'}
+                                </h3>
                             </div>
                             <div class="ps-section__content">
                                 <div class="row">
@@ -111,7 +114,7 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="ps-section__footer"><a class="ps-btn ps-btn--sm" href="${pageContext.servletContext.contextPath}/customer/order">Back to orders</a></div>
+                            <div class="ps-section__footer"><a class="ps-btn ps-btn--sm" href="${pageContext.servletContext.contextPath}/customer/product/checkout-page">Back to orders</a></div>
                         </div>
                     </div>
                 </div>

@@ -370,6 +370,7 @@
 	});
 
 	function getCartItemContent(items) {
+		var user = '${user}';
 		var cartItemContent = "";
 		if (cartItems.length > 0) {
 			var totalPrice = 0;
@@ -391,7 +392,11 @@
 			cartItemContent += "<div class='ps-cart__footer'>"
 			cartItemContent += "<h3>Sub Total:<strong>$" + totalPrice
 					+ "</strong></h3>"
-			cartItemContent += "<figure><a class='ps-btn' href='${pageContext.servletContext.contextPath}/cart'>View Cart</a><a class='ps-btn' href='${pageContext.servletContext.contextPath}/customer/product/checkout'>Checkout</a></figure>"
+			if (user !==""){
+				cartItemContent += "<figure><a class='ps-btn' href='${pageContext.servletContext.contextPath}/customer/product/checkout-page'>View Cart</a><a class='ps-btn' href='${pageContext.servletContext.contextPath}/customer/product/checkout'>Checkout</a></figure>"
+			}else{
+				cartItemContent += "<figure><a class='ps-btn' href='${pageContext.servletContext.contextPath}/cart'>View Cart</a><a class='ps-btn' href='${pageContext.servletContext.contextPath}/customer/product/checkout'>Checkout</a></figure>"
+			}
 			cartItemContent += " </div>"
 		}
 		return cartItemContent;
@@ -501,10 +506,15 @@
 		 });
 
 		 $(document).on("click",".buyNow", function(event){
+		 	var user = '${user}'
 			 initCartItem();
 			 toCart(this.getAttribute('value'),event)
 			 window.setTimeout(function () {
-				 window.location.href = "${pageContext.servletContext.contextPath}/cart";
+			 	if (user !==""){
+					window.location.href = "${pageContext.servletContext.contextPath}/customer/product/checkout-page";
+				}else{
+					window.location.href = "${pageContext.servletContext.contextPath}/cart";
+				}
 			 },500)
 		 });
 

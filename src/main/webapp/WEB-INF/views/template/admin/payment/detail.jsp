@@ -82,19 +82,21 @@
 								</h3>
 
 								<ul class="list-unstyled">
-									<li>Payment Method</br> <b>${paymentDetail.paymentMethod}</b>
+									<li>Payment Method: <b>${paymentDetail.paymentMethod}</b>
 									</li>
-									</br>
-									<li>Status</br> <b> <c:choose>
+									<li>Status:  <b> <c:choose>
 												<c:when test="${paymentDetail.status == false}">
-													<p>Inactive</p>
+													Not Yet
 												</c:when>
 
 												<c:otherwise>
-													<p>Active</p>
+													Paid
 												</c:otherwise>
 											</c:choose>
 									</b>
+									</li>
+									<li>
+										Tracking: <b>${paymentDetail.tracked ?'<span class="text-success">Delivered</span>':'<span class="text-danger">In-Stock</span>'}</b>
 									</li>
 								</ul>
 								<div class="text-center mt-5 mb-3">

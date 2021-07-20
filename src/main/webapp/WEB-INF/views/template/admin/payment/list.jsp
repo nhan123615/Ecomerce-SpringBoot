@@ -59,7 +59,9 @@
 															<th class="sorting  text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Payment Method</th>
 															<th class="sorting  text-center" tabindex="0" aria-controls="example1"
-																rowspan="1" colspan="1">Status</th>
+																rowspan="1" colspan="1">Paid</th>
+															<th class="sorting  text-center" tabindex="0" aria-controls="example1"
+																rowspan="1" colspan="1">Tracking</th>
 
 															<th class="sorting" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Action</th>
@@ -95,7 +97,9 @@
 																		</c:otherwise>
 																	</c:choose>
 																</td>
-
+																<td class="text-center">
+																		${p.tracked ?'<span class="text-success"><b>Delivered</b></span>':'<span class="text-danger"><b>In-Stock</b></span>'}
+																</td>
 																<td class="project-actions text-center">
 <%--																	<a--%>
 <%--																	class="btn btn-primary btn-sm"--%>

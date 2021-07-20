@@ -57,6 +57,7 @@ public class AdminPaymentController {
 	public String SaveUserController(Model model, Payment paymentFrm,HttpServletResponse response, Authentication authentication) {	     
 		Payment paymentIn = payment.findById(paymentFrm.getId());
 		paymentIn.setStatus(paymentFrm.isStatus());
+		paymentIn.setTracked(paymentFrm.isTracked());
 		payment.save(paymentIn);
 		return "redirect:/admin/payment";
 	}

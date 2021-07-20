@@ -38,21 +38,7 @@ public class CustomerOrderController {
 
     @GetMapping
     public String customerOrderPage(Authentication authentication, Model model) {
-//        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-//        model.addAttribute("user", userDetails.getUser());
-
         User user = userHelper.getUser(authentication,userService);
-//        if (authentication.getPrincipal() instanceof  UserDetail){
-//            UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-//            user = userDetails.getUser();
-//        }
-//
-//        if (authentication.getPrincipal() instanceof OAuth2User) {
-//            OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
-//            user = userService.findByEmail(String.valueOf(oAuth2User.getAttributes().get("email")));
-//        }
-
-
         Customer customer = customerService.findByUserId(user.getId());
         List<CustomerOrder> orders;
 
@@ -64,13 +50,10 @@ public class CustomerOrderController {
 
         model.addAttribute("customerOrders",orders );
         return "template/user/customer/invoice/invoice-page";
-
     }
 
     @GetMapping("/detail")
     public String customerOrderDetail(Authentication authentication, Model model, @RequestParam("id") Long id) {
-//        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-//        model.addAttribute("user", userDetails.getUser());
 
         CustomerOrder order = customerOrderService.findById(id);
         Long countPayment = paymentService.countByCustomerOrderId(order.getId());
@@ -91,17 +74,7 @@ public class CustomerOrderController {
     @GetMapping("/json/order")
     @ResponseBody
     public List<CustomerOrder> getJsonOrder(Authentication authentication) {
-//        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
         User user = userHelper.getUser(authentication,userService);
-//        if (authentication.getPrincipal() instanceof  UserDetail){
-//            UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-//            user = userDetails.getUser();
-//        }
-//
-//        if (authentication.getPrincipal() instanceof OAuth2User) {
-//            OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
-//            user = userService.findByEmail(String.valueOf(oAuth2User.getAttributes().get("email")));
-//        }
         Customer customer = customerService.findByUserId(user.getId());
         return customerOrderService.findAllOrderByCustomerId(customer.getId());
     }

@@ -69,7 +69,18 @@
                 </form>
             </div>
             <div class="header__right">
-                <div class="header__actions"><a class="header__extra"  style="display: none"><i class="icon-chart-bars"></i><span><i>0</i></span></a><a class="header__extra" href="${pageContext.servletContext.contextPath}/product/wishlist"><i class="icon-heart"></i><span><i id="countWish">0</i></span></a>
+                <div class="header__actions">
+                    <a class="header__extra"  style="display: none"><i class="icon-chart-bars"></i><span><i>0</i></span></a>
+
+                    <c:choose>
+                        <c:when test="${user!=null}">
+                            <a class="header__extra" href="${pageContext.servletContext.contextPath}/customer/wishlist"><i class="icon-heart"></i><span><i id="countWish">0</i></span></a>
+                        </c:when>
+                        <c:otherwise>
+                            <a class="header__extra" href="${pageContext.servletContext.contextPath}/product/wishlist"><i class="icon-heart"></i><span><i id="countWish">0</i></span></a>
+                        </c:otherwise>
+                    </c:choose>
+
                     <div class="ps-cart--mini"><a class="header__extra" ><i class="icon-bag2"></i><span><i id="cartItemCount-1">0</i></span></a>
                         <div class="ps-cart__content"  id="cart-content-1" style="display: none" >
                             <div class="ps-cart__items">
@@ -88,7 +99,17 @@
                             </div>
                             <div class="ps-cart__footer">
                                 <h3>Sub Total:<strong>$0.00</strong></h3>
-                                <figure><a class="ps-btn" href="${pageContext.servletContext.contextPath}/cart">View Cart</a><a class="ps-btn" href="${pageContext.servletContext.contextPath}/customer/product/checkout">Checkout</a></figure>
+                                <figure>
+                                    <c:choose>
+                                        <c:when test="${user !=null}">
+                                            <a class="ps-btn" href="${pageContext.servletContext.contextPath}/customer/product/checkout-page">View Cart</a>
+
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a class="ps-btn" href="${pageContext.servletContext.contextPath}/cart">View Cart</a>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <a class="ps-btn" href="${pageContext.servletContext.contextPath}/customer/product/checkout">Checkout</a></figure>
                             </div>
                         </div >
                     </div>
@@ -362,7 +383,16 @@
                         </div>
                         <div class="ps-cart__footer">
                             <h3>Sub Total:<strong>$59.99</strong></h3>
-                            <figure><a class="ps-btn" href="${pageContext.servletContext.contextPath}/cart">View Cart</a><a class="ps-btn" href="${pageContext.servletContext.contextPath}/customer/product/checkout">Checkout</a></figure>
+                            <figure>
+                                <c:choose>
+                                    <c:when test="${user !=null}">
+                                        <a class="ps-btn" href="${pageContext.servletContext.contextPath}/customer/product/checkout-page">View Cart</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a class="ps-btn" href="${pageContext.servletContext.contextPath}/cart">View Cart</a>
+                                    </c:otherwise>
+                                </c:choose>
+                                <a class="ps-btn" href="${pageContext.servletContext.contextPath}/customer/product/checkout">Checkout</a></figure>
                         </div>
                     </div>
                 </div>
