@@ -20,7 +20,9 @@
 								<figure>
 									<div class="ps-wrapper">
 										<c:if test="${product.enabled == false}">
-											<div class="ps-product__badge out-stock" style="background-color: #000;color: #fff;font-size: 14px;font-weight: 600;line-height: 20px;padding: 5px 10px;border-radius: 4px;">Out Of Stock</div>
+											<div class="ps-product__badge out-stock"
+												style="background-color: #000; color: #fff; font-size: 14px; font-weight: 600; line-height: 20px; padding: 5px 10px; border-radius: 4px;">Out
+												Of Stock</div>
 										</c:if>
 										<div class="ps-product__gallery" data-arrow="true">
 											<div class="item">
@@ -78,7 +80,7 @@
 								<h1>${product.productName }</h1>
 								<div class="ps-product__meta">
 									<p>
-										Brand:<a >${product.brand.name }</a>
+										Brand:<a>${product.brand.name }</a>
 									</p>
 									<div class="ps-product__rating">
 										<select class="ps-rating" data-read-only="true">
@@ -137,17 +139,17 @@
 												</button>
 												<div>
 													<input class="form-control itemQty-${product.id}"
-														   type="text" placeholder="1" value="1" readonly>
+														type="text" placeholder="1" value="1" readonly>
 												</div>
 											</div>
 										</figure>
-										<a class="ps-btn ps-btn--black toCartDetail" value="${product.id}">Add
-											to cart</a><a class="ps-btn buyNowDetail" value="${product.id}">Buy
-										Now</a>
+										<a class="ps-btn ps-btn--black toCartDetail"
+											value="${product.id}">Add to cart</a><a
+											class="ps-btn buyNowDetail" value="${product.id}">Buy Now</a>
 										<div class="ps-product__actions">
 											<a onClick="addToWishList(${product.id})"
-											   data-toggle="tooltip" data-placement="top"
-											   title="Add to Wishlist"><i class="icon-heart"></i></a>
+												data-toggle="tooltip" data-placement="top"
+												title="Add to Wishlist"><i class="icon-heart"></i></a>
 										</div>
 									</div>
 								</c:if>
@@ -214,16 +216,14 @@
 											</div>
 										</div>
 										<div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12 ">
-											<form class="ps-form--review" action="#"
-												method="get">
+											<form id="frmReview" class="ps-form--review"
+												action="${pageContext.request.contextPath}/product/review"
+												method="POST">
 												<h4>Submit Your Review</h4>
-												<p>
-													Your email address will not be published. Required fields
-													are marked<sup>*</sup>
-												</p>
 												<div class="form-group form-group__rating">
 													<label>Your rating of this product</label> <select
-														class="ps-rating" data-read-only="false">
+														id="starNumber" name="starNumber" class="ps-rating"
+														data-read-only="false">
 														<option value="0">0</option>
 														<option value="1">1</option>
 														<option value="2">2</option>
@@ -233,27 +233,17 @@
 													</select>
 												</div>
 												<div class="form-group">
-													<textarea class="form-control" rows="6"
-														placeholder="Write your review here"></textarea>
-												</div>
-												<div class="row">
-													<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12  ">
-														<div class="form-group">
-															<input class="form-control" type="text"
-																placeholder="Your Name">
-														</div>
-													</div>
-													<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12  ">
-														<div class="form-group">
-															<input class="form-control" type="email"
-																placeholder="Your Email">
-														</div>
-													</div>
-												</div>
-												<div class="form-group submit">
-													<button class="ps-btn">Submit Review</button>
+													<input type="hidden" id="idUser" name="idUser"
+														value="${user.id }"> <input type="hidden"
+														name="idProduct" value="${product.id }">
+													<textarea class="form-control" rows="6" id="review"
+														name="review" placeholder="Write your review here"></textarea>
 												</div>
 											</form>
+											<div class="form-group submit">
+												<button id="btnSubmitReview" class="ps-btn">Submit
+													Review</button>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -281,12 +271,12 @@
 					</aside>
 					<aside class="widget widget_sell-on-site">
 						<p>
-							<i class="icon-store"></i> Sell on Martfury?<a >
-								Register Now !</a>
+							<i class="icon-store"></i> Sell on Martfury?<a> Register Now
+								!</a>
 						</p>
 					</aside>
 					<aside class="widget widget_ads">
-						<a ><img
+						<a><img
 							src="${pageContext.request.contextPath}/img/ads/product-ads.png"
 							alt=""></a>
 					</aside>
@@ -300,22 +290,19 @@
 										alt=""></a>
 									<div class="ps-product__badge">-37%</div>
 									<ul class="ps-product__actions">
-										<li><a  data-toggle="tooltip"
-											data-placement="top" title="Add To Cart"><i
-												class="icon-bag2"></i></a></li>
-										<li><a  data-placement="top" title="Quick View"
+										<li><a data-toggle="tooltip" data-placement="top"
+											title="Add To Cart"><i class="icon-bag2"></i></a></li>
+										<li><a data-placement="top" title="Quick View"
 											data-toggle="modal" data-target="#product-quickview"><i
 												class="icon-eye"></i></a></li>
-										<li><a  data-toggle="tooltip"
-											data-placement="top" title="Add to Whishlist"><i
-												class="icon-heart"></i></a></li>
-										<li><a  data-toggle="tooltip"
-											data-placement="top" title="Compare"><i
-												class="icon-chart-bars"></i></a></li>
+										<li><a data-toggle="tooltip" data-placement="top"
+											title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+										<li><a data-toggle="tooltip" data-placement="top"
+											title="Compare"><i class="icon-chart-bars"></i></a></li>
 									</ul>
 								</div>
 								<div class="ps-product__container">
-									<a class="ps-product__vendor" >Robert's Store</a>
+									<a class="ps-product__vendor">Robert's Store</a>
 									<div class="ps-product__content">
 										<a class="ps-product__title" href="product-default.html">Grand
 											Slam Indoor Of Show Jumping Novel</a>
@@ -350,22 +337,19 @@
 										alt=""></a>
 									<div class="ps-product__badge">-5%</div>
 									<ul class="ps-product__actions">
-										<li><a  data-toggle="tooltip"
-											data-placement="top" title="Add To Cart"><i
-												class="icon-bag2"></i></a></li>
-										<li><a  data-placement="top" title="Quick View"
+										<li><a data-toggle="tooltip" data-placement="top"
+											title="Add To Cart"><i class="icon-bag2"></i></a></li>
+										<li><a data-placement="top" title="Quick View"
 											data-toggle="modal" data-target="#product-quickview"><i
 												class="icon-eye"></i></a></li>
-										<li><a  data-toggle="tooltip"
-											data-placement="top" title="Add to Whishlist"><i
-												class="icon-heart"></i></a></li>
-										<li><a  data-toggle="tooltip"
-											data-placement="top" title="Compare"><i
-												class="icon-chart-bars"></i></a></li>
+										<li><a data-toggle="tooltip" data-placement="top"
+											title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+										<li><a data-toggle="tooltip" data-placement="top"
+											title="Compare"><i class="icon-chart-bars"></i></a></li>
 									</ul>
 								</div>
 								<div class="ps-product__container">
-									<a class="ps-product__vendor" >Youngshop</a>
+									<a class="ps-product__vendor">Youngshop</a>
 									<div class="ps-product__content">
 										<a class="ps-product__title" href="product-default.html">Sound
 											Intone I65 Earphone White Version</a>
@@ -419,22 +403,23 @@
 											src="${pageContext.request.contextPath}/product/display/0&${p.id}"
 											alt="" width="203px" height="203px"></a>
 										<c:choose>
-										<c:when test="${p.enabled}">
-											<ul class="ps-product__actions">
-												<li class="toCart" value="${p.id}"><a data-toggle="tooltip"
-																					  data-placement="top" title="Add To Cart"><i
-														class="icon-bag2"></i></a></li>
-												<li><a  data-placement="top" title="Quick View"
-													   data-toggle="modal" data-target="#product-quickview-${p.id}"><i
-														class="icon-eye"></i></a></li>
-												<li><a onclick="addToWishList(${p.id})"
-													   data-toggle="tooltip" data-placement="top"
-													   title="Add to Wishlist"><i class="icon-heart"></i></a></li>
-											</ul>
-										</c:when>
-										<c:otherwise>
-											<div class="ps-product__badge out-stock">Out Of Stock</div>
-										</c:otherwise>
+											<c:when test="${p.enabled}">
+												<ul class="ps-product__actions">
+													<li class="toCart" value="${p.id}"><a
+														data-toggle="tooltip" data-placement="top"
+														title="Add To Cart"><i class="icon-bag2"></i></a></li>
+													<li><a data-placement="top" title="Quick View"
+														data-toggle="modal"
+														data-target="#product-quickview-${p.id}"><i
+															class="icon-eye"></i></a></li>
+													<li><a onclick="addToWishList(${p.id})"
+														data-toggle="tooltip" data-placement="top"
+														title="Add to Wishlist"><i class="icon-heart"></i></a></li>
+												</ul>
+											</c:when>
+											<c:otherwise>
+												<div class="ps-product__badge out-stock">Out Of Stock</div>
+											</c:otherwise>
 										</c:choose>
 
 
@@ -442,7 +427,8 @@
 									<div class="ps-product__container">
 										<div class="ps-product__content">
 											<a class="ps-product__title"
-												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})">${p.productName}</a>
+												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"
+												onclick="addProductToViewList(${p.id})">${p.productName}</a>
 											<div class="ps-product__rating">
 												<select class="ps-rating" data-read-only="true">
 													<option value="1">1</option>
@@ -456,7 +442,8 @@
 										</div>
 										<div class="ps-product__content hover">
 											<a class="ps-product__title"
-												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})">${p.productName}</a>
+												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"
+												onclick="addProductToViewList(${p.id})">${p.productName}</a>
 											<p class="ps-product__price">$${p.price}</p>
 										</div>
 									</div>
@@ -488,10 +475,10 @@
 											src="${pageContext.request.contextPath}/product/display/0&${p.id}"
 											alt="" width="203px" height="203px"></a>
 										<ul class="ps-product__actions">
-											<li class="toCart" value="${p.id}"><a  data-toggle="tooltip"
-												data-placement="top" title="Add To Cart"><i
-													class="icon-bag2"></i></a></li>
-											<li><a  data-placement="top" title="Quick View"
+											<li class="toCart" value="${p.id}"><a
+												data-toggle="tooltip" data-placement="top"
+												title="Add To Cart"><i class="icon-bag2"></i></a></li>
+											<li><a data-placement="top" title="Quick View"
 												data-toggle="modal" data-target="#product-quickview-${p.id}"><i
 													class="icon-eye"></i></a></li>
 											<li><a onClick="addToWishList(${p.id})"
@@ -502,7 +489,8 @@
 									<div class="ps-product__container">
 										<div class="ps-product__content">
 											<a class="ps-product__title"
-												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})">${p.productName}</a>
+												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"
+												onclick="addProductToViewList(${p.id})">${p.productName}</a>
 											<div class="ps-product__rating">
 												<select class="ps-rating" data-read-only="true">
 													<option value="1">1</option>
@@ -516,7 +504,8 @@
 										</div>
 										<div class="ps-product__content hover">
 											<a class="ps-product__title"
-												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})">${p.productName}</a>
+												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"
+												onclick="addProductToViewList(${p.id})">${p.productName}</a>
 											<p class="ps-product__price">$${p.price}</p>
 										</div>
 									</div>
@@ -894,5 +883,25 @@
 
 
 		}
+	</script>
+	<script>
+	 $(document).ready(function (){
+         $('#btnSubmitReview').on('click', function (){
+                 $.ajax({
+                	 method: $('#frmReview').attr('method'),
+                     url: $('#frmReview').attr('action'),
+                     data: $('#frmReview').serialize(),
+                     success : function (data){
+                        if(data === 'success'){
+                        	msg("Review sucessful!");
+                        }else if(data === 'failed'){
+                           window.location.href = "/login";
+                           msg("Review failed!");
+                        }
+                     }
+                 });
+         });
+        
+      });
 	</script>
 </body>
