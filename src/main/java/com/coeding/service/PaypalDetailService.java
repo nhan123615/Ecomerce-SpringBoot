@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * author Nhanle
- * */
+ */
 @Service
 @Transactional
 public class PaypalDetailService implements DAO<PaypalDetail> {
@@ -41,5 +41,14 @@ public class PaypalDetailService implements DAO<PaypalDetail> {
     public void delete(Long id) {
         repo.deleteById(id);
     }
+
+    public PaypalDetail findByPaymentId(Long paymentId) {
+        return repo.findByPaymentId(paymentId);
+    }
+
+    public Long countByPaymentId(Long paymentId) {
+        return repo.countByPaymentId(paymentId);
+    }
+
 }
 //commit

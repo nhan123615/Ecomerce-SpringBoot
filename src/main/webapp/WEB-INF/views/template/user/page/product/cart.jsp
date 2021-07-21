@@ -79,7 +79,8 @@
                 <c:if test="${cartItems !=null}">
                     <a class="ps-btn" href="${pageContext.servletContext.contextPath}/product"><i class="icon-arrow-left"></i> Back to Shop</a>
                     <a class="ps-btn ps-btn--outline hide-1" href="shop-default.html" style="display: none"><i class="icon-sync"></i> Update cart</a>
-                    <a class="ps-btn hide-2 checkout" href="${pageContext.servletContext.contextPath}/customer/product/checkout" >Check out <i class="icon-arrow-right"></i></a>
+<%--                    <a class="ps-btn hide-2 checkout" href="${pageContext.servletContext.contextPath}/customer/product/checkout" >Check out <i class="icon-arrow-right"></i></a>--%>
+                    <a class="ps-btn hide-2 checkout" onclick="checkout()" >Check out <i class="icon-arrow-right"></i></a>
                 </c:if>
             </div>
         </div>
@@ -91,9 +92,9 @@
 <script>
     $(document).ready(function(){
 
-//cookie and cartItem
-        var cartItems = [];
-        var products = [];
+// cookie and cartItem
+//         var cartItems = [];
+//         var products = [];
         window.onload = initData();
 
         function initData(){
@@ -102,6 +103,7 @@
         }
 
         function getAllProducts(){
+
             const data = null;
             const xhr = new XMLHttpRequest();
             xhr.addEventListener("readystatechange", function () {
@@ -190,6 +192,7 @@
                     countCartItems()
                     showCartItems()
                     updateCartItemsCookie(cartItems)
+
                     document.getElementById('tblShoppingCart').innerHTML = getTableShoppingCart(cartItems)
                     document.querySelector('.ps-table--shopping-cart tfoot').innerHTML = getFooterShoppingCartTable(cartItems)
                 }
@@ -223,6 +226,7 @@
 
         function getCartItemContent(items) {
             var cartItemContent ="";
+            var user = '${user}'
             if (cartItems.length >0){
                 var totalPrice = 0;
                 for (let i = 0; i < cartItems.length; i++) {
@@ -238,7 +242,11 @@
                 cartItemContent+="<hr>"
                 cartItemContent+="<div class='ps-cart__footer'>"
                 cartItemContent += "<h3>Sub Total:<strong>$"+totalPrice+"</strong></h3>"
-                cartItemContent +="<figure><a class='ps-btn' href='${pageContext.servletContext.contextPath}/cart'>View Cart</a><a class='ps-btn checkout' href='${pageContext.servletContext.contextPath}/customer/product/checkout'>Checkout</a></figure>"
+                if (user !==""){
+                    cartItemContent +="<figure><a class='ps-btn' href='${pageContext.servletContext.contextPath}/customer/product/checkout-page'>View Cart</a><a class='ps-btn checkout' href='${pageContext.servletContext.contextPath}/customer/product/checkout'>Checkout</a></figure>"
+                }else{
+                    cartItemContent +="<figure><a class='ps-btn' href='${pageContext.servletContext.contextPath}/cart'>View Cart</a><a class='ps-btn checkout' href='${pageContext.servletContext.contextPath}/customer/product/checkout'>Checkout</a></figure>"
+                }
                 cartItemContent +=" </div>"
             }
             return cartItemContent;
@@ -279,8 +287,9 @@
                 if (this.readyState === this.DONE) {
                     var json = JSON.parse(this.responseText);
                     // if (json.length>0){
-                    console.log(json)
+                    console.log("cart: "+json)
                     cartItems = json
+                    initCartItem(cartItems);
                     // }
                 }
             });
@@ -301,6 +310,7 @@
                     cartItems = json
                     countCartItems()
                     showCartItems()
+                    document.getElementById('tblShoppingCart').innerHTML = getTableShoppingCart(cartItems)
                 }
             });
 
@@ -358,6 +368,14 @@
 
     })
 
+
+</script>
+<script>
+    function checkout(){
+        window.setTimeout(function () {
+            window.location.href = "${pageContext.servletContext.contextPath}/customer/product/checkout";
+        },300)
+    }
 
 </script>
 </body>

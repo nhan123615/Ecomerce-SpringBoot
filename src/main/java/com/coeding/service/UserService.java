@@ -49,4 +49,23 @@ public class UserService implements UserDetailsService {
         }
         return new UserDetail(user);
     }
+
+    public User findByEmail(String email){
+        return userRepo.findByEmail(email);
+    }
+
+
+    public void processUserOAuth(String email,String username) {
+        int existUser = userRepo.countByEmail(email);
+        if (existUser == 0) {
+            User newUser = new User();
+            newUser.setRole("ROLE_USER");
+            newUser.setEmail(email);
+            newUser.setUsername(username);
+            newUser.setEnabled(true);
+            userRepo.save(newUser);
+        }
+    }
+
+
 }

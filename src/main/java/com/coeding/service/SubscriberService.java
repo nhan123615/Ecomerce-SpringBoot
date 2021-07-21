@@ -29,19 +29,19 @@ public class SubscriberService implements DAO<EmailSubscriber>{
 	@Override
 	public EmailSubscriber findById(Long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return subscriber.findById(id).get();
 	}
 
 	@Override
 	public void save(EmailSubscriber vo) {
 		// TODO Auto-generated method stub
-		
+		subscriber.save(vo);
 	}
 
 	@Override
 	public void delete(Long id) {
 		// TODO Auto-generated method stub
-		
+		subscriber.deleteById(id);
 	}
 	
 }

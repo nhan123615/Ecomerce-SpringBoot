@@ -10,5 +10,7 @@ import org.springframework.stereotype.Repository;
  * */
 @Repository
 public interface PaypalDetailRepository extends JpaRepository<PaypalDetail,Long>  {
+    PaypalDetail findByPaymentId(Long paymentId);
+    Long countByPaymentId(Long paymentId);
 }
 //commit

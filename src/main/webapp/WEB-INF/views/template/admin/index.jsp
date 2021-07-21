@@ -48,14 +48,15 @@
 							<!-- small box -->
 							<div class="small-box bg-info">
 								<div class="inner">
-									<h3>150</h3>
+									<h3>${numberNewOrder }</h3>
 
 									<p>New Orders</p>
 								</div>
 								<div class="icon">
 									<i class="ion ion-bag"></i>
 								</div>
-								<a href="#" class="small-box-footer">More info <i
+								<a href="${pageContext.servletContext.contextPath}/admin/order"
+									class="small-box-footer">More info <i
 									class="fas fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
@@ -64,14 +65,14 @@
 							<!-- small box -->
 							<div class="small-box bg-success">
 								<div class="inner">
-									<h3>53</h3>
+									<h3>${numberContact }</h3>
 
-									<p>New Contact</p>
+									<p>Total Contact</p>
 								</div>
 								<div class="icon">
 									<i class="ion ion-stats-bars"></i>
 								</div>
-								<a href="#" class="small-box-footer">More info <i
+								<a  class="small-box-footer">More info <i
 									class="fas fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
@@ -80,14 +81,15 @@
 							<!-- small box -->
 							<div class="small-box bg-warning">
 								<div class="inner">
-									<h3>44</h3>
+									<h3>${numberUser }</h3>
 
-									<p>User Registrations</p>
+									<p>Total User</p>
 								</div>
 								<div class="icon">
 									<i class="ion ion-person-add"></i>
 								</div>
-								<a href="#" class="small-box-footer">More info <i
+								<a href="${pageContext.servletContext.contextPath}/admin/user"
+									class="small-box-footer">More info <i
 									class="fas fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
@@ -96,14 +98,16 @@
 							<!-- small box -->
 							<div class="small-box bg-danger">
 								<div class="inner">
-									<h3>65</h3>
+									<h3>${numberSub }</h3>
 
-									<p>New Subscribers</p>
+									<p>Total Subscribers</p>
 								</div>
 								<div class="icon">
 									<i class="ion ion-pie-graph"></i>
 								</div>
-								<a href="#" class="small-box-footer">More info <i
+								<a
+									href="${pageContext.servletContext.contextPath}/admin/subscriber"
+									class="small-box-footer">More info <i
 									class="fas fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
@@ -117,23 +121,39 @@
 								<div class="card-header border-0">
 									<div class="d-flex justify-content-between">
 										<h3 class="card-title">Sales</h3>
-										<a href="javascript:void(0);">View Report</a>
 									</div>
 								</div>
 								<div class="card-body">
 									<div class="d-flex">
 										<p class="d-flex flex-column">
-											<span class="text-bold text-lg">$18,230.00</span> <span>Sales
-												Over Time</span>
+											<span class="text-bold text-lg">$${totalSales }</span> <span>Sales
+												Over Time In This Year</span>
 										</p>
 										<p class="ml-auto d-flex flex-column text-right">
-											<span class="text-success"> <i class="fas fa-arrow-up"></i>
-												33.1%
-											</span> <span class="text-muted">Since last month</span>
+											<c:choose>
+												<c:when test="${comparerByMonth > 0}">
+													<span class="text-success"> <i
+														class="fas fa-arrow-up"></i> ${comparerByMonth }%
+													</span>
+												</c:when>
+												<c:when test="${comparerByMonth < 0}">
+													<span class="text-success"> <i
+														class="fas fa-arrow-down"></i> ${comparerByMonth }%
+													</span>
+												</c:when>
+												<c:otherwise>
+													<span class="text-success"> <i class="fas"></i>
+														${comparerByMonth }%
+													</span>
+												</c:otherwise>
+											</c:choose>
+											<span class="text-muted">Since last month</span>
 										</p>
 									</div>
 									<!-- /.d-flex -->
-
+									<input type="hidden" id="priceLastYear"
+										value="${priceLastYear }"> <input type="hidden"
+										id="priceThisYear" value="${priceThisYear }">
 									<div class="position-relative mb-4">
 										<canvas id="sales-chart" height="200"></canvas>
 									</div>
@@ -151,6 +171,85 @@
 						</div>
 					</div>
 					<!-- /.row (main row) -->
+					<div class="row">
+						<div class="col-12">
+							<!-- /.card -->
+							<div class="card">
+								<div class="card-header">
+									<h3 class="card-title">Top 5 best selling products</h3>
+								</div>
+								<!-- /.card-header -->
+								<div class="card-body">
+									<div id="example1_wrapper"
+										class="dataTables_wrapper dt-bootstrap4">
+										<div class="row">
+											<div class="col-sm-12">
+												<table id="example1"
+													class="table table-bordered table-striped dataTable dtr-inline"
+													role="grid" aria-describedby="example1_info">
+													<thead>
+														<tr role="row">
+															<th class="" tabindex="0" aria-controls="example1"
+																rowspan="1" colspan="1">Id</th>
+															<th class="" tabindex="0" aria-controls="example1"
+																rowspan="1" colspan="1">Name</th>
+															<th class="" tabindex="0" aria-controls="example1"
+																rowspan="1" colspan="1">Status</th>
+															<th class="" tabindex="0" aria-controls="example1"
+																rowspan="1" colspan="1">Price</th>
+															<th class="" tabindex="0" aria-controls="example1"
+																rowspan="1" colspan="1">Color</th>
+															<th class="" tabindex="0" aria-controls="example1"
+																rowspan="1" colspan="1">Stock quantity</th>
+															<th class="" tabindex="0" aria-controls="example1"
+																rowspan="1" colspan="1">Date update</th>
+															<th class="" tabindex="0" aria-controls="example1"
+																rowspan="1" colspan="1">Brand</th>
+															<th class="" tabindex="0" aria-controls="example1"
+																rowspan="1" colspan="1">Category</th>
+															<th class="" tabindex="0" aria-controls="example1"
+																rowspan="1" colspan="1">Type</th>
+															<th class="" tabindex="0" aria-controls="example1"
+																rowspan="1" colspan="1">Action</th>
+														</tr>
+													</thead>
+													<tbody>
+														<c:forEach var="product" items="${topProducts }">
+															<tr>
+																<td>${product.id }</td>
+																<td>${product.productName }</td>
+																<td>${product.enabled }</td>
+																<td>${product.price }</td>
+																<td>${product.productColor }</td>
+																<td>${product.stockQuantity }</td>
+																<td>${product.updated }</td>
+																<td>${product.brand.name }</td>
+																<td>${product.category.name }</td>
+																<td>${product.type.name }</td>
+																<td class="project-actions text-center"><a
+																	class="btn btn-primary btn-sm"
+																	href="${pageContext.request.contextPath}/admin/product/detail?id=${product.id}"><i
+																		class="fas fa-folder"></i>View</a> <a
+																	class="btn btn-info btn-sm"
+																	href="${pageContext.request.contextPath}/admin/product/edit?id=${product.id}"><i
+																		class="fas fa-pencil-alt"></i>Edit</a></td>
+															</tr>
+														</c:forEach>
+													</tbody>
+													<tfoot>
+													</tfoot>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- /.card-body -->
+							</div>
+							<!-- /.card -->
+						</div>
+						<!-- /.col -->
+					</div>
+					<!-- /.row -->
 				</div>
 				<!-- /.container-fluid -->
 			</section>
@@ -169,7 +268,115 @@
 	<!-- ChartJS -->
 	<script
 		src="${pageContext.servletContext.contextPath}/plugins-admin/chart.js/Chart.min.js"></script>
-	<script
-		src="${pageContext.servletContext.contextPath}/dist/js/pages/dashboard3.js"></script>
+	<script>
+		$(function() {
+			'use strict'
+
+			var ticksStyle = {
+				fontColor : '#495057',
+				fontStyle : 'bold'
+			}
+			var mode = 'index'
+			var intersect = true
+
+			var priceLastYear = $('#priceLastYear');
+			var arrLastYear = priceLastYear[0].value.replace("[", "").replace(
+					"]", "").split(",");
+
+			var priceThisYear = $('#priceThisYear');
+			var arrThisYear = priceThisYear[0].value.replace("[", "").replace(
+					"]", "").split(",");
+
+			var $salesChart = $('#sales-chart');
+			// eslint-disable-next-line no-unused-vars
+			var salesChart = new Chart($salesChart, {
+				type : 'bar',
+				data : {
+					labels : [ 'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL',
+							'AGU', 'SEP', 'OCT', 'NOV', 'DEC' ],
+					datasets : [
+							{
+								backgroundColor : '#007bff',
+								borderColor : '#007bff',
+								data : [ arrThisYear[0], arrThisYear[1],
+										arrThisYear[2], arrThisYear[3],
+										arrThisYear[4], arrThisYear[5],
+										arrThisYear[6], arrThisYear[7],
+										arrThisYear[8], arrThisYear[9],
+										arrThisYear[10], arrThisYear[11] ]
+							},
+							{
+								backgroundColor : '#ced4da',
+								borderColor : '#ced4da',
+								data : [ arrLastYear[0], arrLastYear[1],
+										arrLastYear[2], arrLastYear[3],
+										arrLastYear[4], arrLastYear[5],
+										arrLastYear[6], arrLastYear[7],
+										arrLastYear[8], arrLastYear[9],
+										arrLastYear[10], arrLastYear[11] ]
+							} ]
+				},
+				options : {
+					maintainAspectRatio : false,
+					tooltips : {
+						mode : mode,
+						intersect : intersect
+					},
+					hover : {
+						mode : mode,
+						intersect : intersect
+					},
+					legend : {
+						display : false
+					},
+					scales : {
+						yAxes : [ {
+							// display: false,
+							gridLines : {
+								display : true,
+								lineWidth : '4px',
+								color : 'rgba(0, 0, 0, .2)',
+								zeroLineColor : 'transparent'
+							},
+							ticks : $.extend({
+								beginAtZero : true,
+
+								// Include a dollar sign in the ticks
+								callback : function(value) {
+									if (value >= 1000) {
+										value /= 1000
+										value += 'k'
+									}
+
+									return '$' + value
+								}
+							}, ticksStyle)
+						} ],
+						xAxes : [ {
+							display : true,
+							gridLines : {
+								display : false
+							},
+							ticks : ticksStyle
+						} ]
+					}
+				}
+			})
+		});
+	</script>
+	<script>
+		$(function() {
+			$("#example1").DataTable(
+					{
+						"sort" : false,
+						"responsive" : true,
+						"lengthChange" : false,
+						"autoWidth" : false,
+						"buttons" : [ "copy", "csv", "excel", "pdf", "print",
+								"colvis" ]
+					}).buttons().container().appendTo(
+					'#example1_wrapper .col-md-6:eq(0)');
+		});
+	</script>
 </body>
 </html>

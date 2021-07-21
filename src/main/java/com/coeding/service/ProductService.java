@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * author Nhanle
@@ -23,7 +24,7 @@ public class ProductService implements DAO<Product> {
 
     @Override
     public List<Product> findAll() {
-        return repo.findAll();
+        return repo.findAll().stream().filter(p->p.isEnabled() == true).collect(Collectors.toList());
     }
 
     @Override
@@ -42,28 +43,44 @@ public class ProductService implements DAO<Product> {
     }
 
     public List<Product> findByCategoryId(Long categoryId) {
-        return repo.findByCategoryId(categoryId);
+        return repo.findByCategoryId(categoryId).stream().filter(p->p.isEnabled() == true).collect(Collectors.toList());
     }
 
     public List<Product> findByCategoryIdAndBrandId(Long categoryId, Long brandId) {
-        return repo.findByCategoryIdAndBrandId(categoryId, brandId);
+        return repo.findByCategoryIdAndBrandId(categoryId, brandId).stream().filter(p->p.isEnabled() == true).collect(Collectors.toList());
     }
 
     public List<Product> findByCategoryIdAndTypeId(Long categoryId, Long typeId) {
-        return repo.findByCategoryIdAndTypeId(categoryId, typeId);
+        return repo.findByCategoryIdAndTypeId(categoryId, typeId).stream().filter(p->p.isEnabled() == true).collect(Collectors.toList());
     }
 
     public List<Product> findByBrandId(Long brandId) {
-        return repo.findByBrandId(brandId);
+        return repo.findByBrandId(brandId).stream().filter(p->p.isEnabled() == true).collect(Collectors.toList());
     }
 
     public List<Product> findByTypeName(String typeName) {
-        return repo.findByTypeName(typeName);
+        return repo.findByTypeName(typeName).stream().filter(p->p.isEnabled() == true).collect(Collectors.toList());
     }
 
-    public List<Product> findByPriceBetween(Double min,Double max){
-        return repo.findByPriceBetween(min, max);
+    public List<Product> findByPriceBetween(Double min, Double max) {
+        return repo.findByPriceBetween(min, max).stream().filter(p->p.isEnabled() == true).collect(Collectors.toList());
     }
 
+    public List<Product> findByProductName(String productName) {
+        return repo.findByProductNameContains(productName).stream().filter(p->p.isEnabled() == true).collect(Collectors.toList());
+    }
+
+
+    public List<Product> findByProductNameAndCategoryId(String productName,Long categoryId) {
+        return repo.findByProductNameContainsAndAndCategoryId(productName, categoryId).stream().filter(p->p.isEnabled() == true).collect(Collectors.toList());
+    }
+
+    public List<Product> findAllIgnoreStatus(){
+        return repo.findAll();
+    }
+
+    public List<Long> findTop5(){
+        return repo.findTop5();
+    }
 
 }

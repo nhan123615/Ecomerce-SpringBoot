@@ -23,6 +23,7 @@ public class Payment {
     private Date paymentDate;
     private String paymentMethod; //cash, paypal
     private boolean status;
+    private boolean tracked;
 
     @OneToOne(targetEntity = CustomerOrder.class)
     private CustomerOrder customerOrder;
@@ -37,5 +38,7 @@ public class Payment {
     @PrePersist
     void orderDate() {
         this.paymentDate = new Date();
+        this.tracked = false;
     }
+
 }

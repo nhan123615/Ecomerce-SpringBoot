@@ -70,14 +70,14 @@
                     <hr>
                     <figure id="filterPrice">
                         <h4 class="widget-title">By Price</h4>
-<%--                        <form action="" method="get" class="text-center">--%>
-                            <div class="d-flex ml-4" style="align-items: center">
-                                <input class="form-control" type="number" name="priceFrom" id="from" placeholder="From" style = "width: 100px" required>
-                                <div style="height: 1px; width: 10px;    background: #bdbdbd;     margin: 0 .625rem;"></div>
-                                <input  class="form-control" type="number" name="priceTo" id="to" placeholder="To" style = "width: 100px" required>
-                            </div>
-                            <button class="ps-btn mt-3" style="padding: 10px 55px" id="btnPrice">Apply</button>
-<%--                        </form>--%>
+                        <%--                        <form action="" method="get" class="text-center">--%>
+                        <div class="d-flex ml-4" style="align-items: center">
+                            <input class="form-control" type="number" name="priceFrom" id="from" placeholder="From" style = "width: 100px" required>
+                            <div style="height: 1px; width: 10px;    background: #bdbdbd;     margin: 0 .625rem;"></div>
+                            <input  class="form-control" type="number" name="priceTo" id="to" placeholder="To" style = "width: 100px" required>
+                        </div>
+                        <button class="ps-btn mt-3" style="padding: 10px 55px" id="btnPrice">Apply</button>
+                        <%--                        </form>--%>
                     </figure>
                     <figure>
                         <h4 class="widget-title">By Rating</h4>
@@ -157,48 +157,51 @@
                     <div class="ps-tabs">
                         <div class="ps-tab active" id="tab-1">
                             <div class="ps-shopping-product">
-                                <div class="row" id="filteredProduct">
-                                    <c:choose>
-                                        <c:when test="${not empty products}">
-                                            <c:forEach var="p" items="${products}">
-                                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
-                                                    <div class="ps-product">
-                                                        <div class="ps-product__thumbnail"><a href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})"><img src="${pageContext.request.contextPath}/product/display/0&${p.id}" alt="" style="width: 156px;height: 156px"></a>
-                                                            <ul class="ps-product__actions">
-                                                                <li value="${p.id}" class="toCart"><a  data-toggle="tooltip" data-placement="top" title="Add To Cart" ><i class="icon-bag2"></i></a></li>
-                                                                <li><a  data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview-${p.id}"><i class="icon-eye"></i></a></li>
-                                                                <li><a  data-toggle="tooltip" data-placement="top" title="Add to Whishlist" onclick="addToWishList(${p.id})"><i class="icon-heart"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="ps-product__container">
-                                                            <div class="ps-product__content"><a class="ps-product__title" href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
-                                                                <p class="ps-product__price">$${p.price}</p>
+                                <div class="row listPage" id="filteredProduct">
+<%--                                    <c:forEach var="i" begin="1" end="100">--%>
+<%--                                        <span>${i}</span>--%>
+<%--                                    </c:forEach>--%>
+                                        <c:choose>
+                                            <c:when test="${not empty products}">
+                                                <c:forEach var="p" items="${products}">
+                                                         <span class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
+                                                            <div class="ps-product">
+                                                                <div class="ps-product__thumbnail"><a href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})"><img src="${pageContext.request.contextPath}/product/display/0&${p.id}" alt="" style="width: 156px;height: 156px"></a>
+                                                                    <ul class="ps-product__actions">
+                                                                        <li value="${p.id}" class="toCart"><a  data-toggle="tooltip" data-placement="top" title="Add To Cart" ><i class="icon-bag2"></i></a></li>
+                                                                        <li><a  data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview-${p.id}"><i class="icon-eye"></i></a></li>
+                                                                        <li><a  data-toggle="tooltip" data-placement="top" title="Add to Whishlist" onclick="addToWishList(${p.id})"><i class="icon-heart"></i></a></li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="ps-product__container">
+                                                                    <div class="ps-product__content"><a class="ps-product__title" href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})">${p.productName}</a>
+                                                                        <p class="ps-product__price">$${p.price}</p>
+                                                                    </div>
+                                                                    <div class="ps-product__content hover"><a class="ps-product__title" href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}" onclick="addProductToViewList(${p.id})">${p.productName}</a>
+                                                                        <p class="ps-product__price">$${p.price}</p>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                            <div class="ps-product__content hover"><a class="ps-product__title" href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.productName}</a>
-                                                                <p class="ps-product__price">$${p.price}</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </c:forEach>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <div class='ps-section__content' style='width: 100%'><h1 style='text-align:center'>No product found !!!</h1></div>
-                                        </c:otherwise>
-                                    </c:choose>
+                                                        </span>
 
+                                                </c:forEach>
+                                            </c:when>
+                                            <c:otherwise>
+                                                     <div class='ps-section__content' style='width: 100%'><h1 style='text-align:center'>No product found !!!</h1></div>
 
-
+                                            </c:otherwise>
+                                        </c:choose>
                                 </div>
                             </div>
-                            <div class="ps-pagination">
-                                <ul class="pagination">
-                                    <li class="active"><a >1</a></li>
-                                    <li><a >2</a></li>
-                                    <li><a >3</a></li>
-                                    <li><a >Next Page<i class="icon-chevron-right"></i></a></li>
-                                </ul>
-                            </div>
+<%--                            <div class="ps-pagination">--%>
+<%--                                <ul class="pagination">--%>
+<%--                                    <li class="active"><a >1</a></li>--%>
+<%--                                    <li><a >2</a></li>--%>
+<%--                                    <li><a >3</a></li>--%>
+<%--                                    <li><a >Next Page<i class="icon-chevron-right"></i></a></li>--%>
+<%--                                </ul>--%>
+<%--                            </div>--%>
+                            <div id="paging" class="text-center" style="margin-top: 50px"></div>
                         </div>
                     </div>
                 </div>
@@ -206,59 +209,54 @@
         </div>
     </div>
 </div>
-
 <div id="productPopup">
 
-    <c:forEach var="p" items="${allProducts}">
+<%--    <c:forEach var="p" items="${allProducts}">--%>
 
-        <div class="modal fade product-quickview-open" id="product-quickview-${p.id}" tabindex="-1" role="dialog" aria-labelledby="product-quickview-${p.id}" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content"><span class="modal-close" data-dismiss="modal"><i class="icon-cross2"></i></span>
-                    <article class="ps-product--detail ps-product--fullwidth ps-product--quickview">
-                        <div class="ps-product__header">
-                            <div class="ps-product__thumbnail" data-vertical="false">
-                                <div class="ps-product__images" data-arrow="true">
-                                    <div class="item"><img src="${pageContext.request.contextPath}/product/display/0&${p.id}" alt="" style="width: 404px;height: 404px"></div>
-                                    <div class="item"><img src="${pageContext.request.contextPath}/product/display/1&${p.id}" alt="" style="width: 404px;height: 404px"></div>
-                                    <div class="item"><img src="${pageContext.request.contextPath}/product/display/2&${p.id}" alt="" style="width: 404px;height: 404px"></div>
-                                    <div class="item"><img src="${pageContext.request.contextPath}/product/display/3&${p.id}" alt="" style="width: 404px;height: 404px"></div>
-                                </div>
-                            </div>
-                            <div class="ps-product__info">
-                                <h1>${p.productName}</h1>
-                                <div class="ps-product__meta">
-                                    <p>Brand: <a href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.brand.name}</a></p>
-                                    <div class="ps-product__rating">
-                                        <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>(1 review)</span>
-                                    </div>
-                                </div>
-                                <h4 class="ps-product__price">$${p.price}</h4>
-                                <div class="ps-product__desc">
-                                    <p>Sold By:<a href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"><strong> Angry Nerds</strong></a></p>
-                                    <ul class="ps-list--dot">
-                                        <li> Unrestrained and portable active stereo speaker</li>
-                                        <li> Free from the confines of wires and chords</li>
-                                        <li> 20 hours of portable capabilities</li>
-                                        <li> Double-ended Coil Cord with 3.5mm Stereo Plugs Included</li>
-                                        <li> 20 hours of portable capabilities</li>
-                                    </ul>
-                                </div>
-                                <div class="ps-product__shopping"><a class="ps-btn ps-btn--black" >Add to cart</a><a class="ps-btn" >Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </div>
+<%--        <div class="modal fade product-quickview-open" id="product-quickview-${p.id}" tabindex="-1" role="dialog" aria-labelledby="product-quickview-${p.id}" aria-hidden="true">--%>
+<%--            <div class="modal-dialog modal-dialog-centered" role="document">--%>
+<%--                <div class="modal-content"><span class="modal-close" data-dismiss="modal"><i class="icon-cross2"></i></span>--%>
+<%--                    <article class="ps-product--detail ps-product--fullwidth ps-product--quickview">--%>
+<%--                        <div class="ps-product__header">--%>
+<%--                            <div class="ps-product__thumbnail" data-vertical="false">--%>
+<%--                                <div class="ps-product__images" data-arrow="true">--%>
+<%--                                    <div class="item"><img src="${pageContext.request.contextPath}/product/display/0&${p.id}" alt="" style="width: 404px;height: 404px"></div>--%>
+<%--                                    <div class="item"><img src="${pageContext.request.contextPath}/product/display/1&${p.id}" alt="" style="width: 404px;height: 404px"></div>--%>
+<%--                                    <div class="item"><img src="${pageContext.request.contextPath}/product/display/2&${p.id}" alt="" style="width: 404px;height: 404px"></div>--%>
+<%--                                    <div class="item"><img src="${pageContext.request.contextPath}/product/display/3&${p.id}" alt="" style="width: 404px;height: 404px"></div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="ps-product__info">--%>
+<%--                                <h1>${p.productName}</h1>--%>
+<%--                                <div class="ps-product__meta">--%>
+<%--                                    <p>Brand: <a href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.brand.name}</a></p>--%>
+<%--                                    <div class="ps-product__rating">--%>
+<%--                                        <select class="ps-rating" data-read-only="true">--%>
+<%--                                            <option value="1">1</option>--%>
+<%--                                            <option value="1">2</option>--%>
+<%--                                            <option value="1">3</option>--%>
+<%--                                            <option value="1">4</option>--%>
+<%--                                            <option value="2">5</option>--%>
+<%--                                        </select><span>(1 review)</span>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                                <h4 class="ps-product__price">$${p.price}</h4>--%>
+<%--                                <div class="ps-product__desc">--%>
+<%--                                    <p>Sold By:<a href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"><strong> Angry Nerds</strong></a></p>--%>
+<%--                                    <div class="ps-list--dot">--%>
+<%--                                            ${p.shortDescription}--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                                <div class="ps-product__shopping"><a class="ps-btn ps-btn--black toCart"  value="${p.id}">Add to cart</a><a class="ps-btn buyNow" value="${p.id}">Buy Now</a>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </article>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
 
-    </c:forEach>
+<%--    </c:forEach>--%>
 
 </div>
 
@@ -279,16 +277,15 @@
         var searchBrand =document.querySelector('#searchBrand');
         var queryParams = new URLSearchParams(window.location.search);
         var btnPrice =document.querySelector('#btnPrice');
-
 //cookie and cartItem
-        var cartItems = [];
-        var products = []
-        window.onload =  initData();
-
-        function initData(){
-            initCartItem();
-            getAllProducts();
-        }
+//         var cartItems = [];
+//         var products = []
+//         window.onload =  initData();
+//
+//         function initData(){
+//             initCartItem();
+//             getAllProducts();
+//         }
 
         function getAllProducts(){
             const data = null;
@@ -312,6 +309,7 @@
                     if (products[i].id == productId){
                         if (qty < products[i].stockQuantity){
                             return true;
+
                         }else{
                             return false;
                         }
@@ -355,17 +353,33 @@
                 }
             }
         });
-//add to Cart
-        $(document).on("click",".toCart", function(event){
-            console.log(this.value)
-          if (checkStock(this.value,getCartProductQty(this.value))){
-              addItemToCart("${pageContext.servletContext.contextPath}/cart/get?productId="+this.value)
-          }else{
-              event.preventDefault()
-          }
 
+        //add to Cart
+        // $(document).on("click",".toCart", function(event){
+        //     toCart(this.getAttribute('value'),event)
+        // });
 
+        $(document).on("click",".buyNow", function(event){
+            var user = '${user}'
+            toCart(this.getAttribute('value'),event)
+            window.setTimeout(function () {
+                if (user !==""){
+                    window.location.href = "${pageContext.servletContext.contextPath}/customer/product/checkout-page";
+                }else{
+                    window.location.href = "${pageContext.servletContext.contextPath}/cart";
+                }
+            },500)
         });
+
+
+
+        function toCart(value,event){
+            if (checkStock(value,getCartProductQty(value))){
+                addItemToCartProduct("${pageContext.servletContext.contextPath}/cart/get?productId="+value)
+            }else{
+                event.preventDefault()
+            }
+        }
 
 //btn Price
         btnPrice.addEventListener('click', function() {
@@ -436,7 +450,7 @@
             }
 
             if (queryOnchange ==""){
-                history.replaceState(null, null, "");
+                history.replaceState(null, null, "/product");
                 getRequestGET("${pageContext.servletContext.contextPath}/filter/product&")
             }else{
                 history.replaceState(null, null, "?"+queryOnchange.substring(0,queryOnchange.length -1));
@@ -484,8 +498,10 @@
                     var json = JSON.parse(this.responseText);
                     if (json.length >0){
                         tblProduct.innerHTML = getProductTable(json)
+                        paging()
                     }else{
                         tblProduct.innerHTML = getNoProductFound()
+                        paging()
                     }
                     totalProduct.innerHTML =getTotalProduct(json)
                 }
@@ -514,15 +530,15 @@
                 productTable += "<li><a data-placement='top' title='Quick View' data-toggle='modal' data-target='#product-quickview-"+json[i].id+"'><i class='icon-eye'></i></a></li>";
                 productTable += "<li><a onclick='addToWishList("+json[i].id+")' data-toggle='tooltip' data-placement='top' title='Add to Wishlist'><i class='icon-heart'></i></a></li> </ul> </div>";
                 productTable += "<div class='ps-product__container'> <div class='ps-product__content'>";
-                productTable += "<a class='ps-product__title' href='${pageContext.servletContext.contextPath}/product/detail?id="+json[i].id+"'>"+json[i].productName+"</a>";
+                productTable += "<a class='ps-product__title' href='${pageContext.servletContext.contextPath}/product/detail?id="+json[i].id+"' onclick='addProductToViewList("+json[i].id+")'>"+json[i].productName+"</a>";
                 productTable +=  "<p class='ps-product__price'>$"+json[i].price+"</p> </div>";
                 productTable +=  "<div class='ps-product__content hover'>";
-                productTable += "<a class='ps-product__title' href='${pageContext.servletContext.contextPath}/product/detail?id="+json[i].id+"'>"+json[i].productName+"</a>";
+                productTable += "<a class='ps-product__title' href='${pageContext.servletContext.contextPath}/product/detail?id="+json[i].id+"' onclick='addProductToViewList("+json[i].id+")'>"+json[i].productName+"</a>";
                 productTable +=  "<p class='ps-product__price'>$"+json[i].price+"</p></div></div></div></div>";
             }
             return productTable;
         }
-		
+
         function  getBrand(json) {
             var brandDiv =""
             for (let i = 0; i <json.length; i++) {
@@ -548,7 +564,7 @@
 
 
 
-        function addItemToCart(url){
+        function addItemToCartProduct(url){
             const data = null;
             const xhr = new XMLHttpRequest();
             xhr.addEventListener("readystatechange", function () {
@@ -561,7 +577,7 @@
                             //if duplicate sellingQuantity +=1
                             if (cartItems[i].product.id == json.product.id){
                                 cartItems[i].sellingQuantity += 1
-                                cartItems[i].totalPrice =  parseFloat(cartItems[i].totalPrice) *  parseInt(cartItems[i].sellingQuantity)
+                                cartItems[i].totalPrice =  parseFloat(cartItems[i].product.price) *  parseInt(cartItems[i].sellingQuantity)
                                 count += 1
                             }
                         }
@@ -569,7 +585,7 @@
                             cartItems.push(json)
                             countCartItems()
                         }
-                        updateCartItemsCookie(cartItems)
+                        updateCartItemsCookieProduct(cartItems)
                         showCartItems()
                         console.log(cartItems)
                     }else{
@@ -577,7 +593,7 @@
                         console.log(cartItems)
                         countCartItems()
                         showCartItems()
-                        updateCartItemsCookie(cartItems)
+                        updateCartItemsCookieProduct(cartItems)
                     }
 
                 }
@@ -590,6 +606,7 @@
 
         function getCartItemContent(items) {
             var cartItemContent ="";
+            var user = '${user}'
             if (cartItems.length >0){
                 var totalPrice = 0;
                 for (let i = 0; i < cartItems.length; i++) {
@@ -605,7 +622,11 @@
                 cartItemContent+="<hr>"
                 cartItemContent+="<div class='ps-cart__footer'>"
                 cartItemContent += "<h3>Sub Total:<strong>$"+totalPrice+"</strong></h3>"
-                cartItemContent +="<figure><a class='ps-btn' href='${pageContext.servletContext.contextPath}/cart'>View Cart</a><a class='ps-btn' href='${pageContext.servletContext.contextPath}/customer/product/checkout'>Checkout</a></figure>"
+                if(user !==""){
+                    cartItemContent +="<figure><a class='ps-btn' href='${pageContext.servletContext.contextPath}/customer/product/checkout-page'>View Cart</a><a class='ps-btn' href='${pageContext.servletContext.contextPath}/customer/product/checkout'>Checkout</a></figure>"
+                }else{
+                    cartItemContent +="<figure><a class='ps-btn' href='${pageContext.servletContext.contextPath}/cart'>View Cart</a><a class='ps-btn' href='${pageContext.servletContext.contextPath}/customer/product/checkout'>Checkout</a></figure>"
+                }
                 cartItemContent +=" </div>"
             }
             return cartItemContent;
@@ -626,9 +647,10 @@
                 document.getElementById('cart-content-1').setAttribute("style", "display: none;");
                 document.getElementById('cart-content-2').setAttribute("style", "display: none;");
             }
+
         }
 
-        function updateCartItemsCookie(cartItemsArr) {
+        function updateCartItemsCookieProduct(cartItemsArr) {
             var value = "[]";
             if (cartItemsArr.length >0){
                 value ="["
@@ -676,70 +698,88 @@
             xhr.send(data);
         }
 
+        function paging() {
+            var pagination = document.getElementById("paging");
+            pagination.remove();
+
+        }
+
     })
 </script>
 <script>
-// @author Lam Cong Hau
-var countWish = document.querySelector('#countWish');
-var cookie = document.cookie;
-var arr_product;
-window.onload = initData();
-function initData() {
-	cookies();
-	if (arr_product != null) {
-		if (arr_product[0] != "") {
-			countWish.innerHTML = arr_product.length;
-		}else{
-			countWish.innerHTML = 0;
-		}
-	}
-}
+    // @author Lam Cong Hau
+    var countWish = document.querySelector('#countWish');
+    var cookie = document.cookie;
+    var arr_product;
+    window.onload = initData();
+    function initData() {
+        cookies();
+        if (arr_product != null) {
+            if (arr_product[0] != "") {
+                countWish.innerHTML = arr_product.length;
+            }else{
+                countWish.innerHTML = 0;
+            }
+        }
+    }
 
-function cookies() {
-	cookie = document.cookie;
-	if (cookie != null) {
-		matchs = cookie.match("wishlist=([^;]*)");
-		if (matchs != null) {
-			arr_product = matchs[1].split('a');
-		}
-	}
-}
-function addToWishList(id) {
-	const data = null;
-	const xhr = new XMLHttpRequest();
-	xhr.addEventListener("readystatechange", function() {
-		if (this.readyState === this.DONE) {
-			if(this.responseText === "successful"){
-				alert("You have successfully added!");
-			}else if(this.responseText === "failed"){
-				alert("You can only add 1 time!");
-			}
-			cookies();
-			initData();
-		}
-	});
-	xhr
-			.open(
-					"GET",
-					"${pageContext.servletContext.contextPath}/api/wish-list/addProductToWishList?id_product="
-							+ id);
-	xhr.setRequestHeader('Content-type', 'application/json');
-	xhr.send(data);
-}
+    function cookies() {
+        cookie = document.cookie;
+        if (cookie != null) {
+            matchs = cookie.match("wishlist=([^;]*)");
+            if (matchs != null) {
+                arr_product = matchs[1].split('a');
+            }
+        }
+    }
+    function addToWishList(id) {
+        const data = null;
+        const xhr = new XMLHttpRequest();
+        xhr.addEventListener("readystatechange", function() {
+            if (this.readyState === this.DONE) {
+            	if(this.responseText === "successful"){
+					msg("Add to wishlist sucessful!");
+				}else if(this.responseText === "failed"){
+					msg("You can only add 1 time!");
+				}
+                initData();
+            }
+        });
+        xhr
+            .open(
+                "GET",
+                "${pageContext.servletContext.contextPath}/api/wish-list/addProductToWishList?id_product="
+                + id);
+        xhr.setRequestHeader('Content-type', 'application/json');
+        xhr.send(data);
+    }
 
-function addProductToViewList(id) {
-	const data = null;
-	const xhr = new XMLHttpRequest();
-	xhr.addEventListener("readystatechange", function() {
-	});
-	xhr
-			.open(
-					"GET",
-					"${pageContext.servletContext.contextPath}/api/wish-list/addProductToViewList?id_product="
-							+ id);
-	xhr.setRequestHeader('Content-type', 'application/json');
-	xhr.send(data);
-}
+    function addProductToViewList(id) {
+        const data = null;
+        const xhr = new XMLHttpRequest();
+        xhr.addEventListener("readystatechange", function() {
+        });
+        xhr
+            .open(
+                "GET",
+                "${pageContext.servletContext.contextPath}/api/wish-list/addProductToViewList?id_product="
+                + id);
+        xhr.setRequestHeader('Content-type', 'application/json');
+        xhr.send(data);
+    }
+</script>
+
+<script src="${pageContext.servletContext.contextPath}/js/paging2.js"></script>
+<script>
+    $(document).ready(function(){
+        $(function() {
+            $(".listPage").JPaging({
+                pageSize: 12
+            });
+        });
+    })
+
+
 </script>
 </body>
 

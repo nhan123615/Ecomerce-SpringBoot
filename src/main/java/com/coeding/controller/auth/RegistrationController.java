@@ -46,10 +46,10 @@ public class RegistrationController {
                 userRepo.save(user.toUser(encoder));
                 request.getSession().setAttribute("message", "Register success!");
             } else {
-                request.getSession().setAttribute("message", "Duplicate email");
+                request.getSession().setAttribute("message", "Email invalid !");
             }
         } else {
-            request.getSession().setAttribute("message", "Duplicate username");
+            request.getSession().setAttribute("message", "Username invalid !");
         }
         return "redirect:/login";
     }

@@ -138,10 +138,10 @@ span.price {
     <div class="col-25">
         <div class="container">
             <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>4</b></span></h4>
-            <p><a href="#">Product 1</a> <span class="price">$1</span></p>
-            <p><a href="#">Product 2</a> <span class="price">$4</span></p>
-            <p><a href="#">Product 3</a> <span class="price">$3</span></p>
-            <p><a href="#">Product 4</a> <span class="price">$2</span></p>
+            <p><a >Product 1</a> <span class="price">$1</span></p>
+            <p><a >Product 2</a> <span class="price">$4</span></p>
+            <p><a >Product 3</a> <span class="price">$3</span></p>
+            <p><a >Product 4</a> <span class="price">$2</span></p>
             <hr>
             <p>Total <span class="price" style="color:black"><b>$10</b></span></p>
         </div>

@@ -20,6 +20,7 @@ public class ImageGallery {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long id;
 
+    @Column(columnDefinition = "LONGBLOB")
     private byte[] image;
 
 

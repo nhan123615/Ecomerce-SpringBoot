@@ -16,7 +16,7 @@
 		<jsp:include page="../components/side-bar.jsp"></jsp:include>
 		<!-- @author: Lam Cong Hau -->
 		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper" style="min-height: 1342.88px;">
+		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<div class="container-fluid">
@@ -157,7 +157,8 @@
 														<input class="custom-control-input" type="checkbox"
 															id="customCheckbox2"
 															<c:if test="${product.enabled == true}">checked</c:if>
-															name="enabled"> <label for="customCheckbox2"
+															name="enabled">
+														<label for="customCheckbox2"
 															class="custom-control-label">Enable</label>
 													</div>
 												</div>
@@ -519,7 +520,22 @@
 								$('#type-error').html('');
 							}
 
-							if (totalSize > 10240000) {
+							function validate(listFile) {
+								for (var i = 0; i < listFile.length; i++) {
+									var sFileName = listFile[i].name;
+									regex = new RegExp(
+											"(.*?)\.(jpg|jpeg|bmp|gif|png)$");
+									if (!regex.test(sFileName)) {
+										return false;
+									}
+								}
+								return true;
+							}
+							if (!validate(listFile)) {
+								hasSubmit.push(1);
+								$('#img-error').html('Please choose image!');
+								$('#img-successful').html('');
+							} else if (totalSize > 10240000) {
 								hasSubmit.push(1);
 								$('#img-error').html(
 										'Image size is not greater than 10MB!');
@@ -528,7 +544,12 @@
 								$('#img-successful').html('Valid!');
 								$('#img-error').html('');
 							}
-							if (totalSize1 > 10240000) {
+
+							if (!validate(listFile1)) {
+								hasSubmit.push(1);
+								$('#img1-error').html('Please choose image!');
+								$('#img1-successful').html('');
+							} else if (totalSize1 > 10240000) {
 								hasSubmit.push(1);
 								$('#img1-error').html(
 										'Image size is not greater than 10MB!');
@@ -537,7 +558,12 @@
 								$('#img1-successful').html('Valid!');
 								$('#img1-error').html('');
 							}
-							if (totalSize2 > 10240000) {
+
+							if (!validate(listFile2)) {
+								hasSubmit.push(1);
+								$('#img2-error').html('Please choose image!');
+								$('#img2-successful').html('');
+							} else if (totalSize2 > 10240000) {
 								hasSubmit.push(1);
 								$('#img2-error').html(
 										'Image size is not greater than 10MB!');
@@ -546,7 +572,12 @@
 								$('#img2-successful').html('Valid!');
 								$('#img2-error').html('');
 							}
-							if (totalSize3 > 10240000) {
+
+							if (!validate(listFile3)) {
+								hasSubmit.push(1);
+								$('#img3-error').html('Please choose image!');
+								$('#img3-successful').html('');
+							} else if (totalSize3 > 10240000) {
 								hasSubmit.push(1);
 								$('#img3-error').html(
 										'Image size is not greater than 10MB!');

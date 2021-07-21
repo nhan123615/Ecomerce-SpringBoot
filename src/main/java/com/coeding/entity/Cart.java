@@ -1,9 +1,11 @@
 package com.coeding.entity;
 
+import com.coeding.service.ProductService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -17,9 +19,17 @@ import java.util.List;
 public class Cart {
     private List<CartItem> cartItems = new ArrayList<>();
     private Double cartTotal;
+    private ProductService productService;
+
+    @Autowired
+    public Cart(ProductService productService) {
+        this.productService = productService;
+    }
 
     public void addCartItem(CartItem cartItem){
         log.info("add Item to cart with prouctId: "+cartItem.getProduct().getId()+", qty: "+cartItem.getSellingQuantity()+", total: "+cartItem.getTotalPrice());
+        Double price = productService.findById(cartItem.getProduct().getId()).getPrice();
+        cartItem.setTotalPrice(cartItem.getSellingQuantity() * price);
         this.cartItems.add(cartItem);
     }
     public void updateCartItem(CartItem cartItem){
@@ -28,7 +38,8 @@ public class Cart {
         for (CartItem item: cartItems) {
             if (item.getProduct().getId() == cartItem.getProduct().getId()){
                 item.setSellingQuantity(cartItem.getSellingQuantity());
-                item.setTotalPrice(cartItem.getTotalPrice());
+                Double price = productService.findById(cartItem.getProduct().getId()).getPrice();
+                item.setTotalPrice(cartItem.getSellingQuantity()*price);
                 duplicate += 1;
             }
         }
@@ -65,5 +76,6 @@ public class Cart {
     public List<CartItem> getCartItems() {
            return new ArrayList<>(this.cartItems);
     }
+
 
 }

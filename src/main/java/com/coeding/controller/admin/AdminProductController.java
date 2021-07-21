@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
@@ -55,12 +56,12 @@ public class AdminProductController {
 
 	@GetMapping("/product")
 	public String show(Authentication authentication, Model model) {
-		List<Product> list = productService.findAll();
+		List<Product> list = productService.findAllIgnoreStatus();
 		logger.info("list: " + list.size());
 		model.addAttribute("categories", categoryService.findAll());
 		model.addAttribute("list", list);
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/product/list-product";
 	}
 
@@ -69,13 +70,13 @@ public class AdminProductController {
 		logger.info("get : newProduct");
 		model.addAttribute("brands", brandService.findAll());
 		model.addAttribute("categories", categoryService.findAll());
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/product/form-add-product";
 	}
 
 	@PostMapping(value = "/product/new")
-	public String saveProduct(@RequestParam("img") MultipartFile[] uploadfile, Product sp, Locale locale, Model model)
+	public String saveProduct(@RequestParam("img") MultipartFile[] uploadfile, Product sp, Locale locale, Model model, HttpServletRequest request)
 			throws IOException {
 		logger.info("post : saveProduct");
 		String color = sp.getProductColor().substring(0, sp.getProductColor().length());
@@ -95,6 +96,8 @@ public class AdminProductController {
 		}
 		sp.setImages(list);
 		productService.save(sp);
+		String message = (String) request.getSession().getAttribute("message");
+		request.getSession().setAttribute("message", "Submit success !");
 		return "redirect:/admin/product";
 	}
 
@@ -123,13 +126,13 @@ public class AdminProductController {
 		model.addAttribute("brands", brandService.findAll());
 		model.addAttribute("categories", categoryService.findAll());
 		model.addAttribute("types", typeService.findAll());
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/product/form-edit-product";
 	}
 
 	@PostMapping(value = "/product/update")
-	public String update(@RequestParam("img") MultipartFile[] uploadfile, Product p, Locale locale, Model model)
+	public String update(@RequestParam("img") MultipartFile[] uploadfile, Product p, Locale locale, Model model,HttpServletRequest request)
 			throws IOException {
 		logger.info("product update {}.", locale);
 		List<ImageGallery> list = new ArrayList<ImageGallery>();
@@ -160,6 +163,8 @@ public class AdminProductController {
 		}
 		product.setImages(list);
 		productService.save(product);
+		String message = (String) request.getSession().getAttribute("message");
+		request.getSession().setAttribute("message", "Update success !");
 		return "redirect:/admin/product";
 	}
 
@@ -172,8 +177,8 @@ public class AdminProductController {
 		for (String color : listColor) {
 			model.addAttribute(color, color);
 		}
-		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-		model.addAttribute("user", userDetails.getUser());
+//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+//		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/product/detail-product";
 	}
 }
