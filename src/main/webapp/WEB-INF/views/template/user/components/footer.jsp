@@ -2,6 +2,8 @@
 
 
 
+
+
 <%--Quick view product--%>
 <c:forEach var="p" items="${allProducts}">
 
@@ -50,15 +52,64 @@
 
 </c:forEach>
 <%--Quick view product--%>
-<hr>
+
 <!-- Messenger Plugin chat Code -->
 <div id="fb-root"></div>
 
 <!-- Your Plugin chat code -->
 <div id="fb-customer-chat" class="fb-customerchat"></div>
+<div class="ps-newsletter" >
+	<div class="ps-container">
+		<div class="ps-form--newsletter"  >
+			<div class="row">
+				<div class="col-xl-5 col-lg-12 col-md-12 col-sm-12 col-12 ">
+					<div class="ps-form__left">
+						<h3>Newsletter</h3>
+						<p>Subcribe to get information about products and coupons</p>
+					</div>
+				</div>
+				<div class="col-xl-7 col-lg-12 col-md-12 col-sm-12 col-12 ">
+					<div class="ps-form__right">
+						<form action="${pageContext.servletContext.contextPath}/subcriber" method="post" id="frmsubcriber" class="mb-3">
+							<div class="ps-form__content">
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label>First Name</label>
+											<input class="form-control" type="text" placeholder="Please enter your first name..." name="firstName" id="fname">
+											<span id="fname-error" class="error invalid-feedback"></span>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label>Last Name</label>
+											<input class="form-control" type="text" placeholder="Please enter your last name..." name="lastName" id="lname">
+											<span id="lname-error" class="error invalid-feedback"></span>
 
+										</div>
+									</div>
+									<div class="col-sm-12">
+										<label>Email</label>
+										<div class="form-group">
+											<input class="form-control" type="email" placeholder="Please enter your email..." name="email" id="email">
+											<span id="email-error" class="error invalid-feedback"></span>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+						<button class="ps-btn" id="btnSubcribe">Subscribe</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 <footer class="ps-footer">
 	<div class="ps-container">
+
+
 		<div class="ps-footer__widgets">
 			<aside class="widget widget_footer widget_contact-us">
 				<h4 class="widget-title">Contact us</h4>
@@ -698,4 +749,51 @@
 	}
 </script>
 <jsp:include page="../message/message-user.jsp"></jsp:include>
+
+
+
+<script>
+	$('#btnSubcribe')
+			.on(
+					'click',
+					function () {
+						let fname = $('#fname');
+						let fnameError = $('#fname-error');
+						let lname = $('#lname');
+						let lnameError = $('#lname-error');
+						let email = $('#email');
+						let emailError = $('#email-error');
+						let hasSubmit = [];
+
+						if (fname.val().length === 0) {
+							hasSubmit.push(1);
+							fname.addClass(
+									'form-control is-invalid');
+							fnameError.html(
+									'Please enter First name!');
+						}
+
+						if (lname.val().length === 0) {
+							hasSubmit.push(1);
+							lname.addClass(
+									'form-control is-invalid');
+							lnameError.html(
+									'Please enter Last name!');
+						}
+
+						if (email.val().length === 0) {
+							hasSubmit.push(1);
+							email.addClass(
+									'form-control is-invalid');
+							emailError.html(
+									'Please enter Email!');
+						}
+
+						if (hasSubmit.length === 0) {
+							$('#frmsubcriber').submit();
+						}
+
+					});
+</script>
+
 </html>

@@ -1,15 +1,13 @@
 package com.coeding.controller.admin;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import com.coeding.entity.Payment;
 import com.coeding.entity.PaypalDetail;
@@ -21,9 +19,13 @@ import com.coeding.service.PaymentService;
 import com.coeding.service.PaypalDetailService;
 import com.paypal.api.payments.PaymentDetail;
 
+import java.util.List;
+
 /**
  * 
  * @author Vy list , detail
+ *
+ * @author nhanle @Post payment
  */
 @Controller
 
@@ -36,16 +38,12 @@ public class AdminPaymentController {
 	@GetMapping("/payment")
 	public String ListPaymentController(Authentication authentication, Model model) {
 		model.addAttribute("paymentList", payment.findAll());
-//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-//		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/payment/list";
 	}
 
 	@RequestMapping(value = "/payment/detail", method = RequestMethod.GET)
 	public String DetailPaymentController(@RequestParam("id") Long id, Authentication authentication,PaymentDetail pmt ,Model model) {
 		model.addAttribute("paymentDetail" , payment.findById(id));
-//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-//		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/payment/detail";
 	}
 	@GetMapping("/payment/edit")
@@ -61,4 +59,32 @@ public class AdminPaymentController {
 		payment.save(paymentIn);
 		return "redirect:/admin/payment";
 	}
+
+	@PostMapping("/payment")
+	public String processPayment(
+			@RequestParam("id") List<Long> listId,
+			@RequestParam("method") String method,
+			HttpServletRequest request){
+
+		String message = (String) request.getSession().getAttribute("message");
+		listId.forEach(id->{
+			Payment p = payment.findById(id);
+			if (method.equals("status")){
+				p.setStatus(true);
+			}else {
+				p.setStatus(true);
+				p.setTracked(true);
+			}
+			payment.save(p);
+		});
+
+		if (method.equals("status")){
+			request.getSession().setAttribute("message", "Set Paid success!");
+		}else{
+			request.getSession().setAttribute("message", "Set Deliver success!");
+		}
+
+		return "redirect:/admin/payment";
+	}
+
 }

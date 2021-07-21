@@ -157,7 +157,8 @@
 														<input class="custom-control-input" type="checkbox"
 															id="customCheckbox2"
 															<c:if test="${product.enabled == true}">checked</c:if>
-															name="enabled"> <label for="customCheckbox2"
+															name="enabled">
+														<label for="customCheckbox2"
 															class="custom-control-label">Enable</label>
 													</div>
 												</div>

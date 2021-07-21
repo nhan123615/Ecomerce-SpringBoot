@@ -20,15 +20,8 @@
 			<section class="content-header">
 				<div class="container-fluid">
 					<div class="row mb-2">
-						<div class="col-sm-6">
-							<h1>Subsriber Manager :: List</h1>
-						</div>
-						<div class="col-sm-6">
-							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a
-									href="${pageContext.servletContext.contextPath}/admin">Home</a></li>
-								<li class="breadcrumb-item active">Subscriber List</li>
-							</ol>
+						<div class="col-sm-12">
+							<h1 class="text-center">Subsriber Manager</h1>
 						</div>
 					</div>
 				</div>
@@ -43,44 +36,69 @@
 							<!-- /.card -->
 							<div class="card">
 								<div class="card-header">
-									<h3 class="card-title">Subscriber list</h3>
+									<div id="btn-error" style="color: red;margin-bottom: 5px"></div>
+									<button class="btn btn-success" id="btnRely">Send Email to Subcribers</button>
 								</div>
+
 								<!-- /.card-header -->
 								<div class="card-body">
 									<div id="example1_wrapper"
 										class="dataTables_wrapper dt-bootstrap4">
-										<div class="row">
-											<div class="col-sm-12">
-												<table id="example1"
-													class="table table-bordered table-striped dataTable dtr-inline"
-													role="grid" aria-describedby="example1_info">
-													<thead>
+										<form action="${pageContext.servletContext.contextPath}/admin/subscriber/rely" method="get" id="frmSubcribe">
+											<div class="row">
+												<div class="col-sm-12">
+													<table id="example1"
+														   class="table table-bordered table-striped dataTable dtr-inline"
+														   role="grid" aria-describedby="example1_info">
+														<thead>
 														<tr role="row">
-															<th class="sorting" tabindex="0" aria-controls="example1"
-																rowspan="1" colspan="1">Id</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
+																rowspan="1" colspan="1">
+																<div class="custom-control custom-checkbox">
+																	<input class="custom-control-input checkboxSendEmailAll" type="checkbox"
+																		   id="customCheckboxAll"  onClick="toggle(this)">
+																	<label for="customCheckboxAll"
+																		   class="custom-control-label">Check All</label>
+																</div>
+
+
+															</th>
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Email</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">First name</th>
-															<th class="sorting" tabindex="0" aria-controls="example1"
+															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Last Name</th>
 														</tr>
-													</thead>
-													<tbody>
+														</thead>
+														<tbody>
 														<c:forEach items="${sub}" var="s">
 															<tr>
-																<td class="text-center">${s.id}</td>
+																<td class="text-center">
+																	<div class="form-group">
+																		<div class="custom-control custom-checkbox">
+																			<input class="custom-control-input checkboxSendEmail" type="checkbox"
+																				   id="customCheckbox${s.id}"
+																				   value="${s.id}" name="id">
+																			<label for="customCheckbox${s.id}"
+																				   class="custom-control-label">${s.id}</label>
+																		</div>
+																	</div>
+
+																</td>
 																<td class="text-center">${s.email}</td>
 																<td class="text-center">${s.firstName}</td>
 																<td class="text-center">${s.lastName}</td>
 															</tr>
 														</c:forEach>
-													</tbody>
-													<tfoot>
-													</tfoot>
-												</table>
+														</tbody>
+														<tfoot>
+														</tfoot>
+													</table>
+												</div>
 											</div>
-										</div>
+										</form>
+
 									</div>
 								</div>
 								<!-- /.card-body -->
@@ -116,6 +134,45 @@
 					}).buttons().container().appendTo(
 					'#example1_wrapper .col-md-6:eq(0)');
 		});
+	</script>
+	<script>
+						function toggle(source) {
+							let checkboxEmail = document.querySelectorAll('.checkboxSendEmailAll');
+							let sendEmail = document.querySelectorAll('.checkboxSendEmail');
+							for (const cbx of checkboxEmail) {
+								if (cbx.checked) {
+									for (const cbxSendEmail of sendEmail) {
+										cbxSendEmail.checked = source.checked
+									}
+								}else{
+									for (const cbxSendEmail of sendEmail) {
+										cbxSendEmail.checked =false
+									}
+								}
+							}
+						}
+		$('#btnRely')
+				.on(
+						'click',
+						function () {
+							let checkboxEmail = document.querySelectorAll('.checkboxSendEmail');
+							let hasCheck = [];
+
+							for (const cbx of checkboxEmail) {
+								if (cbx.checked) {
+									hasCheck.push(1);
+								}
+							}
+
+							if (hasCheck.length === 0) {
+								$('#btn-error')
+										.html('Please select subcriber to send email!');
+							}else {
+								$('#frmSubcribe').submit();
+							}
+
+						})
+
 	</script>
 </body>
 </html>
