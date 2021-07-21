@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="../../components/head.jsp"></jsp:include>
+
 <body>
 	<jsp:include page="../../components/header.jsp"></jsp:include>
 	<jsp:include page="../../components/sidebar.jsp"></jsp:include>
@@ -21,8 +22,8 @@
 									<div class="ps-wrapper">
 										<c:if test="${product.enabled == false}">
 											<div class="ps-product__badge out-stock"
-												style="background-color: #000; color: #fff; font-size: 14px; font-weight: 600; line-height: 20px; padding: 5px 10px; border-radius: 4px;">Out
-												Of Stock</div>
+												style="background-color: #000; color: #fff; font-size: 14px; font-weight: 600; line-height: 20px; padding: 5px 10px; border-radius: 4px;">
+												Out Of Stock</div>
 										</c:if>
 										<div class="ps-product__gallery" data-arrow="true">
 											<div class="item">
@@ -87,21 +88,26 @@
 											<c:choose>
 												<c:when test="${avgStar != null}">
 													<option
-														${(avgStar == 0 || avgStar > 0) && avgStar < 1  ? "selected" : ""}
+														${(avgStar==0 || avgStar> 0) && avgStar < 1 ? "selected"
+																: "" }
 														value="0">0</option>
 													<option
-														${(avgStar == 1 || avgStar > 1) && avgStar < 2  ? "selected" : ""}
+														${(avgStar==1 || avgStar> 1) && avgStar < 2 ? "selected"
+																: "" }
 														value="1">1</option>
 													<option
-														${(avgStar == 2 || avgStar > 2) && avgStar < 3  ? "selected" : ""}
+														${(avgStar==2 || avgStar> 2) && avgStar < 3 ? "selected"
+																: "" }
 														value="2">2</option>
 													<option
-														${(avgStar == 3 || avgStar > 3) && avgStar < 4  ? "selected" : ""}
+														${(avgStar==3 || avgStar> 3) && avgStar < 4 ? "selected"
+																: "" }
 														value="3">3</option>
 													<option
-														${(avgStar == 4 || avgStar > 4) && avgStar < 5  ? "selected" : ""}
+														${(avgStar==4 || avgStar> 4) && avgStar < 5 ? "selected"
+																: "" }
 														value="4">4</option>
-													<option ${avgStar == 5 || avgStar > 5 ? "selected" : ""}
+													<option ${avgStar==5 || avgStar> 5 ? "selected" : ""}
 														value="5">5</option>
 												</c:when>
 												<c:otherwise>
@@ -194,25 +200,33 @@
 											<div class="ps-block--average-rating">
 												<div class="ps-block__header">
 													<h3>${avgStar }</h3>
-													<select class="ps-rating" data-read-only="true">
+													<select id="avgRating" class="ps-rating"
+														data-read-only="true">
 														<c:choose>
 															<c:when test="${avgStar != null}">
 																<option
-																	${(avgStar == 0 || avgStar > 0) && avgStar < 1  ? "selected" : ""}
+																	${(avgStar==0 || avgStar> 0) && avgStar < 1
+																			? "selected" : "" }
 																	value="0">0</option>
 																<option
-																	${(avgStar == 1 || avgStar > 1) && avgStar < 2  ? "selected" : ""}
+																	${(avgStar==1 || avgStar> 1) && avgStar < 2
+																			? "selected" : "" }
 																	value="1">1</option>
 																<option
-																	${(avgStar == 2 || avgStar > 2) && avgStar < 3  ? "selected" : ""}
+																	${(avgStar==2 || avgStar> 2) && avgStar < 3
+																			? "selected" : "" }
 																	value="2">2</option>
 																<option
-																	${(avgStar == 3 || avgStar > 3) && avgStar < 4  ? "selected" : ""}
+																	${(avgStar==3 || avgStar> 3) && avgStar < 4
+																			? "selected" : "" }
 																	value="3">3</option>
 																<option
-																	${(avgStar == 4 || avgStar > 4) && avgStar < 5  ? "selected" : ""}
+																	${(avgStar==4 || avgStar> 4) && avgStar < 5
+																			? "selected" : "" }
 																	value="4">4</option>
-																<option ${avgStar == 5 || avgStar > 5 ? "selected" : ""}
+																<option
+																	${avgStar==5 || avgStar> 5 ? "selected" :
+																		""}
 																	value="5">5</option>
 															</c:when>
 															<c:otherwise>
@@ -228,38 +242,38 @@
 												</div>
 												<div class="ps-block__star">
 													<span>5 Star</span>
-													<div class="ps-progress" data-value="100">
+													<div class="ps-progress" data-value="${star5}">
 														<span></span>
 													</div>
-													<span>100%</span>
+													<span>${star5}%</span>
 												</div>
 												<div class="ps-block__star">
 													<span>4 Star</span>
-													<div class="ps-progress" data-value="0">
+													<div class="ps-progress" data-value="${star4}">
 														<span></span>
 													</div>
-													<span>0</span>
+													<span>${star4}%</span>
 												</div>
 												<div class="ps-block__star">
 													<span>3 Star</span>
-													<div class="ps-progress" data-value="0">
+													<div class="ps-progress" data-value="${star3}">
 														<span></span>
 													</div>
-													<span>0</span>
+													<span>${star3}%</span>
 												</div>
 												<div class="ps-block__star">
 													<span>2 Star</span>
-													<div class="ps-progress" data-value="0">
+													<div class="ps-progress" data-value="${star2}">
 														<span></span>
 													</div>
-													<span>0</span>
+													<span>${star2}%</span>
 												</div>
 												<div class="ps-block__star">
 													<span>1 Star</span>
-													<div class="ps-progress" data-value="0">
+													<div class="ps-progress" data-value="${star1}">
 														<span></span>
 													</div>
-													<span>0</span>
+													<span>${star1}%</span>
 												</div>
 											</div>
 										</div>
@@ -274,17 +288,17 @@
 														data-read-only="false">
 														<c:choose>
 															<c:when test="${rating != null}">
-																<option ${rating.starNumber == 0 ? "selected" : ""}
+																<option ${rating.starNumber==0 ? "selected" : "" }
 																	value="0">0</option>
-																<option ${rating.starNumber == 1 ? "selected" : ""}
+																<option ${rating.starNumber==1 ? "selected" : "" }
 																	value="1">1</option>
-																<option ${rating.starNumber == 2 ? "selected" : ""}
+																<option ${rating.starNumber==2 ? "selected" : "" }
 																	value="2">2</option>
-																<option ${rating.starNumber == 3 ? "selected" : ""}
+																<option ${rating.starNumber==3 ? "selected" : "" }
 																	value="3">3</option>
-																<option ${rating.starNumber == 4 ? "selected" : ""}
+																<option ${rating.starNumber==4 ? "selected" : "" }
 																	value="4">4</option>
-																<option ${rating.starNumber == 5 ? "selected" : ""}
+																<option ${rating.starNumber==5 ? "selected" : "" }
 																	value="5">5</option>
 															</c:when>
 															<c:otherwise>
@@ -307,11 +321,11 @@
 														maxlength="250"><c:if test="${rating != null}">${rating.review }</c:if>
 													</textarea>
 												</div>
+												<div class="form-group submit">
+													<button id="btnSubmitReview" class="ps-btn">Submit
+														Review</button>
+												</div>
 											</form>
-											<div class="form-group submit">
-												<button id="btnSubmitReview" class="ps-btn">Submit
-													Review</button>
-											</div>
 										</div>
 									</div>
 								</div>
@@ -484,335 +498,335 @@
 	</div>
 	<jsp:include page="../../components/footer.jsp"></jsp:include>
 	<script>
-	//@Author Lam Cong Hau
-	var countWish = document.querySelector('#countWish');
-	var cookie = document.cookie;
-	var arr_product;
-	window.onload = initData();
-	function initData() {
-		cookies();
-		if (arr_product != null) {
-			if (arr_product[0] != "") {
-				countWish.innerHTML = arr_product.length;
-			}else{
-				countWish.innerHTML = 0;
-			}
-		}
-	}
-	
-	function cookies() {
-		cookie = document.cookie;
-		if (cookie != null) {
-			matchs = cookie.match("wishlist=([^;]*)");
-			if (matchs != null) {
-				arr_product = matchs[1].split('a');
-			}
-		}
-	}
-	function addToWishList(id) {
-		const data = null;
-		const xhr = new XMLHttpRequest();
-		xhr.addEventListener("readystatechange", function() {
-			if (this.readyState === this.DONE) {
-				if(this.responseText === "successful"){
-					msg("Add to wishlist sucessful!");
-				}else if(this.responseText === "failed"){
-					msg("You can only add 1 time!");
+			//@Author Lam Cong Hau
+			var countWish = document.querySelector('#countWish');
+			var cookie = document.cookie;
+			var arr_product;
+			window.onload = initData();
+			function initData() {
+				cookies();
+				if (arr_product != null) {
+					if (arr_product[0] != "") {
+						countWish.innerHTML = arr_product.length;
+					} else {
+						countWish.innerHTML = 0;
+					}
 				}
-				initData();
 			}
-		});
-		xhr
-				.open(
+
+			function cookies() {
+				cookie = document.cookie;
+				if (cookie != null) {
+					matchs = cookie.match("wishlist=([^;]*)");
+					if (matchs != null) {
+						arr_product = matchs[1].split('a');
+					}
+				}
+			}
+			function addToWishList(id) {
+				const data = null;
+				const xhr = new XMLHttpRequest();
+				xhr.addEventListener("readystatechange", function () {
+					if (this.readyState === this.DONE) {
+						if (this.responseText === "successful") {
+							msg("Add to wishlist sucessful!");
+						} else if (this.responseText === "failed") {
+							msg("You can only add 1 time!");
+						}
+						initData();
+					}
+				});
+				xhr
+					.open(
 						"GET",
 						"${pageContext.servletContext.contextPath}/api/wish-list/addProductToWishList?id_product="
-								+ id);
-		xhr.setRequestHeader('Content-type', 'application/json');
-		xhr.send(data);
-	}
-	
-	function addProductToViewList(id) {
-		const data = null;
-		const xhr = new XMLHttpRequest();
-		xhr.addEventListener("readystatechange", function() {
-			if (this.readyState === this.DONE) {
-				
+						+ id);
+				xhr.setRequestHeader('Content-type', 'application/json');
+				xhr.send(data);
 			}
-		});
-		xhr
-				.open(
+
+			function addProductToViewList(id) {
+				const data = null;
+				const xhr = new XMLHttpRequest();
+				xhr.addEventListener("readystatechange", function () {
+					if (this.readyState === this.DONE) {
+
+					}
+				});
+				xhr
+					.open(
 						"GET",
 						"${pageContext.servletContext.contextPath}/api/wish-list/addProductToViewList?id_product="
-								+ id);
-		xhr.setRequestHeader('Content-type', 'application/json');
-		xhr.send(data);
-	}
-	</script>
+						+ id);
+				xhr.setRequestHeader('Content-type', 'application/json');
+				xhr.send(data);
+			}
+		</script>
 	<script>
 
-		$(document).ready(function(){
-			// var cartItems = [];
-			// var products = [];
-			// window.onload = initData();
-			// function initData() {
-			// 	initCartItem();
-			// 	getAllProducts();
-			// }
+			$(document).ready(function () {
+				// var cartItems = [];
+				// var products = [];
+				// window.onload = initData();
+				// function initData() {
+				// 	initCartItem();
+				// 	getAllProducts();
+				// }
 
-//////////////////////////////////////////////////
-			//increase Qty
-			$(document).on("click",".up", function(event){
-				var productId = this.value;
-				var qty = document.querySelector('.itemQty-'+this.value);
-				var invalid = document.querySelector('.invalid-'+this.value);
-				var invalidText = document.querySelector('.invalid-text-'+this.value)
-				// alert(invalidText)
-				if (checkStock(productId,qty.value)){
-					qty.value = Number(qty.value) + 1
-					updateCartItems(new URLSearchParams(window.location.search).get("id"),qty.value)
-					if (invalidText!=null){
-						invalidText.remove()
+				//////////////////////////////////////////////////
+				//increase Qty
+				$(document).on("click", ".up", function (event) {
+					var productId = this.value;
+					var qty = document.querySelector('.itemQty-' + this.value);
+					var invalid = document.querySelector('.invalid-' + this.value);
+					var invalidText = document.querySelector('.invalid-text-' + this.value)
+					// alert(invalidText)
+					if (checkStock(productId, qty.value)) {
+						qty.value = Number(qty.value) + 1
+						updateCartItems(new URLSearchParams(window.location.search).get("id"), qty.value)
+						if (invalidText != null) {
+							invalidText.remove()
+						}
+					} else {
+						event.preventDefault()
+						invalid.innerHTML = "<div class='invalid-text-" + this.value + "'>Out of Stock !</div>"
 					}
-				}else{
-					event.preventDefault()
-					invalid.innerHTML = "<div class='invalid-text-"+this.value+"'>Out of Stock !</div>"
-				}
 
-			});
+				});
 
-			function checkStock(productId,qty){
-				for (let i = 0; i < products.length ; i++) {
-					if (products[i].id == productId){
-						if (qty < products[i].stockQuantity){
-							return true;
-						}else{
-							return false;
+				function checkStock(productId, qty) {
+					for (let i = 0; i < products.length; i++) {
+						if (products[i].id == productId) {
+							if (qty < products[i].stockQuantity) {
+								return true;
+							} else {
+								return false;
+							}
 						}
 					}
+					return false;
 				}
-				return false;
-			}
 
-			//decrease Qty
-			$(document).on("click",".down", function(event){
-				var productId = this.value;
-				var qty = document.querySelector('.itemQty-'+this.value);
-				var invalidText = document.querySelector('.invalid-text-'+this.value)
-				if (Number(qty.value) != 1){
-					qty.value = Number(qty.value) - 1
-					if (invalidText!=null){
-						invalidText.remove()
+				//decrease Qty
+				$(document).on("click", ".down", function (event) {
+					var productId = this.value;
+					var qty = document.querySelector('.itemQty-' + this.value);
+					var invalidText = document.querySelector('.invalid-text-' + this.value)
+					if (Number(qty.value) != 1) {
+						qty.value = Number(qty.value) - 1
+						if (invalidText != null) {
+							invalidText.remove()
+						}
+					} else {
+						event.preventDefault()
+
 					}
-                }else{
-                    event.preventDefault()
+					updateCartItems(new URLSearchParams(window.location.search).get("id"), qty.value)
+				});
 
-                }
-				updateCartItems(new URLSearchParams(window.location.search).get("id"),qty.value)
-			});
+				function findProduct(productId) {
+					// initCartItem();
+					console.log("id: " + productId)
+					var qty = document.querySelector('.itemQty-' + productId);
+					const data = null;
+					const xhr = new XMLHttpRequest();
+					xhr.addEventListener("readystatechange", function () {
+						if (this.readyState === this.DONE) {
+							var json = JSON.parse(this.responseText);
+							console.log(json)
 
-			function findProduct(productId) {
-				// initCartItem();
-				console.log("id: "+productId)
-				var qty = document.querySelector('.itemQty-'+productId);
-				const data = null;
-				const xhr = new XMLHttpRequest();
-				xhr.addEventListener("readystatechange", function () {
-					if (this.readyState === this.DONE) {
-						var json = JSON.parse(this.responseText);
-						console.log(json)
-
-						if (cartItems.length >0){
-							if (!updateCartItems(productId,qty.value)){
+							if (cartItems.length > 0) {
+								if (!updateCartItems(productId, qty.value)) {
+									json.sellingQuantity = qty.value
+									cartItems.push(json)
+								}
+								console.log("CartItem Product detail->>>>>")
+								console.log(cartItems)
+							} else {
 								json.sellingQuantity = qty.value
 								cartItems.push(json)
+								console.log("CartItem Product detail->>>>>")
+								console.log(cartItems)
 							}
-							console.log("CartItem Product detail->>>>>")
-							console.log(cartItems)
-						}else{
-							json.sellingQuantity = qty.value
-							cartItems.push(json)
-							console.log("CartItem Product detail->>>>>")
-							console.log(cartItems)
-						}
-						console.log("Update CartItem Product detail->>>>>")
-						updateCartItemsCookieDataDetail()
+							console.log("Update CartItem Product detail->>>>>")
+							updateCartItemsCookieDataDetail()
 
+						}
+					});
+
+					xhr.open("GET", "${pageContext.servletContext.contextPath}/cart/get?productId=" + productId);
+					xhr.setRequestHeader('Content-type', 'application/json');
+					xhr.send(data);
+				}
+
+
+				function updateCartItems(productId, Qty) {
+					if (cartItems.length > 0) {
+						for (let i = 0; i < cartItems.length; i++) {
+							if (cartItems[i].product.id == productId) {
+								cartItems[i].sellingQuantity = parseInt(Qty)
+								cartItems[i].totalPrice = parseInt(cartItems[0].sellingQuantity) * parseFloat(cartItems[i].product.price)
+								return true;
+							}
+						}
 					}
+					return false;
+				}
+
+				//add to Cart
+				$(document).on("click", ".toCartDetail", function (event) {
+					// alert(cartItems[0].sellingQuantity)
+					findProduct(new URLSearchParams(window.location.search).get("id"));
+					// updateCartItemsCookieData(cartItems)
+					msg("Add to cart sucessful !");
+
 				});
 
-				xhr.open("GET", "${pageContext.servletContext.contextPath}/cart/get?productId="+productId);
-				xhr.setRequestHeader('Content-type', 'application/json');
-				xhr.send(data);
-			}
+				$(document).on("click", ".buyNowDetail", function (event) {
+					// updateCartItemsCookie(cartItems)
+					var user = '${user}'
+					findProduct(new URLSearchParams(window.location.search).get("id"));
+					window.setTimeout(function () {
+						if (user !== "") {
+							window.location.href = "${pageContext.servletContext.contextPath}/customer/product/checkout-page";
+						} else {
+							window.location.href = "${pageContext.servletContext.contextPath}/cart";
+						}
+					}, 500)
+				});
 
 
-			function updateCartItems(productId,Qty) {
-				if (cartItems.length>0){
-					for (let i = 0; i < cartItems.length; i++) {
-						if (cartItems[i].product.id == productId){
-							cartItems[i].sellingQuantity = parseInt(Qty)
-							cartItems[i].totalPrice =  parseInt(cartItems[0].sellingQuantity) * parseFloat(cartItems[i].product.price)
-						return true;
+
+				function toCart(value, event) {
+					if (checkStock(value, getCartProductQty(value))) {
+						addItemToCart("${pageContext.servletContext.contextPath}/cart/get?productId=" + value)
+					} else {
+						event.preventDefault()
+					}
+				}
+
+				function getCartProductQty(productId) {
+					if (cartItems.length > 0) {
+						for (let i = 0; i < cartItems.length; i++) {
+							if (cartItems[i].product.id == productId) {
+								return cartItems[i].sellingQuantity
+							}
 						}
 					}
+					return null;
 				}
-				return false;
-			}
 
-			//add to Cart
-			$(document).on("click",".toCartDetail", function(event){
-				// alert(cartItems[0].sellingQuantity)
-				findProduct(new URLSearchParams(window.location.search).get("id"));
-				// updateCartItemsCookieData(cartItems)
-				msg("Add to cart sucessful !");
-
-			});
-
-			$(document).on("click",".buyNowDetail", function(event){
-				// updateCartItemsCookie(cartItems)
-				var user = '${user}'
-				findProduct(new URLSearchParams(window.location.search).get("id"));
-				window.setTimeout(function () {
-					if (user !==""){
-						window.location.href = "${pageContext.servletContext.contextPath}/customer/product/checkout-page";
-					}else {
-						window.location.href = "${pageContext.servletContext.contextPath}/cart";
-					}
-				},500)
-			});
-
-
-
-			function toCart(value,event){
-				if (checkStock(value,getCartProductQty(value))){
-					addItemToCart("${pageContext.servletContext.contextPath}/cart/get?productId="+value)
-				}else{
-					event.preventDefault()
-				}
-			}
-
-			function getCartProductQty(productId){
-				if (cartItems.length>0){
-					for (let i = 0; i < cartItems.length; i++) {
-						if (cartItems[i].product.id == productId){
-							return cartItems[i].sellingQuantity
-						}
-					}
-				}
-				return null;
-			}
-
-			function addItemToCart(url){
-				const data = null;
-				const xhr = new XMLHttpRequest();
-				xhr.addEventListener("readystatechange", function () {
-					if (this.readyState === this.DONE) {
-						var json = JSON.parse(this.responseText);
-						console.log(json)
-						if (cartItems.length>0){
-							var count = 0;
-							for (let i = 0; i < cartItems.length; i++) {
-								//if duplicate sellingQuantity +=1
-								if (cartItems[i].product.id == json.product.id){
-									cartItems[i].sellingQuantity += 1
-									cartItems[i].totalPrice =  parseFloat(cartItems[i].product.price) *  parseInt(cartItems[i].sellingQuantity)
-									count += 1
+				function addItemToCart(url) {
+					const data = null;
+					const xhr = new XMLHttpRequest();
+					xhr.addEventListener("readystatechange", function () {
+						if (this.readyState === this.DONE) {
+							var json = JSON.parse(this.responseText);
+							console.log(json)
+							if (cartItems.length > 0) {
+								var count = 0;
+								for (let i = 0; i < cartItems.length; i++) {
+									//if duplicate sellingQuantity +=1
+									if (cartItems[i].product.id == json.product.id) {
+										cartItems[i].sellingQuantity += 1
+										cartItems[i].totalPrice = parseFloat(cartItems[i].product.price) * parseInt(cartItems[i].sellingQuantity)
+										count += 1
+									}
 								}
-							}
-							if (count == 0){
+								if (count == 0) {
+									cartItems.push(json)
+									countCartItems()
+								}
+								updateCartItemsCookie(cartItems)
+								showCartItems()
+								console.log(cartItems)
+							} else {
 								cartItems.push(json)
+								console.log(cartItems)
 								countCartItems()
+								showCartItems()
+								updateCartItemsCookie(cartItems)
 							}
-							updateCartItemsCookie(cartItems)
-							showCartItems()
-							console.log(cartItems)
-						}else{
-							cartItems.push(json)
-							console.log(cartItems)
-							countCartItems()
-							showCartItems()
-							updateCartItemsCookie(cartItems)
+
 						}
+					});
 
-					}
-				});
-
-				xhr.open("GET", url);
-				xhr.setRequestHeader('Content-type', 'application/json');
-				xhr.send(data);
-			}
-
-			function updateCartItemsCookieDataDetail() {
-				var value = "[]";
-				if (cartItems.length >0){
-					value ="["
-					for (let i = 0; i < cartItems.length; i++) {
-						value += JSON.stringify(cartItems[i]) +","
-					}
-					value = value.substring(0,value.length-1)
-					value +="]"
+					xhr.open("GET", url);
+					xhr.setRequestHeader('Content-type', 'application/json');
+					xhr.send(data);
 				}
 
-				const data = value;
-				const xhr = new XMLHttpRequest();
-				xhr.addEventListener("readystatechange", function () {
-					if (this.readyState === this.DONE) {
-						var json = JSON.parse(this.responseText);
-						// if (json.length>0){
-						console.log(json)
-						cartItems = json
-						countCartItems();
-						showCartItems();
-						// }
-
+				function updateCartItemsCookieDataDetail() {
+					var value = "[]";
+					if (cartItems.length > 0) {
+						value = "["
+						for (let i = 0; i < cartItems.length; i++) {
+							value += JSON.stringify(cartItems[i]) + ","
+						}
+						value = value.substring(0, value.length - 1)
+						value += "]"
 					}
-				});
 
-				xhr.open("POST", "${pageContext.servletContext.contextPath}/cart/update");
-				xhr.setRequestHeader('Content-type', 'application/json');
-				console.log(data)
-				xhr.send(data);
+					const data = value;
+					const xhr = new XMLHttpRequest();
+					xhr.addEventListener("readystatechange", function () {
+						if (this.readyState === this.DONE) {
+							var json = JSON.parse(this.responseText);
+							// if (json.length>0){
+							console.log(json)
+							cartItems = json
+							countCartItems();
+							showCartItems();
+							// }
 
-			}
-		})
+						}
+					});
 
-		function msg(value){
-			var style = value;
-			var time = 1200;
-			var message;
-			switch(value){
-				case "alert-success": message ="Successful !";break;
-				case "alert_warning": message ="error warning";break;
-				case "alert-danger": message = "Failed !";break;
-				case "alert_info": message ="Data not found";break;
-				default:
-					if (value.includes("invalid")||value.includes("failed")||value.includes("only")){
-						style = "alert-danger";
-					}else{
-						style = "alert-success";
-					}
-					message =value ;
-			}
-			var height = ($(window).height() - 45)/5;
+					xhr.open("POST", "${pageContext.servletContext.contextPath}/cart/update");
+					xhr.setRequestHeader('Content-type', 'application/json');
+					console.log(data)
+					xhr.send(data);
 
-			if ($(window).scrollTop() >=height) {
-				height =($(window).scrollTop() +70)
-			}
+				}
+			})
+
+			function msg(value) {
+				var style = value;
+				var time = 1200;
+				var message;
+				switch (value) {
+					case "alert-success": message = "Successful !"; break;
+					case "alert_warning": message = "error warning"; break;
+					case "alert-danger": message = "Failed !"; break;
+					case "alert_info": message = "Data not found"; break;
+					default:
+						if (value.includes("invalid") || value.includes("failed") || value.includes("only")) {
+							style = "alert-danger";
+						} else {
+							style = "alert-success";
+						}
+						message = value;
+				}
+				var height = ($(window).height() - 45) / 5;
+
+				if ($(window).scrollTop() >= height) {
+					height = ($(window).scrollTop() + 70)
+				}
 
 
-			$('<div id="promptModal">')
+				$('<div id="promptModal">')
 					.appendTo('body')
 					.addClass('alert ' + style)
 					.css({
 						"display": "block",
 						"z-index": 99999,
 						"left": ($(document.body).outerWidth(true) - 200),
-						"top": height ,
+						"top": height,
 						"position": "absolute",
 						"padding": "20px",
 						"border-radius": "5px",
-						"width":"200px",
-						"text-align":"center",
+						"width": "200px",
+						"text-align": "center",
 
 					})
 					.html(message)
@@ -823,34 +837,34 @@
 					});
 
 
-		}
-	</script>
-	<script>
-	 $(document).ready(function (){
-         $('#btnSubmitReview').on('click', function (){
-        	 let user = $('#user');
-                 $.ajax({
-                	 method: $('#frmReview').attr('method'),
-                     url: $('#frmReview').attr('action'),
-                     data: $('#frmReview').serialize(),
-                     success : function (data){
-                        if(data === 'success'){
-                        	msg("Review sucessful!");
-                        }else if(data === 'not login'){
-                        	if(user.val() === ""){
-                           		window.location.href = "/login";
-                        	}
-                           	msg("Review failed!");
-                        }else if(data === 'customer not exists'){
-                           	window.location.href = "/customer/info";
-                           	msg("invalid, please enter your information!");
-                        }else if(data === 'admin not review'){
-                       		msg("invalid, admin has no rights!");
-                    	}	
-                     }
-                 });
-         });
-        
-      });
-	</script>
+			}
+		</script>
+	<!-- <script>
+			$(document).ready(function () {
+				$('#btnSubmitReview').on('click', function () {
+					let user = $('#user');
+					$.ajax({
+						method: $('#frmReview').attr('method'),
+						url: $('#frmReview').attr('action'),
+						data: $('#frmReview').serialize(),
+						success: function (data) {
+							console.log(data.message);
+							if (data.message === 'success') {
+								msg("Review sucessful!");
+							} else if (data.message === 'not login') {
+								if (user.val() === "") {
+									window.location.href = "/login";
+								}
+								msg("Review failed!");
+							} else if (data.message === 'customer not exists') {
+								window.location.href = "/customer/info";
+								msg("invalid, please enter your information!");
+							} else if (data.message === 'admin not review') {
+								msg("invalid, admin has no rights!");
+							}
+						}
+					});
+				});
+			});
+		</script> -->
 </body>

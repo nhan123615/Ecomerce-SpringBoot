@@ -12,8 +12,10 @@ import com.coeding.entity.Rating;
 @Repository
 public interface RatingRepository extends JpaRepository<Rating, Long> {
 	Rating findByCustomerIdAndProductId(Long customerId, Long productId);
-	@Query(value = "SELECT ROUND(AVG(rates.star_number),2) FROM  rates WHERE rates.product_id = ?1", nativeQuery = true)
+	@Query(value = "SELECT ROUND(AVG(rates.star_number),1) FROM  rates WHERE rates.product_id = ?1", nativeQuery = true)
 	Double avgStarByProductId(Long productId);
 	@Query(value = "SELECT COUNT(*) FROM rates WHERE rates.product_id = ?1", nativeQuery = true)
 	Integer countReviewByProductId(Long productId);
+	@Query(value = "SELECT COUNT(*) FROM rates WHERE rates.product_id = ?1 AND rates.star_number = ?2", nativeQuery = true)
+	Integer countReviewByProductIdAndStarNumber(Long productId, Integer starNumber);
 }

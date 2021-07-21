@@ -48,4 +48,11 @@ public class RatingService implements DAO<Rating> {
 	public Integer countReviewByProductId(Long productId) {
 		return repo.countReviewByProductId(productId);
 	}
+	public Long percentOfStar(Long productId, Integer starNumber) {
+		Double numberReview = (double)repo.countReviewByProductIdAndStarNumber(productId, starNumber);
+		System.out.println("numberReview "+numberReview);
+		Double totalReview = (double)repo.countReviewByProductId(productId);
+		Double result = (numberReview / totalReview) * 100;
+		return Math.round(result);
+	}
 }

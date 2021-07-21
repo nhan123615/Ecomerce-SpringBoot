@@ -59,7 +59,7 @@ public class PageDetailController {
 	public String view(@RequestParam(value = "id") Long id, Authentication authentication, Locale locale, Model model,
 			HttpServletRequest res) {
 		log.info("product detail {}.", locale);
-		//Review
+		// Review
 		if (authentication != null) {
 			User user = userHelper.getUser(authentication, userService);
 			model.addAttribute("user", user);
@@ -73,6 +73,10 @@ public class PageDetailController {
 		Integer numberReview = ratingService.countReviewByProductId(id);
 		model.addAttribute("avgStar", avgStar);
 		model.addAttribute("numberReview", numberReview);
+		for (int i = 1; i <= 5; i++) {
+			model.addAttribute("star"+i, ratingService.percentOfStar(id, i));
+			log.info(""+ratingService.percentOfStar(id, i));
+		}
 		//
 		Product p = productService.findById(id);
 		model.addAttribute("product", p);
@@ -106,15 +110,12 @@ public class PageDetailController {
 	}
 
 	@PostMapping("/review")
-	public @ResponseBody String review(User user, Product product, Rating rating, Model model) {
+	public String review(User user, Product product, Rating rating, Model model, HttpServletRequest request) {
 		log.info("review");
-		log.info("rating: " + rating.getId() + ", " + rating.getStarNumber() + ", " + rating.getReview());
 		if (user != null) {
 			if (user.getRole().equals("ROLE_USER")) {
 				Customer customer = customerService.findByUserId(user.getId());
 				if (customer != null) {
-					log.info("customer: " + customer.getId());
-					log.info("product: " + product.getId());
 					Rating ratingExists = ratingService.findByCustomerIdAndProductId(customer.getId(), product.getId());
 					if (ratingExists != null) {
 						ratingExists.setReview(rating.getReview());
@@ -128,15 +129,19 @@ public class PageDetailController {
 						r.setStarNumber(rating.getStarNumber());
 						ratingService.save(r);
 					}
-					return "success";
+					request.getSession().setAttribute("message", "review sucessful!");
+					return "redirect:/product/detail?id=" + product.getId();
 				} else {
-					return "customer not exists";
+					request.getSession().setAttribute("message", "invalid, please enter your information!");
+					return "redirect:/customer/info";
 				}
 			} else {
-				return "admin not review";
+				request.getSession().setAttribute("message", "invalid, admin has no rights!");
+				return "redirect:/product/detail?id=" + product.getId();
 			}
 		}
-		return "not login";
+		request.getSession().setAttribute("message", "invalid, please login!");
+		return "redirect:/login";
 	}
 
 }
