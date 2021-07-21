@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -74,8 +75,8 @@ public class PageDetailController {
 		model.addAttribute("avgStar", avgStar);
 		model.addAttribute("numberReview", numberReview);
 		for (int i = 1; i <= 5; i++) {
-			model.addAttribute("star"+i, ratingService.percentOfStar(id, i));
-			log.info(""+ratingService.percentOfStar(id, i));
+			model.addAttribute("star" + i, ratingService.percentOfStar(id, i));
+			model.addAttribute("nReview" + i, ratingService.countReviewByProductIdAndStarNumber(id, i));
 		}
 		//
 		Product p = productService.findById(id);
@@ -86,10 +87,15 @@ public class PageDetailController {
 		}
 
 		List<Product> listProductByCategory = productService.findByCategoryId(p.getCategory().getId());
-		log.info("listProductByCategory " + listProductByCategory.size());
 		model.addAttribute("listProductByCategory", listProductByCategory);
 		model.addAttribute("allProducts", productService.findAll());
-
+		// review
+		Map<Long, Integer> mapReviewByCategory = ratingService.findAllReviewByList(listProductByCategory);
+		model.addAttribute("mapReviewByCategory", mapReviewByCategory);
+		Map<Long, Double> mapAvgStarByCategory = ratingService.findAllAvgStarByList(listProductByCategory);
+		model.addAttribute("mapAvgStarByCategory", mapAvgStarByCategory);
+		
+		
 		Cookie[] cl = res.getCookies();
 		List<Product> viewlist = new ArrayList<Product>();
 		if (cl != null) {
@@ -98,7 +104,6 @@ public class PageDetailController {
 					if (!o.getValue().isEmpty()) {
 						String txt[] = o.getValue().split("a");
 						for (String s : txt) {
-							log.info("cookie: " + s);
 							viewlist.add(productService.findById(Long.parseLong(s)));
 						}
 					}
@@ -106,6 +111,11 @@ public class PageDetailController {
 			}
 		}
 		model.addAttribute("viewlist", viewlist);
+		// review
+		Map<Long, Integer> mapReviewByView = ratingService.findAllReviewByList(viewlist);
+		model.addAttribute("mapReviewByView", mapReviewByView);
+		Map<Long, Double> mapAvgStarByView = ratingService.findAllAvgStarByList(viewlist);
+		model.addAttribute("mapAvgStarByView", mapAvgStarByView);
 		return "template/user/page/product/product-detail";
 	}
 

@@ -245,35 +245,35 @@
 													<div class="ps-progress" data-value="${star5}">
 														<span></span>
 													</div>
-													<span>${star5}%</span>
+													<span>${nReview5}</span>
 												</div>
 												<div class="ps-block__star">
 													<span>4 Star</span>
 													<div class="ps-progress" data-value="${star4}">
 														<span></span>
 													</div>
-													<span>${star4}%</span>
+													<span>${nReview4}</span>
 												</div>
 												<div class="ps-block__star">
 													<span>3 Star</span>
 													<div class="ps-progress" data-value="${star3}">
 														<span></span>
 													</div>
-													<span>${star3}%</span>
+													<span>${nReview3}</span>
 												</div>
 												<div class="ps-block__star">
 													<span>2 Star</span>
 													<div class="ps-progress" data-value="${star2}">
 														<span></span>
 													</div>
-													<span>${star2}%</span>
+													<span>${nReview2}</span>
 												</div>
 												<div class="ps-block__star">
 													<span>1 Star</span>
 													<div class="ps-progress" data-value="${star1}">
 														<span></span>
 													</div>
-													<span>${star1}%</span>
+													<span>${nReview1}</span>
 												</div>
 											</div>
 										</div>
@@ -409,13 +409,47 @@
 												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"
 												onclick="addProductToViewList(${p.id})">${p.productName}</a>
 											<div class="ps-product__rating">
+												<c:set var="avgView" value="${mapAvgStarByView[p.id]}"></c:set>
 												<select class="ps-rating" data-read-only="true">
-													<option value="1">1</option>
-													<option value="1">2</option>
-													<option value="1">3</option>
-													<option value="1">4</option>
-													<option value="2">5</option>
-												</select><span>(1 review)</span>
+													<c:choose>
+														<c:when test="${avgView != null}">
+															<option
+																${(avgView==0 || avgView> 0) && avg < 1
+																			? "selected" : "" }
+																value="0">0</option>
+															<option
+																${(avgView==1 || avgView> 1) && avgView < 2
+																			? "selected" : "" }
+																value="1">1</option>
+															<option
+																${(avgView==2 || avgView> 2) && avgView < 3
+																			? "selected" : "" }
+																value="2">2</option>
+															<option
+																${(avgView==3 || avgView> 3) && avgView < 4
+																			? "selected" : "" }
+																value="3">3</option>
+															<option
+																${(avgView==4 || avgView> 4) && avgView < 5
+																			? "selected" : "" }
+																value="4">4</option>
+															<option
+																${avgView==5 || avgView> 5 ? "selected" :
+																		""}
+																value="5">5</option>
+														</c:when>
+														<c:otherwise>
+															<option value="0">0</option>
+															<option value="1">1</option>
+															<option value="2">2</option>
+															<option value="3">3</option>
+															<option value="4">4</option>
+															<option value="5">5</option>
+														</c:otherwise>
+													</c:choose>
+												</select>
+												<c:set var="rv" value="${mapReviewByView[p.id]}"></c:set>
+												<span>(${rv} review)</span>
 											</div>
 											<p class="ps-product__price">$${p.price}</p>
 										</div>
@@ -471,13 +505,47 @@
 												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"
 												onclick="addProductToViewList(${p.id})">${p.productName}</a>
 											<div class="ps-product__rating">
+												<c:set var="avg" value="${mapAvgStarByCategory[p.id]}"></c:set>
 												<select class="ps-rating" data-read-only="true">
-													<option value="1">1</option>
-													<option value="1">2</option>
-													<option value="1">3</option>
-													<option value="1">4</option>
-													<option value="2">5</option>
-												</select><span>(1 review)</span>
+													<c:choose>
+														<c:when test="${avg != null}">
+															<option
+																${(avg==0 || avg> 0) && avg < 1
+																			? "selected" : "" }
+																value="0">0</option>
+															<option
+																${(avg==1 || avg> 1) && avg < 2
+																			? "selected" : "" }
+																value="1">1</option>
+															<option
+																${(avg==2 || avg> 2) && avg < 3
+																			? "selected" : "" }
+																value="2">2</option>
+															<option
+																${(avg==3 || avg> 3) && avg < 4
+																			? "selected" : "" }
+																value="3">3</option>
+															<option
+																${(avg==4 || avg> 4) && avg < 5
+																			? "selected" : "" }
+																value="4">4</option>
+															<option
+																${avg==5 || avg> 5 ? "selected" :
+																		""}
+																value="5">5</option>
+														</c:when>
+														<c:otherwise>
+															<option value="0">0</option>
+															<option value="1">1</option>
+															<option value="2">2</option>
+															<option value="3">3</option>
+															<option value="4">4</option>
+															<option value="5">5</option>
+														</c:otherwise>
+													</c:choose>
+												</select>
+												<c:set var="r" value="${mapReviewByCategory[p.id]}"></c:set>
+												<span>(${r} review)</span>
 											</div>
 											<p class="ps-product__price">$${p.price}</p>
 										</div>
