@@ -26,6 +26,7 @@ import com.coeding.entity.UserDetail;
 import com.coeding.helper.UserHelper;
 import com.coeding.service.CustomerService;
 import com.coeding.service.ProductService;
+import com.coeding.service.RatingService;
 import com.coeding.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -42,25 +43,37 @@ public class PageDetailController {
 	private CustomerService customerService;
 	private UserService userService;
 	private UserHelper userHelper;
+	private RatingService ratingService;
 
 	@Autowired
 	public PageDetailController(ProductService productService, CustomerService customerService, UserService userService,
-			UserHelper userHelper) {
+			UserHelper userHelper, RatingService ratingService) {
 		this.productService = productService;
 		this.customerService = customerService;
 		this.userHelper = userHelper;
 		this.userService = userService;
+		this.ratingService = ratingService;
 	}
 
 	@GetMapping(value = "/detail")
 	public String view(@RequestParam(value = "id") Long id, Authentication authentication, Locale locale, Model model,
 			HttpServletRequest res) {
 		log.info("product detail {}.", locale);
+		//Review
 		if (authentication != null) {
 			User user = userHelper.getUser(authentication, userService);
 			model.addAttribute("user", user);
+			Customer customer = customerService.findByUserId(user.getId());
+			if (customer != null) {
+				Rating r = ratingService.findByCustomerIdAndProductId(customer.getId(), id);
+				model.addAttribute("rating", r);
+			}
 		}
-
+		Double avgStar = ratingService.avgStarByProductId(id);
+		Integer numberReview = ratingService.countReviewByProductId(id);
+		model.addAttribute("avgStar", avgStar);
+		model.addAttribute("numberReview", numberReview);
+		//
 		Product p = productService.findById(id);
 		model.addAttribute("product", p);
 		List<String> listColor = Arrays.asList(p.getProductColor().split(","));
@@ -93,17 +106,37 @@ public class PageDetailController {
 	}
 
 	@PostMapping("/review")
-	public @ResponseBody String review(@RequestParam(value = "idUser") Long idUser,
-			@RequestParam(value = "idProduct") Long idProduct, Rating rating, Model model) {
+	public @ResponseBody String review(User user, Product product, Rating rating, Model model) {
 		log.info("review");
 		log.info("rating: " + rating.getId() + ", " + rating.getStarNumber() + ", " + rating.getReview());
-		if (idUser != null) {
-			Customer customer = customerService.findByUserId(idUser);
-			log.info("customer: " + customer.getId());
-			log.info("product: " + idProduct);
-			return "success";
+		if (user != null) {
+			if (user.getRole().equals("ROLE_USER")) {
+				Customer customer = customerService.findByUserId(user.getId());
+				if (customer != null) {
+					log.info("customer: " + customer.getId());
+					log.info("product: " + product.getId());
+					Rating ratingExists = ratingService.findByCustomerIdAndProductId(customer.getId(), product.getId());
+					if (ratingExists != null) {
+						ratingExists.setReview(rating.getReview());
+						ratingExists.setStarNumber(rating.getStarNumber());
+						ratingService.save(ratingExists);
+					} else {
+						Rating r = new Rating();
+						r.setCustomer(customer);
+						r.setProduct(product);
+						r.setReview(rating.getReview());
+						r.setStarNumber(rating.getStarNumber());
+						ratingService.save(r);
+					}
+					return "success";
+				} else {
+					return "customer not exists";
+				}
+			} else {
+				return "admin not review";
+			}
 		}
-		return "failed";
+		return "not login";
 	}
 
 }

@@ -84,12 +84,36 @@
 									</p>
 									<div class="ps-product__rating">
 										<select class="ps-rating" data-read-only="true">
-											<option value="1">1</option>
-											<option value="1">2</option>
-											<option value="1">3</option>
-											<option value="1">4</option>
-											<option value="2">5</option>
-										</select><span>(1 review)</span>
+											<c:choose>
+												<c:when test="${avgStar != null}">
+													<option
+														${(avgStar == 0 || avgStar > 0) && avgStar < 1  ? "selected" : ""}
+														value="0">0</option>
+													<option
+														${(avgStar == 1 || avgStar > 1) && avgStar < 2  ? "selected" : ""}
+														value="1">1</option>
+													<option
+														${(avgStar == 2 || avgStar > 2) && avgStar < 3  ? "selected" : ""}
+														value="2">2</option>
+													<option
+														${(avgStar == 3 || avgStar > 3) && avgStar < 4  ? "selected" : ""}
+														value="3">3</option>
+													<option
+														${(avgStar == 4 || avgStar > 4) && avgStar < 5  ? "selected" : ""}
+														value="4">4</option>
+													<option ${avgStar == 5 || avgStar > 5 ? "selected" : ""}
+														value="5">5</option>
+												</c:when>
+												<c:otherwise>
+													<option value="0">0</option>
+													<option value="1">1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="4">4</option>
+													<option value="5">5</option>
+												</c:otherwise>
+											</c:choose>
+										</select><span>(${numberReview} review)</span>
 									</div>
 								</div>
 								<h4 class="ps-product__price">$${product.price }</h4>
@@ -169,14 +193,38 @@
 										<div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12 ">
 											<div class="ps-block--average-rating">
 												<div class="ps-block__header">
-													<h3>4.00</h3>
+													<h3>${avgStar }</h3>
 													<select class="ps-rating" data-read-only="true">
-														<option value="1">1</option>
-														<option value="1">2</option>
-														<option value="1">3</option>
-														<option value="1">4</option>
-														<option value="2">5</option>
-													</select><span>1 Review</span>
+														<c:choose>
+															<c:when test="${avgStar != null}">
+																<option
+																	${(avgStar == 0 || avgStar > 0) && avgStar < 1  ? "selected" : ""}
+																	value="0">0</option>
+																<option
+																	${(avgStar == 1 || avgStar > 1) && avgStar < 2  ? "selected" : ""}
+																	value="1">1</option>
+																<option
+																	${(avgStar == 2 || avgStar > 2) && avgStar < 3  ? "selected" : ""}
+																	value="2">2</option>
+																<option
+																	${(avgStar == 3 || avgStar > 3) && avgStar < 4  ? "selected" : ""}
+																	value="3">3</option>
+																<option
+																	${(avgStar == 4 || avgStar > 4) && avgStar < 5  ? "selected" : ""}
+																	value="4">4</option>
+																<option ${avgStar == 5 || avgStar > 5 ? "selected" : ""}
+																	value="5">5</option>
+															</c:when>
+															<c:otherwise>
+																<option value="0">0</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+															</c:otherwise>
+														</c:choose>
+													</select><span>${numberReview } Review</span>
 												</div>
 												<div class="ps-block__star">
 													<span>5 Star</span>
@@ -224,20 +272,40 @@
 													<label>Your rating of this product</label> <select
 														id="starNumber" name="starNumber" class="ps-rating"
 														data-read-only="false">
-														<option value="0">0</option>
-														<option value="1">1</option>
-														<option value="2">2</option>
-														<option value="3">3</option>
-														<option value="4">4</option>
-														<option value="5">5</option>
+														<c:choose>
+															<c:when test="${rating != null}">
+																<option ${rating.starNumber == 0 ? "selected" : ""}
+																	value="0">0</option>
+																<option ${rating.starNumber == 1 ? "selected" : ""}
+																	value="1">1</option>
+																<option ${rating.starNumber == 2 ? "selected" : ""}
+																	value="2">2</option>
+																<option ${rating.starNumber == 3 ? "selected" : ""}
+																	value="3">3</option>
+																<option ${rating.starNumber == 4 ? "selected" : ""}
+																	value="4">4</option>
+																<option ${rating.starNumber == 5 ? "selected" : ""}
+																	value="5">5</option>
+															</c:when>
+															<c:otherwise>
+																<option value="0">0</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+															</c:otherwise>
+														</c:choose>
+
 													</select>
 												</div>
 												<div class="form-group">
-													<input type="hidden" id="idUser" name="idUser"
-														value="${user.id }"> <input type="hidden"
-														name="idProduct" value="${product.id }">
+													<input type="hidden" id="user" name="user" value="${user }">
+													<input type="hidden" name="product" value="${product.id }">
 													<textarea class="form-control" rows="6" id="review"
-														name="review" placeholder="Write your review here"></textarea>
+														name="review" placeholder="Write your review here"
+														maxlength="250"><c:if test="${rating != null}">${rating.review }</c:if>
+													</textarea>
 												</div>
 											</form>
 											<div class="form-group submit">
@@ -271,113 +339,10 @@
 					</aside>
 					<aside class="widget widget_sell-on-site">
 						<p>
-							<i class="icon-store"></i> Sell on Martfury?<a> Register Now
-								!</a>
+							<i class="icon-store"></i> Sell on AngryNerds?<a
+								href="${pageContext.servletContext.contextPath}/register">
+								Register Now !</a>
 						</p>
-					</aside>
-					<aside class="widget widget_ads">
-						<a><img
-							src="${pageContext.request.contextPath}/img/ads/product-ads.png"
-							alt=""></a>
-					</aside>
-					<aside class="widget widget_same-brand">
-						<h3>Same Brand</h3>
-						<div class="widget__content">
-							<div class="ps-product">
-								<div class="ps-product__thumbnail">
-									<a href="product-default.html"><img
-										src="${pageContext.request.contextPath}/img/products/shop/5.jpg"
-										alt=""></a>
-									<div class="ps-product__badge">-37%</div>
-									<ul class="ps-product__actions">
-										<li><a data-toggle="tooltip" data-placement="top"
-											title="Add To Cart"><i class="icon-bag2"></i></a></li>
-										<li><a data-placement="top" title="Quick View"
-											data-toggle="modal" data-target="#product-quickview"><i
-												class="icon-eye"></i></a></li>
-										<li><a data-toggle="tooltip" data-placement="top"
-											title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-										<li><a data-toggle="tooltip" data-placement="top"
-											title="Compare"><i class="icon-chart-bars"></i></a></li>
-									</ul>
-								</div>
-								<div class="ps-product__container">
-									<a class="ps-product__vendor">Robert's Store</a>
-									<div class="ps-product__content">
-										<a class="ps-product__title" href="product-default.html">Grand
-											Slam Indoor Of Show Jumping Novel</a>
-										<div class="ps-product__rating">
-											<select class="ps-rating" data-read-only="true">
-												<option value="1">1</option>
-												<option value="1">2</option>
-												<option value="1">3</option>
-												<option value="1">4</option>
-												<option value="2">5</option>
-											</select><span>01</span>
-										</div>
-										<p class="ps-product__price sale">
-											$32.99
-											<del>$41.00 </del>
-										</p>
-									</div>
-									<div class="ps-product__content hover">
-										<a class="ps-product__title" href="product-default.html">Grand
-											Slam Indoor Of Show Jumping Novel</a>
-										<p class="ps-product__price sale">
-											$32.99
-											<del>$41.00 </del>
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="ps-product">
-								<div class="ps-product__thumbnail">
-									<a href="product-default.html"><img
-										src="${pageContext.request.contextPath}/img/products/shop/6.jpg"
-										alt=""></a>
-									<div class="ps-product__badge">-5%</div>
-									<ul class="ps-product__actions">
-										<li><a data-toggle="tooltip" data-placement="top"
-											title="Add To Cart"><i class="icon-bag2"></i></a></li>
-										<li><a data-placement="top" title="Quick View"
-											data-toggle="modal" data-target="#product-quickview"><i
-												class="icon-eye"></i></a></li>
-										<li><a data-toggle="tooltip" data-placement="top"
-											title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-										<li><a data-toggle="tooltip" data-placement="top"
-											title="Compare"><i class="icon-chart-bars"></i></a></li>
-									</ul>
-								</div>
-								<div class="ps-product__container">
-									<a class="ps-product__vendor">Youngshop</a>
-									<div class="ps-product__content">
-										<a class="ps-product__title" href="product-default.html">Sound
-											Intone I65 Earphone White Version</a>
-										<div class="ps-product__rating">
-											<select class="ps-rating" data-read-only="true">
-												<option value="1">1</option>
-												<option value="1">2</option>
-												<option value="1">3</option>
-												<option value="1">4</option>
-												<option value="2">5</option>
-											</select><span>01</span>
-										</div>
-										<p class="ps-product__price sale">
-											$100.99
-											<del>$106.00 </del>
-										</p>
-									</div>
-									<div class="ps-product__content hover">
-										<a class="ps-product__title" href="product-default.html">Sound
-											Intone I65 Earphone White Version</a>
-										<p class="ps-product__price sale">
-											$100.99
-											<del>$106.00 </del>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
 					</aside>
 				</div>
 			</div>
@@ -777,30 +742,6 @@
 				xhr.send(data);
 			}
 
-			// $(document).on("click",".removeCartProduct", function(){
-			// 	if (cartItems.length >0){
-			// 		var deleteProductId = $(this).attr('value')
-			// 		var deleteProductIndex = -1;
-			// 		// alert($(this).attr('value'));
-			// 		for (let i = 0; i < cartItems.length; i++) {
-			// 			if (cartItems[i].product.id == deleteProductId){
-			// 				deleteProductIndex = i;
-			// 				break;
-			// 			}
-			// 		}
-			// 		if (deleteProductIndex != -1){
-			// 			cartItems.splice(deleteProductIndex, 1);
-			// 			countCartItems()
-			// 			showCartItems()
-			// 			updateCartItemsCookie(cartItems)
-			// 			initCartItem();
-			// 		}
-			//
-			//
-			// 	}
-			// });
-
-
 			function updateCartItemsCookieDataDetail() {
 				var value = "[]";
 				if (cartItems.length >0){
@@ -887,6 +828,7 @@
 	<script>
 	 $(document).ready(function (){
          $('#btnSubmitReview').on('click', function (){
+        	 let user = $('#user');
                  $.ajax({
                 	 method: $('#frmReview').attr('method'),
                      url: $('#frmReview').attr('action'),
@@ -894,10 +836,17 @@
                      success : function (data){
                         if(data === 'success'){
                         	msg("Review sucessful!");
-                        }else if(data === 'failed'){
-                           window.location.href = "/login";
-                           msg("Review failed!");
-                        }
+                        }else if(data === 'not login'){
+                        	if(user.val() === ""){
+                           		window.location.href = "/login";
+                        	}
+                           	msg("Review failed!");
+                        }else if(data === 'customer not exists'){
+                           	window.location.href = "/customer/info";
+                           	msg("invalid, please enter your information!");
+                        }else if(data === 'admin not review'){
+                       		msg("invalid, admin has no rights!");
+                    	}	
                      }
                  });
          });
