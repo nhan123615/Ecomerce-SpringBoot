@@ -24,8 +24,6 @@ public class Contact {
     private String subject;
     private String message;
 
-    @Column(columnDefinition = "LONGTEXT")
-    private String rely;
-
-
+    @Column (columnDefinition = "LONGTEXT")
+    private String reply;
 }
