@@ -72,24 +72,27 @@
 																<td class="text-center">${contact.name}</td>
 																<td class="text-center">${contact.email}</td>
 																<td class="text-center">${contact.subject}</td>
-																<td class="text-center position-relative"><c:choose>
-																		<c:when test="${contact.reply == null || contact.reply =='' }">
-																			<a class="my-btn-state rounded-circle btn btn-sm btn-danger">
-																				<i class="fas fa-minus"></i>
+																<td class="text-center position-relative">
+																	<c:choose>
+																		<c:when test="${contact.status }">
+																			<a class="my-btn-state rounded-circle btn btn-sm btn-success">
+																				<i class="fas fa-check"></i>
 																			</a>
+
 																		</c:when>
 
 																		<c:otherwise>
-																			<a class="my-btn-state rounded-circle btn btn-sm btn-success">				
-																				<i class="fas fa-check"></i>
+																			<a class="my-btn-state rounded-circle btn btn-sm btn-danger">
+																				<i class="fas fa-minus"></i>
 																			</a>
 																		</c:otherwise>
 																	</c:choose></td>
 																
-																<td class="text-center"><a
+																<td class="text-center">
+																	<a
 																	href="${pageContext.request.contextPath}/admin/contact/edit?id=${contact.id}"
-																	id="${contact.id}" class="rounded-circle btn btn-sm btn-info"
-																	title="Edit"> <i class="fas fa-pencil-alt"></i>
+																	id="${contact.id}" class=" btn btn-sm btn-info"
+																	title="Edit"> Reply
 																</a>
 																</td>
 															</tr>

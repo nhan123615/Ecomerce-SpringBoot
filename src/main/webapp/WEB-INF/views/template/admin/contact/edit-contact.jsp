@@ -21,15 +21,8 @@
 			<section class="content-header">
 				<div class="container-fluid">
 					<div class="row mb-2">
-						<div class="col-sm-6">
-							<h1>Reply Contact Form</h1>
-						</div>
-						<div class="col-sm-6">
-							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a
-									href="${pageContext.servletContext.contextPath}/admin">Home</a></li>
-								<li class="breadcrumb-item active">Reply Contact Form</li>
-							</ol>
+						<div class="col-sm-12">
+							<h1 class="text-center">Reply Contact Form</h1>
 						</div>
 					</div>
 				</div>
@@ -45,7 +38,6 @@
 							<!-- general form elements -->
 							<div class="card card-primary">
 								<div class="card-header">
-									<h3 class="card-title">Reply Contact Form</h3>
 								</div>
 								<!-- /.card-header -->
 								<!-- form start -->
@@ -54,53 +46,50 @@
 									method="post">
 									<div class="card-body">
 										<div class="form-group">
-																					<input type="hidden" id="id" name="id" value="${contactDetail.id}">
+											<input type="hidden" id="id" name="id" value="${contactDetail.id}">
 										</div>
 										<div class="form-group">	
 												<label for="name">Name</label>
-											<input type="hidden" id="name" name="name" value="${contactDetail.name }">
 											<input type="text" class="form-control" id=name name="name"
 												placeholder="Enter Name" maxlength="20"
-												value="${contactDetail.name }" disabled><span
-												id="nameType-error" class="error invalid-feedback"></span>
+												value="${contactDetail.name }" disabled>
+											<span id="name-error" class="error invalid-feedback"></span>
 										</div>
 										
 										<div class="form-group">
 											<label for="email">Email</label>
-											<input type="hidden" id="email" name="email" value="${contactDetail.email }">
 											<input type="text" class="form-control" id=email name="email"
 												placeholder="Enter Email" maxlength="20"
 												value="${contactDetail.email }" disabled><span
-												id="nameType-error" class="error invalid-feedback"></span>
+												id="email-error" class="error invalid-feedback"></span>
 										</div>
 										
 										<div class="form-group">
 											<label for="subject">Subject</label>
-											<input type="hidden" id="subject" name="subject" value="${contactDetail.subject }">
 											<input type="text" class="form-control" id="subject" name="subject"
 												placeholder="Enter Subject" maxlength="20"
 												value="${contactDetail.subject }" disabled><span
-												id="nameType-error" class="error invalid-feedback"></span>
+												id="subject-error" class="error invalid-feedback"></span>
 										</div>
 										
 										<div class="form-group">
 											<label for="message">Message</label>
-											<input type="hidden" id="message" name="message" value="${contactDetail.message }">
 											<input type="text" class="form-control" id="message" name="message"
 												placeholder="Enter Message" maxlength="20"
 												value="${contactDetail.message }" disabled><span
-												id="nameType-error" class="error invalid-feedback"></span>
+												id="message-error" class="error invalid-feedback"></span>
 										</div>
-										
+
 										<div class="form-group">
-											<label for="reply">Reply</label>
-											<input type="hidden" id="reply" name="reply" value="${contactDetail.reply }">
-											<input type="text" class="form-control" id="reply" name="reply"
-												placeholder="Enter reply" maxlength="20"
-												value="${contactDetail.reply }" ><span
-												id="nameType-error" class="error invalid-feedback"></span>
+											<div id="reply-error" style="color: red;"></div>
+
 										</div>
-										
+										<div class="form-group">
+											<label for="reply">Sending Message Content</label>
+											<textarea id="reply" name="reply"></textarea>
+										</div>
+
+
 									</div>
 									<!-- /.card-body -->
 								</form>
@@ -146,16 +135,82 @@
 	<script>
 		$('#btnReply').on('click', function() {
 			let name = $('#name');
+			let nameError = $('#name-error');
 			let email = $('#email');
+			let emailError = $('#email-error');
 			let subject = $('#subject');
+			let subjectError = $('#subject-error');
 			let message = $('#message');
-			let reply = $('#reply');
-			
-			
-			$('#frmReplyContact').submit();
+			let messageError = $('#message-error');
+			let replyError = $('#reply-error');
+			let hasSubmit = [];
+
+
+			let desc = CKEDITOR.instances['reply']
+					.getData();
+			if (desc == "") {
+				hasSubmit.push(1);
+				replyError.html(
+						'Please enter message!');
+			}
+
+
+			if (hasSubmit.length === 0) {
+				$('#frmReplyContact').submit();
+			}
+
 		
 			
 		});
+	</script>
+	<script src="${pageContext.servletContext.contextPath}/ckeditor/ckeditor.js"></script>
+	<script src="${pageContext.servletContext.contextPath}/ckfinder/ckfinder.js"></script>
+	<script>
+		CKEDITOR
+				.replace(
+						'reply',
+						{
+							filebrowserBrowseUrl: '${pageContext.servletContext.contextPath}/ckfinder/ckfinder.html',
+							filebrowserImageBrowseUrl: '${pageContext.servletContext.contextPath}/ckfinder/ckfinder.html?type=Images',
+							filebrowserFlashBrowseUrl: '${pageContext.servletContext.contextPath}/ckfinder/ckfinder.html?type=Flash',
+							filebrowserUploadUrl: '${pageContext.servletContext.contextPath}/ckfinder/core/connector/java/connector.java?command=QuickUpload&amp;type=Files',
+							filebrowserImageUploadUrl: '${pageContext.servletContext.contextPath}/ckfinder/core/connector/java/connector.java?command=QuickUpload&amp;type=Images',
+							filebrowserFlashUploadUrl: '${pageContext.servletContext.contextPath}/ckfinder/core/connector/java/connector.java?command=QuickUpload&amp;type=Flash'
+						});
+
+		/*Avatar start*/
+
+		function BrowseServer(startupPath, functionData) {
+			// You can use the "CKFinder" class to render CKFinder in a page:
+			var finder = new CKFinder();
+
+			// The path for the installation of CKFinder (default = "/ckfinder/").
+			finder.basePath = '../';
+
+			//Startup path in a form: "Type:/path/to/directory/"
+			finder.startupPath = startupPath;
+
+			// Name of a function which is called when a file is selected in CKFinder.
+			finder.selectActionFunction = SetFileField;
+
+			// Additional data to be passed to the selectActionFunction in a second argument.
+			// We'll use this feature to pass the Id of a field that will be updated.
+			finder.selectActionData = functionData;
+
+			// Name of a function which is called when a thumbnail is selected in CKFinder. Preview img
+			// finder.selectThumbnailActionFunction = ShowThumbnails;
+
+			// Launch CKFinder
+			finder.popup();
+		}
+
+		// This is a sample function which is called when a file is selected in CKFinder.
+		/* function SetFileField(fileUrl, data) {
+            document.getElementById(data["selectActionData"]).innerHTML = this
+                .getSelectedFile().name;
+            document.getElementById("imgpreview").src = fileUrl;
+        } */
+		/*Avatar end*/
 	</script>
 </body>
 </html>

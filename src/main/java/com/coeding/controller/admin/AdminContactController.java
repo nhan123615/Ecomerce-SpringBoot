@@ -3,6 +3,7 @@ package com.coeding.controller.admin;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.coeding.helper.EmailHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +27,17 @@ import com.coeding.service.ContactService;
 public class AdminContactController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(AdminProductController.class);
+	private  ContactService contactService;
+	private EmailHelper emailHelper;
 
 	@Autowired
-	ContactService contactService;
+	public AdminContactController(ContactService contactService, EmailHelper emailHelper) {
+		this.contactService = contactService;
+		this.emailHelper = emailHelper;
+	}
+
+
+
 	
 	@GetMapping("/contact")
 	public String show(Authentication authentication, Model model) {
@@ -56,23 +65,21 @@ public class AdminContactController {
 		return "template/admin/contact/detail-contact";
 	}
 	
-	
-
 
 	@PostMapping(value = "/contact/update")
 	public String update(Model model, Contact cont, HttpServletResponse response,
 			 HttpServletRequest request) {
-		
 		Contact contact = contactService.findById(cont.getId());
-		contact.setEmail(cont.getEmail());
-		contact.setMessage(cont.getMessage());
-		contact.setName(cont.getName());
-		contact.setSubject(cont.getSubject());
 		contact.setReply(cont.getReply());
-		
-		contactService.save(contact);
 		String message = (String) request.getSession().getAttribute("message");
-		request.getSession().setAttribute("message", "Update success !");
+		if (emailHelper.send(contact.getEmail(),contact.getSubject(),contact.getReply())){
+			contact.setStatus(true);
+			contactService.save(contact);
+			request.getSession().setAttribute("message", "Reply success !");
+		}else{
+			request.getSession().setAttribute("message", "Reply failed !");
+		}
+
 		return "redirect:/admin/contact";
 		
 	}
