@@ -76,30 +76,30 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>First Name</label>
-											<input class="form-control" type="text" placeholder="Please enter your first name..." name="firstName" id="fnameSub">
-											<span id="fname-errorSub" class="error invalid-feedback"></span>
+											<input class="form-control" type="text" placeholder="Please enter your first name..." name="firstName" id="fnameSub" required>
+<%--											<span id="fname-errorSub" class="error invalid-feedback"></span>--%>
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>Last Name</label>
-											<input class="form-control" type="text" placeholder="Please enter your last name..." name="lastName" id="lnameSub">
-											<span id="lname-errorSub" class="error invalid-feedback"></span>
+											<input class="form-control" type="text" placeholder="Please enter your last name..." name="lastName" id="lnameSub" required>
+<%--											<span id="lname-errorSub" class="error invalid-feedback"></span>--%>
 
 										</div>
 									</div>
 									<div class="col-sm-12">
 										<label>Email</label>
-										<div class="form-group">
-											<input class="form-control" type="email" placeholder="Please enter your email..." name="email" id="emailSub">
-											<span id="email-errorSub" class="error invalid-feedback"></span>
-
+										<div class="form-group--nest">
+											<input class="form-control" type="email" placeholder="Please enter your email..." name="email" id="emailSub" required>
+<%--											<span id="email-errorSub" class="error invalid-feedback"></span>--%>
+											<button class="ps-btn" id="btnSubcribe">Subscribe</button>
 										</div>
 									</div>
 								</div>
 							</div>
 						</form>
-						<button class="ps-btn" id="btnSubcribe">Subscribe</button>
+
 					</div>
 				</div>
 			</div>
@@ -752,48 +752,51 @@
 
 
 
-<script>
-	$('#btnSubcribe')
-			.on(
-					'click',
-					function () {
-						let fname = $('#fnameSub');
-						let fnameError = $('#fname-errorSub');
-						let lname = $('#lnameSub');
-						let lnameError = $('#lname-errorSub');
-						let email = $('#emailSub');
-						let emailError = $('#email-errorSub');
-						let hasSubmit = [];
+<%--<script>--%>
 
-						if (fname.val().length === 0) {
-							hasSubmit.push(1);
-							fname.addClass(
-									'form-control is-invalid');
-							fnameError.html(
-									'Please enter First name!');
-						}
+<%--	$('#btnSubcribe')--%>
+<%--			.on(--%>
+<%--					'click',--%>
+<%--					function () {--%>
+<%--						let fname = $('#fnameSub');--%>
+<%--						let fnameError = $('#fname-errorSub');--%>
+<%--						let lname = $('#lnameSub');--%>
+<%--						let lnameError = $('#lname-errorSub');--%>
+<%--						let email = $('#emailSub');--%>
+<%--						let emailError = $('#email-errorSub');--%>
+<%--						let hasSubmit = [];--%>
 
-						if (lname.val().length === 0) {
-							hasSubmit.push(1);
-							lname.addClass(
-									'form-control is-invalid');
-							lnameError.html(
-									'Please enter Last name!');
-						}
+<%--						if (fname.val().length === 0) {--%>
+<%--							hasSubmit.push(1);--%>
+<%--							fname.addClass(--%>
+<%--									'form-control is-invalid');--%>
+<%--							fnameError.html(--%>
+<%--									'Please enter First name!');--%>
+<%--						}--%>
 
-						if (email.val().length === 0) {
-							hasSubmit.push(1);
-							email.addClass(
-									'form-control is-invalid');
-							emailError.html(
-									'Please enter Email!');
-						}
+<%--						if (lname.val().length === 0) {--%>
+<%--							hasSubmit.push(1);--%>
+<%--							lname.addClass(--%>
+<%--									'form-control is-invalid');--%>
+<%--							lnameError.html(--%>
+<%--									'Please enter Last name!');--%>
+<%--						}--%>
 
-						if (hasSubmit.length === 0) {
-							$('#frmsubcriber').submit();
-						}
 
-					});
-</script>
+<%--						if (email.val().length === 0) {--%>
+<%--							hasSubmit.push(1);--%>
+<%--							email.addClass(--%>
+<%--									'form-control is-invalid');--%>
+<%--							emailError.html(--%>
+<%--									'Please enter Email!');--%>
+
+<%--						}--%>
+
+<%--						if (hasSubmit.length === 0) {--%>
+<%--							$('#frmsubcriber').submit();--%>
+<%--						}--%>
+
+<%--					});--%>
+<%--</script>--%>
 
 </html>
