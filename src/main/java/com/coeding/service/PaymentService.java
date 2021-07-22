@@ -1,10 +1,11 @@
 package com.coeding.service;
 
-import com.coeding.entity.Customer;
-import com.coeding.entity.Payment;
+import com.coeding.entity.*;
+import com.coeding.repository.CustomerOrderRepository;
 import com.coeding.repository.CustomerRepository;
 import com.coeding.repository.DAO;
 import com.coeding.repository.PaymentRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,9 +19,16 @@ import java.util.List;
  */
 @Service
 @Transactional
+@Slf4j
 public class PaymentService implements DAO<Payment> {
-	@Autowired
 	private PaymentRepository repo;
+	private ProductService productService;
+
+	@Autowired
+	public PaymentService(PaymentRepository repo, ProductService productService) {
+		this.repo = repo;
+		this.productService = productService;
+	}
 
 	@Override
 	public List<Payment> findAll() {
@@ -36,6 +44,8 @@ public class PaymentService implements DAO<Payment> {
 	public void save(Payment vo) {
 		repo.save(vo);
 	}
+
+
 
 	@Override
 	public void delete(Long id) {
@@ -83,6 +93,55 @@ public class PaymentService implements DAO<Payment> {
 	
 	public List<Payment> findAllPaymentByCustomerId(Long customerId){
 		return repo.findAllByCustomerIdOrderByPaymentDateDesc(customerId);
+	}
+
+	public Payment saveVO(Payment vo) {
+		CustomerOrder order =  vo.getCustomerOrder();
+		if (checkOrder(order)){
+			order.getCartItems().forEach(cartItem -> {
+				Product product = productService.findById(cartItem.getProduct().getId());
+				if (isStockEqual(cartItem)){
+					log.info("decrease stock = 0 and set enable to false (out-stock)");
+					product.setStockQuantity(product.getStockQuantity()-cartItem.getSellingQuantity());
+					product.setEnabled(false);
+				}else{
+					log.info("decrease stock");
+					product.setStockQuantity(product.getStockQuantity()-cartItem.getSellingQuantity());
+				}
+				productService.save(product);
+			});
+			log.info("save Payment");
+			return repo.save(vo);
+		}
+		return null;
+	}
+
+
+	private boolean checkOrder(CustomerOrder order){
+		boolean check = true;
+		for (CartItem cartItem: order.getCartItems()) {
+			if (!checkStock(cartItem)){
+				check = false;
+				break;
+			}
+		}
+		return check;
+	}
+
+	private boolean isStockEqual(CartItem item){
+		Product product = productService.findById(item.getProduct().getId());
+		if (item.getSellingQuantity() == product.getStockQuantity()){
+			return true;
+		}
+		return false;
+	}
+
+	private boolean checkStock(CartItem item){
+		Product product = productService.findById(item.getProduct().getId());
+		if (item.getSellingQuantity()<= product.getStockQuantity()){
+			return true;
+		}
+		return false;
 	}
 }
 //commit

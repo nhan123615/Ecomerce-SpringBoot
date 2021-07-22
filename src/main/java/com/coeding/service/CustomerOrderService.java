@@ -61,7 +61,7 @@ public class CustomerOrderService implements DAO<CustomerOrder> {
             return repo.findByCustomerIdOrderByOrderDateDesc(customerId);
     }
 
-    public CustomerOrder saveVO(CustomerOrder vo){
+    public CustomerOrder saveOrder(CustomerOrder vo){
         if (checkOrder(vo)){
             vo.getCartItems().forEach(cartItem -> {
                 Product product = productService.findById(cartItem.getProduct().getId());
@@ -79,6 +79,10 @@ public class CustomerOrderService implements DAO<CustomerOrder> {
             return repo.save(vo);
         }
         return null;
+    }
+
+    public CustomerOrder saveVO(CustomerOrder vo){
+        return repo.save(vo);
     }
 
     private boolean checkOrder(CustomerOrder order){

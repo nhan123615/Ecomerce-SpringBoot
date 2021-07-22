@@ -749,7 +749,23 @@
 	}
 </script>
 <jsp:include page="../message/message-user.jsp"></jsp:include>
+<%--<script>--%>
 
+<%--	$("input").on("keyup", function (e) {--%>
+<%--		// var value = $(this).val() || "";--%>
+<%--		// var regex = /<(\/?\w+[^\n>]*\/?)>/ig;--%>
+<%--		// if(regex.test(value)){--%>
+<%--		// 	layer.msg("Invalid characters!");--%>
+<%--		// 	$(this).val(value.replace(regex, "&lt;$1&gt;"));--%>
+<%--		// 	e.preventDefault();--%>
+<%--		// 	return false;--%>
+<%--			if (e.shiftKey && (e.which == 188 || e.which == 190)) {--%>
+<%--				e.preventDefault();--%>
+<%--				alert("no ko")--%>
+<%--			}--%>
+<%--		// }--%>
+<%--	});--%>
+<%--</script>--%>
 
 
 <%--<script>--%>

@@ -45,32 +45,13 @@ public class CustomerPaypalController {
     public static final String SUCCESS_URL = "customer/payment/paypal/success";
     public static final String CANCEL_URL = "customer/payment/paypal/cancel";
 
-//	@GetMapping("/paypal")
-//	public String home(Authentication authentication, Model model,HttpServletRequest request) {
-//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-//
-//		model.addAttribute("customerOrder",customerOrderService.findById(11L));
-//		model.addAttribute("user",	userDetails.getUser());
-//		return "template/user/customer/payment/paypal/payment-paypal";
-//	}
-
 
     @PostMapping("/paypal")
     public String payment(
             HttpServletRequest request,
             Authentication authentication
     ) {
-//        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
         User user = userHelper.getUser(authentication,userService);
-//        if (authentication.getPrincipal() instanceof  UserDetail){
-//            UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-//            user = userDetails.getUser();
-//        }
-//
-//        if (authentication.getPrincipal() instanceof OAuth2User) {
-//            OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
-//            user = userService.findByEmail(String.valueOf(oAuth2User.getAttributes().get("email")));
-//        }
         Long countCustomer = customerService.countByUserId(user.getId());
         if (countCustomer > 0) {
             Customer customer = customerService.findByUserId(user.getId());
@@ -104,20 +85,14 @@ public class CustomerPaypalController {
 
     @GetMapping(value = CANCEL_URL)
     public String cancelPay(Authentication authentication, Model model) {
-//        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-//        model.addAttribute("user", userDetails.getUser());
-//        return "template/user/customer/payment/paypal/payment-failed";
         return "redirect:/customer/payment/paypal/payment-failed";
 
     }
 
     @GetMapping(value = SUCCESS_URL)
     public String successPay(Authentication authentication, Model model, @RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId) {
-//        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-//        model.addAttribute("user", userDetails.getUser());
         try {
             Payment payment = service.executePayment(paymentId, payerId);
-//	            System.out.println(payment.toJSON());
             if (payment.getState().equals("approved")) {
                 String transactionId = payment.getId();
                 String payerEmail = payment.getPayer().getPayerInfo().getEmail();
@@ -127,30 +102,28 @@ public class CustomerPaypalController {
                 String payerPostalCode = payment.getPayer().getPayerInfo().getShippingAddress().getPostalCode();
                 String payerState = payment.getPayer().getPayerInfo().getShippingAddress().getState();
 
-
-                paymentService.save(new com.coeding.entity.Payment(
+                if (paymentService.saveVO(new com.coeding.entity.Payment(
                         order.getTotalPrice(),
                         "paypal",
                         true,
                         order
-                ));
+                ))!=null){
+                    com.coeding.entity.Payment orderPayment = paymentService.findPaymentByCustomerOrderId(order.getId());
+                    paypalDetailService.save(new PaypalDetail(
+                            transactionId,
+                            payerEmail,
+                            payerRecipientName,
+                            payerCity,
+                            payerCountry,
+                            payerPostalCode,
+                            payerState,
+                            orderPayment
+                    ));
+                    order.setStatus(true);
+                    customerOrderService.save(order);
+                    return "redirect:/customer/payment/paypal/payment-success";
+                }
 
-                com.coeding.entity.Payment orderPayment = paymentService.findPaymentByCustomerOrderId(order.getId());
-                paypalDetailService.save(new PaypalDetail(
-                        transactionId,
-                        payerEmail,
-                        payerRecipientName,
-                        payerCity,
-                        payerCountry,
-                        payerPostalCode,
-                        payerState,
-                        orderPayment
-                ));
-
-                order.setStatus(true);
-                customerOrderService.save(order);
-//                return "template/user/customer/payment/paypal/payment-success";
-                return "redirect:/customer/payment/paypal/payment-success";
             }
         } catch (PayPalRESTException e) {
             e.printStackTrace();

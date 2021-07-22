@@ -41,6 +41,11 @@ public class CustomerCheckoutController {
         this.userHelper=userHelper;
     }
 
+//    @GetMapping
+//    public String test(){
+//        return "template/user/customer/product/checkout";
+//    }
+
     @GetMapping("/checkout-page")
     public String checkoutPage(Authentication authentication, Model model){
 //      check out page
