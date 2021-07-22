@@ -700,7 +700,7 @@
 
         function paging() {
             var pagination = document.getElementById("paging");
-            pagination.remove();
+            // pagination.remove();
 
         }
 
