@@ -64,8 +64,6 @@
                                                                 <td><fmt:formatDate value='${order.orderDate}'  type='date' pattern='dd/MM/yyyy'/></td>
                                                                 <td>$ <fmt:formatNumber type="number" value="${order.totalPrice}"/></td>
                                                                     ${order.status ? "  <td class='ps-tag ps-tag--in-stock ' style='color: #669900'>Success</td>" :" <td class='ps-tag ps-tag--in-stock text-danger'>Cancel</td>"}
-
-
                                                             </tr>
 
                                                     </c:forEach>
@@ -81,19 +79,8 @@
                                         </tbody>
                                     </table>
                                 </div>
-<%--                                <div class="ps-pagination">--%>
-<%--                                    <ul class="pagination" >--%>
-<%--                                        <li class="active"><a >1</a></li>--%>
-<%--                                        <li><a >2</a></li>--%>
-<%--                                        <li><a >3</a></li>--%>
-<%--                                        <li><a >Next Page<i class="icon-chevron-right"></i></a></li>--%>
-<%--                                    </ul>--%>
-<%--                                </div>--%>
-<%--                                <div class="ps-pagination">--%>
-                                    <div id="paging" class="text-center" style="margin-top: 50px">
-
-                                    </div>
-<%--                                </div>--%>
+                                <div id="paging" class="text-center" style="margin-top: 50px">
+                                </div>
 
                             </div>
                         </div>

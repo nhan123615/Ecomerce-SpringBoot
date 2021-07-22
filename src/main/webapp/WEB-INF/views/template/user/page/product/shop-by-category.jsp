@@ -76,67 +76,67 @@
                             <div style="height: 1px; width: 10px;    background: #bdbdbd;     margin: 0 .625rem;"></div>
                             <input  class="form-control" type="number" name="priceTo" id="to" placeholder="To" style = "width: 100px" required>
                         </div>
-                        <button class="ps-btn mt-3" style="padding: 10px 55px" id="btnPrice">Apply</button>
+                        <button class="ps-btn mt-3 " style="padding: 10px 55px;margin-left: 40px" id="btnPrice">Apply</button>
                         <%--                        </form>--%>
                     </figure>
-                    <figure>
-                        <h4 class="widget-title">By Rating</h4>
-                        <div class="ps-checkbox">
-                            <input class="form-control" type="checkbox" id="review-1" name="review">
-                            <label for="review-1"><span><i class="fa fa-star rate"></i><i class="fa fa-star rate"></i><i class="fa fa-star rate"></i><i class="fa fa-star rate"></i><i class="fa fa-star rate"></i></span><small>(13)</small></label>
-                        </div>
-                        <div class="ps-checkbox">
-                            <input class="form-control" type="checkbox" id="review-2" name="review">
-                            <label for="review-2"><span><i class="fa fa-star rate"></i><i class="fa fa-star rate"></i><i class="fa fa-star rate"></i><i class="fa fa-star rate"></i><i class="fa fa-star"></i></span><small>(13)</small></label>
-                        </div>
-                        <div class="ps-checkbox">
-                            <input class="form-control" type="checkbox" id="review-3" name="review">
-                            <label for="review-3"><span><i class="fa fa-star rate"></i><i class="fa fa-star rate"></i><i class="fa fa-star rate"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span><small>(5)</small></label>
-                        </div>
-                        <div class="ps-checkbox">
-                            <input class="form-control" type="checkbox" id="review-4" name="review">
-                            <label for="review-4"><span><i class="fa fa-star rate"></i><i class="fa fa-star rate"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span><small>(5)</small></label>
-                        </div>
-                        <div class="ps-checkbox">
-                            <input class="form-control" type="checkbox" id="review-5" name="review">
-                            <label for="review-5"><span><i class="fa fa-star rate"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span><small>(1)</small></label>
-                        </div>
-                    </figure>
-                    <figure>
-                        <h4 class="widget-title">By Color</h4>
-                        <div class="ps-checkbox ps-checkbox--color color-1 ps-checkbox--inline">
-                            <input class="form-control" type="checkbox" id="color-1" name="size">
-                            <label for="color-1"></label>
-                        </div>
-                        <div class="ps-checkbox ps-checkbox--color color-2 ps-checkbox--inline">
-                            <input class="form-control" type="checkbox" id="color-2" name="size">
-                            <label for="color-2"></label>
-                        </div>
-                        <div class="ps-checkbox ps-checkbox--color color-3 ps-checkbox--inline">
-                            <input class="form-control" type="checkbox" id="color-3" name="size">
-                            <label for="color-3"></label>
-                        </div>
-                        <div class="ps-checkbox ps-checkbox--color color-4 ps-checkbox--inline">
-                            <input class="form-control" type="checkbox" id="color-4" name="size">
-                            <label for="color-4"></label>
-                        </div>
-                        <div class="ps-checkbox ps-checkbox--color color-5 ps-checkbox--inline">
-                            <input class="form-control" type="checkbox" id="color-5" name="size">
-                            <label for="color-5"></label>
-                        </div>
-                        <div class="ps-checkbox ps-checkbox--color color-6 ps-checkbox--inline">
-                            <input class="form-control" type="checkbox" id="color-6" name="size">
-                            <label for="color-6"></label>
-                        </div>
-                        <div class="ps-checkbox ps-checkbox--color color-7 ps-checkbox--inline">
-                            <input class="form-control" type="checkbox" id="color-7" name="size">
-                            <label for="color-7"></label>
-                        </div>
-                        <div class="ps-checkbox ps-checkbox--color color-8 ps-checkbox--inline">
-                            <input class="form-control" type="checkbox" id="color-8" name="size">
-                            <label for="color-8"></label>
-                        </div>
-                    </figure>
+<%--                    <figure>--%>
+<%--                        <h4 class="widget-title">By Rating</h4>--%>
+<%--                        <div class="ps-checkbox">--%>
+<%--                            <input class="form-control" type="checkbox" id="review-1" name="review">--%>
+<%--                            <label for="review-1"><span><i class="fa fa-star rate"></i><i class="fa fa-star rate"></i><i class="fa fa-star rate"></i><i class="fa fa-star rate"></i><i class="fa fa-star rate"></i></span><small>(13)</small></label>--%>
+<%--                        </div>--%>
+<%--                        <div class="ps-checkbox">--%>
+<%--                            <input class="form-control" type="checkbox" id="review-2" name="review">--%>
+<%--                            <label for="review-2"><span><i class="fa fa-star rate"></i><i class="fa fa-star rate"></i><i class="fa fa-star rate"></i><i class="fa fa-star rate"></i><i class="fa fa-star"></i></span><small>(13)</small></label>--%>
+<%--                        </div>--%>
+<%--                        <div class="ps-checkbox">--%>
+<%--                            <input class="form-control" type="checkbox" id="review-3" name="review">--%>
+<%--                            <label for="review-3"><span><i class="fa fa-star rate"></i><i class="fa fa-star rate"></i><i class="fa fa-star rate"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span><small>(5)</small></label>--%>
+<%--                        </div>--%>
+<%--                        <div class="ps-checkbox">--%>
+<%--                            <input class="form-control" type="checkbox" id="review-4" name="review">--%>
+<%--                            <label for="review-4"><span><i class="fa fa-star rate"></i><i class="fa fa-star rate"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span><small>(5)</small></label>--%>
+<%--                        </div>--%>
+<%--                        <div class="ps-checkbox">--%>
+<%--                            <input class="form-control" type="checkbox" id="review-5" name="review">--%>
+<%--                            <label for="review-5"><span><i class="fa fa-star rate"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span><small>(1)</small></label>--%>
+<%--                        </div>--%>
+<%--                    </figure>--%>
+<%--                    <figure>--%>
+<%--                        <h4 class="widget-title">By Color</h4>--%>
+<%--                        <div class="ps-checkbox ps-checkbox--color color-1 ps-checkbox--inline">--%>
+<%--                            <input class="form-control" type="checkbox" id="color-1" name="size">--%>
+<%--                            <label for="color-1"></label>--%>
+<%--                        </div>--%>
+<%--                        <div class="ps-checkbox ps-checkbox--color color-2 ps-checkbox--inline">--%>
+<%--                            <input class="form-control" type="checkbox" id="color-2" name="size">--%>
+<%--                            <label for="color-2"></label>--%>
+<%--                        </div>--%>
+<%--                        <div class="ps-checkbox ps-checkbox--color color-3 ps-checkbox--inline">--%>
+<%--                            <input class="form-control" type="checkbox" id="color-3" name="size">--%>
+<%--                            <label for="color-3"></label>--%>
+<%--                        </div>--%>
+<%--                        <div class="ps-checkbox ps-checkbox--color color-4 ps-checkbox--inline">--%>
+<%--                            <input class="form-control" type="checkbox" id="color-4" name="size">--%>
+<%--                            <label for="color-4"></label>--%>
+<%--                        </div>--%>
+<%--                        <div class="ps-checkbox ps-checkbox--color color-5 ps-checkbox--inline">--%>
+<%--                            <input class="form-control" type="checkbox" id="color-5" name="size">--%>
+<%--                            <label for="color-5"></label>--%>
+<%--                        </div>--%>
+<%--                        <div class="ps-checkbox ps-checkbox--color color-6 ps-checkbox--inline">--%>
+<%--                            <input class="form-control" type="checkbox" id="color-6" name="size">--%>
+<%--                            <label for="color-6"></label>--%>
+<%--                        </div>--%>
+<%--                        <div class="ps-checkbox ps-checkbox--color color-7 ps-checkbox--inline">--%>
+<%--                            <input class="form-control" type="checkbox" id="color-7" name="size">--%>
+<%--                            <label for="color-7"></label>--%>
+<%--                        </div>--%>
+<%--                        <div class="ps-checkbox ps-checkbox--color color-8 ps-checkbox--inline">--%>
+<%--                            <input class="form-control" type="checkbox" id="color-8" name="size">--%>
+<%--                            <label for="color-8"></label>--%>
+<%--                        </div>--%>
+<%--                    </figure>--%>
                 </aside>
             </div>
             <div class="ps-layout__right">
@@ -355,14 +355,19 @@
         });
 
         //add to Cart
-        $(document).on("click",".toCart", function(event){
-            toCart(this.getAttribute('value'),event)
-        });
+        // $(document).on("click",".toCart", function(event){
+        //     toCart(this.getAttribute('value'),event)
+        // });
 
         $(document).on("click",".buyNow", function(event){
+            var user = '${user}'
             toCart(this.getAttribute('value'),event)
             window.setTimeout(function () {
-                window.location.href = "${pageContext.servletContext.contextPath}/cart";
+                if (user !==""){
+                    window.location.href = "${pageContext.servletContext.contextPath}/customer/product/checkout-page";
+                }else{
+                    window.location.href = "${pageContext.servletContext.contextPath}/cart";
+                }
             },500)
         });
 
@@ -370,7 +375,7 @@
 
         function toCart(value,event){
             if (checkStock(value,getCartProductQty(value))){
-                addItemToCart("${pageContext.servletContext.contextPath}/cart/get?productId="+value)
+                addItemToCartProduct("${pageContext.servletContext.contextPath}/cart/get?productId="+value)
             }else{
                 event.preventDefault()
             }
@@ -559,7 +564,7 @@
 
 
 
-        function addItemToCart(url){
+        function addItemToCartProduct(url){
             const data = null;
             const xhr = new XMLHttpRequest();
             xhr.addEventListener("readystatechange", function () {
@@ -580,7 +585,7 @@
                             cartItems.push(json)
                             countCartItems()
                         }
-                        updateCartItemsCookie(cartItems)
+                        updateCartItemsCookieProduct(cartItems)
                         showCartItems()
                         console.log(cartItems)
                     }else{
@@ -588,7 +593,7 @@
                         console.log(cartItems)
                         countCartItems()
                         showCartItems()
-                        updateCartItemsCookie(cartItems)
+                        updateCartItemsCookieProduct(cartItems)
                     }
 
                 }
@@ -601,6 +606,7 @@
 
         function getCartItemContent(items) {
             var cartItemContent ="";
+            var user = '${user}'
             if (cartItems.length >0){
                 var totalPrice = 0;
                 for (let i = 0; i < cartItems.length; i++) {
@@ -616,7 +622,11 @@
                 cartItemContent+="<hr>"
                 cartItemContent+="<div class='ps-cart__footer'>"
                 cartItemContent += "<h3>Sub Total:<strong>$"+totalPrice+"</strong></h3>"
-                cartItemContent +="<figure><a class='ps-btn' href='${pageContext.servletContext.contextPath}/cart'>View Cart</a><a class='ps-btn' href='${pageContext.servletContext.contextPath}/customer/product/checkout'>Checkout</a></figure>"
+                if(user !==""){
+                    cartItemContent +="<figure><a class='ps-btn' href='${pageContext.servletContext.contextPath}/customer/product/checkout-page'>View Cart</a><a class='ps-btn' href='${pageContext.servletContext.contextPath}/customer/product/checkout'>Checkout</a></figure>"
+                }else{
+                    cartItemContent +="<figure><a class='ps-btn' href='${pageContext.servletContext.contextPath}/cart'>View Cart</a><a class='ps-btn' href='${pageContext.servletContext.contextPath}/customer/product/checkout'>Checkout</a></figure>"
+                }
                 cartItemContent +=" </div>"
             }
             return cartItemContent;
@@ -640,7 +650,7 @@
 
         }
 
-        function updateCartItemsCookie(cartItemsArr) {
+        function updateCartItemsCookieProduct(cartItemsArr) {
             var value = "[]";
             if (cartItemsArr.length >0){
                 value ="["
@@ -690,7 +700,7 @@
 
         function paging() {
             var pagination = document.getElementById("paging");
-            pagination.remove();
+            // pagination.remove();
 
         }
 

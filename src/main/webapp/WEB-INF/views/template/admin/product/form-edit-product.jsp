@@ -157,7 +157,8 @@
 														<input class="custom-control-input" type="checkbox"
 															id="customCheckbox2"
 															<c:if test="${product.enabled == true}">checked</c:if>
-															name="enabled"> <label for="customCheckbox2"
+															name="enabled">
+														<label for="customCheckbox2"
 															class="custom-control-label">Enable</label>
 													</div>
 												</div>
@@ -434,15 +435,19 @@
 								$('#price').addClass('form-control is-valid');
 								$('#price-error').html('');
 							}
-
+							
+							function isInt(value) {
+								var er = /^-?[0-9]+$/;
+								return er.test(value);
+							}
 							if (stockQuantity.val().length === 0) {
 								hasSubmit.push(1);
 								$('#stockQuantity').addClass(
 										'form-control is-invalid');
 								$('#stockQuantity-error').html(
 										'Please enter stock quantity!');
-							} else if (Math.floor(stockQuantity.val()) != stockQuantity
-									.val()) {
+							} else if (!isInt(stockQuantity
+									.val())) {
 								hasSubmit.push(1);
 								$('#stockQuantity').addClass(
 										'form-control is-invalid');
@@ -534,10 +539,10 @@
 								hasSubmit.push(1);
 								$('#img-error').html('Please choose image!');
 								$('#img-successful').html('');
-							} else if (totalSize > 10240000) {
+							} else if (totalSize > 2048000) {
 								hasSubmit.push(1);
 								$('#img-error').html(
-										'Image size is not greater than 10MB!');
+										'Image size is not greater than 2MB!');
 								$('#img-successful').html('');
 							} else {
 								$('#img-successful').html('Valid!');
@@ -548,10 +553,10 @@
 								hasSubmit.push(1);
 								$('#img1-error').html('Please choose image!');
 								$('#img1-successful').html('');
-							} else if (totalSize1 > 10240000) {
+							} else if (totalSize1 > 2048000) {
 								hasSubmit.push(1);
 								$('#img1-error').html(
-										'Image size is not greater than 10MB!');
+										'Image size is not greater than 2MB!');
 								$('#img1-successful').html('');
 							} else {
 								$('#img1-successful').html('Valid!');
@@ -562,10 +567,10 @@
 								hasSubmit.push(1);
 								$('#img2-error').html('Please choose image!');
 								$('#img2-successful').html('');
-							} else if (totalSize2 > 10240000) {
+							} else if (totalSize2 > 2048000) {
 								hasSubmit.push(1);
 								$('#img2-error').html(
-										'Image size is not greater than 10MB!');
+										'Image size is not greater than 2MB!');
 								$('#img2-successful').html('');
 							} else {
 								$('#img2-successful').html('Valid!');
@@ -576,10 +581,10 @@
 								hasSubmit.push(1);
 								$('#img3-error').html('Please choose image!');
 								$('#img3-successful').html('');
-							} else if (totalSize3 > 10240000) {
+							} else if (totalSize3 > 2048000) {
 								hasSubmit.push(1);
 								$('#img3-error').html(
-										'Image size is not greater than 10MB!');
+										'Image size is not greater than 2MB!');
 								$('#img3-successful').html('');
 							} else {
 								$('#img3-successful').html('Valid!');
@@ -593,6 +598,11 @@
 								$('#description-error').html(
 										'Please enter description!');
 								$('#description-successful').html('');
+							} else if (desc.length > 10000) {
+								hasSubmit.push(1);
+								$('#description-error').html(
+										'Description cannot be longer than 10000 characters!');
+								$('#description-successful').html('');
 							} else {
 								$('#description-error').html('');
 								$('#description-successful').html('Valid!');
@@ -604,6 +614,11 @@
 								hasSubmit.push(1);
 								$('#shordescription-error').html(
 										'Please enter short description!');
+								$('#shordescription-successful').html('');
+							} else if (shortDesc.length > 255) {
+								hasSubmit.push(1);
+								$('#shordescription-error').html(
+										'Short description cannot be longer than 255 characters!');
 								$('#shordescription-successful').html('');
 							} else {
 								$('#shordescription-error').html('');

@@ -2,6 +2,8 @@
 
 
 
+
+
 <%--Quick view product--%>
 <c:forEach var="p" items="${allProducts}">
 
@@ -50,15 +52,64 @@
 
 </c:forEach>
 <%--Quick view product--%>
-<hr>
+
 <!-- Messenger Plugin chat Code -->
 <div id="fb-root"></div>
 
 <!-- Your Plugin chat code -->
 <div id="fb-customer-chat" class="fb-customerchat"></div>
+<div class="ps-newsletter" >
+	<div class="ps-container">
+		<div class="ps-form--newsletter"  >
+			<div class="row">
+				<div class="col-xl-5 col-lg-12 col-md-12 col-sm-12 col-12 ">
+					<div class="ps-form__left">
+						<h3>Newsletter</h3>
+						<p>Subcribe to get information about products and coupons</p>
+					</div>
+				</div>
+				<div class="col-xl-7 col-lg-12 col-md-12 col-sm-12 col-12 ">
+					<div class="ps-form__right">
+						<form action="${pageContext.servletContext.contextPath}/subcriber" method="post" id="frmsubcriber" class="mb-3">
+							<div class="ps-form__content">
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label>First Name</label>
+											<input class="form-control" type="text" placeholder="Please enter your first name..." name="firstName" id="fnameSub" maxlength="250" required>
+<%--											<span id="fname-errorSub" class="error invalid-feedback"></span>--%>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label>Last Name</label>
+											<input class="form-control" type="text" placeholder="Please enter your last name..." name="lastName" id="lnameSub" maxlength="250" required>
+<%--											<span id="lname-errorSub" class="error invalid-feedback"></span>--%>
 
+										</div>
+									</div>
+									<div class="col-sm-12">
+										<label>Email</label>
+										<div class="form-group--nest">
+											<input class="form-control" type="email" placeholder="Please enter your email..." name="email" id="emailSub" maxlength="250" required>
+<%--											<span id="email-errorSub" class="error invalid-feedback"></span>--%>
+											<button class="ps-btn" id="btnSubcribe">Subscribe</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 <footer class="ps-footer">
 	<div class="ps-container">
+
+
 		<div class="ps-footer__widgets">
 			<aside class="widget widget_footer widget_contact-us">
 				<h4 class="widget-title">Contact us</h4>
@@ -370,6 +421,7 @@
 	});
 
 	function getCartItemContent(items) {
+		var user = '${user}';
 		var cartItemContent = "";
 		if (cartItems.length > 0) {
 			var totalPrice = 0;
@@ -391,7 +443,11 @@
 			cartItemContent += "<div class='ps-cart__footer'>"
 			cartItemContent += "<h3>Sub Total:<strong>$" + totalPrice
 					+ "</strong></h3>"
-			cartItemContent += "<figure><a class='ps-btn' href='${pageContext.servletContext.contextPath}/cart'>View Cart</a><a class='ps-btn' href='${pageContext.servletContext.contextPath}/customer/product/checkout'>Checkout</a></figure>"
+			if (user !==""){
+				cartItemContent += "<figure><a class='ps-btn' href='${pageContext.servletContext.contextPath}/customer/product/checkout-page'>View Cart</a><a class='ps-btn' href='${pageContext.servletContext.contextPath}/customer/product/checkout'>Checkout</a></figure>"
+			}else{
+				cartItemContent += "<figure><a class='ps-btn' href='${pageContext.servletContext.contextPath}/cart'>View Cart</a><a class='ps-btn' href='${pageContext.servletContext.contextPath}/customer/product/checkout'>Checkout</a></figure>"
+			}
 			cartItemContent += " </div>"
 		}
 		return cartItemContent;
@@ -501,10 +557,15 @@
 		 });
 
 		 $(document).on("click",".buyNow", function(event){
+		 	var user = '${user}'
 			 initCartItem();
 			 toCart(this.getAttribute('value'),event)
 			 window.setTimeout(function () {
-				 window.location.href = "${pageContext.servletContext.contextPath}/cart";
+			 	if (user !==""){
+					window.location.href = "${pageContext.servletContext.contextPath}/customer/product/checkout-page";
+				}else{
+					window.location.href = "${pageContext.servletContext.contextPath}/cart";
+				}
 			 },500)
 		 });
 
@@ -688,4 +749,70 @@
 	}
 </script>
 <jsp:include page="../message/message-user.jsp"></jsp:include>
+<%--<script>--%>
+
+<%--	$("input").on("keyup", function (e) {--%>
+<%--		// var value = $(this).val() || "";--%>
+<%--		// var regex = /<(\/?\w+[^\n>]*\/?)>/ig;--%>
+<%--		// if(regex.test(value)){--%>
+<%--		// 	layer.msg("Invalid characters!");--%>
+<%--		// 	$(this).val(value.replace(regex, "&lt;$1&gt;"));--%>
+<%--		// 	e.preventDefault();--%>
+<%--		// 	return false;--%>
+<%--			if (e.shiftKey && (e.which == 188 || e.which == 190)) {--%>
+<%--				e.preventDefault();--%>
+<%--				alert("no ko")--%>
+<%--			}--%>
+<%--		// }--%>
+<%--	});--%>
+<%--</script>--%>
+
+
+<%--<script>--%>
+
+<%--	$('#btnSubcribe')--%>
+<%--			.on(--%>
+<%--					'click',--%>
+<%--					function () {--%>
+<%--						let fname = $('#fnameSub');--%>
+<%--						let fnameError = $('#fname-errorSub');--%>
+<%--						let lname = $('#lnameSub');--%>
+<%--						let lnameError = $('#lname-errorSub');--%>
+<%--						let email = $('#emailSub');--%>
+<%--						let emailError = $('#email-errorSub');--%>
+<%--						let hasSubmit = [];--%>
+
+<%--						if (fname.val().length === 0) {--%>
+<%--							hasSubmit.push(1);--%>
+<%--							fname.addClass(--%>
+<%--									'form-control is-invalid');--%>
+<%--							fnameError.html(--%>
+<%--									'Please enter First name!');--%>
+<%--						}--%>
+
+<%--						if (lname.val().length === 0) {--%>
+<%--							hasSubmit.push(1);--%>
+<%--							lname.addClass(--%>
+<%--									'form-control is-invalid');--%>
+<%--							lnameError.html(--%>
+<%--									'Please enter Last name!');--%>
+<%--						}--%>
+
+
+<%--						if (email.val().length === 0) {--%>
+<%--							hasSubmit.push(1);--%>
+<%--							email.addClass(--%>
+<%--									'form-control is-invalid');--%>
+<%--							emailError.html(--%>
+<%--									'Please enter Email!');--%>
+
+<%--						}--%>
+
+<%--						if (hasSubmit.length === 0) {--%>
+<%--							$('#frmsubcriber').submit();--%>
+<%--						}--%>
+
+<%--					});--%>
+<%--</script>--%>
+
 </html>

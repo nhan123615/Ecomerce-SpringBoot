@@ -46,17 +46,6 @@ public class ControllerAdvisor  extends DefaultHandlerExceptionResolver  {
 
     @ModelAttribute("user")
     public User user(Authentication authentication){
-//        User model = null;
-//        if (authentication != null) {
-//            if (authentication.getPrincipal() instanceof  UserDetail){
-//                UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-//                model = userDetails.getUser();
-//            }
-//            if (authentication.getPrincipal() instanceof OAuth2User) {
-//                OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
-//                model = userService.findByEmail(String.valueOf(oAuth2User.getAttributes().get("email")));
-//            }
-//        }
         return userHelper.getUser(authentication,userService);
     }
 

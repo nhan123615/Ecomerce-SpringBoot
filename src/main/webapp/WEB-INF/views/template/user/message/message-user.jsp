@@ -9,7 +9,7 @@
                 var value = '${sessionScope.message}'
                 if (value !="" || value !=null){
                     var style = value;
-                    var time = 3000;
+                    var time = 4000;
                     var message;
                     switch(value){
                         case "alert-success": message ="Successful !";break;
@@ -17,7 +17,7 @@
                         case "alert-danger": message = "Failed !";break;
                         case "alert_info": message ="Data not found";break;
                         default:
-                            if (value.includes("invalid")||value.includes("failed")){
+                            if (value.toLocaleLowerCase().includes("invalid")||value.toLocaleLowerCase().includes("failed")){
                                 style = "alert-danger";
                             }else{
                                 style = "alert-success";

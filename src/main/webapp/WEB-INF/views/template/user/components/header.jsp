@@ -50,7 +50,7 @@
         </div><a class="ps-logo" href="${pageContext.servletContext.contextPath}/"><img src="${pageContext.servletContext.contextPath}/img/Angry-Nerds-2.png"  alt=""></a></div>
 
     <div class="header__center">
-                <form class="ps-form--quick-search" action="index.html" method="get">
+                <div class="ps-form--quick-search" >
                     <div class="form-group--icon"><i class="icon-chevron-down"></i>
                         <select class="form-control categorySearch" style="width: 150px">
                             <option value="all" selected="selected">All</option>
@@ -66,10 +66,21 @@
                         <div class="ps-panel__content tableSearch">
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
             <div class="header__right">
-                <div class="header__actions"><a class="header__extra"  style="display: none"><i class="icon-chart-bars"></i><span><i>0</i></span></a><a class="header__extra" href="${pageContext.servletContext.contextPath}/product/wishlist"><i class="icon-heart"></i><span><i id="countWish">0</i></span></a>
+                <div class="header__actions">
+                    <a class="header__extra"  style="display: none"><i class="icon-chart-bars"></i><span><i>0</i></span></a>
+
+                    <c:choose>
+                        <c:when test="${user!=null}">
+                            <a class="header__extra" href="${pageContext.servletContext.contextPath}/customer/wishlist"><i class="icon-heart"></i><span><i id="countWish">0</i></span></a>
+                        </c:when>
+                        <c:otherwise>
+                            <a class="header__extra" href="${pageContext.servletContext.contextPath}/product/wishlist"><i class="icon-heart"></i><span><i id="countWish">0</i></span></a>
+                        </c:otherwise>
+                    </c:choose>
+
                     <div class="ps-cart--mini"><a class="header__extra" ><i class="icon-bag2"></i><span><i id="cartItemCount-1">0</i></span></a>
                         <div class="ps-cart__content"  id="cart-content-1" style="display: none" >
                             <div class="ps-cart__items">
@@ -88,7 +99,17 @@
                             </div>
                             <div class="ps-cart__footer">
                                 <h3>Sub Total:<strong>$0.00</strong></h3>
-                                <figure><a class="ps-btn" href="${pageContext.servletContext.contextPath}/cart">View Cart</a><a class="ps-btn" href="${pageContext.servletContext.contextPath}/customer/product/checkout">Checkout</a></figure>
+                                <figure>
+                                    <c:choose>
+                                        <c:when test="${user !=null}">
+                                            <a class="ps-btn" href="${pageContext.servletContext.contextPath}/customer/product/checkout-page">View Cart</a>
+
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a class="ps-btn" href="${pageContext.servletContext.contextPath}/cart">View Cart</a>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <a class="ps-btn" href="${pageContext.servletContext.contextPath}/customer/product/checkout">Checkout</a></figure>
                             </div>
                         </div >
                     </div>
@@ -189,111 +210,12 @@
                     </li>
                     <li ><a href="${pageContext.servletContext.contextPath}/product">Shop</a>
                     </li>
-                    <li class="menu-item-has-children has-mega-menu"><a >Pages</a><span class="sub-toggle"></span>
-                        <div class="mega-menu">
-                            <div class="mega-menu__column">
-                                <h4>Basic Page<span class="sub-toggle"></span></h4>
-                                <ul class="mega-menu__list">
-                                    <li><a href="about-us.html">About Us</a>
-                                    </li>
-                                    <li><a href="contact-us.html">Contact</a>
-                                    </li>
-                                    <li><a href="faqs.html">Faqs</a>
-                                    </li>
-                                    <li><a href="comming-soon.html">Comming Soon</a>
-                                    </li>
-                                    <li><a href="404-page.html">404 Page</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="mega-menu__column">
-                                <h4>Vendor Pages<span class="sub-toggle"></span></h4>
-                                <ul class="mega-menu__list">
-                                    <li><a href="become-a-vendor.html">Become a Vendor</a>
-                                    </li>
-                                    <li><a href="vendor-store.html">Vendor Store</a>
-                                    </li>
-                                    <li><a href="vendor-dashboard-free.html">Vendor Dashboard Free</a>
-                                    </li>
-                                    <li><a href="vendor-dashboard-pro.html">Vendor Dashboard Pro</a>
-                                    </li>
-                                    <li><a href="store-list.html">Store List</a>
-                                    </li>
-                                    <li><a href="store-list.html">Store List 2</a>
-                                    </li>
-                                    <li><a href="store-detail.html">Store Detail</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="mega-menu__column">
-                                <h4>Account Pages<span class="sub-toggle"></span></h4>
-                                <ul class="mega-menu__list">
-                                    <li><a href="user-information.html">User Information</a>
-                                    </li>
-                                    <li><a href="addresses.html">Addresses</a>
-                                    </li>
-                                    <li><a href="invoices.html">Invoices</a>
-                                    </li>
-                                    <li><a href="invoice-detail.html">Invoice Detail</a>
-                                    </li>
-                                    <li><a href="notifications.html">Notifications</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="menu-item-has-children has-mega-menu"><a >Blogs</a><span class="sub-toggle"></span>
-                        <div class="mega-menu">
-                            <div class="mega-menu__column">
-                                <h4>Blog Layout<span class="sub-toggle"></span></h4>
-                                <ul class="mega-menu__list">
-                                    <li><a href="blog-grid.html">Grid</a>
-                                    </li>
-                                    <li><a href="blog-list.html">Listing</a>
-                                    </li>
-                                    <li><a href="blog-small-thumb.html">Small Thumb</a>
-                                    </li>
-                                    <li><a href="blog-left-sidebar.html">Left Sidebar</a>
-                                    </li>
-                                    <li><a href="blog-right-sidebar.html">Right Sidebar</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="mega-menu__column">
-                                <h4>Single Blog<span class="sub-toggle"></span></h4>
-                                <ul class="mega-menu__list">
-                                    <li><a href="blog-detail.html">Single 1</a>
-                                    </li>
-                                    <li><a href="blog-detail-2.html">Single 2</a>
-                                    </li>
-                                    <li><a href="blog-detail-3.html">Single 3</a>
-                                    </li>
-                                    <li><a href="blog-detail-4.html">Single 4</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                    <li ><a href="${pageContext.servletContext.contextPath}/contact">Contact Us</a>
                     </li>
                 </ul>
                 <ul class="navigation__extra">
-                    <li><a >Sell on Martfury</a></li>
-                    <li><a >Tract your order</a></li>
-                    <li>
-                        <div class="ps-dropdown"><a >US Dollar</a>
-                            <ul class="ps-dropdown-menu">
-                                <li><a >Us Dollar</a></li>
-                                <li><a >Euro</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="ps-dropdown language"><a ><img src="${pageContext.servletContext.contextPath}/img/flag/en.png" alt="">English</a>
-                            <ul class="ps-dropdown-menu">
-                                <li><a ><img src="${pageContext.servletContext.contextPath}/img/flag/germany.png" alt=""> Germany</a></li>
-                                <li><a ><img src="${pageContext.servletContext.contextPath}/img/flag/fr.png" alt=""> France</a></li>
-                            </ul>
-                        </div>
-                    </li>
+                    <li><a href="${pageContext.servletContext.contextPath}/product">Sell on Martfury</a></li>
+                    <li><a href="${pageContext.servletContext.contextPath}/customer/product/checkout-page">Track your order</a></li>
                 </ul>
             </div>
         </div>
@@ -362,7 +284,16 @@
                         </div>
                         <div class="ps-cart__footer">
                             <h3>Sub Total:<strong>$59.99</strong></h3>
-                            <figure><a class="ps-btn" href="${pageContext.servletContext.contextPath}/cart">View Cart</a><a class="ps-btn" href="${pageContext.servletContext.contextPath}/customer/product/checkout">Checkout</a></figure>
+                            <figure>
+                                <c:choose>
+                                    <c:when test="${user !=null}">
+                                        <a class="ps-btn" href="${pageContext.servletContext.contextPath}/customer/product/checkout-page">View Cart</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a class="ps-btn" href="${pageContext.servletContext.contextPath}/cart">View Cart</a>
+                                    </c:otherwise>
+                                </c:choose>
+                                <a class="ps-btn" href="${pageContext.servletContext.contextPath}/customer/product/checkout">Checkout</a></figure>
                         </div>
                     </div>
                 </div>

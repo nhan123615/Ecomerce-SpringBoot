@@ -82,19 +82,46 @@
 								</h3>
 
 								<ul class="list-unstyled">
-									<li>Payment Method</br> <b>${paymentDetail.paymentMethod}</b>
+									<li>Payment Method: <b>${paymentDetail.paymentMethod}</b>
+										<c:if test="${paypalDetails !=null}">
+											<ul>
+												<li>
+													<span><b>Transaction ID:</b></span>
+														${paypalDetails.transactionId}
+												</li>
+												<li>
+													<span><b>Name:</b></span>
+														${paypalDetails.payerRecipientName}
+												</li>
+												<li>
+													<span><b>Email:</b></span>
+														${paypalDetails.payerEmail}
+												</li>
+												<li>
+													<span><b>Address:</b></span>
+														${paypalDetails.payerCity}, ${paypalDetails.payerState}, ${paypalDetails.payerCountry}
+												</li>
+												<li>
+													<span><b>Postal Code:</b></span>
+														${paypalDetails.payerPostalCode}
+												</li>
+											</ul>
+										</c:if>
+
 									</li>
-									</br>
-									<li>Status</br> <b> <c:choose>
+									<li>Status:  <b> <c:choose>
 												<c:when test="${paymentDetail.status == false}">
-													<p>Inactive</p>
+													Not Yet
 												</c:when>
 
 												<c:otherwise>
-													<p>Active</p>
+													Paid
 												</c:otherwise>
 											</c:choose>
 									</b>
+									</li>
+									<li>
+										Tracking: <b>${paymentDetail.tracked ?'<span class="text-success">Delivered</span>':'<span class="text-danger">In-Stock</span>'}</b>
 									</li>
 								</ul>
 								<div class="text-center mt-5 mb-3">

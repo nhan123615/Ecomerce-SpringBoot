@@ -73,22 +73,34 @@
 										</div>
 										<div class="form-group row">
 											<label for="status"
-												class="col-sm-2 col-form-label text-sm-right">Status</label>
+												class="col-sm-2 col-form-label text-sm-right">Paid</label>
 											<div class="col-xs-12 col-sm-8">
 												<select id="status" name="status"
 													class="custom-select custom-select-sm">
-													<option value="default">- Select Status -</option>
 													<c:choose>
 														<c:when test="${paymentEdit.status == true}">
-															<option value="1" selected="selected">Active</option>
-															<option value="0">Inactive</option>
+															<option value="1" selected="selected">Paid</option>
+															<option value="0">Not Yet</option>
 														</c:when>
 
 														<c:otherwise>
-															<option value="0" selected="selected">Inactive</option>
-															<option value="1">Active</option>
+															<option value="0" selected="selected">Not Yet</option>
+															<option value="1">Paid</option>
 														</c:otherwise>
 													</c:choose>
+												</select>
+											</div>
+										</div>
+
+										<div class="form-group row">
+											<label for="status"
+												   class="col-sm-2 col-form-label text-sm-right">Tracking</label>
+											<div class="col-xs-12 col-sm-8">
+												<select id="tracking" name="tracked"
+														class="custom-select custom-select-sm">
+
+													<option value="1" ${paymentEdit.tracked ?' ' :'selected'}>Delivered</option>
+													<option value="0" ${paymentEdit.tracked ?' ' :'selected'}>In-Stock</option>
 												</select>
 											</div>
 										</div>

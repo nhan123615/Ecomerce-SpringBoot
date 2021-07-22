@@ -162,6 +162,7 @@
         </dependency>
         <!--		social login-->
 
+
     </dependencies>
 
     	<distributionManagement>
@@ -187,5 +188,6 @@
             </plugin>
         </plugins>
     </build>
+
 
 </project>

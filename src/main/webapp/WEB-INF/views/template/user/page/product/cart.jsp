@@ -226,6 +226,7 @@
 
         function getCartItemContent(items) {
             var cartItemContent ="";
+            var user = '${user}'
             if (cartItems.length >0){
                 var totalPrice = 0;
                 for (let i = 0; i < cartItems.length; i++) {
@@ -241,7 +242,11 @@
                 cartItemContent+="<hr>"
                 cartItemContent+="<div class='ps-cart__footer'>"
                 cartItemContent += "<h3>Sub Total:<strong>$"+totalPrice+"</strong></h3>"
-                cartItemContent +="<figure><a class='ps-btn' href='${pageContext.servletContext.contextPath}/cart'>View Cart</a><a class='ps-btn checkout' href='${pageContext.servletContext.contextPath}/customer/product/checkout'>Checkout</a></figure>"
+                if (user !==""){
+                    cartItemContent +="<figure><a class='ps-btn' href='${pageContext.servletContext.contextPath}/customer/product/checkout-page'>View Cart</a><a class='ps-btn checkout' href='${pageContext.servletContext.contextPath}/customer/product/checkout'>Checkout</a></figure>"
+                }else{
+                    cartItemContent +="<figure><a class='ps-btn' href='${pageContext.servletContext.contextPath}/cart'>View Cart</a><a class='ps-btn checkout' href='${pageContext.servletContext.contextPath}/customer/product/checkout'>Checkout</a></figure>"
+                }
                 cartItemContent +=" </div>"
             }
             return cartItemContent;

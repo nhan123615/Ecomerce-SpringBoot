@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
+
 /**
  * author Nhanle
  * */
@@ -22,7 +24,17 @@ public class Contact {
     private String name;
     private String email;
     private String subject;
+    private boolean status;
+
+    @Column (columnDefinition = "LONGTEXT")
     private String message;
 
+    @Column (columnDefinition = "LONGTEXT")
+    private String reply;
+
+    @PrePersist
+    void setStatus() {
+        this.status = false;
+    }
 
 }

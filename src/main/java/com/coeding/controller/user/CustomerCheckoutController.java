@@ -41,16 +41,32 @@ public class CustomerCheckoutController {
         this.userHelper=userHelper;
     }
 
+//    @GetMapping
+//    public String test(){
+//        return "template/user/customer/product/checkout";
+//    }
+
     @GetMapping("/checkout-page")
     public String checkoutPage(Authentication authentication, Model model){
-//        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-//        model.addAttribute("user", userDetails.getUser());
-
+//      check out page
         List<CartItem> cartItems = cart.getCartItems();
         if (cartItems.size()>0){
             model.addAttribute("cartItems",cartItems);
             model.addAttribute("total",cart.calCartTotal());
         }
+//        order page
+
+        User user = userHelper.getUser(authentication,userService);
+        Customer customer = customerService.findByUserId(user.getId());
+        List<CustomerOrder> orders;
+
+        try{
+            orders =  customerOrderService.findAllOrderByCustomerId(customer.getId());
+        }catch (Exception e){
+            orders = new ArrayList<>();
+        }
+
+        model.addAttribute("customerOrders",orders );
         return "template/user/customer/product/checkout-page";
     }
 
@@ -58,19 +74,7 @@ public class CustomerCheckoutController {
     public String customerCheckoutProductPage(Authentication authentication, Model model) {
         String template = "redirect:/customer/info";
         log.info("set template customer info");
-//            UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-//            model.addAttribute("user", userDetails.getUser());
         User user = userHelper.getUser(authentication,userService);
-//        if (authentication.getPrincipal() instanceof  UserDetail){
-//            UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-//            user = userDetails.getUser();
-//        }
-//
-//        if (authentication.getPrincipal() instanceof OAuth2User) {
-//            OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
-//            user = userService.findByEmail(String.valueOf(oAuth2User.getAttributes().get("email")));
-//        }
-
             Long countCustomer = customerService.countByUserId(user.getId());
 
             if (countCustomer > 0) {
@@ -99,9 +103,6 @@ public class CustomerCheckoutController {
 
     @PostMapping("/checkout")
     public String processCustomerOrder(Authentication authentication, CustomerOrder order, Model model) {
-//        UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-//        model.addAttribute("user", userDetails.getUser());
-
         log.info("save order with deliver info : " + order.getDeliverCustomerName() + "," + order.getDeliverCustomerPhone() + "," + order.getDeliverCustomerAddress());
         List<CartItem> listItem = new ArrayList<>(cart.getCartItems());
         CustomerOrder customerOrder = new CustomerOrder(

@@ -66,8 +66,9 @@ public class CustomerCashController {
 					order
 			));
 			order.setStatus(true);
-			customerOrderService.save(order);
-			return "redirect:/customer/payment/cash/payment-success";
+			if (customerOrderService.saveOrder(order)!=null){
+				return "redirect:/customer/payment/cash/payment-success";
+			}
 		}
 		return "redirect:/customer";
 	}

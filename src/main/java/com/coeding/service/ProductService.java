@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -80,7 +81,10 @@ public class ProductService implements DAO<Product> {
     }
 
     public List<Long> findTop5(){
-        return repo.findTop5();
+		Calendar c = Calendar.getInstance();
+		int month = c.get(Calendar.MONTH) + 1;
+		int year = c.get(Calendar.YEAR);
+        return repo.findTop5(month, year);
     }
 
 }

@@ -81,7 +81,8 @@ public class ForgotPasswordController {
     public String processSubmitToken(@ModelAttribute("token") ResetPassword userForgot, Model model, HttpServletRequest request) {
         String token = userForgot.getResetToken();
         ResetPassword findUserByToken = resetPasswordService.findByResetToken(token);
-        String viewUrl = "redirect:/forgot-password/submit-token";
+//        String viewUrl = "redirect:/forgot-password/submit-token";
+        String viewUrl = "template/user/auth/submit-token";
         if (findUserByToken !=null){
             User forgotUser = findUserByToken.getUser();
             model.addAttribute("forgotUser",forgotUser);
@@ -111,5 +112,8 @@ public class ForgotPasswordController {
 
         return "template/user/auth/update-password-success";
     }
+
+
+
 
 }

@@ -31,7 +31,7 @@ public class CustomerOrder {
 
     @ManyToOne (targetEntity = Customer.class)
     private Customer customer;
-    @OneToMany(targetEntity = CartItem.class,cascade=CascadeType.ALL)
+    @OneToMany(targetEntity = CartItem.class,cascade=CascadeType.ALL,fetch = FetchType.EAGER)
     private List<CartItem> cartItems;
 
     @PrePersist
