@@ -51,7 +51,7 @@
 										<div class="form-group">	
 												<label for="name">Name</label>
 											<input type="text" class="form-control" id=name name="name"
-												placeholder="Enter Name" maxlength="20"
+												placeholder="Enter Name"
 												value="${contactDetail.name }" disabled>
 											<span id="name-error" class="error invalid-feedback"></span>
 										</div>
@@ -59,7 +59,7 @@
 										<div class="form-group">
 											<label for="email">Email</label>
 											<input type="text" class="form-control" id=email name="email"
-												placeholder="Enter Email" maxlength="20"
+												placeholder="Enter Email"
 												value="${contactDetail.email }" disabled><span
 												id="email-error" class="error invalid-feedback"></span>
 										</div>
@@ -67,17 +67,21 @@
 										<div class="form-group">
 											<label for="subject">Subject</label>
 											<input type="text" class="form-control" id="subject" name="subject"
-												placeholder="Enter Subject" maxlength="20"
+												placeholder="Enter Subject"
 												value="${contactDetail.subject }" disabled><span
 												id="subject-error" class="error invalid-feedback"></span>
 										</div>
 										
 										<div class="form-group">
 											<label for="message">Message</label>
-											<input type="text" class="form-control" id="message" name="message"
-												placeholder="Enter Message" maxlength="20"
-												value="${contactDetail.message }" disabled><span
-												id="message-error" class="error invalid-feedback"></span>
+<%--											<input type="text" class="form-control" id="message" name="message"--%>
+<%--												placeholder="Enter Message" maxlength="20"--%>
+<%--												value="${contactDetail.message }" disabled>--%>
+											<textarea type="text" class="form-control" id="message" name="message"
+													  placeholder="Enter Message"
+													disabled>${contactDetail.message }</textarea>
+											<span id="message-error" class="error invalid-feedback"></span>
+
 										</div>
 
 										<div class="form-group">
