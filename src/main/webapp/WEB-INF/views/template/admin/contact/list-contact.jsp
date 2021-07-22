@@ -89,11 +89,14 @@
 																	</c:choose></td>
 																
 																<td class="text-center">
-																	<a
-																	href="${pageContext.request.contextPath}/admin/contact/edit?id=${contact.id}"
-																	id="${contact.id}" class=" btn btn-sm btn-info"
-																	title="Edit"> Reply
-																</a>
+																	<form action="${pageContext.request.contextPath}/admin/contact/edit" method="get">
+
+																		<input type="hidden" name="id" value="${contact.id}">
+																		<button
+																				id="${contact.id}" class=" btn btn-sm btn-info"
+																				title="Edit" ${contact.status ? "disabled":"" }> Reply
+																		</button>
+																	</form>
 																</td>
 															</tr>
 														</c:forEach>

@@ -38,8 +38,15 @@ public class PageSubcriberController {
 	@PostMapping()
 	public String subcribe(EmailSubscriber subscriber,HttpServletRequest request) {
 		String message = (String) request.getSession().getAttribute("message");
-		subscriberService.save(subscriber);
-		request.getSession().setAttribute("message", "Thank you to subcribe us !");
+		Long count = subscriberService.countByEmail(subscriber.getEmail());
+		if (count >0){
+			request.getSession().setAttribute("message", "Invalid, Subcriber already registed !");
+
+		}else{
+			subscriberService.save(subscriber);
+			request.getSession().setAttribute("message", "Thank you to subcribe us !");
+		}
+
 		return "redirect:/";
 	}
 }

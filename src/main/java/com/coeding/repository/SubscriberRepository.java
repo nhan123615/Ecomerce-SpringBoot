@@ -12,4 +12,5 @@ import com.coeding.entity.EmailSubscriber;
 public interface SubscriberRepository extends JpaRepository<EmailSubscriber,Long>  {
 	Optional<EmailSubscriber> findById(Long id);
 	List<EmailSubscriber> findAll();
+	Long countByEmail(String email);
 }
