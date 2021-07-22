@@ -23,7 +23,7 @@
                             </div>
                             <br>
                             <form class="ps-form__content" action="${pageContext.servletContext.contextPath}/customer/info/new"
-                            method="post"
+                            method="post" id="frm"
                             >
                                 <div class="row">
                                     <div class="col-sm-6">
