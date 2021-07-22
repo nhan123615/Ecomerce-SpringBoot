@@ -63,19 +63,17 @@
 
 													<div class="form-group">
 														<label for="subject">Subject</label>
-														<input type="text" class="form-control" id="subject" name="subject" placeholder="Enter subject">
+														<input type="text" class="form-control" id="subject" name="subject" placeholder="Enter subject" maxlength="255">
 														<span id="subject-error" class="error invalid-feedback"></span>
 													</div>
-
-													<div class="form-group">
-														<div id="description-error" style="color: red;"></div>
-
-													</div>
+													
 													<div class="form-group">
 														<label for="description">Sending Message Content</label>
 														<textarea id="description" name="description"></textarea>
 													</div>
-
+													<div class="form-group">
+														<div id="description-error" style="color: red;"></div>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -189,6 +187,10 @@
 							hasSubmit.push(1);
 							$('#description-error').html(
 								'Please enter description!');
+						} else if (desc.length > 10000) {
+							hasSubmit.push(1);
+							$('#description-error').html(
+							'Message content cannot be longer than 10000 characters!');
 						}
 
 						if (email.val().length === 0) {
