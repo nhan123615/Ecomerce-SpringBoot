@@ -23,7 +23,7 @@
                             </div>
                             <br>
                             <form class="ps-form__content" action="${pageContext.servletContext.contextPath}/customer/info/update"
-                            method="post"
+                            method="post" id="frm"
                             >
                                 <div class="row">
                                     <input type="hidden" name="id" value="${customerInfo.id}">
@@ -33,37 +33,45 @@
                                         <div class="form-group">
                                             <label>First Name</label>
                                             <input class="form-control" type="text" placeholder="Please enter phone number..."
-                                                   value="${customerInfo.firstName}" name="firstName" required>
+                                                   value="${customerInfo.firstName}" name="firstName" id="fname">
+                                            <span id="fname-error" class="error invalid-feedback"></span>
+
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Last Name</label>
                                             <input class="form-control" type="text" placeholder="Please enter phone number..."
-                                                   value="${customerInfo.lastName}" name="lastName" required >
+                                                   value="${customerInfo.lastName}" name="lastName" id="lname" >
+                                            <span id="lname-error" class="error invalid-feedback"></span>
+
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <label>Phone Number</label>
                                             <input class="form-control" type="text" placeholder="Please enter phone number..."
-                                                   value="${customerInfo.phone}" name="phone" required>
+                                                   value="${customerInfo.phone}" name="phone" id="phone">
+                                            <span id="phone-error" class="error invalid-feedback"></span>
+
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <label>Address</label>
                                             <input class="form-control" type="text" placeholder="Please enter your email..."
-                                                   value="${customerInfo.address}" name="address" required>
+                                                   value="${customerInfo.address}" name="address" id="address">
+                                            <span id="address-error" class="error invalid-feedback"></span>
+
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group submit">
-                                    <button class="ps-btn" >Save</button>
-                                </div>
+
                             </form>
 
-
+                            <div class="form-group submit">
+                                <button class="ps-btn" id="btnSave">Save</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -72,5 +80,72 @@
     </section>
 </main>
 <jsp:include page="../../components/footer.jsp"></jsp:include>
+<script>
+    function IsPhone(phone) {
+        var regex =   /^((\+[1-9]{1,4}[ \-]*)|(\([0-9]{2,3}\)[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/;
+        if(!regex.test(phone)) {
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    $('#btnSave')
+        .on(
+            'click',
+            function () {
+                let fname = $('#fname');
+                let fnameError = $('#fname-error');
+                let lname = $('#lname');
+                let lnameError = $('#lname-error');
+
+                let phone = $('#phone');
+                let phoneError = $('#phone-error');
+                let address = $('#address');
+                let addressError = $('#address-error');
+
+                let hasSubmit = [];
+
+                if (fname.val().length === 0) {
+                    hasSubmit.push(1);
+                    fname.addClass(
+                        'form-control is-invalid');
+                    fnameError.html(
+                        'Please enter First name!');
+                }
+
+                if (lname.val().length === 0) {
+                    hasSubmit.push(1);
+                    lname.addClass(
+                        'form-control is-invalid');
+                    lnameError.html(
+                        'Please enter Last name!');
+                }
+
+                if(IsPhone(phone.val())==false){
+                    hasSubmit.push(1);
+                    phone.addClass(
+                        'form-control is-invalid');
+                    phoneError.html(
+                        'Phone invalid!');
+                }
+
+
+                if (address.val().length === 0) {
+                    hasSubmit.push(1);
+                    address.addClass(
+                        'form-control is-invalid');
+                    addressError.html(
+                        'Please enter Address!');
+                }
+
+
+
+                if (hasSubmit.length === 0) {
+                    $('#frm').submit();
+                }
+
+            });
+</script>
 </body>
 
