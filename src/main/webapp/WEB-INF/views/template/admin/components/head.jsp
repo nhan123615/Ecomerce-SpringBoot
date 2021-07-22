@@ -30,6 +30,8 @@
     <!-- summernote -->
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/plugins-admin/summernote/summernote-bs4.min.css">
     <link rel="shortcut icon" type="image/png" href="${pageContext.servletContext.contextPath}/img/favicon.png">
+    <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/plugins-admin/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+
 </head>
 <%-- <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">

@@ -6,11 +6,19 @@
             <a class="nav-link" data-widget="pushmenu"  role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="${pageContext.servletContext.contextPath}/admin" class="nav-link">Home</a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
             <a href="${pageContext.servletContext.contextPath}/" class="nav-link msg">Computer Shop</a>
         </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="${pageContext.servletContext.contextPath}/admin" class="nav-link navAdmin">Admin</a>
+        </li>
+
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="${pageContext.servletContext.contextPath}/admin/contact" class="nav-link navContact">Contact</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="${pageContext.servletContext.contextPath}/admin/subscriber" class="nav-link navSubcriber">Subcribers</a>
+        </li>
+
         <li class="nav-item d-none d-sm-inline-block">
             <a href="${pageContext.servletContext.contextPath}/logout" class="nav-link">Logout</a>
         </li>

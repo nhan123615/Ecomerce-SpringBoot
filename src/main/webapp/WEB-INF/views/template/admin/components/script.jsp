@@ -71,7 +71,10 @@
 	var path = $(location).attr('pathname');
 	// HOME
 	if (path==="/admin"){
-		addClass('#dashboard', '#linkdashboard', '#home');
+		// addClass1('#dashboard', '#linkdashboard', '#home');
+		$('.navAdmin').addClass('active')
+		$('#home').addClass('active')
+
 	}
 	// DATA
 
@@ -99,12 +102,18 @@
 	}
 	if (path.includes("/subscriber")){
 		addClass('#managerproduct','#linkproduct','#subscriberlist')
+		$('.navSubcriber').addClass('active')
+
 	}
 	if (path.includes("/order")){
 		addClass('#managerproduct','#linkproduct','#orderlist')
 	}
 	if (path.includes("/payment")){
 		addClass('#managerproduct','#linkproduct','#paymentlist')
+	}
+	if (path.includes("/contact")){
+		addClass('#managerproduct','#linkproduct','#contactlist')
+		$('.navContact').addClass('active')
 	}
 
 

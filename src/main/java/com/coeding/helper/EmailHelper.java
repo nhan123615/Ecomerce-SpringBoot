@@ -46,6 +46,7 @@ public class EmailHelper {
 
             return true;
         } catch (Exception e) {
+            System.err.println(e.getMessage());
             return false;
 
         }

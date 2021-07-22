@@ -36,26 +36,26 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
-                <li id="dashboard" class="nav-item">
-                    <a id="linkdashboard" href="${pageContext.servletContext.contextPath}/admin" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
+<%--                <li id="dashboard" class="nav-item">--%>
+<%--                    <a id="linkdashboard" href="${pageContext.servletContext.contextPath}/admin" class="nav-link">--%>
+<%--                        <i class="nav-icon fas fa-tachometer-alt"></i>--%>
+<%--                        <p>--%>
+<%--                            Dashboard--%>
+<%--                            <i class="right fas fa-angle-left"></i>--%>
+<%--                        </p>--%>
+<%--                    </a>--%>
+<%--                    <ul class="nav nav-treeview">--%>
+                        <li class="nav-item ">
                             <a id="home" href="${pageContext.servletContext.contextPath}/admin" class="nav-link">
                                 <i class="fa fa-home nav-icon"></i>
                                 <p>Home</p>
                             </a>
                         </li>
-                    </ul>
-                </li>
+<%--                    </ul>--%>
+<%--                </li>--%>
 
-                <li id="data" class="nav-item">
-                    <a id="linkdata"  class="nav-link">
+                <li id="data" class="nav-item ">
+                    <a id="linkdata"  class="nav-link ">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Data
@@ -90,8 +90,8 @@
                     </ul>
                 </li>
 
-                <li id="managerproduct" class="nav-item">
-                    <a id="linkproduct"  class="nav-link">
+                <li id="managerproduct" class="nav-item ">
+                    <a id="linkproduct"  class="nav-link ">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
                             Management
@@ -129,6 +129,12 @@
                             <a id="paymentlist" href="${pageContext.servletContext.contextPath}/admin/payment" class="nav-link">
                                 <i class="fa fa-credit-card nav-icon" ></i>
                                 <p>Payment</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="contactlist" href="${pageContext.servletContext.contextPath}/admin/contact" class="nav-link">
+                                <i class="fa fa-address-book nav-icon" ></i>
+                                <p>Contact</p>
                             </a>
                         </li>
                         <li class="nav-item">

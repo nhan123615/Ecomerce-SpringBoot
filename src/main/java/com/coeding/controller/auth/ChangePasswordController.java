@@ -45,7 +45,7 @@ public class ChangePasswordController {
         User user = userHelper.getUser(authentication,userService);
         String message = (String) request.getSession().getAttribute("message");
         String url = "redirect:/customer";
-        if (user.getPassword() !=null || !user.getPassword().isEmpty()){
+        if (user.getPassword() !=null ){
             if (encoder.matches(oldPassword,user.getPassword())){
                 user.setPassword(encoder.encode(newPassword));
                 userService.saveUser(user);
@@ -60,22 +60,4 @@ public class ChangePasswordController {
         return url;
     }
 
-//    @PostMapping
-//    public String processRegister(@ModelAttribute("userRegist") User user, Model model, HttpServletRequest request) {
-//
-//        int countUser = userRepo.countByUsername(user.getUsername());
-//        int countEmail = userRepo.countByEmail(user.getEmail());
-//        String message = (String) request.getSession().getAttribute("message");
-//        if (countUser == 0) {
-//            if (countEmail == 0) {
-//                userRepo.save(user.toUser(encoder));
-//                request.getSession().setAttribute("message", "Register success!");
-//            } else {
-//                request.getSession().setAttribute("message", "Email invalid !");
-//            }
-//        } else {
-//            request.getSession().setAttribute("message", "Username invalid !");
-//        }
-//        return "redirect:/login";
-//    }
 }
