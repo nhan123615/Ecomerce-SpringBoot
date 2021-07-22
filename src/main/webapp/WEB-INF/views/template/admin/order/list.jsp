@@ -63,7 +63,7 @@
 													<th class="sorting text-center" tabindex="0" aria-controls="example1"
 														rowspan="1" colspan="1">Total Price</th>
 													<th class="sorting text-center" tabindex="0" aria-controls="example1"
-														rowspan="1" colspan="1">Customer</th>
+														rowspan="1" colspan="1">Customer Details</th>
 													<%--															<th class="sorting text-center" tabindex="0" aria-controls="example1"--%>
 													<%--																rowspan="1" colspan="1">Action</th>--%>
 												</tr>
@@ -94,7 +94,12 @@
 															</c:otherwise>
 														</c:choose></td>
 														<td class="text-center">${o.totalPrice}</td>
-														<td class="text-center">${o.customer.firstName} ${o.customer.lastName}</td>
+														<td class="text-center">
+															<a href="${pageContext.servletContext.contextPath}/admin/user/detail?id=${o.customer.user.id}">
+																	${o.customer.firstName} ${o.customer.lastName}
+															</a>
+
+														</td>
 															<%--																<td class="text-center">--%>
 															<%--&lt;%&ndash;																	<a&ndash;%&gt;--%>
 															<%--&lt;%&ndash;																	href="${pageContext.servletContext.contextPath}/admin/order/detail?id=${o.id}"&ndash;%&gt;--%>

@@ -76,23 +76,23 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>First Name</label>
-											<input class="form-control" type="text" placeholder="Please enter your first name..." name="firstName" id="fname">
-											<span id="fname-error" class="error invalid-feedback"></span>
+											<input class="form-control" type="text" placeholder="Please enter your first name..." name="firstName" id="fnameSub">
+											<span id="fname-errorSub" class="error invalid-feedback"></span>
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>Last Name</label>
-											<input class="form-control" type="text" placeholder="Please enter your last name..." name="lastName" id="lname">
-											<span id="lname-error" class="error invalid-feedback"></span>
+											<input class="form-control" type="text" placeholder="Please enter your last name..." name="lastName" id="lnameSub">
+											<span id="lname-errorSub" class="error invalid-feedback"></span>
 
 										</div>
 									</div>
 									<div class="col-sm-12">
 										<label>Email</label>
 										<div class="form-group">
-											<input class="form-control" type="email" placeholder="Please enter your email..." name="email" id="email">
-											<span id="email-error" class="error invalid-feedback"></span>
+											<input class="form-control" type="email" placeholder="Please enter your email..." name="email" id="emailSub">
+											<span id="email-errorSub" class="error invalid-feedback"></span>
 
 										</div>
 									</div>
@@ -757,12 +757,12 @@
 			.on(
 					'click',
 					function () {
-						let fname = $('#fname');
-						let fnameError = $('#fname-error');
-						let lname = $('#lname');
-						let lnameError = $('#lname-error');
-						let email = $('#email');
-						let emailError = $('#email-error');
+						let fname = $('#fnameSub');
+						let fnameError = $('#fname-errorSub');
+						let lname = $('#lnameSub');
+						let lnameError = $('#lname-errorSub');
+						let email = $('#emailSub');
+						let emailError = $('#email-errorSub');
 						let hasSubmit = [];
 
 						if (fname.val().length === 0) {

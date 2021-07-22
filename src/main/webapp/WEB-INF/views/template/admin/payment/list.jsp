@@ -61,14 +61,15 @@
 															<tr role="row">
 																<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																	rowspan="1" colspan="1">Id</th>
-																<th class="sorting  text-center" tabindex="0" aria-controls="example1"
-																	rowspan="1" colspan="1">Customer ID</th>
+
 																<th class="sorting  text-center" tabindex="0" aria-controls="example1"
 																	rowspan="1" colspan="1">Amount</th>
 																<th class="sorting  text-center" tabindex="0" aria-controls="example1"
-																	rowspan="1" colspan="1">Payment Detail</th>
+																	rowspan="1" colspan="1">Payment Date</th>
 																<th class="sorting  text-center" tabindex="0" aria-controls="example1"
 																	rowspan="1" colspan="1">Payment Method</th>
+																<th class="sorting  text-center" tabindex="0" aria-controls="example1"
+																	rowspan="1" colspan="1">Customer Order</th>
 																<th class="sorting  text-center" tabindex="0" aria-controls="example1"
 																	rowspan="1" colspan="1">Paid</th>
 																<th class="sorting  text-center" tabindex="0" aria-controls="example1"
@@ -88,19 +89,23 @@
 																					   id="customCheckbox${p.id}"
 																					   value="${p.id}" name="id">
 																				<label for="customCheckbox${p.id}"
-																					   class="custom-control-label">${p.id}</label>
+																					   class="custom-control-label">
+																					<a href="${pageContext.request.contextPath}/admin/payment/detail?id=${p.id}">${p.id}</a>
+
+																				</label>
 																			</div>
 																		</div>
 																	</td>
+
+																	<td>${p.amount }</td>
+																	<td ><fmt:formatDate value='${p.paymentDate }'  type='date' pattern='dd/MM/yyyy'/></td>
+																	<td>${p.paymentMethod }</td>
 																	<td>
-																		<a href="${pageContext.request.contextPath}/admin/payment/detail?id=${p.id}">
+																		<a href="${pageContext.servletContext.contextPath}/admin/order/detail?id=${p.customerOrder.id}">
 																				${p.customerOrder.customer.firstName} ${p.customerOrder.customer.lastName}
 																		</a>
 
 																	</td>
-																	<td>${p.amount }</td>
-																	<td ><fmt:formatDate value='${p.paymentDate }'  type='date' pattern='dd/MM/yyyy'/></td>
-																	<td>${p.paymentMethod }</td>
 																	<td class="text-center">
 																		<c:choose>
 																			<c:when test="${p.status == true}">
