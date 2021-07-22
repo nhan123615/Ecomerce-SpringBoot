@@ -21,21 +21,21 @@
                                 <label>Deliver Full Name<sup>*</sup>
                                 </label>
                                 <div class="form-group__content">
-                                    <input class="form-control" name="deliverCustomerName" type="text" value="${customerOrder !=null ? customerOrder.deliverCustomerName:""}" required>
+                                    <input class="form-control" name="deliverCustomerName" type="text" value="${customerOrder !=null ? customerOrder.deliverCustomerName:""}" maxlength="250" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Deliver Address<sup>*</sup>
                                 </label>
                                 <div class="form-group__content">
-                                    <input class="form-control" name="deliverCustomerAddress" type="text" value="${customerOrder !=null ? customerOrder.deliverCustomerAddress:""}" required>
+                                    <input class="form-control" name="deliverCustomerAddress" type="text" value="${customerOrder !=null ? customerOrder.deliverCustomerAddress:""}" maxlength="250" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Deliver Phone<sup>*</sup>
                                 </label>
                                 <div class="form-group__content">
-                                    <input class="form-control" name="deliverCustomerPhone" type="text" value="${customerOrder !=null ? customerOrder.deliverCustomerPhone:""}" required>
+                                    <input class="form-control" name="deliverCustomerPhone" type="text" value="${customerOrder !=null ? customerOrder.deliverCustomerPhone:""}" maxlength="250" required>
                                 </div>
                             </div>
                         </div>
