@@ -135,9 +135,9 @@
 				hasSubmit.push(1);
 				$('#img-error').html('Please choose image!');
 				$('#img-successful').html('');
-			} else if (totalSize > 10240000) {
+			} else if (totalSize > 1024000) {
 				hasSubmit.push(1);
-				$('#img-error').html('Image size is not greater than 10MB!');
+				$('#img-error').html('Image size is not greater than 1MB!');
 				$('#img-successful').html('');
 			} else {
 				$('#img-successful').html('Valid!');

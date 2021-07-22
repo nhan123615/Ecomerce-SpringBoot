@@ -81,14 +81,12 @@
 										</div>
 
 										<div class="form-group">
-											<div id="reply-error" style="color: red;"></div>
-
-										</div>
-										<div class="form-group">
 											<label for="reply">Sending Message Content</label>
 											<textarea id="reply" name="reply"></textarea>
 										</div>
-
+										<div class="form-group">
+											<div id="reply-error" style="color: red;"></div>
+										</div>
 
 									</div>
 									<!-- /.card-body -->
@@ -152,6 +150,10 @@
 				hasSubmit.push(1);
 				replyError.html(
 						'Please enter message!');
+			} else if (desc.length > 10000) {
+				hasSubmit.push(1);
+				replyError.html(
+				'Message content cannot be longer than 10000 characters!');
 			}
 
 
