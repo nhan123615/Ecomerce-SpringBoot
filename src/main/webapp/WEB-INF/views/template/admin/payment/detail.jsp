@@ -83,6 +83,31 @@
 
 								<ul class="list-unstyled">
 									<li>Payment Method: <b>${paymentDetail.paymentMethod}</b>
+										<c:if test="${paypalDetails !=null}">
+											<ul>
+												<li>
+													<span><b>Transaction ID:</b></span>
+														${paypalDetails.transactionId}
+												</li>
+												<li>
+													<span><b>Name:</b></span>
+														${paypalDetails.payerRecipientName}
+												</li>
+												<li>
+													<span><b>Email:</b></span>
+														${paypalDetails.payerEmail}
+												</li>
+												<li>
+													<span><b>Address:</b></span>
+														${paypalDetails.payerCity}, ${paypalDetails.payerState}, ${paypalDetails.payerCountry}
+												</li>
+												<li>
+													<span><b>Postal Code:</b></span>
+														${paypalDetails.payerPostalCode}
+												</li>
+											</ul>
+										</c:if>
+
 									</li>
 									<li>Status:  <b> <c:choose>
 												<c:when test="${paymentDetail.status == false}">

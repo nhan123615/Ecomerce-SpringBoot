@@ -69,7 +69,9 @@
 																<th class="sorting  text-center" tabindex="0" aria-controls="example1"
 																	rowspan="1" colspan="1">Payment Method</th>
 																<th class="sorting  text-center" tabindex="0" aria-controls="example1"
-																	rowspan="1" colspan="1">Customer Order</th>
+																	rowspan="1" colspan="1">Order</th>
+																<th class="sorting  text-center" tabindex="0" aria-controls="example1"
+																	rowspan="1" colspan="1">Customer Details</th>
 																<th class="sorting  text-center" tabindex="0" aria-controls="example1"
 																	rowspan="1" colspan="1">Paid</th>
 																<th class="sorting  text-center" tabindex="0" aria-controls="example1"
@@ -91,7 +93,6 @@
 																				<label for="customCheckbox${p.id}"
 																					   class="custom-control-label">
 																					<a href="${pageContext.request.contextPath}/admin/payment/detail?id=${p.id}">${p.id}</a>
-
 																				</label>
 																			</div>
 																		</div>
@@ -102,7 +103,13 @@
 																	<td>${p.paymentMethod }</td>
 																	<td>
 																		<a href="${pageContext.servletContext.contextPath}/admin/order/detail?id=${p.customerOrder.id}">
-																				${p.customerOrder.customer.firstName} ${p.customerOrder.customer.lastName}
+																				#OD000${p.customerOrder.id}
+																		</a>
+
+																	</td>
+																	<td>
+																		<a href="${pageContext.servletContext.contextPath}/admin/user/detail?id=${p.customerOrder.customer.user.id}">
+																			${p.customerOrder.customer.firstName} ${p.customerOrder.customer.lastName}
 																		</a>
 
 																	</td>

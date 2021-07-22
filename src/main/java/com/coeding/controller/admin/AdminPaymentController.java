@@ -31,9 +31,15 @@ import java.util.List;
 
 @RequestMapping("/admin")
 public class AdminPaymentController {
-	
-	@Autowired
+
 	private PaymentService payment;
+	private PaypalDetailService paypalDetailService;
+
+	@Autowired
+	public AdminPaymentController(PaymentService payment, PaypalDetailService paypalDetailService) {
+		this.payment = payment;
+		this.paypalDetailService = paypalDetailService;
+	}
 
 	@GetMapping("/payment")
 	public String ListPaymentController(Authentication authentication, Model model) {
@@ -44,6 +50,7 @@ public class AdminPaymentController {
 	@RequestMapping(value = "/payment/detail", method = RequestMethod.GET)
 	public String DetailPaymentController(@RequestParam("id") Long id, Authentication authentication,PaymentDetail pmt ,Model model) {
 		model.addAttribute("paymentDetail" , payment.findById(id));
+		model.addAttribute("paypalDetails",	paypalDetailService.findByPaymentId(id));
 		return "template/admin/payment/detail";
 	}
 	@GetMapping("/payment/edit")
