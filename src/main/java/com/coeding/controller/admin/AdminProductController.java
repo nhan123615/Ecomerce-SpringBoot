@@ -44,15 +44,15 @@ public class AdminProductController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminProductController.class);
 
 	@Autowired
-	ProductService productService;
+	private ProductService productService;
 	@Autowired
-	ImageService imgService;
+	private ImageService imgService;
 	@Autowired
-	BrandService brandService;
+	private BrandService brandService;
 	@Autowired
-	CategoryService categoryService;
+	private CategoryService categoryService;
 	@Autowired
-	TypeService typeService;
+	private TypeService typeService;
 
 	@GetMapping("/product")
 	public String show(Authentication authentication, Model model) {

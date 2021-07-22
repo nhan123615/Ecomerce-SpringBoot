@@ -32,7 +32,7 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/admin")
 public class AdminBannerImageController {
 	@Autowired
-	BannerGalleryService bannerService;
+	private BannerGalleryService bannerService;
 
 	@GetMapping(value = "/banner")
 	public String listBanner(Authentication authentication, Locale locale, Model model) {

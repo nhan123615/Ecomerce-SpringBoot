@@ -31,17 +31,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class AdminHomeController {
 	@Autowired
-	OrderService orderService;
+	private OrderService orderService;
 	@Autowired
-	UserService userService;
+	private UserService userService;
 	@Autowired
-	SubscriberService subService;
+	private SubscriberService subService;
 	@Autowired
-	ContactService contactService;
+	private ContactService contactService;
 	@Autowired
-	PaymentService paymentService;
+	private PaymentService paymentService;
 	@Autowired
-	ProductService productService;
+	private ProductService productService;
 	@GetMapping
 	public String customerHomePage(Authentication authentication, Model model) {
 //		UserDetail userDetails = (UserDetail) authentication.getPrincipal();

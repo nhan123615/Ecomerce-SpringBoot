@@ -22,7 +22,7 @@ import com.coeding.service.TypeService;
 @CrossOrigin(origins = "*")
 public class AdminAjaxController {
 	@Autowired
-	TypeService typeService;
+	private TypeService typeService;
 
 	@GetMapping
 	public List<Type> typeList(@RequestParam(name = "id_category", required = false) Long id) {

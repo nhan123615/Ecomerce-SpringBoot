@@ -29,9 +29,9 @@ import javax.servlet.http.HttpServletRequest;
 public class AdminTypeController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminTypeController.class);
 	@Autowired
-	CategoryService categoryService;
+	private CategoryService categoryService;
 	@Autowired
-	TypeService typeService;
+	private TypeService typeService;
 
 	@GetMapping("/type")
 	public String show(Authentication authentication, Model model) {
