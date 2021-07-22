@@ -71,25 +71,25 @@
 					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 ">
 						<div class="form-group">
 							<input class="form-control" id="name" name="name" type="text"
-								placeholder="Name *" required>
+								placeholder="Name *"  maxlength="250" required>
 						</div>
 					</div>
 					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 ">
 						<div class="form-group">
 							<input class="form-control" id="email" name="email" type="email"
-								placeholder="Email *" required>
+								placeholder="Email *" maxlength="250" required>
 						</div>
 					</div>
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
 						<div class="form-group">
 							<input class="form-control" type="text" id="subject"
-								name="subject" placeholder="Subject *" required>
+								name="subject" placeholder="Subject *" maxlength="250" required>
 						</div>
 					</div>
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
 						<div class="form-group">
 							<textarea class="form-control" id="message" name="message"
-								rows="5" placeholder="Message" required></textarea>
+								rows="5" placeholder="Message"  maxlength="250" required></textarea>
 						</div>
 					</div>
 				</div>

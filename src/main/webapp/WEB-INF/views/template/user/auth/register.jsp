@@ -81,11 +81,38 @@
                 let passError = $('#pass-error');
                 let email = $('#email');
                 let emailError = $('#email-error');
-
                 let confirmPass = $('#confirm');
                 let confirmPassError = $('#confirm-error');
-
                 let hasSubmit = [];
+
+                if (confirmPass.val().length >250) {
+                    hasSubmit.push(1);
+                    confirmPass.addClass(
+                        'form-control is-invalid');
+                    confirmPassError.html(
+                        'Must be below 250 characters!');
+                }
+                if (email.val().length >250) {
+                    hasSubmit.push(1);
+                    email.addClass(
+                        'form-control is-invalid');
+                    emailError.html(
+                        'Must be below 250 characters!');
+                }
+                if (pass.val().length >250) {
+                    hasSubmit.push(1);
+                    pass.addClass(
+                        'form-control is-invalid');
+                    passError.html(
+                        'Must be below 250 characters!');
+                }
+                if (uname.val().length >250) {
+                    hasSubmit.push(1);
+                    uname.addClass(
+                        'form-control is-invalid');
+                    unameError.html(
+                        'Must be below 250 characters!');
+                }
 
                 if (uname.val().length === 0) {
                     hasSubmit.push(1);

@@ -95,14 +95,40 @@
                 let fnameError = $('#fname-error');
                 let lname = $('#lname');
                 let lnameError = $('#lname-error');
-
                 let phone = $('#phone');
                 let phoneError = $('#phone-error');
                 let address = $('#address');
                 let addressError = $('#address-error');
-
                 let hasSubmit = [];
 
+                if (address.val().length > 250) {
+                    hasSubmit.push(1);
+                    address.addClass(
+                        'form-control is-invalid');
+                    addressError.html(
+                        'Must be below 250 characters!');
+                }
+                if (phone.val().length > 250) {
+                    hasSubmit.push(1);
+                    phone.addClass(
+                        'form-control is-invalid');
+                    phoneError.html(
+                        'Must be below 250 characters!');
+                }
+                if (lname.val().length > 250) {
+                    hasSubmit.push(1);
+                    lname.addClass(
+                        'form-control is-invalid');
+                    lnameError.html(
+                        'Must be below 250 characters!');
+                }
+                if (fname.val().length > 250) {
+                    hasSubmit.push(1);
+                    fname.addClass(
+                        'form-control is-invalid');
+                    fnameError.html(
+                        'Must be below 250 characters!');
+                }
                 if (fname.val().length === 0) {
                     hasSubmit.push(1);
                     fname.addClass(

@@ -50,7 +50,7 @@
         </div><a class="ps-logo" href="${pageContext.servletContext.contextPath}/"><img src="${pageContext.servletContext.contextPath}/img/Angry-Nerds-2.png"  alt=""></a></div>
 
     <div class="header__center">
-                <form class="ps-form--quick-search" action="index.html" method="get">
+                <div class="ps-form--quick-search" >
                     <div class="form-group--icon"><i class="icon-chevron-down"></i>
                         <select class="form-control categorySearch" style="width: 150px">
                             <option value="all" selected="selected">All</option>
@@ -66,7 +66,7 @@
                         <div class="ps-panel__content tableSearch">
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
             <div class="header__right">
                 <div class="header__actions">

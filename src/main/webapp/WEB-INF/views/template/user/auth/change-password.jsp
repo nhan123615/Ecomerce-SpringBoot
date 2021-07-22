@@ -75,6 +75,31 @@
                 let confirmError = $('#confirm-error');
                 let hasSubmit = [];
 
+                if (confirm.val().length > 250) {
+                    hasSubmit.push(1);
+                    confirm.addClass(
+                        'form-control is-invalid');
+                    confirmError.html(
+                        'Must be below 250 characters');
+                }
+                if (newPass.val().length > 250) {
+                    hasSubmit.push(1);
+                    newPass.addClass(
+                        'form-control is-invalid');
+                    newPassError.html(
+                        'Must be below 250 characters');
+                }
+                if (old.val().length > 250) {
+                    hasSubmit.push(1);
+                    old.addClass(
+                        'form-control is-invalid');
+                    oldError.html(
+                        'Must be below 250 characters');
+                }
+
+
+
+
                 if (old.val().length === 0) {
                     hasSubmit.push(1);
                     old.addClass(
@@ -82,6 +107,8 @@
                     oldError.html(
                         'Please enter Old Password!');
                 }
+
+
 
                 if (newPass.val().length === 0) {
                     hasSubmit.push(1);

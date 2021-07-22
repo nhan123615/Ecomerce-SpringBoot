@@ -76,14 +76,14 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>First Name</label>
-											<input class="form-control" type="text" placeholder="Please enter your first name..." name="firstName" id="fnameSub" required>
+											<input class="form-control" type="text" placeholder="Please enter your first name..." name="firstName" id="fnameSub" maxlength="250" required>
 <%--											<span id="fname-errorSub" class="error invalid-feedback"></span>--%>
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>Last Name</label>
-											<input class="form-control" type="text" placeholder="Please enter your last name..." name="lastName" id="lnameSub" required>
+											<input class="form-control" type="text" placeholder="Please enter your last name..." name="lastName" id="lnameSub" maxlength="250" required>
 <%--											<span id="lname-errorSub" class="error invalid-feedback"></span>--%>
 
 										</div>
@@ -91,7 +91,7 @@
 									<div class="col-sm-12">
 										<label>Email</label>
 										<div class="form-group--nest">
-											<input class="form-control" type="email" placeholder="Please enter your email..." name="email" id="emailSub" required>
+											<input class="form-control" type="email" placeholder="Please enter your email..." name="email" id="emailSub" maxlength="250" required>
 <%--											<span id="email-errorSub" class="error invalid-feedback"></span>--%>
 											<button class="ps-btn" id="btnSubcribe">Subscribe</button>
 										</div>
