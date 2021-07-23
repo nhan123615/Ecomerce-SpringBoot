@@ -28,11 +28,11 @@ public interface ProductRepository extends JpaRepository<Product,Long>  {
             nativeQuery = true)
     List<Long> findTop5(int month, int year);
 
-    @Query(value="select * from products p left join brands b on p.brand_id = b.id left join categories c on p.category_id = c.id left join types t on c.id = t.category_id where p.description LIKE %:keyword%  or p.product_color LIKE %:keyword% or p.product_name LIKE %:keyword% or p.short_description LIKE %:keyword% or b.name LIKE %:keyword% or c.name LIKE %:keyword% or t.name LIKE %:keyword% group by p.id having p.enabled =true",
+    @Query(value="select * from products p left join brands b on p.brand_id = b.id left join categories c on p.category_id = c.id left join types t on c.id = t.category_id where  p.product_name LIKE %:keyword%  or b.name LIKE %:keyword% or c.name LIKE %:keyword% or t.name LIKE %:keyword% group by p.id having p.enabled =true",
             nativeQuery = true)
     List<Product> findProductContains(@Param("keyword") String keyword);
 
-    @Query(value="select  * from products p left join brands b on p.brand_id = b.id  left join types t on p.type_id = t.id where p.description LIKE %:keyword% or p.product_color LIKE %:keyword% or p.product_name LIKE %:keyword% or p.short_description LIKE %:keyword% or b.name LIKE %:keyword%  or t.name LIKE %:keyword% group by p.id having p.category_id = :id and  p.enabled = true",
+    @Query(value="select  * from products p left join brands b on p.brand_id = b.id  left join types t on p.type_id = t.id where p.product_name LIKE %:keyword% or b.name LIKE %:keyword%  or t.name LIKE %:keyword% group by p.id having p.category_id = :id and  p.enabled = true",
             nativeQuery=true)
     List<Product> findProductContainsByCategory(@Param("keyword") String keyword,@Param("id") Long categoryId);
 

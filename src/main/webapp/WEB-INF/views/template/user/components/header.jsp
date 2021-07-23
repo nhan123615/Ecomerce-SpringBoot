@@ -60,7 +60,7 @@
 
                         </select>
                     </div>
-                    <input class="form-control" type="text" placeholder="I'm shopping for..." id="input-search" name="keyword">
+                    <input class="form-control" type="text" placeholder="I'm shopping for..." id="input-search" name="keyword" maxlength="20">
 <%--                    <button>Search</button>--%>
                     <div class="ps-panel--search-result">
                         <div class="ps-panel__content tableSearch">
