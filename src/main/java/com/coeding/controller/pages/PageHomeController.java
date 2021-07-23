@@ -46,7 +46,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Slf4j
 @Controller
-@RequestMapping("/")
+//@RequestMapping("/")
 public class PageHomeController {
 	private BannerGalleryService bannerGalleryService;
 	private CategoryService categoryService;
@@ -63,7 +63,7 @@ public class PageHomeController {
 		this.ratingService = ratingService;
 	}
 
-	@GetMapping
+	@GetMapping(value = "/")
 	public String customerHomePage(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication, Model model) {
 
