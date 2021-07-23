@@ -4,6 +4,7 @@ import com.coeding.entity.Brand;
 import com.coeding.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -27,5 +28,14 @@ public interface ProductRepository extends JpaRepository<Product,Long>  {
             nativeQuery = true)
     List<Long> findTop5(int month, int year);
 
+    @Query(value="select * from products p left join brands b on p.brand_id = b.id left join categories c on p.category_id = c.id left join types t on c.id = t.category_id where  p.product_name LIKE %:keyword%  or b.name LIKE %:keyword% or c.name LIKE %:keyword% or t.name LIKE %:keyword% group by p.id having p.enabled =true",
+            nativeQuery = true)
+    List<Product> findProductContains(@Param("keyword") String keyword);
+
+    @Query(value="select  * from products p left join brands b on p.brand_id = b.id  left join types t on p.type_id = t.id where p.product_name LIKE %:keyword% or b.name LIKE %:keyword%  or t.name LIKE %:keyword% group by p.id having p.category_id = :id and  p.enabled = true",
+            nativeQuery=true)
+    List<Product> findProductContainsByCategory(@Param("keyword") String keyword,@Param("id") Long categoryId);
+
+//
 }
 //commit

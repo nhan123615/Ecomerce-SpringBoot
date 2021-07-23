@@ -73,12 +73,14 @@ public class PageProductFilterController {
                     LOGGER.info("list filter by price with  (categoryId!=null,minPrice!=null,maxPrice!=null,listBrandId !=null)");
                     products = getProductByBrand(products,listBrandId);
                 }
+
             }else
             //filter by Type and Brand
             if (listBrandId !=null && listType !=null){
                 LOGGER.info("list filter by Type and Brand with (categoryId!=null,listBrandId !=null, listType !=null)");
                 List<Product> listByCategoryAndBrand = getProductByCategoryAndBrand(categoryId,listBrandId);
                 products = getProductByCategoryAndType(listByCategoryAndBrand,categoryId,listType);
+
             }else
             //        filter by Brand
             if (listBrandId != null) {
@@ -150,11 +152,13 @@ public class PageProductFilterController {
     @GetMapping("/search")
     public List<Product> searchFilter(
             @RequestParam(name = "categoryId",required = false) Long categoryId,
-            @RequestParam(name = "productName",required = false)String productName){
+            @RequestParam(name = "productName",required = false)String keyword){
             if (categoryId !=null){
-                return productService.findByProductNameAndCategoryId(productName, categoryId);
+//                return productService.findByProductNameAndCategoryId(productName, categoryId);
+                return productService.findProductContainsByCategoryId(keyword, categoryId);
             }
-            return productService.findByProductName(productName);
+//            return productService.findByProductName(productName);
+        return productService.findProductContains(keyword);
     }
 
 
@@ -189,6 +193,8 @@ public class PageProductFilterController {
         });
         return list;
     }
+
+
 
     public   List<Product> getProductByCategoryAndBrand(Long categoryId,List<Long> brandIdList){
         List<Product> list = new ArrayList<>();
