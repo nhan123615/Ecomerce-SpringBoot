@@ -50,23 +50,23 @@
         </div><a class="ps-logo" href="${pageContext.servletContext.contextPath}/"><img src="${pageContext.servletContext.contextPath}/img/Angry-Nerds-2.png"  alt=""></a></div>
 
     <div class="header__center">
-                <div class="ps-form--quick-search" >
+                <form class="ps-form--quick-search" action="${pageContext.servletContext.contextPath}/product" method="post">
                     <div class="form-group--icon"><i class="icon-chevron-down"></i>
-                        <select class="form-control categorySearch" style="width: 150px">
-                            <option value="all" selected="selected">All</option>
+                        <select class="form-control categorySearch" style="width: 150px" name="category">
+                            <option value="" selected="selected">All</option>
                             <c:forEach items="${categories}" var="c">
                                 <option  value="${c.id}">${c.name}</option>
                             </c:forEach>
 
                         </select>
                     </div>
-                    <input class="form-control" type="text" placeholder="I'm shopping for..." id="input-search">
+                    <input class="form-control" type="text" placeholder="I'm shopping for..." id="input-search" name="keyword">
 <%--                    <button>Search</button>--%>
                     <div class="ps-panel--search-result">
                         <div class="ps-panel__content tableSearch">
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
             <div class="header__right">
                 <div class="header__actions">

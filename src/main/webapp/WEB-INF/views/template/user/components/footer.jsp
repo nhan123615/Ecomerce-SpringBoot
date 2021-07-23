@@ -666,7 +666,7 @@
 			var categoryId =document.querySelector('.categorySearch');
 			var table =document.querySelector('.tableSearch');
 			var queryCategory =""
-			if (categoryId.value !== "all"){
+			if (categoryId.value !== ""){
 				queryCategory += "&categoryId="+categoryId.value
 			}
 			

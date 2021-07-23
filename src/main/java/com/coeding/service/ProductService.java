@@ -87,4 +87,11 @@ public class ProductService implements DAO<Product> {
         return repo.findTop5(month, year);
     }
 
+    public List<Product> findProductContains(String keyword){
+        return repo.findProductContains(keyword);
+    }
+    public List<Product> findProductContainsByCategoryId(String keyword, Long categoryId){
+        return repo.findProductContainsByCategory(keyword,categoryId);
+    }
+
 }

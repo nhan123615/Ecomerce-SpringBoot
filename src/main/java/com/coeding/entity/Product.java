@@ -39,13 +39,13 @@ public class Product {
     private double price;
     private Date updated;
 
-    @ManyToOne(targetEntity = Category.class)
+    @ManyToOne(targetEntity = Category.class,fetch = FetchType.EAGER)
     private Category category;
 
-    @ManyToOne(targetEntity = Brand.class)
+    @ManyToOne(targetEntity = Brand.class,fetch = FetchType.EAGER)
     private Brand brand;
 
-    @ManyToOne(targetEntity = Type.class)
+    @ManyToOne(targetEntity = Type.class,fetch = FetchType.EAGER)
     private Type type;
     private boolean enabled;
 
