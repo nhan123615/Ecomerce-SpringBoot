@@ -25,7 +25,7 @@ public class PageContactController {
 		this.contactService = contact;
 	}
 	
-    @GetMapping("contact")
+    @GetMapping("/contact")
     public String contactHomePage(Model model) {
 		model.addAttribute("contact",new Contact());
         return "template/user/page/contact/form";
