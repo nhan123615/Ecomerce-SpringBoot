@@ -1,8 +1,11 @@
-# AngryNerds
-# Project using springboot, lombok
+# AngryNerds (springboot, lombok)
 
-# URL site map
-- doccuments/ComputerShop.xlsx
+# Demo
+https://drive.google.com/file/d/1kIUBZteRqpWhN-lxNMFdi5Atj-8EyDE9/view?usp=sharing
+
+# Doccuments
+https://drive.google.com/drive/folders/1CK0lVC2LsDO9x6XgP2ipaQaPeovh4Yhw?usp=sharing
+
 # Configuration file
 - src/main/resources/application.properties
 # Datatabase (utf8mb4_unicode_ci)
