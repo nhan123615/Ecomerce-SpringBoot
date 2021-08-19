@@ -1,3 +1,14 @@
+# IN SUMARY
+
+-   SPRINGBOOT, JPA, HIBERNATE, RESTFUL
+-   SPRING SECURITY, OAUTH2 
+-   COOKIE, SESSION
+-   JAVA MAIL, UPLOAD FILE
+-   JSP, CSS, BOOSTRAP, JS, DATA TABLE
+-   JQUERY,  AJAX
+-   CKEDITOR, CKFINDER
+
+
 # AngryNerds (springboot, lombok)
 
 # Demo
@@ -15,14 +26,6 @@ https://drive.google.com/drive/folders/1CK0lVC2LsDO9x6XgP2ipaQaPeovh4Yhw?usp=sha
 - webapp/WEB-INF/views
 - static files: src/main/resources/static
 
-# IN SUMARY
 
-- #  SPRINGBOOT, JPA, HIBERNATE, RESTFUL
-- #  SPRING SECURITY, OAUTH2 
-- #  COOKIE, SESSION
-- #  JAVA MAIL, UPLOAD FILE
-- #  JSP, CSS, BOOSTRAP, JS, DATA TABLE
-- #  JQUERY,  AJAX
-- #  CKEDITOR, CKFINDER
 
 
