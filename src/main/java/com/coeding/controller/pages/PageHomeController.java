@@ -39,11 +39,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * @author Nhanle
- * @author Lam Cong Hau
- * Review rating star
- */
+
 @Slf4j
 @Controller
 //@RequestMapping("/")

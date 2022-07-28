@@ -12,11 +12,7 @@ import com.coeding.entity.Product;
 import com.coeding.entity.Rating;
 import com.coeding.repository.DAO;
 import com.coeding.repository.RatingRepository;
-/**
- * 
- * @author Lam Cong Hau
- *
- */
+
 @Service
 @Transactional
 public class RatingService implements DAO<Rating> {

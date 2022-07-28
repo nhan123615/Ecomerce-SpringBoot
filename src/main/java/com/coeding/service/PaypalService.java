@@ -11,9 +11,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
-/**
- * author Nhanle
- * */
+
 @Service
 @Transactional
 public class PaypalService {

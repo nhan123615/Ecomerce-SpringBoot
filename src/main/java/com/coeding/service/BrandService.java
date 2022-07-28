@@ -11,9 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * author Nhanle
- * */
+
 @Service
 @Transactional
 public class BrandService implements DAO<Brand> {

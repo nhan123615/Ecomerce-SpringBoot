@@ -7,9 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * author Nhanle
- * */
+
 @Repository
 public interface CustomerOrderRepository extends JpaRepository<CustomerOrder,Long>  {
     CustomerOrder findTop1ByCustomerIdOrderByOrderDateDesc(Long customerId);

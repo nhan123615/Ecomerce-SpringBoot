@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * author Nhanle
- */
+
 @RestController
 @RequestMapping(path = "/rest", produces = "application/json")
 @CrossOrigin(origins = "*")

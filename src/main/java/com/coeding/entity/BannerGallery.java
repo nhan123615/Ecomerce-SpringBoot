@@ -6,9 +6,7 @@ import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 
-/**
- * author Nhanle
- * */
+
 @Entity
 @Table(name = "banner_gallery")
 @AllArgsConstructor

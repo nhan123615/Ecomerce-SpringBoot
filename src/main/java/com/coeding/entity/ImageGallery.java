@@ -6,9 +6,7 @@ import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
-/**
- * author Nhanle
- * */
+
 @Entity
 @Table(name = "image_gallery")
 @AllArgsConstructor

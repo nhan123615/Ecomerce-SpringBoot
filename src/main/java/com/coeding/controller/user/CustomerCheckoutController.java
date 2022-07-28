@@ -18,9 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * author Nhanle
- */
+
 @Slf4j
 @Controller
 @RequestMapping("/customer/product")

@@ -19,11 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Locale;
 
-/**
- * 
- * @author Nhanle
- *
- */
+
 @Controller
 @RequestMapping("/admin")
 public class AdminCategoryController {

@@ -13,9 +13,6 @@ import org.springframework.web.servlet.config.annotation.*;
 
 import java.util.List;
 
-/**
- * author Nhanle
- * */
 @Configuration
 public class WebConfig extends WebMvcConfigurerAdapter
         implements WebMvcConfigurer {

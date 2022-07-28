@@ -18,9 +18,6 @@ import java.util.stream.Collectors;
 
 import static java.util.Comparator.comparing;
 
-/**
- * author Nhanle
- */
 @RestController
 @RequestMapping(path = "/filter", produces = "application/json")
 @CrossOrigin(origins = "*")

@@ -21,12 +21,7 @@ import com.paypal.api.payments.PaymentDetail;
 
 import java.util.List;
 
-/**
- * 
- * @author Vy list , detail
- *
- * @author nhanle @Post payment
- */
+
 @Controller
 
 @RequestMapping("/admin")

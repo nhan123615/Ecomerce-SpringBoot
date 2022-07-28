@@ -22,11 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Locale;
 
-/**
- * 
- * @author Nhanle
- *
- */
+
 @Controller
 @RequestMapping("/admin")
 public class AdminBrandController {

@@ -20,9 +20,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/**
- * author Nhanle
- */
+
 @Controller
 @RequestMapping("/product")
 public class PageProductController {

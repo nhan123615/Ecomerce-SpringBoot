@@ -22,11 +22,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * 
- * @author Lam Cong Hau
- *
- */
 @Slf4j
 @Controller
 @RequestMapping("/admin")

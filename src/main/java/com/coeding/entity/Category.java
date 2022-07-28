@@ -7,9 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.util.Date;
-/**
- * author Nhanle
- * */
+
 @Entity
 @Table(name = "categories")
 @AllArgsConstructor

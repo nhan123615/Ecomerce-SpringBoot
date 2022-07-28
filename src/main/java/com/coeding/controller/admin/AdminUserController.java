@@ -37,11 +37,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
-/**
- * 
- * @author Vy list , edit , update , detail
- * @author Lam Cong Hau extend detail
- */
 @Controller
 @RequestMapping("/admin")
 public class AdminUserController {

@@ -20,9 +20,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- * author Nhanle
- */
+
 @Controller
 @RequestMapping("/cart")
 public class PageCartController {

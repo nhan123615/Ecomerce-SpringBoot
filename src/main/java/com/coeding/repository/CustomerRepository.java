@@ -7,9 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * author Nhanle
- * */
+
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer,Long>  {
     Long countByUserId(Long userId);

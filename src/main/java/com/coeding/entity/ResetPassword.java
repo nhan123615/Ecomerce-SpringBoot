@@ -7,9 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
-/**
- * author Nhanle
- * */
+
 @Entity
 @Table(name = "reset_password")
 @AllArgsConstructor

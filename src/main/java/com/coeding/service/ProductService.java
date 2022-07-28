@@ -13,9 +13,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * author Nhanle
- */
+
 @Service
 @Transactional
 public class ProductService implements DAO<Product> {

@@ -11,9 +11,7 @@ import org.springframework.stereotype.Component;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-/**
- * author Nhanle
- * */
+
 @Slf4j
 @Component
 public class Cart {

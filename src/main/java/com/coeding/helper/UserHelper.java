@@ -15,9 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * author Nhanle
- * */
+
 @Component
 public class UserHelper {
     public User getUser(Authentication authentication, UserService userService){

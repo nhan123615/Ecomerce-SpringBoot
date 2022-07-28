@@ -19,9 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
 
-/**
- * author Nhanle
- * */
 @ControllerAdvice
 public class ControllerAdvisor  extends DefaultHandlerExceptionResolver  {
 

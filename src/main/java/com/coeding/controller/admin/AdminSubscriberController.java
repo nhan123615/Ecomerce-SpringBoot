@@ -19,14 +19,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 
- * @author Vy
- * list , detail
- *
- *  @author Nhanle
- *  subcriber/rely
- */
+
 @Controller
 @RequestMapping("/admin")
 public class AdminSubscriberController {

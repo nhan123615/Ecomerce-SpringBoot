@@ -7,9 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * @author Lam Cong Hau
- * */
+
 @Repository
 public interface PaymentRepository extends JpaRepository<Payment,Long>  {
     Payment findTop1ByCustomerOrderIdOrderByPaymentDateDesc(Long customerOrderId);

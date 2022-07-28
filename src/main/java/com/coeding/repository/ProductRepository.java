@@ -9,9 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * author Nhanle
- * */
+
 @Repository
 public interface ProductRepository extends JpaRepository<Product,Long>  {
     List<Product> findByCategoryId(Long categoryId);

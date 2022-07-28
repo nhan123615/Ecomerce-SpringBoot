@@ -17,11 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.coeding.entity.Product;
 import com.coeding.service.ProductService;
 
-/**
- * 
- * @author Lam Cong Hau
- *
- */
 @RestController
 @RequestMapping(path = "/api/wish-list", produces = "application/json")
 @CrossOrigin(origins = "*")

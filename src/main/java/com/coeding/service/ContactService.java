@@ -11,10 +11,7 @@ import com.coeding.repository.ContactRepository;
 import com.coeding.repository.DAO;
 
 
-/**
- * @author TranDung
- *
- */
+
 @Service
 @Transactional
 public class ContactService implements DAO<Contact>{

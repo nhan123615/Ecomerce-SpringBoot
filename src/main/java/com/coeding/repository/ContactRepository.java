@@ -7,10 +7,7 @@ import com.coeding.entity.Contact;
 
 import antlr.collections.List;
 
-/**
- * @author TranDung
- *
- */
+
 @Repository
 public interface ContactRepository extends JpaRepository<Contact, Long> {
 	 List findByNameContaining(String a);

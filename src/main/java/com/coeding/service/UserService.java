@@ -23,11 +23,7 @@ public class UserService implements UserDetailsService {
     public UserService(UserRepository userRepo) {
         this.userRepo = userRepo;
     }
-    /**
-     * 
-     * @author Vy
-     *
-     */
+ 
     public List<User> findAll(){
     	return userRepo.findAll();
     }

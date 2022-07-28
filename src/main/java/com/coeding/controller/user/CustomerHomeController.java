@@ -20,9 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-/**
- * author TranDung
- * */
+
 @Controller
 @RequestMapping("/customer")
 public class CustomerHomeController {

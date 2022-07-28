@@ -16,9 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.UUID;
-/**
- * author Nhanle
- * */
+
 @Controller
 @RequestMapping("/forgot-password")
 public class ForgotPasswordController {

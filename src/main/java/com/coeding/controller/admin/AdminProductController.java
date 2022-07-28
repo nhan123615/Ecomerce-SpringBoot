@@ -33,11 +33,7 @@ import com.coeding.service.ImageService;
 import com.coeding.service.ProductService;
 import com.coeding.service.TypeService;
 
-/**
- * 
- * @author Lam Cong Hau
- *
- */
+
 @Controller
 @RequestMapping("/admin")
 public class AdminProductController {

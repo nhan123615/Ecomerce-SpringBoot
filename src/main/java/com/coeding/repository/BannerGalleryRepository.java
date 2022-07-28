@@ -5,11 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.coeding.entity.BannerGallery;
 
-/**
- * 
- * @author Lam Cong Hau
- *
- */
+
 @Repository
 public interface BannerGalleryRepository extends JpaRepository<BannerGallery, Long> {
 

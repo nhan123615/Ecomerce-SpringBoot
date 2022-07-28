@@ -12,9 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * author Nhanle
- */
+
 @Service
 @Transactional
 @Slf4j

@@ -21,10 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-/**
- * @author nhanle
- *
- */
+
 @Slf4j
 @Controller
 @RequestMapping("/subcriber")

@@ -7,9 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * author Nhanle
- * */
+
 @Repository
 public interface TypeRepository extends JpaRepository<Type,Long>  {
     List<Type> findByCategoryId(Long id);

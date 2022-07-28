@@ -14,11 +14,7 @@ import com.coeding.entity.CustomerOrder;
 import com.coeding.entity.Payment;
 import com.coeding.entity.UserDetail;
 import com.coeding.service.OrderService;
-/**
- * 
- * @author Vy
- * list , detail
- */
+
 @Controller
 @RequestMapping("admin")
 public class AdminOrderController {
